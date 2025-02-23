@@ -22,6 +22,13 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is Required"],
       minLength: 6,
     },
+    phone: {
+      type: Number,
+      maxLength: 11
+    },
+    profile_photo: {
+      type: String,
+    }
   },
   { timestamps: true }
 );

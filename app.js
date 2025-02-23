@@ -5,6 +5,7 @@ import { PORT } from "./config/env.js";
 import userRouter from "./routes/user.route.js";
 import connectToDatabase from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
+import customerRouter from "./routes/customer.route.js";
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.use(cookieParser());
 
 //The app main routes
 app.use("/api/users", userRouter);
+app.use("/api/customers", customerRouter);
+
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
