@@ -17,10 +17,12 @@ const reservationSchema = new mongoose.Schema(
     guest_count: {
       type: Number,
       required: true,
+      trim: true,
     },
     total_price: {
       type: Number,
       required: true,
+      trim: true,
     },
     status: {
       type: String,
@@ -36,6 +38,7 @@ const reservationSchema = new mongoose.Schema(
     },
     notes: {
       type: String,
+      trim: true,
     },
     package: {
       type: mongoose.Schema.Types.ObjectId,

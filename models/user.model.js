@@ -24,11 +24,13 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: Number,
-      maxLength: 11
+      maxLength: 11,
+      trim: true,
     },
     profile_photo: {
       type: String,
-    }
+      trim: true,
+    },
   },
   { timestamps: true }
 );

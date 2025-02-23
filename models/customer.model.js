@@ -20,6 +20,7 @@ const customerSchema = new mongoose.Schema(
     phone: {
       type: Number,
       maxLength: 11,
+      trim: true,
     },
     address: {
       type: String,
