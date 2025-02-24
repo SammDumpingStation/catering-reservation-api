@@ -35,7 +35,7 @@ const packageSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    image_url: {
+    image: {
       type: String,
       default: "https://placehold.co/600x400",
     },

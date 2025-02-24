@@ -19,7 +19,7 @@ const menuItemSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    image_url: {
+    image: {
       type: String,
       required: [true, "The Menu Photo is required"],
       default: "https://ui-avatars.com/api/?name=John+Doe&background=random",

@@ -2,6 +2,24 @@ import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema(
   {
+    customer_name: {
+      type: String,
+      trim: true,
+      minLength: 2,
+      maxLength: 50,
+    },
+    customer_email: {
+      type: String,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      match: [/\S+@\S+\.\S+/, "Please provide a valid email address"],
+    },
+    customer_phone: {
+      type: Number,
+      maxLength: 11,
+      trim: true,
+    },
     event_date: {
       type: Date,
       required: [true, "Event Date is required"],

@@ -2,7 +2,22 @@ import mongoose from "mongoose";
 
 const transactionSchema = new mongoose.Schema(
   {
+    amount_due: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
     amount_paid: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
+    balance: {
+      type: Number,
+      required: true,
+      trim: true,
+    },
+    min_down_payment: {
       type: Number,
       required: true,
       trim: true,
@@ -13,19 +28,7 @@ const transactionSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Pending", "Completed", "Refunded", "Failed"],
-    },
-    payment_method: {
-      type: mongoose.Types.ObjectId,
-      ref: "Payment",
-      required: true,
-      index: true,
-    },
-    customer: {
-      type: mongoose.Types.ObjectId,
-      ref: "Customer",
-      required: true,
-      index: true,
+      enum: ["pending", "partially_paid", "paid", "refunded", "cancelled"],
     },
     reservation: {
       type: mongoose.Types.ObjectId,
