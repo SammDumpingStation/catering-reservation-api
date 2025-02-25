@@ -24,13 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //The app main routes
-app.use("/api/auth", authRouter);
-app.use("/api/users", userRouter);
-app.use("/api/menus", menuRouter);
-app.use("/api/packages", packageRouter);
-app.use("/api/payments", paymentRouter);
-app.use("/api/reservations", reservationRouter);
-app.use("/api/transactions", transactionRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/menus", menuRouter);
+app.use("/api/v1/packages", packageRouter);
+app.use("/api/v1/payments", paymentRouter);
+app.use("/api/v1/reservations", reservationRouter);
+app.use("/api/v1/transactions", transactionRouter);
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
 

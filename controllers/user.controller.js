@@ -1,15 +1,27 @@
 import mongoose from "mongoose";
 import User from "../models/user.model.js";
-// Get all users
-const getUsers = async (req, res) => {
+
+//Get all users
+const getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
-    res.status(200).json(users);
+
+    res.status(200).json({ success: true, data: users });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching users", error: error.message });
+    next(error);
   }
 };
 
-export { getUsers };
+//Get User Details
+const getUser = async (req, res) => {};
+
+//Create a New user
+const createUser = async (req, res) => {};
+
+//Update a User
+const updateUser = async (req, res) => {};
+
+//Delete a user
+const deleteUser = async (req, res) => {};
+
+export { getUsers, getUser, createUser, updateUser, deleteUser };
