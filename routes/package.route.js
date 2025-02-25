@@ -25,3 +25,5 @@ packageRouter.put("/:id", (req, res) =>
 packageRouter.delete("/:id", (req, res) =>
   res.send({ message: "Delete a Package" })
 );
+
+export default packageRouter;

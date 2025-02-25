@@ -27,3 +27,5 @@ reservationRouter.put("/", (req, res) =>
 reservationRouter.delete("/", (req, res) =>
   res.send({ message: "Delete a reservation" })
 );
+
+export default reservationRouter;

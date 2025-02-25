@@ -19,3 +19,5 @@ menuItemRouter.put("/:id", (req, res) => res.send({ message: "GET All Menu" }));
 menuItemRouter.delete("/:id", (req, res) =>
   res.send({ message: "GET All Menu" })
 );
+
+export default menuItemRouter;

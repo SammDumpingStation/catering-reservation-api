@@ -6,6 +6,7 @@ import userRouter from "./routes/user.route.js";
 import connectToDatabase from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 
+
 const app = express();
 
 //This allows our app to handle json data sent in request (req)/API calls
@@ -18,7 +19,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //The app main routes
+app.use('')
 app.use("/api/users", userRouter);
+
 
 
 //Intercepts any errors mainly in mongoose

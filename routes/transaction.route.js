@@ -32,3 +32,5 @@ transactionRouter.put("/:id", (req, res) =>
 transactionRouter.get("/:id", (req, res) =>
   res.send({ title: "Delete a transaction" })
 );
+
+export default transactionRouter
