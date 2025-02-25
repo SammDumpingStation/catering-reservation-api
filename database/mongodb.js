@@ -1,20 +1,25 @@
 import mongoose from "mongoose";
-import { DB_URI, NODE_ENV } from "../config/env.js";
-
-if (!DB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.<development/production>.local"
-  );
-}
+import { DB_URI_CLOUD, DB_URI_LOCAL, NODE_ENV } from "../config/env.js";
 
 const connectToDatabase = async () => {
   try {
-    await mongoose.connect(DB_URI);
-    console.log(`Connected to database in ${NODE_ENV} mode`);
-    
+    console.log(`Trying to connect to Cloud Database...`);
+    await mongoose.connect(DB_URI_CLOUD);
+    console.log(`✅ Connected to Cloud Database in ${NODE_ENV} mode`);
   } catch (error) {
-    console.log("Error Connecting to database: ", error);
-    process.exit(1);
+    console.error("❌ Error connecting to Cloud Database:", error.message);
+
+    console.log("🔄 Attempting to connect to Local Database...");
+    try {
+      await mongoose.connect(DB_URI_LOCAL);
+      console.log("✅ Successfully connected to Local Database");
+    } catch (localError) {
+      console.error(
+        "❌ Failed to connect to Local Database:",
+        localError.message
+      );
+      process.exit(1);
+    }
   }
 };
 
