@@ -1,11 +1,16 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import { PORT } from "./config/env.js";
-
-import userRouter from "./routes/user.route.js";
 import connectToDatabase from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 
+import authRouter from "./routes/auth.router.js";
+import userRouter from "./routes/user.route.js";
+import menuRouter from "./routes/menu.route.js";
+import packageRouter from "./routes/package.route.js";
+import paymentRouter from "./routes/payment.route.js";
+import reservationRouter from "./routes/reservation.route.js";
+import transactionRouter from "./routes/transaction.route.js";
 
 const app = express();
 
@@ -19,11 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //The app main routes
-app.use('')
+app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
-
-
-
+app.use("/api/menus", menuRouter);
+app.use("/api/packages", packageRouter);
+app.use("/api/payments", paymentRouter);
+app.use("/api/reservations", reservationRouter);
+app.use("/api/transactions", transactionRouter);
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
 
