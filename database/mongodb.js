@@ -3,7 +3,7 @@ import { DB_URI_CLOUD, DB_URI_LOCAL, NODE_ENV } from "../config/env.js";
 
 const connectToDatabase = async () => {
   try {
-    console.log(`Trying to connect to Cloud Database...`);
+    console.log(`☁️ Trying to connect to Cloud Database...`);
     await mongoose.connect(DB_URI_CLOUD);
     console.log(`✅ Connected to Cloud Database in ${NODE_ENV} mode`);
   } catch (error) {
