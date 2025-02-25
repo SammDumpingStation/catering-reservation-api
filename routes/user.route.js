@@ -1,6 +1,13 @@
 //User Related Routes
 import { Router } from "express";
-import { getUsers } from "../controllers/user.controller.js";
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUsers,
+  updateUser,
+} from "../controllers/user.controller.js";
+import authorize from "../middlewares/user.middleware.js";
 
 const userRouter = Router();
 
@@ -8,15 +15,15 @@ const userRouter = Router();
 userRouter.get("/", getUsers);
 
 //Get User Details
-userRouter.get("/:id", (req, res) => res.send({ title: "GET User Details" }));
+userRouter.get("/:id", authorize, getUser);
 
 //Create a New user
-userRouter.post("/", (req, res) => res.send({ title: "Create a New User" }));
+userRouter.post("/", createUser);
 
 //Update a User
-userRouter.put("/:id", (req, res) => res.send({ title: "Update a User" }));
+userRouter.put("/:id", updateUser);
 
 //Delete a user
-userRouter.delete("/:id", (req, res) => res.send({ title: "DELETE A User" }));
+userRouter.delete("/:id", deleteUser);
 
 export default userRouter;

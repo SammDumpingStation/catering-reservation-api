@@ -12,7 +12,7 @@ const signUp = async (req, res, next) => {
   const session = await mongoose.startSession();
   session.startTransaction();
 
-  try {
+  try { 
     //Create a new user
     const { name, email, password } = req.body;
 
@@ -29,7 +29,7 @@ const signUp = async (req, res, next) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    //This is where we format the user data that fits the schema we created in user.model.js
+    //This is where we create the user data that fits the schema we created in user.model.js
     const newUsers = await User.create(
       [{ name, email, password: hashedPassword }],
       { session }
