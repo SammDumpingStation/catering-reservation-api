@@ -1,6 +1,62 @@
 import mongoose from "mongoose";
 import User from "../models/user.model.js";
 
+
+/**
+ * @route   GET /api/v1/users
+ * @desc    Get all customer accounts
+ * @access  Private
+ */
+
+/**
+ * @route   GET /api/v1/users/:id
+ * @desc    Get customer by ID
+ * @access  Private
+ */
+
+/**
+ * @route   POST /api/v1/users
+ * @desc    Create new customer account (by caterer)
+ * @access  Private
+ */
+
+/**
+ * @route   PUT /api/v1/users/:id
+ * @desc    Update customer information
+ * @access  Private
+ */
+
+/**
+ * @route   DELETE /api/v1/users/:id
+ * @desc    Delete customer account
+ * @access  Private
+ */
+
+/**
+ * @route   GET /api/v1/users/staff
+ * @desc    Get all staff accounts
+ * @access  Private
+ */
+
+/**
+ * @route   POST /api/v1/users/staff
+ * @desc    Create new staff account
+ * @access  Private
+ */
+
+/**
+ * @route   PUT /api/v1/users/staff/:id
+ * @desc    Update staff account information
+ * @access  Private
+ */
+
+/**
+ * @route   DELETE /api/v1/users/staff/:id
+ * @desc    Delete staff account
+ * @access  Private
+ */
+
+
 //Get all users
 const getUsers = async (req, res, next) => {
   try {
