@@ -1,32 +1,70 @@
 import mongoose from "mongoose";
 
+const dietaryInfoEnum = [
+  "Vegan",
+  "Vegetarian",
+  "Halal",
+  "Gluten-Free",
+  "Dairy-Free",
+];
+
+const allergenEnum = [
+  "Peanuts",
+  "Tree Nuts",
+  "Dairy",
+  "Eggs",
+  "Gluten",
+  "Soy",
+  "Shellfish",
+  "Fish",
+  "Sesame",
+];
+
 const menuSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Menu Name is Required"],
-      minLength: 2,
+      required: [true, "Please provide menu item name"],
       trim: true,
     },
     description: {
       type: String,
-      required: true,
-      minLength: 10,
+      required: [true, "Please provide menu description"],
       trim: true,
     },
     price: {
       type: Number,
-      required: true,
-      trim: true,
+      required: [true, "Please provide menu price"],
+      minLength: [0, "Price cannot be negative"],
     },
-    image: {
-      type: String,
-      required: [true, "The Menu Photo is required"],
-      default: "https://ui-avatars.com/api/?name=John+Doe&background=random",
+    servingSize: {
+      type: Number,
+      required: [true, "Please provide serving size"],
+      minLength: [1, "Serving size must be at least 1"],
     },
-    availability: {
+    dietaryInfo: {
+      type: [String],
+      enum: dietaryInfoEnum,
+      default: [],
+    },
+    allergens: {
+      type: [String],
+      enum: AllergenEnum,
+      default: [],
+    },
+    isAvailable: {
       type: Boolean,
       default: true,
+    },
+    mainImage: {
+      type: String,
+      required: [true, "Please provide the main menu image"],
+      default: "https://ui-avatars.com/api/?name=John+Doe&background=random",
+    },
+    images: {
+      type: [String],
+      required: [true, "Please provide at least 1 image"],
+      default: [],
     },
   },
   { timestamps: true }

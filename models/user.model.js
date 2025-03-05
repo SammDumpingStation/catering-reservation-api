@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: {
+    fullName: {
       type: String,
-      required: [true, "Username is Required"],
+      required: [true, "Full Name is Required"],
       trim: true,
       minLength: 2,
       maxLength: 50,
@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is Required"],
       minLength: 6,
     },
-    phone: {
+    contactNumber: {
       type: Number,
       maxLength: 11,
       trim: true,
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
       enum: ["customer", "admin"],
       default: "customer",
     },
-    profile_image: {
+    profileImage: {
       type: String,
       trim: true,
     },
