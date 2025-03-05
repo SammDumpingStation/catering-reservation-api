@@ -20,6 +20,22 @@ const allergenEnum = [
   "Sesame",
 ];
 
+const menuCategoryEnum = [
+  "Salad & Cold Appetizers",
+  "Soup & Hot Appetizers",
+  "Pasta & Noodles",
+  "Rice & Grains",
+  "Vegetable Dishes",
+  "Chicken Dishes",
+  "Beef Dishes",
+  "Pork Dishes",
+  "Seafood Dishes",
+  "Bread & Pastries",
+  "Desserts & Sweets",
+  "Hot Beverages",
+  "Cold Beverages",
+];
+
 const menuSchema = new mongoose.Schema(
   {
     name: {
@@ -42,6 +58,10 @@ const menuSchema = new mongoose.Schema(
       required: [true, "Please provide serving size"],
       minLength: [1, "Serving size must be at least 1"],
     },
+    category: {
+      type: String,
+      enum: menuCategoryEnum,
+    },
     dietaryInfo: {
       type: [String],
       enum: dietaryInfoEnum,
@@ -49,7 +69,7 @@ const menuSchema = new mongoose.Schema(
     },
     allergens: {
       type: [String],
-      enum: AllergenEnum,
+      enum: allergenEnum,
       default: [],
     },
     isAvailable: {
