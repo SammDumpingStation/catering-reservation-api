@@ -2,72 +2,114 @@ import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema(
   {
-    customer_name: {
-      type: String,
-      trim: true,
-      minLength: 2,
-      maxLength: 50,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
-    customer_email: {
-      type: String,
-      unique: true,
-      trim: true,
-      lowercase: true,
-      match: [/\S+@\S+\.\S+/, "Please provide a valid email address"],
+    customer_details: {
+      firstName: {
+        type: String,
+        trim: [true, "Please provide your First Name"],
+        minLength: 2,
+        maxLength: 50,
+      },
+      lastName: {
+        type: String,
+        trim: [true, "Please provide your surname"],
+        minLength: 2,
+        maxLength: 50,
+      },
+      email: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        required: [true, "Please provide your email address"],
+        match: [/\S+@\S+\.\S+/, "Please provide a valid email address"],
+      },
+      contactNumber: {
+        type: Number,
+        required: [true, "Please provide contact number"],
+        trim: true,
+      },
     },
-    customer_phone: {
-      type: Number,
-      maxLength: 11,
-      trim: true,
+
+    eventDetails: {
+      date: {
+        type: Date,
+        required: [true, "Please provide event date"],
+      },
+      time: {
+        type: Date,
+        required: [true, "Please provide event time"],
+      },
+      venue: {
+        type: String,
+        required: [true, "Please provide the venue"],
+      },
     },
-    event_date: {
-      type: Date,
-      required: [true, "Event Date is required"],
+
+    cateringPreferences: {
+      selectedPackage: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Package",
+        default: null,
+      },
+      customMenu: {
+        selectedMenus: [
+          {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Menu",
+          },
+        ],
+        default: [],
+      },
+      numberOfGuests: {
+        type: Number,
+        required: [true, "Please provide a number of guests"],
+        minLength: [30, "Minimum of 30 guests"],
+      },
+      additionalRequests: {
+        type: Number,
+        required: true,
+      },
     },
-    event_time: {
-      type: Date,
-      required: [true, "Event Time is required"],
+
+    costDetails: {
+      totalReservationCost: {
+        type: Number,
+        required: true,
+      },
+      minimumDownPayment: {
+        type: Number,
+        required: true,
+      },
+      downPaymentPaid: {
+        type: Number,
+        required: true,
+      },
+      balanceDue: {
+        type: Number,
+        default: function () {
+          return this.totalReservationCost - this.downPaymentPaid;
+        },
+      },
     },
-    menu_items: {
-      type: Array,
-      required: [true, "Menu Items is required"],
+
+    paymentId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
     },
-    guest_count: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
-    total_price: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
-    status: {
-      type: String,
-      enum: ["Pending", "Confirmed", "Completed", "Canceled"],
-    },
-    payment_type: {
-      type: String,
-      enum: ["Credit/Debit", "Cash"],
-    },
-    payment_status: {
-      type: String,
-      enum: ["Pending", "Paid", "Refunded"],
-    },
+
     notes: {
       type: String,
       trim: true,
     },
-    package: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Package",
-      index: true,
-    },
-    customer: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Customer",
-      required: true,
-      index: true,
+
+    status: {
+      type: String,
+      enum: ["pending", "confirmed", "completed", "canceled"],
+      default: "pending",
     },
   },
   { timestamps: true }

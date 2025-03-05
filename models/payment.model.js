@@ -2,42 +2,49 @@ import mongoose from "mongoose";
 
 const paymentSchema = new mongoose.Schema(
   {
-    amount_paid: {
-      type: Number,
-      required: true,
-      trim: true,
-    },
-    type: {
-      type: String,
-      required: true,
-      enum: ["down_payment", "full_payment", "additional_payment"],
-    },
-    method: {
-      type: String,
-      required: true,
-      enum: ["GCash", "Bank Transfer", "Cash"],
-    },
-    date: {
-      type: Date,
+    reservationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Reservation",
       required: true,
     },
+    transactions: [
+      {
+        amount: {
+          type: Number,
+          required: true,
+        },
+        method: {
+          type: String,
+          enum: [
+            "online",
+            "bank_transfer",
+            "cash_on_delivery",
+            "credit_card",
+            "debit_card",
+          ],
+          required: true,
+        },
+        date: {
+          type: Date,
+          default: Date.now,
+        },
+        type: {
+          type: String,
+          enum: ["down_payment", "additional_payment", "full_payment"],
+          required: true,
+        },
+        status: {
+          type: String,
+          enum: ["pending", "completed", "failed"],
+          default: "pending",
+        },
+      },
+    ],
+
     status: {
       type: String,
-      required: true,
-      enum: ["pending", "completed", "failed", "refunded"],
-    },
-    reference: {
-      type: String,
-    },
-    receipt: {
-      type: String,
-      required: true,
-    },
-    transaction: {
-      type: mongoose.Types.ObjectId,
-      ref: "Transaction",
-      required: true,
-      index: true,
+      enum: ["pending", "partial", "full"],
+      default: "pending",
     },
   },
   { timestamps: true }
