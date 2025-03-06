@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const customerSchema = new mongoose.Schema(
   {
     fullName: {
       type: String,
@@ -23,8 +23,7 @@ const userSchema = new mongoose.Schema(
       minLength: 6,
     },
     contactNumber: {
-      type: Number,
-      maxLength: 11,
+      type: String,
       trim: true,
     },
     role: {
@@ -40,6 +39,6 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
+const Customer = mongoose.model("Customer", customerSchema);
 
-export default User;
+export default Customer;

@@ -3,7 +3,7 @@ import { DB_URI_CLOUD, DB_URI_LOCAL, NODE_ENV } from "../config/env.js";
 
 const connectToDatabase = async () => {
   try {
-    console.log(`☁️ Trying to connect to Cloud Database...`);
+    console.log(`Trying to connect to Cloud Database...`);
     await mongoose.connect(DB_URI_CLOUD);
     console.log(`✅ Connected to Cloud Database in ${NODE_ENV} mode`);
   } catch (error) {
@@ -23,4 +23,21 @@ const connectToDatabase = async () => {
   }
 };
 
-export default connectToDatabase;
+// Function to close the database connection
+const closeConnection = async () => {
+  try {
+    // Check if there's an active connection
+    if (mongoose.connection.readyState === 1) {
+      // 1 means "connected"
+      await mongoose.connection.close();
+      console.log("✅ Database connection closed successfully");
+    } else {
+      console.log("ℹ️ No active database connection to close");
+    }
+  } catch (error) {
+    console.error("❌ Error closing database connection:", error.message);
+    throw error; // Optionally rethrow the error for upstream handling
+  }
+};
+
+export { connectToDatabase, closeConnection };

@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const reservationSchema = new mongoose.Schema(
   {
-    userId: {
+    customerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Customer",
       default: null,
     },
     customer_details: {

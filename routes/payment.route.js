@@ -7,13 +7,13 @@ const paymentRouter = Router();
 //Get all payments (for caterer)
 paymentRouter.get("/", (req, res) => res.send({ message: "GET All Payments" }));
 
-//Get all payments made by a user
+//Get all payments made by a customer
 paymentRouter.get("/:id/", (req, res) =>
-  res.send({ message: "GET All Payments by a user" })
+  res.send({ message: "GET All Payments by a Customer" })
 );
 
-//Get payments detail of a user
-paymentRouter.get("/user/:id", (req, res) =>
+//Get payments detail of a customer
+paymentRouter.get("/customer/:id", (req, res) =>
   res.send({ message: "GET All Payments" })
 );
 

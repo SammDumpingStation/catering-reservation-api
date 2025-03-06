@@ -8,9 +8,9 @@ reservationRouter.get("/", (req, res) =>
   res.send({ message: "GET All Reservation" })
 );
 
-//Get all reservation made by user
-reservationRouter.get("/user/:id", (req, res) =>
-  res.send({ message: "Get all reservation made by user" })
+//Get all reservation made by customer
+reservationRouter.get("/customer/:id", (req, res) =>
+  res.send({ message: "Get all reservation made by Customer" })
 );
 
 //Create a reservation
