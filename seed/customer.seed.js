@@ -49,7 +49,7 @@ const deleteAllDummyCustomers = async () => {
 };
 
 //Seeding Customers
-seedCustomers();
+// seedCustomers(); // Uncomment this if you want to seed dummy customers in the database
 
 //Deleting the existing dummy users
-//deleteAllDummyCustomers(); // -> Uncomment this if you want to delete all the dummy customers
+//deleteAllDummyCustomers(); // Uncomment this if you want to delete all the dummy customers
