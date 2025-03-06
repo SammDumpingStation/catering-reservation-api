@@ -34,7 +34,7 @@ const signUp = async (req, res, next) => {
     );
 
     //Create a session token for the customer for them to sign in
-    const token = tokenCreation(customer._id);
+    const token = tokenCreation(newCustomer._id);
 
     //If all is successful, then "commit" or "do" the transaction
     await session.commitTransaction();
@@ -105,7 +105,7 @@ const signIn = async (req, res, next) => {
 const signOut = async (req, res, next) => {};
 
 //Creation of token when signing in
-const tokenCreation = async (customerId) => {
+const tokenCreation = (customerId) => {
   const token = jwt.sign({ customerId: customerId }, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN,
   });

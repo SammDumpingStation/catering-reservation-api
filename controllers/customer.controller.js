@@ -21,7 +21,7 @@ const getCustomer = async (req, res, next) => {
 
     if (!customer) {
       const error = new Error("Customer doesn't Exist!");
-      error.statusCode(404);
+      error.statusCode = 404;
       throw error;
     }
 
@@ -31,19 +31,32 @@ const getCustomer = async (req, res, next) => {
   }
 };
 
-//Create a New Customer
-const createCustomer = async (req, res) => {};
-
 //Update a Customer
-const updateCustomer = async (req, res) => {};
+const updateCustomer = async (req, res, next) => {
+  const { id } = req.params;
+  const { fullName, contactNumber, profileImage } = req.body;
+  try {
+    const customer = await Customer.findByIdAndUpdate(
+      id,
+      {
+        fullName,
+        contactNumber,
+        profileImage,
+      },
+      { new: true, runValidators: true }
+    );
+
+    if (!customer) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ success: true, data: customer });
+  } catch (error) {
+    next(error);
+  }
+};
 
 //Delete a Customer
 const deleteCustomer = async (req, res) => {};
 
-export {
-  getCustomers,
-  getCustomer,
-  createCustomer,
-  updateCustomer,
-  deleteCustomer,
-};
+export { getCustomers, getCustomer, updateCustomer, deleteCustomer };

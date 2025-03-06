@@ -1,7 +1,6 @@
 //Customer Related Routes
 import { Router } from "express";
 import {
-  createCustomer,
   deleteCustomer,
   getCustomer,
   getCustomers,
@@ -15,10 +14,7 @@ const customerRouter = Router();
 customerRouter.get("/", getCustomers);
 
 //Get Customer Details
-customerRouter.get("/:id", authorize, getCustomer);
-
-//Create a New Customer
-customerRouter.post("/", createCustomer);
+customerRouter.get("/:id", getCustomer);
 
 //Update a Customer
 customerRouter.put("/:id", updateCustomer);
