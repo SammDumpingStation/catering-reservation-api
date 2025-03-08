@@ -1,6 +1,5 @@
-import mongoose from "mongoose";
 import Customer from "../models/customer.model.js";
-import e from "express";
+import { checkIfExists } from "../utils/check-if-exists.js";
 
 const getCustomers = async (req, res, next) => {
   try {
@@ -20,11 +19,7 @@ const getCustomer = async (req, res, next) => {
   try {
     const customer = await Customer.findById(req.params.id);
 
-    if (!customer) {
-      const error = new Error("Customer doesn't Exist!");
-      error.statusCode = 404;
-      throw error;
-    }
+    checkIfExists(customer);
 
     res.status(201).json({ success: true, data: customer });
   } catch (error) {
@@ -47,9 +42,7 @@ const updateCustomer = async (req, res, next) => {
       { new: true, runValidators: true }
     );
 
-    if (!customer) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    checkIfExists(customer);
 
     res.status(200).json({ success: true, data: customer });
   } catch (error) {
@@ -62,13 +55,14 @@ const deleteCustomer = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const customer = Customer.findByIdAndDelete(id);
+    const customer = await Customer.findByIdAndDelete(id);
 
-    if (!customer) {
-      return res.status(404).json({ message: "User not found" });
-    }
+    checkIfExists(customer);
 
-    res.send(200).json({ success: true });
+    res
+      .status(200)
+      .json({ success: true, message: "Customer deleted Successfully!" });
+      
   } catch (error) {
     next(error);
   }
