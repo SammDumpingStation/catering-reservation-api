@@ -1,59 +1,101 @@
-/**
- * @route   GET /api/v1/reservations
- * @desc    Get all reservations
- * @access  Private
- */
+import Reservation from "../models/reservation.model.js";
+import { checkIfExists } from "../utils/check-if-exists.js";
 
-/**
- * @route   GET /api/v1/reservations/:id
- * @desc    Get reservation by ID
- * @access  Private
- */
+//Get All Reservation
+const getReservations = async (req, res, next) => {
+  try {
+    const reservations = await Reservation.find();
 
-/**
- * @route   POST /api/v1/reservations
- * @desc    Create new reservation
- * @access  Private
- */
+    res.status(200).json({ success: true, data: reservations });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   PUT /api/v1/reservations/:id
- * @desc    Update reservation details
- * @access  Private
- */
+//Get a Reservation
+const getReservation = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-/**
- * @route   DELETE /api/v1/reservations/:id
- * @desc    Delete reservation
- * @access  Private
- */
+    const reservation = await Reservation.findById(id);
 
-/**
- * @route   PUT /api/v1/reservations/:id/status
- * @desc    Update reservation status (confirm/cancel/complete)
- * @access  Private
- */
+    checkIfExists(reservation, "Reservation");
 
-/**
- * @route   GET /api/v1/reservations/calendar
- * @desc    Get reservations in calendar format
- * @access  Private
- */
+    res.status(200).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   GET /api/v1/reservations/availability
- * @desc    Check availability for specific date/time
- * @access  Private
- */
+//Create a Reservation
+const createReservation = async (req, res, next) => {
+  try {
+    const reservation = Reservation.create(req.body);
 
-/**
- * @route   GET /api/v1/reservations/upcoming
- * @desc    Get upcoming reservations
- * @access  Private
- */
+    res.status(201).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   POST /api/v1/reservations/:id/add-note
- * @desc    Add note to reservation
- * @access  Private
- */
+//Update a Reservation
+const updateReservation = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {
+      customerId,
+      customer_details,
+      eventDetails,
+      cateringPreferences,
+      costDetails,
+      paymentId,
+      notes,
+      status,
+    } = req.body;
+
+    const reservation = await Reservation.findByIdAndUpdate(
+      id,
+      {
+        customerId,
+        customer_details,
+        eventDetails,
+        cateringPreferences,
+        costDetails,
+        paymentId,
+        notes,
+        status,
+      },
+      { new: true, runValidators: true }
+    );
+
+    checkIfExists(reservation, "Reservation");
+
+    res.status(200).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
+//Delete a Reservation
+const deleteReservation = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const reservation = await Reservation.findByIdAndDelete(id);
+
+    checkIfExists(reservation, "Reservation");
+
+    res
+      .status(200)
+      .json({ success: true, message: "Reservation deleted Successfully!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export {
+  getReservations,
+  getReservation,
+  createReservation,
+  updateReservation,
+  deleteReservation,
+};

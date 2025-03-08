@@ -1,41 +1,81 @@
-/**
- * @route   GET /api/v1/payments
- * @desc    Get all payments
- * @access  Private
- */
+import Payment from "../models/payment.model.js";
+import { checkIfExists } from "../utils/check-if-exists.js";
 
-/**
- * @route   GET /api/v1/payments/:id
- * @desc    Get payment by ID
- * @access  Private
- */
+//Get All Payment
+const getPayments = async (req, res, next) => {
+  try {
+    const payments = await Payment.find();
 
-/**
- * @route   POST /api/v1/payments/record
- * @desc    Record manual payment
- * @access  Private
- */
+    res.status(200).json({ success: true, data: payments });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   PUT /api/v1/payments/:id/status
- * @desc    Update payment status (confirm/reject)
- * @access  Private
- */
+//Get a Payment
+const getPayment = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-/**
- * @route   GET /api/v1/payments/summary
- * @desc    Get payment analytics and summary
- * @access  Private
- */
+    const payment = await Payment.findById(id);
 
-/**
- * @route   GET /api/v1/payments/pending
- * @desc    Get all pending payments
- * @access  Private
- */
+    checkIfExists(Payment, "Payment");
 
-/**
- * @route   POST /api/v1/payments/generate-invoice/:reservationId
- * @desc    Generate invoice for reservation
- * @access  Private
- */
+    res.status(200).json({ success: true, data: payment });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//Create a Payment
+const createPayment = async (req, res, next) => {
+  try {
+    const payment = Payment.create(req.body);
+
+    res.status(201).json({ success: true, data: payment });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//Update a Payment
+const updatePayment = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { reservationId, transactions, status } = req.body;
+
+    const payment = await Payment.findByIdAndUpdate(
+      id,
+      {
+        reservationId,
+        transactions,
+        status,
+      },
+      { new: true, runValidators: true }
+    );
+
+    checkIfExists(payment, "Payment");
+
+    res.status(200).json({ success: true, data: payment });
+  } catch (error) {
+    next(error);
+  }
+};
+//Delete a Payment
+const deletePayment = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const payment = await Payment.findByIdAndDelete(id);
+
+    checkIfExists(payment, "Payment");
+
+    res
+      .status(200)
+      .json({ success: true, message: "Payment deleted Successfully!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getPayments, getPayment, createPayment, updatePayment, deletePayment };

@@ -1,41 +1,95 @@
-/**
- * @route   GET /api/v1/packages
- * @desc    Get all catering packages
- * @access  Private
- */
+import Package from "../models/package.model.js";
+import { checkIfExists } from "../utils/check-if-exists.js";
 
-/**
- * @route   GET /api/v1/packages/:id
- * @desc    Get package by ID
- * @access  Private
- */
+//Get All Package
+const getPackages = async (req, res, next) => {
+  try {
+    const packages = await Package.find();
 
-/**
- * @route   POST /api/v1/packages
- * @desc    Create new catering package
- * @access  Private
- */
+    res.status(200).json({ success: true, data: packages });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   PUT /api/v1/packages/:id
- * @desc    Update catering package
- * @access  Private
- */
+//Get a Package
+const getPackage = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-/**
- * @route   DELETE /api/v1/packages/:id
- * @desc    Delete catering package
- * @access  Private
- */
+    const packageVar = await Package.findById(id);
 
-/**
- * @route   GET /api/v1/packages/featured
- * @desc    Get featured packages
- * @access  Private
- */
+    checkIfExists(packageVar, "Package");
 
-/**
- * @route   PUT /api/v1/packages/:id/toggle-featured
- * @desc    Toggle package's featured status
- * @access  Private
- */
+    res.status(200).json({ success: true, data: packageVar });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//Create a Package
+const createPackage = async (req, res, next) => {
+  try {
+    const packageVar = Package.create(req.body);
+
+    res.status(201).json({ success: true, data: packageVar });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//Update a Package
+const updatePackage = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {
+      name,
+      description,
+      eventType,
+      pricingOptions,
+      guestCapacity,
+      includedMenus,
+      isFeatured,
+      image,
+    } = req.body;
+
+    const packageVar = await Package.findByIdAndUpdate(
+      id,
+      {
+        name,
+        description,
+        eventType,
+        pricingOptions,
+        guestCapacity,
+        includedMenus,
+        isFeatured,
+        image,
+      },
+      { new: true, runValidators: true }
+    );
+
+    checkIfExists(packageVar, "Package");
+
+    res.status(200).json({ success: true, data: packageVar });
+  } catch (error) {
+    next(error);
+  }
+};
+//Delete a Package
+const deletePackage = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const packageVar = await Package.findByIdAndDelete(id);
+
+    checkIfExists(packageVar, "Package");
+
+    res
+      .status(200)
+      .json({ success: true, message: "Package deleted Successfully!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getPackages, getPackage, createPackage, updatePackage, deletePackage };

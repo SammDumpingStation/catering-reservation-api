@@ -1,31 +1,28 @@
 //Reservation Relates Routes
 import { Router } from "express";
+import {
+  createReservation,
+  deleteReservation,
+  getReservation,
+  getReservations,
+  updateReservation,
+} from "../controllers/reservation.controller";
 
 const reservationRouter = Router();
 
 //Get all reservation (For Caterer)
-reservationRouter.get("/", (req, res) =>
-  res.send({ message: "GET All Reservation" })
-);
+reservationRouter.get("/", getReservations);
 
 //Get all reservation made by customer
-reservationRouter.get("/customer/:id", (req, res) =>
-  res.send({ message: "Get all reservation made by Customer" })
-);
+reservationRouter.get("/customer/:id", getReservation);
 
 //Create a reservation
-reservationRouter.post("/", (req, res) =>
-  res.send({ message: "Create a reservation" })
-);
+reservationRouter.post("/", createReservation);
 
 //Update a Reservation
-reservationRouter.put("/", (req, res) =>
-  res.send({ message: "Update a Reservation" })
-);
+reservationRouter.put("/", updateReservation);
 
 //Delete a reservation
-reservationRouter.delete("/", (req, res) =>
-  res.send({ message: "Delete a reservation" })
-);
+reservationRouter.delete("/", deleteReservation);
 
 export default reservationRouter;
