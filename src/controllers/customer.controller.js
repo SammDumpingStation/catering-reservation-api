@@ -7,7 +7,6 @@ const getCustomers = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: "All registered Customers",
       data: customers,
     });
   } catch (error) {
@@ -19,7 +18,7 @@ const getCustomer = async (req, res, next) => {
   try {
     const customer = await Customer.findById(req.params.id);
 
-    checkIfExists(customer);
+    checkIfExists(customer, "Customer");
 
     res.status(201).json({ success: true, data: customer });
   } catch (error) {
@@ -42,7 +41,7 @@ const updateCustomer = async (req, res, next) => {
       { new: true, runValidators: true }
     );
 
-    checkIfExists(customer);
+    checkIfExists(customer, "Customer");
 
     res.status(200).json({ success: true, data: customer });
   } catch (error) {
@@ -57,12 +56,11 @@ const deleteCustomer = async (req, res, next) => {
 
     const customer = await Customer.findByIdAndDelete(id);
 
-    checkIfExists(customer);
+    checkIfExists(customer, "Customer");
 
     res
       .status(200)
       .json({ success: true, message: "Customer deleted Successfully!" });
-      
   } catch (error) {
     next(error);
   }

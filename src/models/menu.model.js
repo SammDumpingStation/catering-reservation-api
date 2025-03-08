@@ -83,7 +83,7 @@ const menuSchema = new mongoose.Schema(
     },
     images: {
       type: [String],
-      required: [true, "Please provide at least 1 image"],
+      required: [true, "Please provide at least 4 image"],
       default: [],
     },
   },

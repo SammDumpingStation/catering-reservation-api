@@ -1,18 +1,21 @@
 //Menu Related Route
 import { Router } from "express";
+import {
+  createMenu,
+  getMenu,
+  getMenus,
+} from "../controllers/menu.controller.js";
 
 const menuRouter = Router();
 
 //Get all Menu
-menuRouter.get("/", (req, res) => res.send({ message: "GET All Menu" }));
+menuRouter.get("/", getMenus);
 
 //Get Menu Detail
-menuRouter.get("/:id", (req, res) => res.send({ message: "GET A Menu Item" }));
+menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post("/", (req, res) =>
-  res.send({ message: "Create New Menu Item" })
-);
+menuRouter.post("/", createMenu);
 
 //Update a Menu
 menuRouter.put("/:id", (req, res) =>

@@ -1,59 +1,99 @@
-/**
- * @route   GET /api/v1/menus
- * @desc    Get all menu items
- * @access  Private
- */
+import Menu from "../models/menu.model.js";
+import { checkIfExists } from "../utils/check-if-exists.js";
 
-/**
- * @route   GET /api/v1/menus/:id
- * @desc    Get menu item by ID
- * @access  Private
- */
+//Get All Menu
+const getMenus = async (req, res, next) => {
+  try {
+    const menus = await Menu.find();
 
-/**
- * @route   POST /api/v1/menus
- * @desc    Create new menu item
- * @access  Private
- */
+    res.status(200).json({ success: true, data: menus });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   PUT /api/v1/menus/:id
- * @desc    Update menu item
- * @access  Private
- */
+//Get a Menu
+const getMenu = async (req, res, next) => {
+  try {
+    const { id } = req.params;
 
-/**
- * @route   DELETE /api/v1/menus/:id
- * @desc    Delete menu item
- * @access  Private
- */
+    const menu = await Menu.findById(id);
 
-/**
- * @route   GET /api/v1/menus/categories
- * @desc    Get all menu categories
- * @access  Private
- */
+    checkIfExists(menu, "Menu");
 
-/**
- * @route   GET /api/v1/menus/categories/:id
- * @desc    Get menu category by ID
- * @access  Private
- */
+    res.status(200).json({ success: true, data: menu });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   POST /api/v1/menus/categories
- * @desc    Create new menu category
- * @access  Private
- */
+//Create a Menu
+const createMenu = async (req, res, next) => {
+  try {
+    const menu = Menu.create(req.body);
 
-/**
- * @route   PUT /api/v1/menus/categories/:id
- * @desc    Update menu category
- * @access  Private
- */
+    res.status(201).json({ success: true, data: menu });
+  } catch (error) {
+    next(error);
+  }
+};
 
-/**
- * @route   DELETE /api/v1/menus/categories/:id
- * @desc    Delete menu category
- * @access  Private
- */
+//Update a Menu
+const updateMenu = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const {
+      name,
+      description,
+      price,
+      servingSize,
+      category,
+      dietaryInfo,
+      allergens,
+      isAvailable,
+      mainImage,
+      images,
+    } = req.body;
+
+    const menu = await Menu.findByIdAndUpdate(
+      id,
+      {
+        name,
+        description,
+        price,
+        servingSize,
+        category,
+        dietaryInfo,
+        allergens,
+        isAvailable,
+        mainImage,
+        images,
+      },
+      { new: true, runValidators: true }
+    );
+
+    checkIfExists(menu, "Menu");
+
+    res.status(200).json({ success: true, data: menu });
+  } catch (error) {
+    next(error);
+  }
+};
+//Delete a Menu
+const deleteMenu = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const menu = await Menu.findByIdAndDelete(id);
+
+    checkIfExists(menu, "Menu");
+
+    res
+      .status(200)
+      .json({ success: true, message: "Menu deleted Successfully!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { getMenus, getMenu, createMenu, updateMenu, deleteMenu };
