@@ -1,15 +1,15 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { PORT } from "./config/env.js";
-import { connectToDatabase } from "./database/mongodb.js";
-import errorMiddleware from "./middlewares/error.middleware.js";
+import { PORT } from "./src/config/env.js";
+import { connectToDatabase } from "./src/database/mongodb.js";
+import errorMiddleware from "./src/middlewares/error.middleware.js";
 
-import authRouter from "./routes/auth.router.js";
-import customerRouter from "./routes/customer.route.js";
-import menuRouter from "./routes/menu.route.js";
-import packageRouter from "./routes/package.route.js";
-import paymentRouter from "./routes/payment.route.js";
-import reservationRouter from "./routes/reservation.route.js";
+import authRouter from "./src/routes/auth.router.js";
+import customerRouter from "./src/routes/customer.route.js";
+import menuRouter from "./src/routes/menu.route.js";
+import packageRouter from "./src/routes/package.route.js";
+import paymentRouter from "./src/routes/payment.route.js";
+import reservationRouter from "./src/routes/reservation.route.js";
 
 const app = express();
 

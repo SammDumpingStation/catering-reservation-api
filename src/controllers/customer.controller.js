@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Customer from "../models/customer.model.js";
+import e from "express";
 
 const getCustomers = async (req, res, next) => {
   try {
@@ -57,6 +58,20 @@ const updateCustomer = async (req, res, next) => {
 };
 
 //Delete a Customer
-const deleteCustomer = async (req, res) => {};
+const deleteCustomer = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const customer = Customer.findByIdAndDelete(id);
+
+    if (!customer) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.send(200).json({ success: true });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export { getCustomers, getCustomer, updateCustomer, deleteCustomer };

@@ -1,25 +1,69 @@
 ✅ 1xx – Informational
-**100 – Continue**: Request received, continue sending.
-**101 – Switching Protocols**: Server switching to a new protocol.
+
+100 Continue: 
+    - Request received, continue sending.
+
+101 Switching Protocols: 
+    - Server switching to a new protocol.
+
 🟢 2xx – Success
-**200 – OK**: Request successful.
-**201 – Created**: Resource successfully created.
-**202 – Accepted**: Request accepted but processing is not complete.
-**204 – No Content**: Successful but no content to return.
+
+200 – OK: 
+    - Request successful.
+
+201 – Created: 
+    - Resource successfully created.
+
+202 – Accepted: 
+    - Request accepted but processing is not complete.
+
+204 – No Content: 
+    - Successful but no content to return.
+
 🟡 3xx – Redirection
-**301 – Moved Permanently**: Resource has a new URL (permanent redirect).
-**302 – Found**: Temporarily moved to another URL.
-**304 – Not Modified**: Cached version is still valid (no need to resend data).
+
+301 – Moved Permanently: 
+    - Resource has a new URL (permanent redirect).
+
+302 – Found: 
+    - Temporarily moved to another URL.
+
+304 – Not Modified: 
+    - Cached version is still valid (no need to resend data).
+
 🔴 4xx – Client Errors
-**400 – Bad Request**: Invalid request syntax or parameters.
-**401 – Unauthorized**: Missing or invalid authentication.
-**403 – Forbidden**: Access denied (even with authentication).
-**404 – Not Found**: Resource does not exist.
-**405 – Method Not Allowed**: HTTP method (e.g., POST, GET) not supported.
-**409 – Conflict**: Conflict in request (e.g., duplicate data).
-**422 – Unprocessable Entity**: Valid request but invalid input (e.g., form validation error).
+
+400 – Bad Request: 
+    - Invalid request syntax or parameters.
+
+401 – Unauthorized: 
+    - Missing or invalid authentication.
+
+403 – Forbidden: 
+    - Access denied (even with authentication).
+
+404 – Not Found: 
+    - Resource does not exist.
+
+405 – Method Not Allowed: 
+    - HTTP method (e.g., POST, GET) not supported.
+
+409 – Conflict: 
+    - Conflict in request (e.g., duplicate data).
+
+422 – Unprocessable Entity: 
+    - Valid request but invalid input (e.g., form validation error).
+
 🔥 5xx – Server Errors
-**500 – Internal Server Error**: Generic server failure.
-**502 – Bad Gateway**: Invalid response from upstream server.
-**503 – Service Unavailable**: Server temporarily overloaded or under maintenance.
-**504 – Gateway Timeout**: Upstream server did not respond in time.
+
+500 – Internal Server Error: 
+    - Generic server failure.
+
+502 – Bad Gateway: 
+    - Invalid response from upstream server.
+
+503 – Service Unavailable: 
+    - Server temporarily overloaded or under maintenance.
+
+504 – Gateway Timeout: 
+    - Upstream server did not respond in time.
