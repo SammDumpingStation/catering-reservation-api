@@ -12,7 +12,7 @@ const signUp = async (req, res, next) => {
 
   try {
     //Create a new customer
-    const { name, email, password } = req.body;
+    const { fullName, email, password } = req.body;
 
     //Check if a customer already exists
     const existingCustomer = await Customer.findOne({ email });
@@ -29,7 +29,7 @@ const signUp = async (req, res, next) => {
 
     //This is where we create the customer data that fits the schema we created in customer.model.js
     const newCustomer = await Customer.create(
-      [{ name, email, password: hashedPassword }],
+      [{ fullName, email, password: hashedPassword }],
       { session }
     );
 

@@ -6,7 +6,6 @@ import {
   getCustomers,
   updateCustomer,
 } from "../controllers/customer.controller.js";
-import authorize from "../middlewares/customer.middleware.js";
 
 const customerRouter = Router();
 
