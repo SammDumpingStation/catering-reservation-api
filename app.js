@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 //The app main routes
 app.use("/api/v1/auth", authRouter); //checked
-app.use("/api/v1/customers", customerRouter); // pending
+app.use("/api/v1/customers", customerRouter); // checked
 app.use("/api/v1/menus", menuRouter);
 app.use("/api/v1/packages", packageRouter);
 app.use("/api/v1/payments", paymentRouter);
