@@ -30,7 +30,7 @@ const getPayment = async (req, res, next) => {
 //Create a Payment
 const createPayment = async (req, res, next) => {
   try {
-    const payment = Payment.create(req.body);
+    const payment = await Payment.create(req.body);
 
     res.status(201).json({ success: true, data: payment });
   } catch (error) {

@@ -30,7 +30,7 @@ const getReservation = async (req, res, next) => {
 //Create a Reservation
 const createReservation = async (req, res, next) => {
   try {
-    const reservation = Reservation.create(req.body);
+    const reservation = await Reservation.create(req.body);
 
     res.status(201).json({ success: true, data: reservation });
   } catch (error) {
