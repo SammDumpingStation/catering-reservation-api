@@ -30,7 +30,7 @@ const getMenu = async (req, res, next) => {
 //Create a Menu
 const createMenu = async (req, res, next) => {
   try {
-    const menu = Menu.create(req.body);
+    const menu = await Menu.create(req.body);
 
     res.status(201).json({ success: true, data: menu });
   } catch (error) {

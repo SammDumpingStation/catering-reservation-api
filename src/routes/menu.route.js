@@ -2,8 +2,10 @@
 import { Router } from "express";
 import {
   createMenu,
+  deleteMenu,
   getMenu,
   getMenus,
+  updateMenu,
 } from "../controllers/menu.controller.js";
 
 const menuRouter = Router();
@@ -18,13 +20,9 @@ menuRouter.get("/:id", getMenu);
 menuRouter.post("/", createMenu);
 
 //Update a Menu
-menuRouter.put("/:id", (req, res) =>
-  res.send({ message: "Update New Menu Item" })
-);
+menuRouter.put("/:id", updateMenu);
 
 //Delete a Menu
-menuRouter.delete("/:id", (req, res) =>
-  res.send({ message: "Delete Menu Item" })
-);
+menuRouter.delete("/:id", deleteMenu);
 
 export default menuRouter;
