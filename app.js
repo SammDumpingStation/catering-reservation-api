@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use("/api/v1/auth", authRouter); //checked
 app.use("/api/v1/customers", customerRouter); // checked
 app.use("/api/v1/menus", menuRouter); // good
-app.use("/api/v1/packages", packageRouter); //pending
+app.use("/api/v1/packages", packageRouter); //good
 app.use("/api/v1/payments", paymentRouter);
 app.use("/api/v1/reservations", reservationRouter);
 

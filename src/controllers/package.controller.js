@@ -30,7 +30,7 @@ const getPackage = async (req, res, next) => {
 //Create a Package
 const createPackage = async (req, res, next) => {
   try {
-    const packageVar = Package.create(req.body);
+    const packageVar = await Package.create(req.body);
 
     res.status(201).json({ success: true, data: packageVar });
   } catch (error) {

@@ -57,9 +57,14 @@ const packageSchema = new mongoose.Schema(
       },
     },
     includedMenus: [
+      // {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: "Menu",
+      //   required: [true, "Please provide a menu under this package"],
+      // },
+      //For Testing Purposes only, will delete this after real data
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Menu",
+        type: String,
         required: [true, "Please provide a menu under this package"],
       },
     ],
