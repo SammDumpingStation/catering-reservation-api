@@ -1,8 +1,7 @@
-import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import { JWT_EXPIRES_IN, JWT_SECRET, USE_CLOUD_DB } from "../config/env.js";
-import Customer from "../models/customer.model.js";
+import Customer from "../schemas/customer.schema.js";
+import { createToken } from "../utils/authUtils.js";
+import { encryptPassword } from "../utils/checkExistence.js";
 
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
@@ -21,18 +20,13 @@ const signUp = async (req, res, next) => {
       throw error;
     }
 
-    //to utils
-    //Hash Password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
     //This is where we create the customer data that fits the schema we created in customer.model.js
     const newCustomer = await Customer.create([
-      { fullName, email, password: hashedPassword },
+      { fullName, email, password: encryptPassword(password) },
     ]);
 
     //Create a session token for the customer for them to sign in
-    const token = tokenCreation(newCustomer[0]._id);
+    const token = createToken(newCustomer[0]._id);
     //Return a success code for Customer registration/creation
     //201 -> Created: Resource successfully created.
     res.status(201).json({
@@ -74,7 +68,7 @@ const signIn = async (req, res, next) => {
     }
 
     //Create a session token for the customer for them to sign in
-    const token = tokenCreation(customer._id);
+    const token = createToken(customer._id);
 
     //Return a success code for signing in successfully
     //201 -> Created: Resource successfully created.
@@ -112,14 +106,6 @@ const signOut = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
-
-//Creation of token when signing in
-const tokenCreation = (customerId) => {
-  const token = jwt.sign({ customerId: customerId }, JWT_SECRET, {
-    expiresIn: JWT_EXPIRES_IN,
-  });
-  return token;
 };
 
 export { signUp, signIn, signOut };

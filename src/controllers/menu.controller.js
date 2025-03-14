@@ -1,5 +1,5 @@
 import Menu from "../models/menu.model.js";
-import { checkIfExists } from "../utils/check-if-exists.js";
+import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Menu
 const getMenus = async (req, res, next) => {

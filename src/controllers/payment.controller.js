@@ -1,5 +1,5 @@
 import Payment from "../models/payment.model.js";
-import { checkIfExists } from "../utils/check-if-exists.js";
+import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Payment
 const getPayments = async (req, res, next) => {

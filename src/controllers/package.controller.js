@@ -1,5 +1,5 @@
 import Package from "../models/package.model.js";
-import { checkIfExists } from "../utils/check-if-exists.js";
+import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Package
 const getPackages = async (req, res, next) => {

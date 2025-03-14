@@ -1,5 +1,5 @@
 import Reservation from "../models/reservation.model.js";
-import { checkIfExists } from "../utils/check-if-exists.js";
+import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Reservation
 const getReservations = async (req, res, next) => {
