@@ -26,7 +26,7 @@ const generateCustomers = async (count) => {
 const seedCustomers = async () => {
   await connectToDatabase();
   try {
-    const dummyCustomers = await generateCustomers(50);
+    const dummyCustomers = await generateCustomers(9);
     await Customer.insertMany(dummyCustomers);
     console.log("Seeded database with dummy customers:", dummyCustomers);
   } catch (error) {
@@ -49,7 +49,7 @@ const deleteAllDummyCustomers = async () => {
 };
 
 //Seeding Customers
-// seedCustomers(); // Uncomment this if you want to seed dummy customers in the database
+seedCustomers(); // Uncomment this if you want to seed dummy customers in the database
 
 //Deleting the existing dummy users
 //deleteAllDummyCustomers(); // Uncomment this if you want to delete all the dummy customers

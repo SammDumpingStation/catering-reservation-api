@@ -1,14 +1,19 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { JWT_EXPIRES_IN, JWT_SECRET } from "../config/env.js";
+import { JWT_EXPIRES_IN, JWT_SECRET, USE_CLOUD_DB } from "../config/env.js";
 import Customer from "../models/customer.model.js";
+
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
   //Start of Mongoose  Transaction that will run Atomic Updates/Operations
   //Atomic Operation -> All operations must me successful Or Nothing (Will stop the session if something is wrong)
-  const session = await mongoose.startSession();
-  session.startTransaction();
+  let session = null;
+  //Sessions does not work when  MongoDB is in local machine
+  if (USE_CLOUD_DB === "true") {
+    session = await mongoose.startSession();
+    session.startTransaction();
+  }
 
   try {
     //Create a new customer
@@ -30,15 +35,17 @@ const signUp = async (req, res, next) => {
     //This is where we create the customer data that fits the schema we created in customer.model.js
     const newCustomer = await Customer.create(
       [{ fullName, email, password: hashedPassword }],
-      { session }
+      session ? { session } : {} // Only set session if in CLOUD mode
     );
 
     //Create a session token for the customer for them to sign in
-    const token = tokenCreation(newCustomer._id);
+    const token = tokenCreation(newCustomer[0]._id);
 
     //If all is successful, then "commit" or "do" the transaction
-    await session.commitTransaction();
-    session.endSession();
+    if (USE_CLOUD_DB === "true") {
+      await session.commitTransaction();
+      session.endSession();
+    }
 
     //Return a success code for Customer registration/creation
     //201 -> Created: Resource successfully created.
@@ -52,8 +59,10 @@ const signUp = async (req, res, next) => {
     });
   } catch (error) {
     //If something went wrong, stop all activities
-    await session.abortTransaction();
-    session.endSession();
+    if (USE_CLOUD_DB === "true") {
+      await session.abortTransaction();
+      session.endSession();
+    }
     next(error);
   }
 };
@@ -102,7 +111,28 @@ const signIn = async (req, res, next) => {
 };
 
 //Implement Sign-Out Logic
-const signOut = async (req, res, next) => {};
+const signOut = async (req, res, next) => {
+  try {
+    // Get the authentication token from the request headers
+    const token = req.headers.authorization?.split(" ")[1];
+
+    // If no token is provided, return an error
+    if (!token) {
+      const error = new Error("Not authenticated");
+      error.statusCode = 401; // 401 -> Unauthorized
+      throw error;
+    }
+
+
+    // Return a success response
+    res.status(200).json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 //Creation of token when signing in
 const tokenCreation = (customerId) => {
