@@ -28,14 +28,12 @@ app.use("/api/v1/customers", customerRouter);
 app.use("/api/v1/menus", menuRouter);
 app.use("/api/v1/packages", packageRouter); 
 app.use("/api/v1/reservations", reservationRouter);
-app.use("/api/v1/payments", paymentRouter); //pending
+app.use("/api/v1/payments", paymentRouter);
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
 
-app.listen(PORT, async () => {
+await connectToDatabase();
+app.listen(PORT, () => {
   console.log(`Server Running on http://localhost:${PORT}`);
-  await connectToDatabase();
 });
-
-export default app;

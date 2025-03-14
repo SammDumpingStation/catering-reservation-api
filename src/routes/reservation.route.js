@@ -14,7 +14,7 @@ const reservationRouter = Router();
 reservationRouter.get("/", getReservations);
 
 //Get all reservation made by customer
-reservationRouter.get("/customer/:id", getReservation);
+reservationRouter.get("/:id", getReservation);
 
 //Create a reservation
 reservationRouter.post("/", createReservation);

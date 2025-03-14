@@ -7,46 +7,32 @@ import Customer from "../models/customer.model.js";
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
   //Start of Mongoose  Transaction that will run Atomic Updates/Operations
-  //Atomic Operation -> All operations must me successful Or Nothing (Will stop the session if something is wrong)
-  let session = null;
-  //Sessions does not work when  MongoDB is in local machine
-  if (USE_CLOUD_DB === "true") {
-    session = await mongoose.startSession();
-    session.startTransaction();
-  }
-
+  //Atomic Operation -> All operations must be successful Or Nothing (Will stop the session if something is wrong
   try {
     //Create a new customer
     const { fullName, email, password } = req.body;
 
     //Check if a customer already exists
-    const existingCustomer = await Customer.findOne({ email });
+    const existingCustomer = await Customer.findOne({ email }); //utils
 
     if (existingCustomer) {
       const error = new Error("Customer already exists");
-      error.statusCode = 409; //409 ->  Conflict: Duplicate data
+      error.statusCode = 400; //400 ->  Bad Request
       throw error;
     }
 
+    //to utils
     //Hash Password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
     //This is where we create the customer data that fits the schema we created in customer.model.js
-    const newCustomer = await Customer.create(
-      [{ fullName, email, password: hashedPassword }],
-      session ? { session } : {} // Only set session if in CLOUD mode
-    );
+    const newCustomer = await Customer.create([
+      { fullName, email, password: hashedPassword },
+    ]);
 
     //Create a session token for the customer for them to sign in
     const token = tokenCreation(newCustomer[0]._id);
-
-    //If all is successful, then "commit" or "do" the transaction
-    if (USE_CLOUD_DB === "true") {
-      await session.commitTransaction();
-      session.endSession();
-    }
-
     //Return a success code for Customer registration/creation
     //201 -> Created: Resource successfully created.
     res.status(201).json({
@@ -58,11 +44,6 @@ const signUp = async (req, res, next) => {
       },
     });
   } catch (error) {
-    //If something went wrong, stop all activities
-    if (USE_CLOUD_DB === "true") {
-      await session.abortTransaction();
-      session.endSession();
-    }
     next(error);
   }
 };
@@ -122,7 +103,6 @@ const signOut = async (req, res, next) => {
       error.statusCode = 401; // 401 -> Unauthorized
       throw error;
     }
-
 
     // Return a success response
     res.status(200).json({

@@ -67,10 +67,10 @@ const reservationSchema = new mongoose.Schema(
       numberOfGuests: {
         type: Number,
         required: [true, "Please provide a number of guests"],
-        minLength: [30, "Minimum of 30 guests"],
+        min: [30, "Minimum of 30 guests"],
       },
       additionalRequests: {
-        type: Number,
+        type: String,
         required: true,
       },
     },
@@ -96,11 +96,6 @@ const reservationSchema = new mongoose.Schema(
       },
     },
 
-    paymentId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Payment",
-    },
-
     notes: {
       type: String,
       trim: true,
@@ -115,6 +110,6 @@ const reservationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const  Reservation = mongoose.model("Reservation", reservationSchema);
+const Reservation = mongoose.model("Reservation", reservationSchema);
 
 export default Reservation;
