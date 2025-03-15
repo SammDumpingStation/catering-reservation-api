@@ -106,6 +106,11 @@ const reservationSchema = new mongoose.Schema(
       enum: ["pending", "confirmed", "completed", "canceled"],
       default: "pending",
     },
+    paymentStatus: {
+      type: String,
+      enum: ["pending", "paid"],
+      default: "pending",
+    },
   },
   { timestamps: true }
 );
