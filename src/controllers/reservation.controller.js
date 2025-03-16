@@ -1,4 +1,4 @@
-import Reservation from "../models/reservation.model.js";
+import Reservation from "../schemas/reservation.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Reservation

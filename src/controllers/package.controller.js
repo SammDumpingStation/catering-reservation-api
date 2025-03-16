@@ -1,4 +1,4 @@
-import Package from "../models/package.model.js";
+import Package from "../schemas/package.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Package

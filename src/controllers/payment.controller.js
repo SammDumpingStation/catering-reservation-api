@@ -1,4 +1,4 @@
-import Payment from "../models/payment.model.js";
+import Payment from "../schemas/payment.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Payment

@@ -1,4 +1,4 @@
-import Customer from "../models/customer.model.js";
+import Customer from "../schemas/customer.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 const getCustomers = async (req, res, next) => {

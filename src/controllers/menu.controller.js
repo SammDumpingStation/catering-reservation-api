@@ -1,4 +1,4 @@
-import Menu from "../models/menu.model.js";
+import Menu from "../schemas/menu.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Menu

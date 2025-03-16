@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { connectToDatabase, closeConnection } from "../database/mongodb.js";
-import Customer from "../models/customer.model.js";
+import Customer from "../schemas/customer.schema.js";
 import bcrypt from "bcryptjs";
 
 const generateCustomers = async (count) => {

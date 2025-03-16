@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import { PORT } from "./src/config/env.js";
-import { connectToDatabase } from "./src/database/mongodb.js";
+import connectToDatabase from "./src/database/mongodb.js";
 import errorMiddleware from "./src/middlewares/error.middleware.js";
 
 import authRouter from "./src/routes/auth.router.js";
@@ -23,12 +23,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //The app main routes
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/customers", customerRouter);
-app.use("/api/v1/menus", menuRouter);
-app.use("/api/v1/packages", packageRouter); 
-app.use("/api/v1/reservations", reservationRouter);
-app.use("/api/v1/payments", paymentRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/customers", customerRouter);
+app.use("/api/menus", menuRouter);
+app.use("/api/packages", packageRouter);
+app.use("/api/reservations", reservationRouter);
+app.use("/api/payments", paymentRouter);
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);

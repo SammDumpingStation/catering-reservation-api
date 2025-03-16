@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { connectToDatabase, closeConnection } from "../database/mongodb.js";
-import Menu from "../models/menu.model.js";
+import Menu from "../schemas/menu.schema.js";
 import { dummyMenus } from "./dummy/menu.dummy.js";
 
 const seedMenus = async () => {
