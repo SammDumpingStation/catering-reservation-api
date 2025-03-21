@@ -43,34 +43,42 @@ const menuSchema = new mongoose.Schema(
       required: [true, "Please provide menu item name"],
       trim: true,
     },
-    description: {
+    category: {
+      type: [String],
+      enum: menuCategoryEnum,
+    },
+    shortDescription: {
       type: String,
       required: [true, "Please provide menu description"],
       trim: true,
     },
-    price: {
-      type: Number,
-      required: [true, "Please provide menu price"],
-      minLength: [0, "Price cannot be negative"],
-    },
-    servingSize: {
-      type: Number,
-      required: [true, "Please provide serving size"],
-      minLength: [1, "Serving size must be at least 1"],
-    },
-    category: {
+    fullDescription: {
       type: String,
-      enum: menuCategoryEnum,
+      required: [true, "Please provide menu description"],
+      trim: true,
     },
-    dietaryInfo: {
+    ingredients: {
       type: [String],
-      enum: dietaryInfoEnum,
-      default: [],
+      required: [true, "Please provide menu ingredients"],
     },
     allergens: {
       type: [String],
       enum: allergenEnum,
       default: [],
+    },
+    preparationMethod: {
+      type: String,
+      required: true,
+    },
+    prices: {
+      type: Number,
+      required: [true, "Please provide menu price"],
+      min: [0, "Price cannot be negative"],
+    },
+    servingSize: {
+      type: Number,
+      required: [true, "Please provide serving size"],
+      minLength: [1, "Serving size must be at least 1"],
     },
     isAvailable: {
       type: Boolean,
