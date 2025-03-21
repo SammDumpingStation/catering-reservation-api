@@ -1,103 +1,128 @@
 import mongoose from "mongoose";
 
-const dietaryInfoEnum = [
-  "Vegan",
-  "Vegetarian",
-  "Halal",
-  "Gluten-Free",
-  "Dairy-Free",
+// Define enum constants
+const CATEGORIES = [
+  "Soup",
+  "Salad",
+  "Beef",
+  "Pork",
+  "Noodle",
+  "Chicken",
+  "Seafood",
+  "Vegetable",
+  "Dessert",
+  "Beverage",
 ];
 
-const allergenEnum = [
-  "Peanuts",
-  "Tree Nuts",
-  "Dairy",
-  "Eggs",
-  "Gluten",
-  "Soy",
-  "Shellfish",
-  "Fish",
-  "Sesame",
-];
+const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
-const menuCategoryEnum = [
-  "Salad & Cold Appetizers",
-  "Soup & Hot Appetizers",
-  "Pasta & Noodles",
-  "Rice & Grains",
-  "Vegetable Dishes",
-  "Chicken Dishes",
-  "Beef Dishes",
-  "Pork Dishes",
-  "Seafood Dishes",
-  "Bread & Pastries",
-  "Desserts & Sweets",
-  "Hot Beverages",
-  "Cold Beverages",
-];
+// Define the schemas for nested objects
+const NutritionInfoSchema = new mongoose.Schema({
+  calories: { type: String, required: false },
+  protein: { type: String, required: false },
+  fat: { type: String, required: false },
+  carbs: { type: String, required: false },
+  sodium: { type: String, required: false },
+  fiber: { type: String, required: false },
+  sugar: { type: String, required: false },
+  cholesterol: { type: String, required: false },
+});
 
+const PriceInfoSchema = new mongoose.Schema({
+  minimumPax: {
+    type: Number,
+    required: [true, "Please provide minimum number of people"],
+  },
+  maximumPax: {
+    type: Number,
+    required: [true, "Please provide maximum number of people"],
+  },
+  price: {
+    type: Number,
+    required: [true, "Please provide price information"],
+  },
+});
+
+// Define the main Menu schema
 const menuSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Please provide menu item name"],
-      trim: true,
+      required: [true, "Please provide menu name"],
     },
     category: {
-      type: [String],
-      enum: menuCategoryEnum,
-    },
-    shortDescription: {
       type: String,
-      required: [true, "Please provide menu description"],
-      trim: true,
+      required: [true, "Please select a category"],
+      enum: {
+        values: CATEGORIES,
+        message: (props) =>
+          `${props.value} is not a valid category. Please select from the list of valid categories.`,
+      },
     },
-    fullDescription: {
-      type: String,
-      required: [true, "Please provide menu description"],
-      trim: true,
-    },
-    ingredients: {
-      type: [String],
-      required: [true, "Please provide menu ingredients"],
-    },
-    allergens: {
-      type: [String],
-      enum: allergenEnum,
-      default: [],
-    },
-    preparationMethod: {
-      type: String,
-      required: true,
-    },
-    prices: {
-      type: Number,
-      required: [true, "Please provide menu price"],
-      min: [0, "Price cannot be negative"],
-    },
-    servingSize: {
-      type: Number,
-      required: [true, "Please provide serving size"],
-      minLength: [1, "Serving size must be at least 1"],
-    },
-    isAvailable: {
+    available: {
       type: Boolean,
       default: true,
     },
-    mainImage: {
+    shortDescription: {
       type: String,
-      required: [true, "Please provide the main menu image"],
-      default: "https://ui-avatars.com/api/?name=John+Doe&background=random",
+      required: [true, "Please provide a short description"],
     },
-    images: {
-      type: [String],
-      required: [true, "Please provide at least 4 image"],
-      default: [],
+    fullDescription: {
+      type: String,
+      required: [true, "Please provide a full description"],
+    },
+    ingredients: [{ type: String }],
+    allergens: [
+      {
+        type: String,
+        enum: {
+          values: ALLERGENS,
+          message: (props) =>
+            `${props.value} is not a valid allergen. Please select from the list of valid allergens.`,
+        },
+      },
+    ],
+    preparationMethod: {
+      type: String,
+      required: [true, "Please provide preparation method"],
+    },
+    prices: [PriceInfoSchema],
+    regularPricePerPax: {
+      type: Number,
+      required: [true, "Please provide regular price per person"],
+    },
+    imageUrl: {
+      type: String,
+      required: [true, "Please provide an image URL"],
+    },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    ratingCount: {
+      type: Number,
+      default: 0,
+    },
+    spicy: {
+      type: Boolean,
+      default: false,
+    },
+    perServing: {
+      type: String,
+      required: [true, "Please provide serving size information"],
+    },
+    nutritionInfo: {
+      type: NutritionInfoSchema,
+      required: false,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+  }
 );
 
+// Create and export the model
 const Menu = mongoose.model("Menu", menuSchema);
 
+// Export the model and constants
 export default Menu;
