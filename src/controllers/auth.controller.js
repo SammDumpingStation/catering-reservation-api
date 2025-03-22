@@ -22,7 +22,7 @@ const signUp = async (req, res, next) => {
 
     //This is where we create the customer data that fits the schema we created in customer.model.js
     const newCustomer = await Customer.create([
-      { fullName, email, password: encryptPassword(password) },
+      { fullName, email, password: await encryptPassword(password) },
     ]);
 
     //Create a session token for the customer for them to sign in

@@ -33,7 +33,10 @@ app.use("/api/payments", paymentRouter);
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
 
-await connectToDatabase();
-app.listen(PORT, () => {
-  console.log(`Server Running on http://localhost:${PORT}`);
+await connectToDatabase((client) => {
+  if (!client) return;
+
+  app.listen(PORT, () => {
+    console.log(`Server Running on http://localhost:${PORT}`);
+  });
 });

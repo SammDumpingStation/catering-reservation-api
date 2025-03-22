@@ -51,24 +51,31 @@
 
 // UNCOMMENT WHICH PART OF FUNCTION TO CONNECT TO DB
 
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 import { DB_URI_LOCAL, NODE_ENV } from "../config/env.js";
 
-if (!DB_URI_LOCAL) {
-  throw new Error(
-    "Please define DB_URI_LOCAL environment variable inside .env.<development/production>.local"
-  );
-}
-
-const connectToDatabase = async () => {
+const connectToDatabase = async (
+  callback: (client: Mongoose | null) => void
+) => {
   try {
-    await mongoose.connect(DB_URI_LOCAL);
+    if (!DB_URI_LOCAL) {
+      throw new Error(
+        "DB_URI_LOCAL is undefined. Please check your .env file."
+      );
+    }
 
-    console.log("=========================================");
-    console.log(`✅ Connected to database in ${NODE_ENV} mode.`);
-    console.log("=========================================");
+    const client = await mongoose.connect(DB_URI_LOCAL);
+
+    if (client) {
+      console.log("=========================================");
+      console.log(`✅ Connected to database in ${NODE_ENV} mode.`);
+      console.log("=========================================");
+      return callback(client);
+    }
+
+    return callback(null);
   } catch (error) {
-    console.error("❌ Error connecting to database: ", error);
+    console.error("❌ Error connecting to database:", error);
     process.exit(1);
   }
 };
