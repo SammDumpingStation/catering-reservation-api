@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import Customer from "../schemas/customer.schema.js";
 import { createToken } from "../utils/authUtils.js";
-import { encryptPassword } from "../utils/checkExistence.js";
+import { encryptPassword } from "../utils/authUtils.js";
 
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
