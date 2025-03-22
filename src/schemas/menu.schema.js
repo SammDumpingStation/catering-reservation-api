@@ -18,14 +18,14 @@ const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema({
-  calories: { type: String, required: false },
-  protein: { type: String, required: false },
-  fat: { type: String, required: false },
-  carbs: { type: String, required: false },
-  sodium: { type: String, required: false },
-  fiber: { type: String, required: false },
-  sugar: { type: String, required: false },
-  cholesterol: { type: String, required: false },
+  calories: { type: String },
+  protein: { type: String },
+  fat: { type: String },
+  carbs: { type: String },
+  sodium: { type: String },
+  fiber: { type: String },
+  sugar: { type: String },
+  cholesterol: { type: String },
 });
 
 const PriceInfoSchema = new mongoose.Schema({
