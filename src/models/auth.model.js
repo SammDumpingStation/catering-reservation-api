@@ -18,6 +18,4 @@ export const createAccount = async (fullName, email, password) => {
 
   //Create a session token for the customer for them to sign in
   const token = createToken(newCustomer[0]._id);
-  //Return a success code for Customer registration/creation
-  //201 -> Created: Resource successfully created.
 };
