@@ -1,9 +1,5 @@
-import Customer from "../schemas/customer.schema.js";
-import {
-  encryptPassword,
-  createToken,
-  createError,
-} from "../utils/authUtils.js";
+import Customer from "@schemas/customer.schema.js";
+import { encryptPassword, createToken, createError } from "@utils/authUtils.js";
 import { signUpProps } from "../types/auth.type.js";
 
 export const createAccount = async ({

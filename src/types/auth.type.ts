@@ -1,10 +1,10 @@
 export type signUpProps = {
   fullName: string;
   email: string;
-  passwor: string;
+  password: string;
 };
 
 export type signInProps = {
   email: string;
-  passsword: string;
+  password: string;
 };

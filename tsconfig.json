@@ -37,7 +37,6 @@
       "@models/*": ["src/models/*"],
       "@routes/*": ["src/routes/*"],
       "@schemas/*": ["src/schemas/*"],
-      "@types/*": ["src/types/*"],
       "@config/*": ["src/config/*"],
       "@utils/*": ["src/utils/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
