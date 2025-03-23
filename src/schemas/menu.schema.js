@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Define enum constants
-const CATEGORIES = [
+export const CATEGORIES = [
   "Soup",
   "Salad",
   "Beef",
@@ -14,7 +14,7 @@ const CATEGORIES = [
   "Beverage",
 ];
 
-const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
+export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema({
