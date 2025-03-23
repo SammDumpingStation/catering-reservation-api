@@ -1,7 +1,12 @@
+import { Request, Response, NextFunction } from "express";
 import Customer from "../schemas/customer.schema.js";
 import * as customerModel from "@models/customer.model.js";
 
-const getCustomers = async (req, res, next) => {
+const getCustomers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const customers = await Customer.find();
 
@@ -14,7 +19,7 @@ const getCustomers = async (req, res, next) => {
   }
 };
 
-const getCustomer = async (req, res, next) => {
+const getCustomer = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const customer = await customerModel.getCustomerById(req.params.id);
 
@@ -25,7 +30,11 @@ const getCustomer = async (req, res, next) => {
 };
 
 //Update a Customer
-const updateCustomer = async (req, res, next) => {
+const updateCustomer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params;
   const { fullName, contactNumber, profileImage } = req.body;
   try {
@@ -43,7 +52,11 @@ const updateCustomer = async (req, res, next) => {
 };
 
 //Delete a Customer
-const deleteCustomer = async (req, res, next) => {
+const deleteCustomer = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const customer = await customerModel.deleteCustomerById(req.params.id);
 

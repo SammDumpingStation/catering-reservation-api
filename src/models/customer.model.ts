@@ -1,11 +1,8 @@
 import Customer from "@schemas/customer.schema.js";
-import {
-  CustomerIdProps,
-  updateCustomerProps,
-} from "@TStypes/customer.type.js";
+import { updateCustomerProps } from "@TStypes/customer.type.js";
 import { createError } from "@utils/authUtils.js";
 
-export const getCustomerById = async (id: CustomerIdProps) => {
+export const getCustomerById = async (id: string) => {
   const existingCustomer = await Customer.findById(id);
 
   if (!existingCustomer) throw createError("Customer doesn't exist!", 404);
@@ -34,7 +31,7 @@ export const updateCustomerById = async ({
   return existingCustomer;
 };
 
-export const deleteCustomerById = async (id: CustomerIdProps) => {
+export const deleteCustomerById = async (id: string) => {
   const existingCustomer = await Customer.findByIdAndDelete(id);
 
   if (!existingCustomer) throw createError("Customer doesn't exist!", 404);

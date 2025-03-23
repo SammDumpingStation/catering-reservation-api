@@ -9,11 +9,8 @@ export interface CustomerProps extends Document {
   profileImage?: string;
 }
 
-export type CustomerIdProps = {
-  id: Types.ObjectId;
-};
-
-export interface updateCustomerProps extends CustomerIdProps {
+export interface updateCustomerProps {
+  id: string;
   fullName: string;
   contactNumber: string;
   profileImage: string;
