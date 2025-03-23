@@ -1,6 +1,3 @@
-import bcrypt from "bcryptjs";
-import Customer from "../schemas/customer.schema.js";
-import { createToken } from "../utils/authUtils.js";
 import * as userModel from "@models/auth.model.js";
 
 //Implement Sign-up Logic
@@ -33,30 +30,11 @@ const signIn = async (req, res, next) => {
     //Deconstruct the json form from body
     const { email, password } = req.body;
 
-    //Create a customer instance
-    const customer = await Customer.findOne({ email });
+    const { token, customer } = await userModel.signInAccount({
+      email,
+      password,
+    });
 
-    //Check if the customer exists by checking the customer's provided email
-    if (!customer) {
-      const error = new Error("Customer not found");
-      error.statusCode = 404; //Not Found: Resource does not exist
-      throw error;
-    }
-
-    //Check if the  provided password matches the password stored in the database
-    const isPasswordValid = await bcrypt.compare(password, customer.password);
-
-    if (!isPasswordValid) {
-      const error = new Error("Invalid password");
-      error.statusCode = 401; //401 -> Unauthorized: Missing or invalid authentication ;
-      throw error;
-    }
-
-    //Create a session token for the customer for them to sign in
-    const token = createToken(customer._id);
-
-    //Return a success code for signing in successfully
-    //201 -> Created: Resource successfully created.
     res.status(201).json({
       success: true,
       message: "Customer signed in successfully",
