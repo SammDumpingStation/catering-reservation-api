@@ -1,40 +1,25 @@
 import bcrypt from "bcryptjs";
 import Customer from "../schemas/customer.schema.js";
 import { createToken } from "../utils/authUtils.js";
-import { encryptPassword } from "../utils/authUtils.js";
+import * as userModel from "@models/auth.model.js";
 
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
-  //Start of Mongoose  Transaction that will run Atomic Updates/Operations
-  //Atomic Operation -> All operations must be successful Or Nothing (Will stop the session if something is wrong
   try {
-    //Create a new customer
     const { fullName, email, password } = req.body;
 
-    //Check if a customer already exists
-    const existingCustomer = await Customer.findOne({ email }); //utils
+    const { token, customer } = await userModel.createAccount({
+      fullName,
+      email,
+      password,
+    });
 
-    if (existingCustomer) {
-      const error = new Error("Customer already exists");
-      error.statusCode = 400; //400 ->  Bad Request
-      throw error;
-    }
-
-    //This is where we create the customer data that fits the schema we created in customer.model.js
-    const newCustomer = await Customer.create([
-      { fullName, email, password: await encryptPassword(password) },
-    ]);
-
-    //Create a session token for the customer for them to sign in
-    const token = createToken(newCustomer[0]._id);
-    //Return a success code for Customer registration/creation
-    //201 -> Created: Resource successfully created.
     res.status(201).json({
       success: true,
       message: "Customer created successfully",
       data: {
         token,
-        customer: newCustomer[0],
+        customer,
       },
     });
   } catch (error) {
