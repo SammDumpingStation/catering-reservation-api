@@ -5,7 +5,7 @@ import {
   MenuProps,
   NutritionInfoProps,
   PriceInfoProps,
-} from "src/types/menu.type.js";
+} from "@TStypes/menu.type.js";
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({

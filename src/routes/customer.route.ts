@@ -5,7 +5,7 @@ import {
   getCustomer,
   getCustomers,
   updateCustomer,
-} from "../controllers/customer.controller.js";
+} from "@controllers/customer.controller.js";
 
 const customerRouter = Router();
 
@@ -16,7 +16,7 @@ customerRouter.get("/", getCustomers);
 customerRouter.get("/:id", getCustomer);
 
 //Update a Customer
-customerRouter.put("/:id", updateCustomer); 
+customerRouter.put("/:id", updateCustomer);
 
 //Delete a Customer
 customerRouter.delete("/:id", deleteCustomer);

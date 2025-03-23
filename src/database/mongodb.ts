@@ -52,7 +52,7 @@
 // UNCOMMENT WHICH PART OF FUNCTION TO CONNECT TO DB
 
 import mongoose, { Mongoose } from "mongoose";
-import { DB_URI_LOCAL, NODE_ENV } from "../config/env.js";
+import { DB_URI_LOCAL, NODE_ENV } from "@config/env.js";
 
 const connectToDatabase = async (
   callback: (client: Mongoose | null) => void

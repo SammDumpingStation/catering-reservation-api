@@ -6,7 +6,7 @@ import {
   getReservation,
   getReservations,
   updateReservation,
-} from "../controllers/reservation.controller.js";
+} from "@controllers/reservation.controller.js";
 
 const reservationRouter = Router();
 

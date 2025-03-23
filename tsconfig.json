@@ -38,7 +38,8 @@
       "@routes/*": ["src/routes/*"],
       "@schemas/*": ["src/schemas/*"],
       "@config/*": ["src/config/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@TStypes/*": ["src/typescript/types/*", "src/typescript/types"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

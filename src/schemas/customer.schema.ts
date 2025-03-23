@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { CustomerProps } from "src/types/customer.type.js";
+import { CustomerProps } from "@TStypes/customer.type.js";
 
 const customerSchema = new mongoose.Schema<CustomerProps>(
   {

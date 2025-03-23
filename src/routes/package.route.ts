@@ -6,7 +6,7 @@ import {
   getPackage,
   getPackages,
   updatePackage,
-} from "../controllers/package.controller.js";
+} from "@controllers/package.controller.js";
 
 const packageRouter = Router();
 

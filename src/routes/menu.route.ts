@@ -6,7 +6,7 @@ import {
   getMenu,
   getMenus,
   updateMenu,
-} from "../controllers/menu.controller.js";
+} from "@controllers/menu.controller.js";
 
 const menuRouter = Router();
 

@@ -7,7 +7,7 @@ import {
   getPayment,
   getPayments,
   updatePayment,
-} from "../controllers/payment.controller.js";
+} from "@controllers/payment.controller.js";
 
 const paymentRouter = Router();
 
