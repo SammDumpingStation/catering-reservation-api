@@ -1,31 +1,16 @@
 import mongoose from "mongoose";
-
-// Define enum constants
-export const CATEGORIES = [
-  "Soup",
-  "Salad",
-  "Beef",
-  "Pork",
-  "Noodle",
-  "Chicken",
-  "Seafood",
-  "Vegetable",
-  "Dessert",
-  "Beverage",
-];
-
-export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
+import { ALLERGENS, CATEGORIES } from "src/types/menu.type.js";
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema({
-  calories: { type: String },
-  protein: { type: String },
-  fat: { type: String },
-  carbs: { type: String },
-  sodium: { type: String },
-  fiber: { type: String },
-  sugar: { type: String },
-  cholesterol: { type: String },
+  calories: String,
+  protein: String,
+  fat: String,
+  carbs: String,
+  sodium: String,
+  fiber: String,
+  sugar: String,
+  cholesterol: String,
 });
 
 const PriceInfoSchema = new mongoose.Schema({
@@ -71,7 +56,7 @@ const menuSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a full description"],
     },
-    ingredients: [{ type: String }],
+    ingredients: [String],
     allergens: [
       {
         type: String,

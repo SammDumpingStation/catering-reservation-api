@@ -1,5 +1,20 @@
-import { ALLERGENS, CATEGORIES } from "@schemas/menu.schema.js";
 import { Document } from "mongoose";
+
+// Define enum constants
+export const CATEGORIES = [
+  "Soup",
+  "Salad",
+  "Beef",
+  "Pork",
+  "Noodle",
+  "Chicken",
+  "Seafood",
+  "Vegetable",
+  "Dessert",
+  "Beverage",
+];
+
+export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
 // TypeScript types for enums
 type CategoryProps = (typeof CATEGORIES)[number];
