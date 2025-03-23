@@ -4,8 +4,13 @@ import {
   createToken,
   createError,
 } from "../utils/authUtils.js";
+import { signUpProps } from "../types/auth.type.js";
 
-export const createAccount = async ({ fullName, email, password }) => {
+export const createAccount = async ({
+  fullName,
+  email,
+  password,
+}: signUpProps) => {
   const existingCustomer = await Customer.findOne({ email });
   if (existingCustomer) throw createError("Customer already exists", 400);
 
