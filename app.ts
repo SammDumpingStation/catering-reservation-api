@@ -4,7 +4,7 @@ import { PORT } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 
-import authRouter from "@routes/auth.router.js";
+import authRouter from "@routes/auth.route.js";
 import customerRouter from "@routes/customer.route.js";
 import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
