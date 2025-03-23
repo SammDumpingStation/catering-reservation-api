@@ -21,7 +21,7 @@ type CategoryProps = (typeof CATEGORIES)[number];
 type AllergenProps = (typeof ALLERGENS)[number];
 
 // Define interfaces for nested schemas
-interface NutritionInfoProps {
+export interface NutritionInfoProps {
   calories?: string;
   protein?: string;
   fat?: string;
@@ -32,7 +32,7 @@ interface NutritionInfoProps {
   cholesterol?: string;
 }
 
-interface PriceInfoProps {
+export interface PriceInfoProps {
   minimumPax: number;
   maximumPax: number;
   price: number;

@@ -1,8 +1,14 @@
 import mongoose from "mongoose";
-import { ALLERGENS, CATEGORIES } from "src/types/menu.type.js";
+import {
+  ALLERGENS,
+  CATEGORIES,
+  MenuProps,
+  NutritionInfoProps,
+  PriceInfoProps,
+} from "src/types/menu.type.js";
 
 // Define the schemas for nested objects
-const NutritionInfoSchema = new mongoose.Schema({
+const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
   calories: String,
   protein: String,
   fat: String,
@@ -13,7 +19,7 @@ const NutritionInfoSchema = new mongoose.Schema({
   cholesterol: String,
 });
 
-const PriceInfoSchema = new mongoose.Schema({
+const PriceInfoSchema = new mongoose.Schema<PriceInfoProps>({
   minimumPax: {
     type: Number,
     required: [true, "Please provide minimum number of people"],
@@ -29,7 +35,7 @@ const PriceInfoSchema = new mongoose.Schema({
 });
 
 // Define the main Menu schema
-const menuSchema = new mongoose.Schema(
+const menuSchema = new mongoose.Schema<MenuProps>(
   {
     name: {
       type: String,
@@ -38,8 +44,9 @@ const menuSchema = new mongoose.Schema(
     category: {
       type: String,
       required: [true, "Please select a category"],
-      enum: {
-        values: CATEGORIES,
+      enum: CATEGORIES, // Use enum as an array directly
+      validate: {
+        validator: (value: string) => CATEGORIES.includes(value),
         message: (props) =>
           `${props.value} is not a valid category. Please select from the list of valid categories.`,
       },
@@ -62,7 +69,7 @@ const menuSchema = new mongoose.Schema(
         type: String,
         enum: {
           values: ALLERGENS,
-          message: (props) =>
+          message: (props: { value: string }) =>
             `${props.value} is not a valid allergen. Please select from the list of valid allergens.`,
         },
       },
