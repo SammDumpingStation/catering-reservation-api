@@ -1,11 +1,11 @@
-import * as userModel from "@models/auth.model.js";
+import * as authModel from "@models/auth.model.js";
 
 //Implement Sign-up Logic
 const signUp = async (req, res, next) => {
   try {
     const { fullName, email, password } = req.body;
 
-    const { token, customer } = await userModel.createAccount({
+    const { token, customer } = await authModel.createAccount({
       fullName,
       email,
       password,
@@ -30,7 +30,7 @@ const signIn = async (req, res, next) => {
     //Deconstruct the json form from body
     const { email, password } = req.body;
 
-    const { token, customer } = await userModel.signInAccount({
+    const { token, customer } = await authModel.signInAccount({
       email,
       password,
     });
@@ -54,17 +54,11 @@ const signOut = async (req, res, next) => {
     // Get the authentication token from the request headers
     const token = req.headers.authorization?.split(" ")[1];
 
-    // If no token is provided, return an error
-    if (!token) {
-      const error = new Error("Not authenticated");
-      error.statusCode = 401; // 401 -> Unauthorized
-      throw error;
-    }
+    const { message } = await authModel.signOutAccount(token);
 
-    // Return a success response
     res.status(200).json({
       success: true,
-      message: "Logged out successfully",
+      message,
     });
   } catch (error) {
     next(error);
