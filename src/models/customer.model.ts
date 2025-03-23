@@ -9,3 +9,5 @@ export const getCustomerById = async (id: Types.ObjectId) => {
 
   return existingCustomer;
 };
+
+export const updateCustomerById = async(o);

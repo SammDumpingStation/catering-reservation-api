@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export interface CustomerProps extends Document {
   fullName: string;
@@ -7,4 +7,14 @@ export interface CustomerProps extends Document {
   contactNumber?: string;
   role: "customer" | "admin";
   profileImage?: string;
+}
+
+export type CustomerIdProps = {
+  id: Types.ObjectId;
+};
+
+export interface updateCustomerProps extends CustomerIdProps {
+  fullName: string;
+  contactNumber: string;
+  profileImage: string;
 }
