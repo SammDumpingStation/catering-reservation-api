@@ -13,3 +13,10 @@ export const encryptPassword = async (password) =>
 //Validate password for signing in
 export const validatePassword = async (inputPassword, hashedPassword) =>
   await bcrypt.compare(inputPassword, hashedPassword);
+
+//Creates an error based on if statement
+export const createError = (message, statusCode) => {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
+};
