@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import { PORT } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
@@ -11,16 +11,12 @@ import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
 
-const app = express();
+const app: Application = express();
 
-//This allows our app to handle json data sent in request (req)/API calls
-app.use(express.json());
-
-//This helps us process the form data sent via html forms in a simple format
-app.use(express.urlencoded({ extended: false }));
-
-//Reads cookies from app request so it can store customer data
-app.use(cookieParser());
+app
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
+  .use(cookieParser());
 
 //The app main routes
 app.use("/api/auth", authRouter);
