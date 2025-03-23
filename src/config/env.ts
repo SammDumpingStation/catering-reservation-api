@@ -10,4 +10,4 @@ export const {
   JWT_EXPIRES_IN,
   JWT_SECRET,
   USE_CLOUD_DB,
-} = process.env;
+} = process.env as Record<string, string>;
