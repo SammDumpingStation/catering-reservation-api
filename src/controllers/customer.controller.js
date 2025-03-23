@@ -30,17 +30,12 @@ const updateCustomer = async (req, res, next) => {
   const { id } = req.params;
   const { fullName, contactNumber, profileImage } = req.body;
   try {
-    const customer = await Customer.findByIdAndUpdate(
+    const customer = await customerModel.updateCustomerById({
       id,
-      {
-        fullName,
-        contactNumber,
-        profileImage,
-      },
-      { new: true, runValidators: true }
-    );
-
-    checkIfExists(customer, "Customer");
+      fullName,
+      contactNumber,
+      profileImage,
+    });
 
     res.status(200).json({ success: true, data: customer });
   } catch (error) {
