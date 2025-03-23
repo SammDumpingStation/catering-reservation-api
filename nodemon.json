@@ -1,5 +1,5 @@
 {
   "watch": ["app.ts", "src"],
-  "ext": "ts",
-  "exec": "node --import ./loader.mjs app.ts"
+  "ext": ".ts,.js",
+  "exec": "tsc -p . && node dist/server"
 }

@@ -6,8 +6,9 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "tsc",
+    "check": "tsc --noEmit",
     "dev": "tsx watch app.ts",
-    "dev:build": "tsc && node dist/app.js"
+    "build:dev": "tsc && node dist/app.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.5.1",
