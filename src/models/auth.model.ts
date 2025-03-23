@@ -13,9 +13,7 @@ export const createAccount = async ({
   password,
 }: signUpProps) => {
   // Explicitly check for password before creating
-  if (!password) {
-    throw createError("Password is Required", 400);
-  }
+  if (!password) throw createError("Password is Required", 400);
 
   const existingCustomer = await Customer.findOne({ email });
   if (existingCustomer) throw createError("Customer already exists", 400);
