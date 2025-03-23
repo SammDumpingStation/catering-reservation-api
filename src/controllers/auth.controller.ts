@@ -1,7 +1,8 @@
+import { Request, Response, NextFunction } from "express";
 import * as authModel from "@models/auth.model.js";
 
 //Implement Sign-up Logic
-const signUp = async (req, res, next) => {
+const signUp = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { fullName, email, password } = req.body;
 
@@ -25,7 +26,7 @@ const signUp = async (req, res, next) => {
 };
 
 //Implement Sign-In Logic
-const signIn = async (req, res, next) => {
+const signIn = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //Deconstruct the json form from body
     const { email, password } = req.body;
@@ -49,12 +50,12 @@ const signIn = async (req, res, next) => {
 };
 
 //Implement Sign-Out Logic
-const signOut = async (req, res, next) => {
+const signOut = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // Get the authentication token from the request headers
     const token = req.headers.authorization?.split(" ")[1];
 
-    const { message } = await authModel.signOutAccount(token);
+    const { message } = await authModel.signOutAccount(token!); //Temporary solution since i still dont know what to do here
 
     res.status(200).json({
       success: true,
