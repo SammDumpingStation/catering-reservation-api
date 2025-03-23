@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 
-interface CustomerProps extends Document {
+export interface CustomerProps extends Document {
   fullName: string;
   email: string;
   password: string;

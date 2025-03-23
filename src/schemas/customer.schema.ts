@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { CustomerProps } from "src/types/customer.type.js";
 
-const customerSchema = new mongoose.Schema(
+const customerSchema = new mongoose.Schema<CustomerProps>(
   {
     fullName: {
       type: String,
