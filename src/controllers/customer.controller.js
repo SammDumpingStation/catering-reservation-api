@@ -1,5 +1,6 @@
 import Customer from "../schemas/customer.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
+import * as customerModel from "@models/customer.model.js";
 
 const getCustomers = async (req, res, next) => {
   try {
@@ -16,9 +17,7 @@ const getCustomers = async (req, res, next) => {
 
 const getCustomer = async (req, res, next) => {
   try {
-    const customer = await Customer.findById(req.params.id);
-
-    checkIfExists(customer, "Customer");
+    const customer = await customerModel.getCustomerById(req.params.id);
 
     res.status(201).json({ success: true, data: customer });
   } catch (error) {
