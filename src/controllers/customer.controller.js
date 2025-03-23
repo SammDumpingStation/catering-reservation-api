@@ -1,5 +1,4 @@
 import Customer from "../schemas/customer.schema.js";
-import { checkIfExists } from "../utils/checkExistence.js";
 import * as customerModel from "@models/customer.model.js";
 
 const getCustomers = async (req, res, next) => {
@@ -46,15 +45,13 @@ const updateCustomer = async (req, res, next) => {
 //Delete a Customer
 const deleteCustomer = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const customer = await customerModel.deleteCustomerById(req.params.id);
 
-    const customer = await Customer.findByIdAndDelete(id);
-
-    checkIfExists(customer, "Customer");
-
-    res
-      .status(200)
-      .json({ success: true, message: "Customer deleted Successfully!" });
+    res.status(200).json({
+      success: true,
+      message: "Customer deleted Successfully!",
+      customer, //this is optional for now
+    });
   } catch (error) {
     next(error);
   }

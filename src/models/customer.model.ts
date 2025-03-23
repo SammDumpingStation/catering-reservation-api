@@ -33,3 +33,11 @@ export const updateCustomerById = async ({
 
   return existingCustomer;
 };
+
+export const deleteCustomerById = async (id: CustomerIdProps) => {
+  const existingCustomer = await Customer.findByIdAndDelete(id);
+
+  if (!existingCustomer) throw createError("Customer doesn't exist!", 404);
+
+  return existingCustomer;
+};
