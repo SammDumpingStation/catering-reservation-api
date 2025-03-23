@@ -19,7 +19,7 @@ const getCustomer = async (req, res, next) => {
   try {
     const customer = await customerModel.getCustomerById(req.params.id);
 
-    res.status(201).json({ success: true, data: customer });
+    res.status(200).json({ success: true, data: customer });
   } catch (error) {
     next(error);
   }
