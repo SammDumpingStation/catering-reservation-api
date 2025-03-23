@@ -38,3 +38,8 @@ export const signInAccount = async ({ email, password }: signInProps) => {
 
   return { token: createToken(customer._id), customer };
 };
+
+export const signOutAccount = async (token: string) => {
+  if (!token) throw createError("Not authenticated", 401);
+  return { message: "Logged out successfully" };
+};
