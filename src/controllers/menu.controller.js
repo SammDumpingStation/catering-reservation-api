@@ -1,5 +1,5 @@
 import Menu from "../schemas/menu.schema.js";
-import { checkIfExists } from "../utils/checkExistence.js";
+import * as menuModel from "../models/menu.model.js";
 
 //Get All Menu
 const getMenus = async (req, res, next) => {
@@ -17,9 +17,7 @@ const getMenu = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const menu = await Menu.findById(id);
-
-    checkIfExists(menu, "Menu");
+    const menu = await menuModel.getMenuById(id);
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {
@@ -61,30 +59,24 @@ const updateMenu = async (req, res, next) => {
       nutritionInfo,
     } = req.body;
 
-    const menu = await Menu.findByIdAndUpdate(
-      id,
-      {
-        name,
-        category,
-        available,
-        shortDescription,
-        fullDescription,
-        ingredients,
-        allergens,
-        preparationMethod,
-        prices,
-        regularPricePerPax,
-        imageUrl,
-        rating,
-        ratingCount,
-        spicy,
-        perServing,
-        nutritionInfo,
-      },
-      { new: true, runValidators: true }
-    );
-
-    checkIfExists(menu, "Menu");
+    const menu = await menuModel.updateMenyById(id, {
+      name,
+      category,
+      available,
+      shortDescription,
+      fullDescription,
+      ingredients,
+      allergens,
+      preparationMethod,
+      prices,
+      regularPricePerPax,
+      imageUrl,
+      rating,
+      ratingCount,
+      spicy,
+      perServing,
+      nutritionInfo,
+    });
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {
@@ -96,13 +88,11 @@ const deleteMenu = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const menu = await Menu.findByIdAndDelete(id);
-
-    checkIfExists(menu, "Menu");
+    const menu = await menuModel.deleteMenuById(id);
 
     res
       .status(200)
-      .json({ success: true, message: "Menu deleted Successfully!" });
+      .json({ success: true, message: `${menu.name} deleted Successfully!` });
   } catch (error) {
     next(error);
   }

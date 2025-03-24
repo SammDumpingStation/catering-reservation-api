@@ -57,7 +57,7 @@ export const updateMenyById = async ({
   return existingMenu;
 };
 
-export const deleteMenyById = async (id: string) => {
+export const deleteMenuById = async (id: string) => {
   const existingMenu = await Menu.findByIdAndDelete(id);
 
   if (!existingMenu) throw createError("Menu doesn't exist!", 404);
