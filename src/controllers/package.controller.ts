@@ -1,8 +1,10 @@
+import { NextFunction, Request, Response } from "express";
 import Package from "../schemas/package.schema.js";
+import * as PackageModel from "@models/package.model.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Package
-const getPackages = async (req, res, next) => {
+const getPackages = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const packages = await Package.find();
 
@@ -13,77 +15,85 @@ const getPackages = async (req, res, next) => {
 };
 
 //Get a Package
-const getPackage = async (req, res, next) => {
+const getPackage = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 
-    const packageVar = await Package.findById(id);
-
-    checkIfExists(packageVar, "Package");
-
-    res.status(200).json({ success: true, data: packageVar });
+    const pkg = await PackageModel.getPackageById(id);
+    res.status(200).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
   }
 };
 
 //Create a Package
-const createPackage = async (req, res, next) => {
+const createPackage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const packageVar = await Package.create(req.body);
+    const pkg = await Package.create(req.body);
 
-    res.status(201).json({ success: true, data: packageVar });
+    res.status(201).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
   }
 };
 
 //Update a Package
-const updatePackage = async (req, res, next) => {
+const updatePackage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
     const {
       name,
       description,
-      eventType,
-      pricingOptions,
-      guestCapacity,
-      includedMenus,
-      isFeatured,
-      image,
+      pricePerPax,
+      minimumPax,
+      recommendedPax,
+      maximumPax,
+      serviceHours,
+      serviceCharge,
+      options,
+      inclusions,
+      imageUrl,
+      rating,
+      ratingCount,
     } = req.body;
 
-    const packageVar = await Package.findByIdAndUpdate(
-      id,
-      {
-        name,
-        description,
-        eventType,
-        pricingOptions,
-        guestCapacity,
-        includedMenus,
-        isFeatured,
-        image,
-      },
-      { new: true, runValidators: true }
-    );
-
-    checkIfExists(packageVar, "Package");
-
-    res.status(200).json({ success: true, data: packageVar });
+    const pkg = await PackageModel.updatePackageById(id, {
+      name,
+      description,
+      pricePerPax,
+      minimumPax,
+      recommendedPax,
+      maximumPax,
+      serviceHours,
+      serviceCharge,
+      options,
+      inclusions,
+      imageUrl,
+      rating,
+      ratingCount,
+    });
+    res.status(200).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
   }
 };
 //Delete a Package
-const deletePackage = async (req, res, next) => {
+const deletePackage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
-
-    const packageVar = await Package.findByIdAndDelete(id);
-
-    checkIfExists(packageVar, "Package");
-
+    const pkg = await PackageModel.deletePackageById(id);
     res
       .status(200)
       .json({ success: true, message: "Package deleted Successfully!" });

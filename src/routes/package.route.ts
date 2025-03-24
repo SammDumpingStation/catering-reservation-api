@@ -7,6 +7,7 @@ import {
   getPackages,
   updatePackage,
 } from "@controllers/package.controller.js";
+import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
 
 const packageRouter = Router();
 
@@ -17,17 +18,12 @@ packageRouter.get("/", getPackages);
 packageRouter.get("/:id", getPackage);
 
 //Create a new Catering Package
-packageRouter.post("/", createPackage);
+packageRouter.post("/", checkUserType, catererOnly, createPackage);
 
 //Update a Catering Package
-packageRouter.put("/:id", updatePackage);
+packageRouter.put("/:id", checkUserType, catererOnly, updatePackage);
 
 //Delete a Catering Package
-packageRouter.delete("/:id", deletePackage);
-
-//Update Catering Package Availability
-// packageRouter.put("/api/v1/packages/:id/availability", (req, res) =>
-//   res.send({ message: "Update Package Availability" })
-// );
+packageRouter.delete("/:id", checkUserType, catererOnly, deletePackage);
 
 export default packageRouter;
