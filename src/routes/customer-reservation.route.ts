@@ -6,7 +6,7 @@ import {
 import { checkUserType, customerOnly } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 
-export const customerReservationRouter = Router();
+const customerReservationRouter = Router();
 
 customerReservationRouter.use(checkUserType, customerOnly);
 
@@ -18,3 +18,5 @@ customerReservationRouter.get("/:id", getCustomerReservation);
 
 //Create a reservation
 customerReservationRouter.post("/", createCustomerReservation);
+
+export default customerReservationRouter;

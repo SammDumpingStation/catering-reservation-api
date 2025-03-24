@@ -14,8 +14,7 @@ import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
 const catererReservationRouter = Router();
 
 // Applying middleware to all routes in this router to ensure that only the caterer can touch this route
-catererReservationRouter.use(checkUserType);
-catererReservationRouter.use(catererOnly);
+catererReservationRouter.use(checkUserType, catererOnly);
 
 //Get all reservation from all customers (For Caterer)
 catererReservationRouter.get("/", getAllReservations);

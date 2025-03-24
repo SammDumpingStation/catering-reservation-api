@@ -46,7 +46,6 @@ const paymentSchema = new mongoose.Schema<PaymentProps>(
       required: true,
     },
     transactions: [TransactionSchema],
-
     status: {
       type: String,
       enum: paymentStatus,
