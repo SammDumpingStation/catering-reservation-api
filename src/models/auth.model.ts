@@ -35,10 +35,13 @@ export const signInAccount = async ({ email, password }: signInProps) => {
   const customer = await Customer.findOne({ email });
   const validCustomer = checkIfExists(customer, "Customer");
 
-  const isPasswordValid = await validatePassword(password, validCustomer.password);
+  const isPasswordValid = await validatePassword(
+    password,
+    validCustomer.password
+  );
   if (!isPasswordValid) throw createError("Invalid password", 401);
 
-  return { token: createToken(validCustomer._id as string), customer };
+  return { token: createToken(validCustomer._id as string), validCustomer };
 };
 
 export const signOutAccount = async (token: string) => {

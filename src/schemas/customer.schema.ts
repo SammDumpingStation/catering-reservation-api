@@ -29,7 +29,7 @@ const customerSchema = new mongoose.Schema<CustomerProps>(
     },
     role: {
       type: String,
-      enum: ["customer", "admin"],
+      enum: ["customer", "caterer"],
       default: "customer",
     },
     profileImage: {

@@ -2,13 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import Reservation from "../schemas/reservation.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
-//Get All Reservation
-const getReservations = async (
+//Get All CatererReservation
+const getCatererReservations = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
+    const catererId = req.user?.id
     const reservations = await Reservation.find();
 
     res.status(200).json({ success: true, data: reservations });
@@ -17,8 +18,8 @@ const getReservations = async (
   }
 };
 
-//Get a Reservation
-const getReservation = async (
+//Get a CatererReservation
+const getCatererReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -28,7 +29,7 @@ const getReservation = async (
 
     const reservation = await Reservation.findById(id);
 
-    checkIfExists(reservation, "Reservation");
+    checkIfExists(reservation, "CatererReservation");
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
@@ -36,8 +37,8 @@ const getReservation = async (
   }
 };
 
-//Create a Reservation
-const createReservation = async (
+//Create a CatererReservation
+const createCatererReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -51,8 +52,8 @@ const createReservation = async (
   }
 };
 
-//Update a Reservation
-const updateReservation = async (
+//Update a CatererReservation
+const updateCatererReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -85,15 +86,15 @@ const updateReservation = async (
       { new: true, runValidators: true }
     );
 
-    checkIfExists(reservation, "Reservation");
+    checkIfExists(reservation, "CatererReservation");
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
     next(error);
   }
 };
-//Delete a Reservation
-const deleteReservation = async (
+//Delete a CatererReservation
+const deleteCatererReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -103,20 +104,21 @@ const deleteReservation = async (
 
     const reservation = await Reservation.findByIdAndDelete(id);
 
-    checkIfExists(reservation, "Reservation");
+    checkIfExists(reservation, "CatererReservation");
 
-    res
-      .status(200)
-      .json({ success: true, message: "Reservation deleted Successfully!" });
+    res.status(200).json({
+      success: true,
+      message: "CatererReservation deleted Successfully!",
+    });
   } catch (error) {
     next(error);
   }
 };
 
 export {
-  getReservations,
-  getReservation,
-  createReservation,
-  updateReservation,
-  deleteReservation,
+  getCatererReservations,
+  getCatererReservation,
+  createCatererReservation,
+  updateCatererReservation,
+  deleteCatererReservation,
 };

@@ -9,7 +9,8 @@ import customerRouter from "@routes/customer.route.js";
 import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
-import reservationRouter from "@routes/reservation.route.js";
+import catererReservationRouter from "@routes/caterer-reservation.route.js";
+import { customerReservationRouter } from "@routes/customer-reservation.route.js";
 
 const app: Application = express();
 
@@ -23,7 +24,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/menus", menuRouter);
 app.use("/api/packages", packageRouter);
-app.use("/api/reservations", reservationRouter);
+app.use("/api/caterer/reservations", catererReservationRouter);
+app.use("/api/customer/reservations", customerReservationRouter);
 app.use("/api/payments", paymentRouter);
 
 //Intercepts any errors mainly in mongoose
