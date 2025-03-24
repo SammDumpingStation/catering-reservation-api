@@ -11,15 +11,15 @@
     "build:dev": "tsc && node dist/app.js"
   },
   "_moduleAliases": {
-    "@controllers": "dist/controllers",
-    "@database": "dist/database",
-    "@middlewares": "dist/middlewares",
-    "@models": "dist/models",
-    "@routes": "dist/routes",
-    "@schemas": "dist/schemas",
-    "@config": "dist/config",
-    "@utils": "dist/utils",
-    "@TStypes": "dist/typescript/types"
+    "@controllers": "/dist/src/controllers",
+    "@database": "/dist/src/database",
+    "@middlewares": "/dist/src/middlewares",
+    "@models": "/dist/src/models",
+    "@routes": "/dist/src/routes",
+    "@schemas": "/dist/src/schemas",
+    "@config": "/dist/src/config",
+    "@utils/*": "/dist/src/utils",
+    "@TStypes": "/dist/src/typescript/types"
   },
   "dependencies": {
     "@faker-js/faker": "^9.5.1",
@@ -28,8 +28,10 @@
     "debug": "^4.4.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
     "express-validator": "^7.2.1",
     "jsonwebtoken": "^9.0.2",
+    "module-alias": "^2.2.3",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.2",
     "morgan": "^1.10.0"
