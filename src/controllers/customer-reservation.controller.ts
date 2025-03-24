@@ -1,9 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import Reservation from "../schemas/reservation.schema.js";
-import { checkIfExists } from "../utils/checkExistence.js";
+import * as CustomerReservation from "@models/customer-reservation.model.js";
 
 //Get All Customer Reservation
-const getCustomerReservations = async (
+const getAllCustomerOwnReservations = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -26,10 +26,9 @@ const getCustomerReservation = async (
   try {
     const { id } = req.params;
 
-    const reservation = await Reservation.findById(id);
-
-    checkIfExists(reservation, "CustomerReservation");
-
+    const reservation = await CustomerReservation.getCustomerOwnReservations(
+      id
+    );
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
     next(error);
@@ -52,7 +51,7 @@ const createCustomerReservation = async (
 };
 
 export {
-  getCustomerReservations,
+  getAllCustomerOwnReservations,
   getCustomerReservation,
   createCustomerReservation,
 };

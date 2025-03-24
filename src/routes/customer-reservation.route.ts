@@ -1,17 +1,20 @@
 import {
   createCustomerReservation,
   getCustomerReservation,
-  getCustomerReservations,
+  getAllCustomerOwnReservations,
 } from "@controllers/customer-reservation.controller.js";
+import { checkUserType, customerOnly } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 
 export const customerReservationRouter = Router();
 
+customerReservationRouter.use(checkUserType, customerOnly);
+
 //Get all reservations made by a customer
-customerReservationRouter.get("/", getCustomerReservations);
+customerReservationRouter.get("/", getAllCustomerOwnReservations);
 
 //Get a specific reservation made by a customer
 customerReservationRouter.get("/:id", getCustomerReservation);
 
-//Create a reservation for a specific customer
-customerReservationRouter.post("/:id", createCustomerReservation);
+//Create a reservation
+customerReservationRouter.post("/", createCustomerReservation);

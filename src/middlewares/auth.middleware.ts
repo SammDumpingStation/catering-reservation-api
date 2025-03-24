@@ -73,20 +73,6 @@ export const checkUserType = (
   }
 };
 
-// Middleware to restrict to registered users only (no guests)
-export const registeredCustomersOnly = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  if (req.isGuest || !req.user) {
-    return res
-      .status(401)
-      .json({ message: "You need to login to access this resource" });
-  }
-  return next();
-};
-
 // Middleware to restrict to registered customers only only
 export const customerOnly = (
   req: Request,
@@ -94,9 +80,10 @@ export const customerOnly = (
   next: NextFunction
 ) => {
   if (req.user!.role !== "customer") {
-    return res.status(403).json({ message: "Customer access required" });
+    res.status(403).json({ message: "Customer access required" });
+    return;
   }
-  return next();
+  next();
 };
 
 // Middleware to restrict to caterer only
