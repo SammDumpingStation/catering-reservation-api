@@ -24,7 +24,10 @@ export const createAccount = async ({
     password: await encryptPassword(password),
   });
 
-  return { token: createToken(newCustomer._id), customer: newCustomer };
+  return {
+    token: createToken(newCustomer._id as string),
+    customer: newCustomer,
+  };
 };
 
 export const signInAccount = async ({ email, password }: signInProps) => {
@@ -34,7 +37,7 @@ export const signInAccount = async ({ email, password }: signInProps) => {
   const isPasswordValid = await validatePassword(password, customer.password);
   if (!isPasswordValid) throw createError("Invalid password", 401);
 
-  return { token: createToken(customer._id), customer };
+  return { token: createToken(customer._id as string), customer };
 };
 
 export const signOutAccount = async (token: string) => {
