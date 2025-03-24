@@ -1,15 +1,10 @@
+import { CustomError } from "@TStypes/error-middleware.type.js";
 import type {
   Request,
   Response,
   NextFunction,
   ErrorRequestHandler,
 } from "express";
-
-interface CustomError extends Error {
-  statusCode?: number;
-  code?: number;
-  errors?: Record<string, { message: string }>;
-}
 
 const errorMiddleware: ErrorRequestHandler = (
   err: any,
