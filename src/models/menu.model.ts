@@ -1,12 +1,10 @@
 import Menu from "@schemas/menu.schema.js";
 import { MenuProps } from "@TStypes/menu.type.js";
-import { createError } from "@utils/authUtils.js";
+import { checkIfExists } from "@utils/checkExistence.js";
 
 export const getMenuById = async (id: string) => {
   const existingMenu = await Menu.findById(id);
-
-  if (!existingMenu) throw createError("Menu doesn't exist!", 404);
-
+  checkIfExists(existingMenu, "Menu");
   return existingMenu;
 };
 
@@ -19,15 +17,12 @@ export const updateMenuById = async (
     runValidators: true,
   });
 
-  if (!existingMenu) throw createError("Menu doesn't exist!", 404);
-
+  checkIfExists(existingMenu, "Menu");
   return existingMenu;
 };
 
 export const deleteMenuById = async (id: string) => {
   const existingMenu = await Menu.findByIdAndDelete(id);
-
-  if (!existingMenu) throw createError("Menu doesn't exist!", 404);
-
+  checkIfExists(existingMenu, "Menu");
   return existingMenu;
 };

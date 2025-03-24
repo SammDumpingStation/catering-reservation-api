@@ -93,7 +93,7 @@ const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
 
     res
       .status(200)
-      .json({ success: true, message: `${menu.name} deleted Successfully!` });
+      .json({ success: true, message: `${menu?.name} deleted Successfully!` });
   } catch (error) {
     next(error);
   }

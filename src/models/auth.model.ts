@@ -6,6 +6,7 @@ import {
   validatePassword,
 } from "@utils/authUtils.js";
 import { signInProps, signUpProps } from "@TStypes/auth.type.js";
+import { checkIfExists } from "@utils/checkExistence.js";
 
 export const createAccount = async ({
   fullName,
@@ -32,12 +33,12 @@ export const createAccount = async ({
 
 export const signInAccount = async ({ email, password }: signInProps) => {
   const customer = await Customer.findOne({ email });
-  if (!customer) throw createError("Customer not found", 404);
+  const validCustomer = checkIfExists(customer, "Customer");
 
-  const isPasswordValid = await validatePassword(password, customer.password);
+  const isPasswordValid = await validatePassword(password, validCustomer.password);
   if (!isPasswordValid) throw createError("Invalid password", 401);
 
-  return { token: createToken(customer._id as string), customer };
+  return { token: createToken(validCustomer._id as string), customer };
 };
 
 export const signOutAccount = async (token: string) => {

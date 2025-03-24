@@ -1,8 +1,13 @@
+import { NextFunction, Request, Response } from "express";
 import Reservation from "../schemas/reservation.schema.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 
 //Get All Reservation
-const getReservations = async (req, res, next) => {
+const getReservations = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const reservations = await Reservation.find();
 
@@ -13,7 +18,11 @@ const getReservations = async (req, res, next) => {
 };
 
 //Get a Reservation
-const getReservation = async (req, res, next) => {
+const getReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
 
@@ -28,7 +37,11 @@ const getReservation = async (req, res, next) => {
 };
 
 //Create a Reservation
-const createReservation = async (req, res, next) => {
+const createReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const reservation = await Reservation.create(req.body);
 
@@ -39,7 +52,11 @@ const createReservation = async (req, res, next) => {
 };
 
 //Update a Reservation
-const updateReservation = async (req, res, next) => {
+const updateReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
     const {
@@ -76,7 +93,11 @@ const updateReservation = async (req, res, next) => {
   }
 };
 //Delete a Reservation
-const deleteReservation = async (req, res, next) => {
+const deleteReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { id } = req.params;
 
