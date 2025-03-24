@@ -1,14 +1,14 @@
-import { Document, Types } from "mongoose";
+import { Document } from "mongoose";
+import { ObjectId, statusEnums, StringEnums } from "./global.type.js";
 
 //Define Enum Constants
-type StringEnums = string[];
 
 export const soupOptions: StringEnums = [
   "Sinigang na Baboy",
   "Bulalo",
   "Tinolang Manok",
   "Nilagang Baka",
-] as const;
+];
 
 export const saladOptions: StringEnums = [
   "Ensaladang Talong",
@@ -73,14 +73,6 @@ export const beverageOptions: StringEnums = [
   "Tsokolate",
 ];
 
-export const statusEnums: StringEnums = [
-  "pending",
-  "confirmed",
-  "completed",
-  "canceled",
-];
-
-type ObjectId = Types.ObjectId;
 
 export interface CustomerDetailsProps {
   firstName: string;

@@ -1,3 +1,4 @@
+import { statusEnums } from "@TStypes/global.type.js";
 import {
   beefOptions,
   beverageOptions,
@@ -13,7 +14,6 @@ import {
   saladOptions,
   seafoodOptions,
   soupOptions,
-  statusEnums,
   vegetableOptions,
 } from "@TStypes/reservation.type.js";
 import mongoose from "mongoose";
