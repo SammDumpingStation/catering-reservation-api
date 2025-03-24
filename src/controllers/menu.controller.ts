@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Menu from "../schemas/menu.schema.js";
-import * as menuModel from "../models/menu.model.js";
+import * as MenuModel from "../models/menu.model.js";
 
 //Get All Menu
 const getMenus = async (req: Request, res: Response, next: NextFunction) => {
@@ -18,7 +18,7 @@ const getMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 
-    const menu = await menuModel.getMenuById(id);
+    const menu = await MenuModel.getMenuById(id);
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {
@@ -60,7 +60,7 @@ const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
       nutritionInfo,
     } = req.body;
 
-    const menu = await menuModel.updateMenuById(id, {
+    const menu = await MenuModel.updateMenuById(id, {
       name,
       category,
       available,
@@ -89,11 +89,11 @@ const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 
-    const menu = await menuModel.deleteMenuById(id);
+    const menu = await MenuModel.deleteMenuById(id);
 
     res
       .status(200)
-      .json({ success: true, message: `${menu.name} deleted Successfully!` });
+      .json({ success: true, message: `${menu?.name} deleted Successfully!` });
   } catch (error) {
     next(error);
   }
