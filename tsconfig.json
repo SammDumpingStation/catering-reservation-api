@@ -120,7 +120,7 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-  "include": ["app.ts", "src/**/*.ts"],
+  "include": ["app.ts", "src/**/*.ts", "src/utils/authUtils.js"],
   "exclude": ["node_modules", "dist"],
   "ts-node": {
     "esm": true,

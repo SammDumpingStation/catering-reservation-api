@@ -1,8 +1,9 @@
+import { Request, Response, NextFunction } from "express";
 import Menu from "../schemas/menu.schema.js";
 import * as menuModel from "../models/menu.model.js";
 
 //Get All Menu
-const getMenus = async (req, res, next) => {
+const getMenus = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const menus = await Menu.find();
 
@@ -13,7 +14,7 @@ const getMenus = async (req, res, next) => {
 };
 
 //Get a Menu
-const getMenu = async (req, res, next) => {
+const getMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 
@@ -26,7 +27,7 @@ const getMenu = async (req, res, next) => {
 };
 
 //Create a Menu
-const createMenu = async (req, res, next) => {
+const createMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const menu = await Menu.create(req.body);
 
@@ -37,7 +38,7 @@ const createMenu = async (req, res, next) => {
 };
 
 //Update a Menu
-const updateMenu = async (req, res, next) => {
+const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
     const {
@@ -59,7 +60,7 @@ const updateMenu = async (req, res, next) => {
       nutritionInfo,
     } = req.body;
 
-    const menu = await menuModel.updateMenyById(id, {
+    const menu = await menuModel.updateMenuById(id, {
       name,
       category,
       available,
@@ -84,7 +85,7 @@ const updateMenu = async (req, res, next) => {
   }
 };
 //Delete a Menu
-const deleteMenu = async (req, res, next) => {
+const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 

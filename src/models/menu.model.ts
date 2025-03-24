@@ -10,47 +10,14 @@ export const getMenuById = async (id: string) => {
   return existingMenu;
 };
 
-export const updateMenyById = async ({
-  id,
-  name,
-  category,
-  available,
-  shortDescription,
-  fullDescription,
-  ingredients,
-  allergens,
-  preparationMethod,
-  prices,
-  regularPricePerPax,
-  imageUrl,
-  rating,
-  ratingCount,
-  spicy,
-  perServing,
-  nutritionInfo,
-}: MenuProps) => {
-  const existingMenu = await Menu.findByIdAndUpdate(
-    id,
-    {
-      name,
-      category,
-      available,
-      shortDescription,
-      fullDescription,
-      ingredients,
-      allergens,
-      preparationMethod,
-      prices,
-      regularPricePerPax,
-      imageUrl,
-      rating,
-      ratingCount,
-      spicy,
-      perServing,
-      nutritionInfo,
-    },
-    { new: true, runValidators: true }
-  );
+export const updateMenuById = async (
+  id: string,
+  updateData: Partial<MenuProps>
+) => {
+  const existingMenu = await Menu.findByIdAndUpdate(id, updateData, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!existingMenu) throw createError("Menu doesn't exist!", 404);
 
