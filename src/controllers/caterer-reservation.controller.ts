@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response } from "express";
 import Reservation from "../schemas/reservation.schema.js";
-import { checkIfExists } from "../utils/checkExistence.js";
+import * as ReservationModel from "@models/caterer-reservation.model.js";
 
-//Get All CatererReservation
-const getCatererReservations = async (
+//Get all reservation from all customers (For Caterer)
+const getAllReservations = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const catererId = req.user?.id
     const reservations = await Reservation.find();
 
     res.status(200).json({ success: true, data: reservations });
@@ -18,8 +17,25 @@ const getCatererReservations = async (
   }
 };
 
-//Get a CatererReservation
-const getCatererReservation = async (
+//Get all reservation made by a customer
+const getCustomerReservations = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { customerId } = req.params;
+    const reservations = await ReservationModel.getCustomerReservationsById(
+      customerId
+    );
+    res.status(200).json({ success: true, data: reservations });
+  } catch (error) {
+    next(error);
+  }
+};
+
+//Get a Reservation
+const getReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -27,9 +43,7 @@ const getCatererReservation = async (
   try {
     const { id } = req.params;
 
-    const reservation = await Reservation.findById(id);
-
-    checkIfExists(reservation, "CatererReservation");
+    const reservation = await ReservationModel.getCustomerReservationsById(id);
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
@@ -37,8 +51,8 @@ const getCatererReservation = async (
   }
 };
 
-//Create a CatererReservation
-const createCatererReservation = async (
+//Create a Reservation
+const createReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -52,8 +66,8 @@ const createCatererReservation = async (
   }
 };
 
-//Update a CatererReservation
-const updateCatererReservation = async (
+//Update a Reservation
+const updateReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -62,39 +76,33 @@ const updateCatererReservation = async (
     const { id } = req.params;
     const {
       customerId,
-      customer_details,
+      customerDetails,
       eventDetails,
-      cateringPreferences,
+      menuSelection,
+      specialRequests,
       costDetails,
-      paymentId,
-      notes,
       status,
+      paymentStatus,
     } = req.body;
 
-    const reservation = await Reservation.findByIdAndUpdate(
-      id,
-      {
-        customerId,
-        customer_details,
-        eventDetails,
-        cateringPreferences,
-        costDetails,
-        paymentId,
-        notes,
-        status,
-      },
-      { new: true, runValidators: true }
-    );
-
-    checkIfExists(reservation, "CatererReservation");
+    const reservation = await ReservationModel.updateReservationById(id, {
+      customerId,
+      customerDetails,
+      eventDetails,
+      menuSelection,
+      specialRequests,
+      costDetails,
+      status,
+      paymentStatus,
+    });
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
     next(error);
   }
 };
-//Delete a CatererReservation
-const deleteCatererReservation = async (
+//Delete a Reservation
+const deleteReservation = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -102,13 +110,11 @@ const deleteCatererReservation = async (
   try {
     const { id } = req.params;
 
-    const reservation = await Reservation.findByIdAndDelete(id);
-
-    checkIfExists(reservation, "CatererReservation");
+    await ReservationModel.deleteReservationById(id);
 
     res.status(200).json({
       success: true,
-      message: "CatererReservation deleted Successfully!",
+      message: "Reservation deleted Successfully!",
     });
   } catch (error) {
     next(error);
@@ -116,9 +122,10 @@ const deleteCatererReservation = async (
 };
 
 export {
-  getCatererReservations,
-  getCatererReservation,
-  createCatererReservation,
-  updateCatererReservation,
-  deleteCatererReservation,
+  getAllReservations,
+  getCustomerReservations,
+  getReservation,
+  createReservation,
+  updateReservation,
+  deleteReservation,
 };

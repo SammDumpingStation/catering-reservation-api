@@ -1,28 +1,38 @@
 //CatererReservation Relates Routes
 import { Router } from "express";
 import {
-  createCatererReservation,
-  deleteCatererReservation,
-  getCatererReservation,
-  getCatererReservations,
-  updateCatererReservation,
+  createReservation,
+  deleteReservation,
+  getReservation,
+  getAllReservations,
+  getCustomerReservations,
+  updateReservation,
 } from "@controllers/caterer-reservation.controller.js";
+import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
+
 
 const catererReservationRouter = Router();
 
-//Get all reservation from all customers (For Caterer)
-catererReservationRouter.get("/", getCatererReservations);
+// Applying middleware to all routes in this router to ensure that only the caterer can touch this route
+catererReservationRouter.use(checkUserType);
+catererReservationRouter.use(catererOnly);
 
-//Get all reservation made by customer
-catererReservationRouter.get("/:id", getCatererReservation);
+//Get all reservation from all customers (For Caterer)
+catererReservationRouter.get("/", getAllReservations);
+
+//Get all reservation made by a customer
+catererReservationRouter.get("/customer/:customerId", getCustomerReservations);
+
+//Get a specific reservation made by a customer
+catererReservationRouter.get("/:id", getReservation);
 
 //Create a reservation
-catererReservationRouter.post("/", createCatererReservation);
+catererReservationRouter.post("/", createReservation);
 
 //Update a CatererReservation
-catererReservationRouter.put("/", updateCatererReservation);
+catererReservationRouter.put("/:id", updateReservation);
 
 //Delete a reservation
-catererReservationRouter.delete("/", deleteCatererReservation);
+catererReservationRouter.delete("/:id", deleteReservation);
 
 export default catererReservationRouter;

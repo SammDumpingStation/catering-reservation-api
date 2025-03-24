@@ -21,19 +21,20 @@ declare global {
   }
 }
 
-// Middleware to check user type
+// Middleware to check user type, basically sets the Request User and isGuest to  be used in the whole app
 export const checkUserType = (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   const token = req.headers.authorization?.split(" ")[1]; // Expecting "Bearer <token>"
 
   // Check Number 1: We set the req to carry a non-registered user and continue
   if (!token) {
     req.isGuest = true; // Set as guest
     req.user = undefined; // No user data
-    return next(); // Proceed
+    next(); // Proceed
+    return;
   }
 
   // Check 2: Token present (Registered User or Caterer)
@@ -59,13 +60,16 @@ export const checkUserType = (
     // Handle JWT-specific errors
     if (error instanceof jwt.JsonWebTokenError) {
       res.status(401).json({ message: "Invalid token" });
+      return;
     } else if (error instanceof jwt.TokenExpiredError) {
       res.status(401).json({ message: "Token expired" });
+      return;
     }
     const err = error as CustomError;
     const statusCode = err.statusCode || 500;
     const message = err.message || "An unexpected error occurred";
     res.status(statusCode).json({ message });
+    return;
   }
 };
 
@@ -103,6 +107,7 @@ export const catererOnly = (
 ) => {
   if (req.user!.role !== "caterer") {
     res.status(403).json({ message: "Caterer access required" });
+    return;
   }
   next();
 };
