@@ -70,6 +70,7 @@ export const isReservationOwnerOrCaterer = async (
     // Caterers can access all reservations
     if (req.user.role === "caterer") {
       next();
+      return;
     }
 
     // For customers, check if they own the reservation

@@ -6,19 +6,20 @@ import {
   getCustomers,
   updateCustomer,
 } from "@controllers/customer.controller.js";
+import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
 
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", getCustomers);
+customerRouter.get("/", isAuthenticated, isCaterer, getCustomers);
 
 //Get Customer Details
-customerRouter.get("/:id", getCustomer);
+customerRouter.get("/:id", isAuthenticated, getCustomer);
 
 //Update a Customer
-customerRouter.put("/:id", updateCustomer);
+customerRouter.put("/:id", isAuthenticated, updateCustomer);
 
 //Delete a Customer
-customerRouter.delete("/:id", deleteCustomer);
+customerRouter.delete("/:id", isAuthenticated, isCaterer, deleteCustomer);
 
 export default customerRouter;
