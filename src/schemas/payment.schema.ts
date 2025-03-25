@@ -7,6 +7,10 @@ import {
 import mongoose from "mongoose";
 
 const TransactionSchema = new mongoose.Schema<TransactionsProps>({
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId(),
+  },
   amount: {
     type: Number,
     required: true,

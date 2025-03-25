@@ -31,7 +31,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
     //Deconstruct the json form from body
     const { email, password } = req.body;
 
-    const { token, customer } = await authModel.signInAccount({
+    const { token, validCustomer } = await authModel.signInAccount({
       email,
       password,
     });
@@ -41,7 +41,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
       message: "Customer signed in successfully",
       data: {
         token,
-        customer,
+        validCustomer,
       },
     });
   } catch (error) {

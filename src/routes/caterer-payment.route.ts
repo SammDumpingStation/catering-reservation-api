@@ -7,9 +7,9 @@ import {
   getAllPayments,
   getReservationPayments,
   getCustomerPayments,
-  // addTransaction,
-  // updatePaymentStatus,
-  // updateTransactionStatus,
+  addTransaction,
+  updatePaymentStatus,
+  updateTransactionStatus,
 } from "@controllers/caterer-payment.controller.js";
 import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
 
@@ -33,16 +33,16 @@ catererPaymentRouter.get("/:paymentId", getPayment);
 catererPaymentRouter.post("/", createPayment);
 
 // // Add a new transaction to an existing payment
-// catererPaymentRouter.post("/:paymentId/transaction", addTransaction);
+catererPaymentRouter.post("/:paymentId/transaction", addTransaction);
 
 // // Update payment status
-// catererPaymentRouter.put("/:paymentId/status", updatePaymentStatus);
+catererPaymentRouter.put("/:paymentId/status", updatePaymentStatus);
 
 // // Update transaction status
-// catererPaymentRouter.put(
-//   "/:paymentId/transaction/:transactionId",
-//   updateTransactionStatus
-// );
+catererPaymentRouter.put(
+  "/:paymentId/transaction/:transactionId",
+  updateTransactionStatus
+);
 
 catererPaymentRouter.delete("/:id", deletePayment);
 

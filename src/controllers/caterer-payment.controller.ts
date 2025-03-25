@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import Payment from "../schemas/payment.schema.js";
 
 import { checkIfExists } from "../utils/checkExistence.js";
+import Reservation from "@schemas/reservation.schema.js";
 
 // Get all payments across all reservations
 export const getAllPayments = async (
@@ -117,6 +118,111 @@ export const deletePayment = async (
     res
       .status(200)
       .json({ success: true, message: "Payment deleted Successfully!" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Add a new transaction to an existing payment
+export const addTransaction = async (
+  req: Request<{ paymentId: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { paymentId } = req.params;
+    const { amount, method, type, status } = req.body;
+
+    const checkPayment = await Payment.findById(paymentId);
+    const payment = checkIfExists(checkPayment, "Payment");
+
+    // Add new transaction
+    payment.transactions.push({
+      amount,
+      method,
+      type,
+      status: status || "pending",
+      date: new Date(),
+    });
+
+    // Update payment status
+    const totalPaid = payment.transactions.reduce(
+      (sum, trans) => sum + trans.amount,
+      0
+    );
+    const reservation = await Reservation.findById(
+      payment.reservationId
+    ).select("totalPrice");
+
+    if (totalPaid >= reservation!.costDetails.totalReservationCost) {
+      payment.status = "completed";
+    } else if (totalPaid > 0) {
+      payment.status = "partial";
+    }
+
+    await payment.save();
+
+    res.status(201).json({
+      success: true,
+      data: payment,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update payment status
+export const updatePaymentStatus = async (
+  req: Request<{ paymentId: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { paymentId } = req.params;
+    const { status } = req.body;
+
+    const payment = await Payment.findByIdAndUpdate(
+      paymentId,
+      { status },
+      { new: true }
+    );
+
+    checkIfExists(payment, "Payment");
+
+    res.status(200).json({
+      success: true,
+      data: payment,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Update transaction status
+export const updateTransactionStatus = async (
+  req: Request<{ paymentId: string; transactionId: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { paymentId, transactionId } = req.params;
+    const { status } = req.body;
+
+    const payment = await Payment.findById(paymentId);
+    checkIfExists(payment, "Payment");
+
+    const findTransaction = payment!.transactions.find(
+      (t) => t._id?.toString() === transactionId
+    );
+    const transaction = checkIfExists(findTransaction, "Tansaction");
+
+    transaction.status = status;
+    await payment!.save();
+
+    res.status(200).json({
+      success: true,
+      data: payment,
+    });
   } catch (error) {
     next(error);
   }
