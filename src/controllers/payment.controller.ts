@@ -76,3 +76,26 @@ export const getPayment = async (
     next(error);
   }
 };
+
+// Get payments by reservation ID
+export const getPaymentsByReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { reservationId } = req.params;
+
+    const payments = await paymentModel.getPaymentsByReservationId(
+      reservationId
+    );
+
+    res.status(200).json({
+      success: true,
+      count: payments.length,
+      data: payments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
