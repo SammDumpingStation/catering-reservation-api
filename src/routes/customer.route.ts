@@ -21,6 +21,4 @@ customerRouter.put("/:id", updateCustomer);
 //Delete a Customer
 customerRouter.delete("/:id", deleteCustomer);
 
-customerRouter.delete("/:id", deleteCustomer);
-
 export default customerRouter;
