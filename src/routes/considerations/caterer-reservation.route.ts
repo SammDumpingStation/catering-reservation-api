@@ -8,13 +8,12 @@ import {
   getCustomerReservations,
   updateReservation,
 } from "@controllers/caterer-reservation.controller.js";
-import { isCaterer, checkUserType } from "@middlewares/auth.middleware.js";
-
+import { isCaterer } from "@middlewares/auth.middleware.js";
 
 const catererReservationRouter = Router();
 
 // Applying middleware to all routes in this router to ensure that only the caterer can touch this route
-catererReservationRouter.use(checkUserType, isCaterer);
+catererReservationRouter.use(isCaterer);
 
 //Get all reservation from all customers (For Caterer)
 catererReservationRouter.get("/", getAllReservations);
