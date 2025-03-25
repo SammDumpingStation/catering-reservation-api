@@ -2,6 +2,7 @@ import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as paymentModel from "@models/payment.model.js";
 import { createError } from "@utils/authUtils.js";
+import { create } from "domain";
 
 // Create a new payment
 export const createPayment = async (
@@ -117,6 +118,34 @@ export const getMyPayments = async (
       success: true,
       count: payments.length,
       data: payments,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
+// Update payment status
+export const updatePaymentStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!status) throw createError("Please provide status", 400);
+
+    const payment = await paymentModel.updatePaymentStatus(id, status);
+
+    // // Update reservation payment status || STILL I DONT KNOW IF THE RESERVATION NEEDS TO HAVE PAYMENT STATUS
+    // const updateReservationStatus = await Reservation.findByIdAndUpdate(payment.reservationId, {
+    //   paymentStatus: status,
+    // });
+
+    res.status(200).json({
+      success: true,
+      data: payment,
     });
   } catch (error) {
     return next(error);
