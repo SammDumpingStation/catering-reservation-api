@@ -7,6 +7,7 @@ import {
   getMenus,
   updateMenu,
 } from "@controllers/menu.controller.js";
+import { isCaterer } from "@middlewares/auth.middleware.js";
 
 const menuRouter = Router();
 
@@ -17,7 +18,7 @@ menuRouter.get("/", getMenus);
 menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post("/", createMenu);
+menuRouter.post("/", isCaterer, createMenu);
 
 //Update a Menu
 menuRouter.put("/:id", updateMenu);

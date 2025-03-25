@@ -3,12 +3,12 @@ import {
   getCustomerReservation,
   getAllCustomerOwnReservations,
 } from "@controllers/customer-reservation.controller.js";
-import { checkUserType, isCustomer } from "@middlewares/auth.middleware.js";
+import { isCustomer } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 
 const customerReservationRouter = Router();
 
-customerReservationRouter.use(checkUserType, isCustomer);
+customerReservationRouter.use(isCustomer);
 
 //Get all reservations made by a customer
 customerReservationRouter.get("/", getAllCustomerOwnReservations);
