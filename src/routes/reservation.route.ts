@@ -15,11 +15,11 @@ import {
   isReservationOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
 
-const router = express.Router();
+const reservationRouter = express.Router();
 
 // Routes accessible only to caterers
-router.get("/", isAuthenticated, isCaterer, getAllReservations);
-router.get(
+reservationRouter.get("/", isAuthenticated, isCaterer, getAllReservations);
+reservationRouter.get(
   "/customer/:customerId",
   isAuthenticated,
   isCaterer,
@@ -27,19 +27,19 @@ router.get(
 );
 
 // Routes accessible to both caterers and customers (with ownership check)
-router.get(
+reservationRouter.get(
   "/:id",
   isAuthenticated,
   isReservationOwnerOrCaterer,
   getReservation
 );
-router.put(
+reservationRouter.put(
   "/:id",
   isAuthenticated,
   isReservationOwnerOrCaterer,
   updateReservation
 );
-router.delete(
+reservationRouter.delete(
   "/:id",
   isAuthenticated,
   isReservationOwnerOrCaterer,
@@ -47,7 +47,12 @@ router.delete(
 );
 
 // Routes specifically for customers
-router.get("/my/reservations", isAuthenticated, isCustomer, getMyReservations);
-router.post("/", isAuthenticated, createReservation);
+reservationRouter.get(
+  "/my/reservations",
+  isAuthenticated,
+  isCustomer,
+  getMyReservations
+);
+reservationRouter.post("/", isAuthenticated, createReservation);
 
-export default router;
+export default reservationRouter;

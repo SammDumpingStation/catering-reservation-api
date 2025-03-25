@@ -13,6 +13,8 @@ import catererPaymentRouter from "@routes/caterer-payment.route.js";
 import catererReservationRouter from "@routes/caterer-reservation.route.js";
 import customerReservationRouter from "@routes/customer-reservation.route.js";
 import customerPaymentRouter from "@routes/customer-payment.route.js";
+import paymentRouter from "@routes/payment.route.js";
+import reservationRouter from "@routes/reservation.route.js";
 
 const app: Application = express();
 
@@ -30,7 +32,8 @@ app.use("/api/caterer/reservations", catererReservationRouter);
 app.use("/api/customer/reservations", customerReservationRouter);
 app.use("/api/customer/payments", catererPaymentRouter);
 app.use("/api/caterer/payments", customerPaymentRouter);
-app.use("/api/payments", catererPaymentRouter);
+app.use("/api/reservations", reservationRouter);
+app.use("/api/payments", paymentRouter);
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);

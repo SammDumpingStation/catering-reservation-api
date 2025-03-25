@@ -14,15 +14,20 @@ import {
   isPaymentOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
 
-const router = express.Router();
+const paymentRouter = express.Router();
 
 // Routes accessible only to caterers
-router.get("/", isAuthenticated, isCaterer, getAllPayments);
-router.put("/:id/status", isAuthenticated, isCaterer, updatePaymentStatus);
+paymentRouter.get("/", isAuthenticated, isCaterer, getAllPayments);
+paymentRouter.put(
+  "/:id/status",
+  isAuthenticated,
+  isCaterer,
+  updatePaymentStatus
+);
 
 // Routes accessible to both caterers and customers (with ownership check)
-router.get("/:id", isAuthenticated, isPaymentOwnerOrCaterer, getPayment);
-router.get(
+paymentRouter.get("/:id", isAuthenticated, isPaymentOwnerOrCaterer, getPayment);
+paymentRouter.get(
   "/reservation/:reservationId",
   isAuthenticated,
   isPaymentOwnerOrCaterer,
@@ -30,7 +35,7 @@ router.get(
 );
 
 // Routes specifically for customers
-router.get("/my-payments", isAuthenticated, isCustomer, getMyPayments);
-router.post("/", isAuthenticated, createPayment);
+paymentRouter.get("/my-payments", isAuthenticated, isCustomer, getMyPayments);
+paymentRouter.post("/", isAuthenticated, createPayment);
 
-export default router;
+export default paymentRouter;
