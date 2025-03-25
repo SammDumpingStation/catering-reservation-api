@@ -14,7 +14,7 @@ interface UserPayload {
   role: string;
 }
 
-// Extend Express Request type to include user or guest info
+// Extend Express Request type to include user and guest info
 declare global {
   namespace Express {
     interface Request {
@@ -55,7 +55,7 @@ export const checkUserType = (
 
     // Optional: Log or validate specific roles
     if (["customer", "caterer"].includes(decoded.role)) {
-      next(); //Proceed Normally
+      next(); //Proceed
     } else {
       throw createError("Invalid role", 403);
     }
