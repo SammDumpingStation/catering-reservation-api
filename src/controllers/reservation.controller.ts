@@ -91,3 +91,39 @@ export const createReservation = async (
     next(error);
   }
 };
+
+// Update a Reservation
+export const updateReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const {
+      customerId,
+      customerDetails,
+      eventDetails,
+      menuSelection,
+      specialRequests,
+      costDetails,
+      status,
+      paymentStatus,
+    } = req.body;
+
+    const reservation = await reservationModel.updateReservationById(id, {
+      customerId,
+      customerDetails,
+      eventDetails,
+      menuSelection,
+      specialRequests,
+      costDetails,
+      status,
+      paymentStatus,
+    });
+
+    res.status(200).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
