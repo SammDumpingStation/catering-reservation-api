@@ -12,11 +12,3 @@ export const getReservationsByCustomerId = async (customerId: string) => {
 
   return reservations;
 };
-
-export const getReservationById = async (id: string) => {
-  const reservation = await Reservation.findById(id);
-
-  if (!reservation) throw createError("Reservation not found", 404);
-
-  return reservation;
-};
