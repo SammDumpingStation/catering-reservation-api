@@ -30,6 +30,7 @@ app.use("/api/caterer/reservations", catererReservationRouter);
 app.use("/api/customer/reservations", customerReservationRouter);
 app.use("/api/customer/payments", catererPaymentRouter);
 app.use("/api/caterer/payments", customerPaymentRouter);
+app.use("/api/payments", catererPaymentRouter);
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);
