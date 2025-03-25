@@ -11,7 +11,7 @@ export const createPayment = async (
   next: NextFunction
 ) => {
   try {
-    const { reservationId } = req.body;
+    const { reservationId, transactions } = req.body;
 
     // Verify reservation exists
     const reservation = await Reservation.findById(reservationId);
@@ -19,16 +19,16 @@ export const createPayment = async (
 
     const payment = await paymentModel.createPayment({
       reservationId,
-      status: "partial",
+      transactions: transactions || [],
+      status: transactions && transactions.length > 0 ? "partial" : "pending",
     });
 
-    // // Update reservation payment status if needed
-    // if (payment.status !== "pending") {
-    //   //This is optonal for now since i dont know if the reservation needs to have payment status
-    //   await Reservation.findByIdAndUpdate(reservationId, {
-    //     paymentStatus: payment.status,
-    //   });
-    // }
+    // Update reservation payment status if needed
+    if (payment.status !== "pending") {
+      await Reservation.findByIdAndUpdate(reservationId, {
+        paymentStatus: payment.status,
+      });
+    }
 
     res.status(201).json({
       success: true,
@@ -124,6 +124,47 @@ export const getMyPayments = async (
   }
 };
 
+// Add transaction to payment
+export const addTransaction = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const transactionData = req.body;
+
+    // Validate transaction data
+    if (
+      !transactionData.amount ||
+      !transactionData.method ||
+      !transactionData.type
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide amount, method, and type for the transaction",
+      });
+    }
+
+    const payment = await paymentModel.addTransactionToPayment(
+      id,
+      transactionData
+    );
+
+    // Update reservation payment status
+    await Reservation.findByIdAndUpdate(payment.reservationId, {
+      paymentStatus: payment.status,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: payment,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Update payment status
 export const updatePaymentStatus = async (
   req: Request,
@@ -149,5 +190,42 @@ export const updatePaymentStatus = async (
     });
   } catch (error) {
     return next(error);
+  }
+};
+
+// Update transaction status
+export const updateTransactionStatus = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { paymentId, transactionId } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        message: "Please provide status",
+      });
+    }
+
+    const payment = await paymentModel.updateTransactionStatus(
+      paymentId,
+      transactionId,
+      status
+    );
+
+    // Update reservation payment status
+    await Reservation.findByIdAndUpdate(payment.reservationId, {
+      paymentStatus: payment.status,
+    });
+
+    res.status(200).json({
+      success: true,
+      data: payment,
+    });
+  } catch (error) {
+    next(error);
   }
 };
