@@ -1,5 +1,6 @@
 import Payment from "@schemas/payment.schema.js";
-import { PaymentProps } from "@TStypes/payment.type.js";
+import Reservation from "@schemas/reservation.schema.js";
+import { PaymentProps, TransactionsProps } from "@TStypes/payment.type.js";
 import { createError } from "@utils/authUtils.js";
 import mongoose from "mongoose";
 
@@ -63,6 +64,46 @@ export const getPaymentsByCustomerId = async (customerId: string) => {
   return payments;
 };
 
+// Add transaction to payment
+export const addTransactionToPayment = async (
+  paymentId: string,
+  transactionData: TransactionsProps
+) => {
+  const payment = await Payment.findById(paymentId);
+
+  if (!payment) throw createError("Payment not found", 404);
+
+  payment.transactions.push(transactionData);
+
+  // Update payment status based on transactions
+  const totalPaid = payment.transactions.reduce((sum, transaction) => {
+    return transaction.status === "completed" ? sum + transaction.amount : sum;
+  }, 0);
+
+  // Get reservation details to check against total cost
+  // First get the reservation ID
+  const reservationId = payment.reservationId;
+
+  // Then fetch the full reservation document
+  const reservation = await Reservation.findById(reservationId);
+
+  if (!reservation) throw createError("Associated reservation not found", 404);
+
+  const totalCost = reservation.costDetails.totalReservationCost;
+
+  // Update payment status based on total paid amount
+  if (totalPaid >= totalCost) {
+    payment.status = "completed";
+  } else if (totalPaid > 0) {
+    payment.status = "partial";
+  } else {
+    payment.status = "pending";
+  }
+
+  await payment.save();
+  return payment;
+};
+
 // Update payment status
 export const updatePaymentStatus = async (
   paymentId: string,
@@ -76,5 +117,54 @@ export const updatePaymentStatus = async (
 
   if (!payment) throw createError("Payment not found", 404);
 
+  return payment;
+};
+
+// Update transaction status
+export const updateTransactionStatus = async (
+  paymentId: string,
+  transactionId: string,
+  status: string
+) => {
+  const payment = await Payment.findById(paymentId);
+
+  if (!payment) throw createError("Payment not found", 404);
+
+  // Find the transaction by ID in the transactions array
+  const transactionIndex = payment.transactions.findIndex(
+    (t) => t._id && t._id.toString() === transactionId
+  );
+
+  if (transactionIndex === -1) throw createError("Transaction not found", 404);
+
+  // Update the transaction status
+  payment.transactions[transactionIndex].status = status;
+
+  // Recalculate payment status
+  const totalPaid = payment.transactions.reduce((sum, transaction) => {
+    return transaction.status === "completed" ? sum + transaction.amount : sum;
+  }, 0);
+
+  // Get reservation details to check against total cost
+  // First get the reservation ID
+  const reservationId = payment.reservationId;
+
+  // Then fetch the full reservation document
+  const reservation = await Reservation.findById(reservationId);
+
+  if (!reservation) throw createError("Associated reservation not found", 404);
+
+  const totalCost = reservation.costDetails.totalReservationCost;
+
+  // Update payment status based on total paid amount
+  if (totalPaid === totalCost) {
+    payment.status = "completed";
+  } else if (totalPaid > 0) {
+    payment.status = "partial";
+  } else {
+    payment.status = "pending";
+  }
+
+  await payment.save();
   return payment;
 };
