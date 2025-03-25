@@ -1,5 +1,4 @@
-
-const dummyMenus = [
+export const dummyMenus = [
   // SOUPS
   {
     id: 1,
