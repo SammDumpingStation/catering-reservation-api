@@ -56,3 +56,23 @@ export const getAllPayments = async (
     next(error);
   }
 };
+
+// Get payment by ID
+export const getPayment = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    const payment = await paymentModel.getPaymentById(id);
+
+    res.status(200).json({
+      success: true,
+      data: payment,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
