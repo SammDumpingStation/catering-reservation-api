@@ -115,3 +115,18 @@ export const isAuthenticated = (
   }
   return next();
 };
+
+// Middleware to check if user is a caterer
+export const isCaterer = (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user || req.user.role !== "caterer") {
+    return res.status(403).json({
+      success: false,
+      message: "Access denied. Caterer role required",
+    });
+  }
+  return next();
+};
