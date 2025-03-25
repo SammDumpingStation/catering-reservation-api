@@ -130,3 +130,18 @@ export const isCaterer = (
   }
   return next();
 };
+
+// Middleware to check if user is a customer
+export const isCustomer = (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user || req.user.role !== "customer") {
+    return res.status(403).json({
+      success: false,
+      message: "Access denied. Customer role required",
+    });
+  }
+  return next();
+};
