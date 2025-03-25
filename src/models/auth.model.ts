@@ -11,6 +11,7 @@ export const createAccount = async ({
   fullName,
   email,
   password,
+  role,
 }: signUpProps) => {
   // Explicitly check for password before creating
   if (!password) throw createError("Password is Required", 400);
@@ -22,12 +23,13 @@ export const createAccount = async ({
     fullName,
     email,
     password: await encryptPassword(password),
+    role,
   });
 
-  const role = "customer";
+  const role1 = "caterer";
 
   return {
-    token: createToken(newCustomer._id as string, role as string),
+    token: createToken(newCustomer._id as string, role1 as string),
     customer: newCustomer,
   };
 };
