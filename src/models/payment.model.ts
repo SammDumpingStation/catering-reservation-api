@@ -28,3 +28,9 @@ export const getPaymentsByReservationId = async (reservationId: string) => {
 
   return payments;
 };
+
+// Get all payments (for caterer)
+export const getAllPayments = async () => {
+  const payments = await Payment.find().populate("reservationId");
+  return payments;
+};
