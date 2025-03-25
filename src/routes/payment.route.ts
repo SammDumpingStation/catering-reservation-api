@@ -13,6 +13,10 @@ import {
   isCustomer,
   isPaymentOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
+import {
+  addTransaction,
+  updateTransactionStatus,
+} from "@controllers/caterer-payment.controller.js";
 
 const paymentRouter = express.Router();
 
@@ -33,7 +37,18 @@ paymentRouter.get(
   isPaymentOwnerOrCaterer,
   getPaymentsByReservation
 );
-
+paymentRouter.post(
+  "/:id/transactions",
+  isAuthenticated,
+  isPaymentOwnerOrCaterer,
+  addTransaction
+);
+paymentRouter.put(
+  "/:paymentId/transactions/:transactionId",
+  isAuthenticated,
+  isPaymentOwnerOrCaterer,
+  updateTransactionStatus
+);
 // Routes specifically for customers
 paymentRouter.get("/my-payments", isAuthenticated, isCustomer, getMyPayments);
 paymentRouter.post("/", isAuthenticated, createPayment);
