@@ -127,3 +127,23 @@ export const updateReservation = async (
     next(error);
   }
 };
+
+// Delete a Reservation
+export const deleteReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    await reservationModel.deleteReservationById(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Reservation deleted Successfully!",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
