@@ -11,7 +11,7 @@ import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", checkUserType, catererOnly, getCustomers);
+customerRouter.get("/", getCustomers);
 
 //Get Customer Details
 customerRouter.get("/:id", getCustomer);
