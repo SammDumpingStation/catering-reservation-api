@@ -1,5 +1,5 @@
 // middleware/auth.ts
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { createError } from "@utils/authUtils.js";
 import { JWT_SECRET } from "../config/env.js";
@@ -45,9 +45,7 @@ export const checkUserType = (
     const decoded = jwt.verify(token, JWT_SECRET) as UserPayload;
 
     // Ensures that there is a role (caterer or customer) if not, errors
-    if (!decoded.role) {
-      throw createError("Invalid token: role is missing", 401);
-    }
+    if (!decoded.role) throw createError("Invalid token: role is missing", 401);
 
     // Attach decoded user information to req
     req.user = decoded;
@@ -77,15 +75,30 @@ export const checkUserType = (
 };
 // Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
 
-// Middleware to check if user is authenticated
+interface DecodedToken extends JwtPayload {
+  customerId: string;
+  role: string;
+}
+
 export const isAuthenticated = (
   req: Request & { user?: { id: string; role: string } },
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user) throw createError("Authentication required", 401);
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-  next();
+  if (!token) throw createError("Authentication required", 401);
+
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err || !decoded) throw createError("Invalid or expired token", 403);
+
+    const { customerId, role } = decoded as DecodedToken;
+
+    req.user = { id: customerId, role };
+
+    next();
+  });
 };
 
 // Middleware to check if user is a caterer
