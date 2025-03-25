@@ -6,7 +6,6 @@ import {
   validatePassword,
 } from "@utils/authUtils.js";
 import { signInProps, signUpProps } from "@TStypes/auth.type.js";
-import { checkIfExists } from "@utils/checkExistence.js";
 
 export const createAccount = async ({
   fullName,

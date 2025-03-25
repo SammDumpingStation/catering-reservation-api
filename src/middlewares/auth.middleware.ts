@@ -107,13 +107,9 @@ export const isAuthenticated = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user) {
-    return res.status(401).json({
-      success: false,
-      message: "Authentication required",
-    });
-  }
-  return next();
+  if (!req.user) throw createError("Authentication required", 401);
+
+  next();
 };
 
 // Middleware to check if user is a caterer
@@ -122,13 +118,10 @@ export const isCaterer = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user || req.user.role !== "caterer") {
-    return res.status(403).json({
-      success: false,
-      message: "Access denied. Caterer role required",
-    });
-  }
-  return next();
+  if (!req.user || req.user.role !== "caterer")
+    throw createError("Caterer access required", 403);
+
+  next();
 };
 
 // Middleware to check if user is a customer
@@ -137,13 +130,10 @@ export const isCustomer = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user || req.user.role !== "customer") {
-    return res.status(403).json({
-      success: false,
-      message: "Access denied. Customer role required",
-    });
-  }
-  return next();
+  if (!req.user || req.user.role !== "customer")
+    throw createError("Customer access required", 403);
+
+  next();
 };
 
 // Middleware to check if user is authorized to access a specific reservation
@@ -153,16 +143,11 @@ export const isReservationOwnerOrCaterer = async (
   next: NextFunction
 ) => {
   try {
-    if (!req.user) {
-      return res.status(401).json({
-        success: false,
-        message: "Authentication required",
-      });
-    }
+    if (!req.user) throw createError("Authentication required", 401);
 
     // Caterers can access all reservations
     if (req.user.role === "caterer") {
-      return next();
+      next();
     }
 
     // For customers, check if they own the reservation
@@ -170,22 +155,13 @@ export const isReservationOwnerOrCaterer = async (
     const Reservation = require("../schemas/reservation.schema.js").default;
     const reservation = await Reservation.findById(id);
 
-    if (!reservation) {
-      return res.status(404).json({
-        success: false,
-        message: "Reservation not found",
-      });
-    }
+    if (!reservation) throw createError("Reservation not found", 404);
 
-    if (reservation.customerId.toString() !== req.user.id) {
-      return res.status(403).json({
-        success: false,
-        message: "Access denied. You don't own this reservation",
-      });
-    }
+    if (reservation.customerId.toString() !== req.user.id)
+      throw createError("Access denied. You don't own this reservation", 403);
 
-    return next();
+    next();
   } catch (error) {
-    return next(error);
+    next(error);
   }
 };
