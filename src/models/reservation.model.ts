@@ -20,3 +20,21 @@ export const getReservationById = async (id: string) => {
 
   return reservation;
 };
+
+export const updateReservationById = async (
+  id: string,
+  updateData: Partial<ReservationProps>
+) => {
+  const existingReservation = await Reservation.findByIdAndUpdate(
+    id,
+    updateData,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  if (!existingReservation) throw createError("Reservation not found", 404);
+
+  return existingReservation;
+};
