@@ -1,0 +1,3104 @@
+{
+  " ": [
+    {
+      "id": 1,
+      "name": "Sinigang na Baboy",
+      "category": "Soup",
+      "available": true,
+      "shortDescription": "Sour tamarind soup with pork and vegetables",
+      "fullDescription": "A Filipino favorite, Sinigang na Baboy is a sour soup made with tamarind, pork, and an assortment of vegetables like kangkong, radish, and eggplant. The tangy broth is perfectly balanced with the savory pork, creating a comforting dish ideal for any occasion.",
+      "ingredients": [
+        "Pork belly",
+        "Tamarind",
+        "Tomatoes",
+        "Onions",
+        "Radish",
+        "String beans",
+        "Eggplant",
+        "Kangkong (water spinach)",
+        "Fish sauce"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Simmer pork with onions and tomatoes, add tamarind extract and vegetables, season with fish sauce.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/sinigang-na-baboy-7.jpg",
+      "rating": 4.7,
+      "ratingCount": 238,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "320 kcal",
+        "protein": "18g",
+        "fat": "22g",
+        "carbs": "15g",
+        "sodium": "780mg",
+        "fiber": "3g",
+        "sugar": "4g",
+        "cholesterol": "65mg"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Bulalo",
+      "category": "Soup",
+      "available": true,
+      "shortDescription": "Beef marrow bone soup with vegetables",
+      "fullDescription": "Bulalo is a hearty Filipino beef soup made from beef shanks and bone marrow. The long simmering process extracts the rich flavors from the bones, creating a clear but flavorful broth. Served with corn, cabbage, and potatoes, it's a satisfying meal especially during cold weather.",
+      "ingredients": [
+        "Beef shank with marrow",
+        "Corn on the cob",
+        "Cabbage",
+        "Potatoes",
+        "Onions",
+        "Peppercorns",
+        "Fish sauce",
+        "Green onions",
+        "Bok choy"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Slow-cook beef shanks until tender, add vegetables in stages, season with fish sauce and pepper.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 494
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 795
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1163
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1462
+        }
+      ],
+      "regularPricePerPax": 85,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2017/01/bulalo-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 186,
+      "spicy": false,
+      "perServing": "400g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "25g",
+        "fat": "26g",
+        "carbs": "12g",
+        "sodium": "650mg",
+        "fiber": "2g",
+        "sugar": "3g",
+        "cholesterol": "95mg"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Tinolang Manok",
+      "category": "Soup",
+      "available": true,
+      "shortDescription": "Ginger-infused chicken soup with green papaya",
+      "fullDescription": "Tinolang Manok is a light and healthy Filipino chicken soup. The broth is flavored with ginger, onions, and fish sauce, giving it a distinct aroma and taste. The soup includes chunks of chicken, green papaya, and chili leaves or moringa leaves, making it both nutritious and delicious.",
+      "ingredients": [
+        "Chicken pieces",
+        "Green papaya",
+        "Ginger",
+        "Onions",
+        "Garlic",
+        "Fish sauce",
+        "Chili leaves or Moringa leaves",
+        "Cooking oil",
+        "Black pepper"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Sauté ginger, garlic, and onions, add chicken until browned, pour water and simmer, add papaya and leaves.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 319
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 513
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 752
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 946
+        }
+      ],
+      "regularPricePerPax": 55,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/02/tinolang-manok-3.jpg",
+      "rating": 4.5,
+      "ratingCount": 172,
+      "spicy": false,
+      "perServing": "320g per serving",
+      "nutritionInfo": {
+        "calories": "280 kcal",
+        "protein": "22g",
+        "fat": "18g",
+        "carbs": "10g",
+        "sodium": "620mg",
+        "fiber": "2g",
+        "sugar": "3g",
+        "cholesterol": "75mg"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Nilagang Baka",
+      "category": "Soup",
+      "available": true,
+      "shortDescription": "Boiled beef soup with mixed vegetables",
+      "fullDescription": "Nilagang Baka is a simple yet flavorful Filipino beef soup. It features tender beef chunks boiled with potatoes, cabbage, and other vegetables. The natural flavors of the ingredients create a hearty and comforting broth that's perfect for family gatherings.",
+      "ingredients": [
+        "Beef chuck or brisket",
+        "Potatoes",
+        "Cabbage",
+        "Corn on the cob",
+        "Onions",
+        "Pechay (Bok choy)",
+        "Fish sauce",
+        "Whole peppercorns",
+        "String beans"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Boil beef until tender, add vegetables according to cooking time, season with fish sauce and pepper.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 407
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 654
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 956
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1204
+        }
+      ],
+      "regularPricePerPax": 70,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/01/nilagang-baka-2.jpg",
+      "rating": 4.6,
+      "ratingCount": 154,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "310 kcal",
+        "protein": "24g",
+        "fat": "20g",
+        "carbs": "14g",
+        "sodium": "680mg",
+        "fiber": "3g",
+        "sugar": "4g",
+        "cholesterol": "70mg"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Arroz Caldo",
+      "category": "Soup",
+      "available": true,
+      "shortDescription": "Filipino-style chicken rice porridge",
+      "fullDescription": "Arroz Caldo is a comforting Filipino rice porridge similar to congee. Made with chicken, ginger, and glutinous rice, it's often garnished with toasted garlic, scallions, and a slice of hard-boiled egg. This dish is commonly served during breakfast or when someone is feeling under the weather.",
+      "ingredients": [
+        "Chicken pieces",
+        "Glutinous rice",
+        "Ginger",
+        "Garlic",
+        "Onions",
+        "Fish sauce",
+        "Safflower or kasubha",
+        "Hard-boiled eggs",
+        "Green onions"
+      ],
+      "allergens": [
+        "Eggs",
+        "Soy"
+      ],
+      "preparationMethod": "Sauté garlic, onions, and ginger, add chicken and rice, simmer until rice is soft and porridge-like, garnish before serving.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 291
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 467
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 683
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 860
+        }
+      ],
+      "regularPricePerPax": 50,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/arroz-caldo-3.jpg",
+      "rating": 4.4,
+      "ratingCount": 198,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "290 kcal",
+        "protein": "18g",
+        "fat": "12g",
+        "carbs": "30g",
+        "sodium": "580mg",
+        "fiber": "1g",
+        "sugar": "2g",
+        "cholesterol": "85mg"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Ensaladang Talong",
+      "category": "Salad",
+      "available": true,
+      "shortDescription": "Grilled eggplant salad with tomatoes and onions",
+      "fullDescription": "Ensaladang Talong is a simple yet flavorful Filipino salad made with grilled eggplant, tomatoes, and onions. The smoky flavor of the grilled eggplant complements the fresh, tangy dressing made with vinegar and fish sauce. It's a perfect side dish for grilled meats or fried fish.",
+      "ingredients": [
+        "Eggplant",
+        "Tomatoes",
+        "Red onions",
+        "Cane vinegar",
+        "Fish sauce",
+        "Ground black pepper",
+        "Salt",
+        "Calamansi juice",
+        "Cilantro (optional)"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Grill eggplant until charred, peel and mash, mix with diced tomatoes and onions, dress with vinegar and fish sauce.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 203
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 327
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 478
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 602
+        }
+      ],
+      "regularPricePerPax": 35,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/07/ensaladang-talong-2.jpg",
+      "rating": 4.3,
+      "ratingCount": 142,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "120 kcal",
+        "protein": "3g",
+        "fat": "2g",
+        "carbs": "25g",
+        "sodium": "450mg",
+        "fiber": "6g",
+        "sugar": "8g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Kinilaw na Tuna",
+      "category": "Salad",
+      "available": true,
+      "shortDescription": "Filipino ceviche with fresh tuna",
+      "fullDescription": "Kinilaw na Tuna is the Filipino version of ceviche, featuring fresh raw tuna 'cooked' in vinegar and citrus juice. Mixed with onions, ginger, and chili peppers, this refreshing appetizer or side dish offers a perfect balance of tangy, spicy, and savory flavors.",
+      "ingredients": [
+        "Fresh tuna",
+        "Calamansi juice or lime juice",
+        "Coconut vinegar",
+        "Red onions",
+        "Ginger",
+        "Chili peppers",
+        "Salt",
+        "Ground black pepper",
+        "Cucumber"
+      ],
+      "allergens": [
+        "Shellfish"
+      ],
+      "preparationMethod": "Cube fresh tuna, marinate in vinegar and citrus juice, mix with sliced onions, ginger, and chili, chill before serving.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 436
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 701
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1024
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1290
+        }
+      ],
+      "regularPricePerPax": 75,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2014/01/kinilaw-na-tuna-3.jpg",
+      "rating": 4.6,
+      "ratingCount": 168,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "180 kcal",
+        "protein": "25g",
+        "fat": "6g",
+        "carbs": "8g",
+        "sodium": "520mg",
+        "fiber": "1g",
+        "sugar": "3g",
+        "cholesterol": "45mg"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Ensaladang Mangga",
+      "category": "Salad",
+      "available": true,
+      "shortDescription": "Green mango salad with tomatoes and bagoong",
+      "fullDescription": "Ensaladang Mangga is a tangy and savory Filipino salad made with unripe green mangoes, tomatoes, and onions. It's typically dressed with bagoong (fermented shrimp paste) or fish sauce, creating a unique umami flavor that perfectly complements the sourness of the green mangoes.",
+      "ingredients": [
+        "Green mangoes",
+        "Tomatoes",
+        "Red onions",
+        "Bagoong (fermented shrimp paste) or fish sauce",
+        "Calamansi juice",
+        "Chili peppers (optional)",
+        "Salt",
+        "Ground black pepper",
+        "Sugar (optional)"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Julienne green mangoes, mix with diced tomatoes and onions, dress with bagoong or fish sauce and calamansi juice.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 232
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 374
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 546
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 688
+        }
+      ],
+      "regularPricePerPax": 40,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/04/green-mango-salad-1.jpg",
+      "rating": 4.4,
+      "ratingCount": 132,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "110 kcal",
+        "protein": "4g",
+        "fat": "1g",
+        "carbs": "24g",
+        "sodium": "580mg",
+        "fiber": "4g",
+        "sugar": "18g",
+        "cholesterol": "15mg"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Lato Salad (Seaweed Salad)",
+      "category": "Salad",
+      "available": true,
+      "shortDescription": "Fresh sea grapes salad with tomatoes and onions",
+      "fullDescription": "Lato Salad features sea grapes (a type of seaweed with small, grape-like pods) mixed with tomatoes, onions, and a tangy dressing. The sea grapes pop in your mouth, releasing a salty, oceanic flavor that pairs wonderfully with the fresh vegetables and citrusy dressing.",
+      "ingredients": [
+        "Lato (sea grapes)",
+        "Tomatoes",
+        "Red onions",
+        "Calamansi juice or vinegar",
+        "Salt",
+        "Ground black pepper",
+        "Fish sauce (optional)",
+        "Chili peppers (optional)",
+        "Cucumber (optional)"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Rinse sea grapes in fresh water, mix with diced tomatoes and onions, dress with calamansi juice or vinegar and seasonings.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 436
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 701
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1024
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1290
+        }
+      ],
+      "regularPricePerPax": 75,
+      "imageUrl": "https://www.angsarap.net/wp-content/uploads/2019/02/Lato-Salad-Wide.jpg",
+      "rating": 4.2,
+      "ratingCount": 98,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "90 kcal",
+        "protein": "3g",
+        "fat": "1g",
+        "carbs": "18g",
+        "sodium": "650mg",
+        "fiber": "4g",
+        "sugar": "5g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Pinakbet Salad",
+      "category": "Salad",
+      "available": true,
+      "shortDescription": "Modern take on traditional vegetable dish",
+      "fullDescription": "Pinakbet Salad is a creative twist on the traditional Filipino vegetable dish. It features lightly blanched or grilled vegetables typically used in Pinakbet (bitter melon, eggplant, okra, squash) but served cold with a bagoong-based dressing. This modern interpretation preserves the authentic flavors while presenting them in a refreshing salad format.",
+      "ingredients": [
+        "Bitter melon (ampalaya)",
+        "Eggplant",
+        "Okra",
+        "Squash",
+        "String beans",
+        "Tomatoes",
+        "Red onions",
+        "Bagoong (fermented shrimp paste)",
+        "Calamansi juice"
+      ],
+      "allergens": [
+        "Shellfish"
+      ],
+      "preparationMethod": "Blanch or grill vegetables until tender-crisp, cool, mix with fresh tomatoes and onions, dress with bagoong-calamansi mixture.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 291
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 467
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 683
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 860
+        }
+      ],
+      "regularPricePerPax": 50,
+      "imageUrl": "https://i0.wp.com/www.angsarap.net/wp-content/uploads/2014/09/Pinakbet-Wide.jpg",
+      "rating": 4.0,
+      "ratingCount": 86,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "140 kcal",
+        "protein": "5g",
+        "fat": "3g",
+        "carbs": "26g",
+        "sodium": "520mg",
+        "fiber": "7g",
+        "sugar": "10g",
+        "cholesterol": "10mg"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Beef Caldereta",
+      "category": "Beef",
+      "available": true,
+      "shortDescription": "Spicy beef stew with liver spread and cheese",
+      "fullDescription": "Beef Caldereta is a rich and spicy Filipino beef stew cooked with tomato sauce, liver spread, and sometimes cheese. The beef is slow-cooked until tender, then simmered with bell peppers, potatoes, and carrots in a savory-spicy sauce. This hearty dish is a staple at Filipino celebrations and gatherings.",
+      "ingredients": [
+        "Beef chuck or brisket",
+        "Potatoes",
+        "Carrots",
+        "Bell peppers",
+        "Tomato sauce",
+        "Liver spread",
+        "Cheese",
+        "Chili peppers",
+        "Garlic",
+        "Onions",
+        "Bay leaves",
+        "Soy sauce",
+        "Cooking oil"
+      ],
+      "allergens": [
+        "Milk",
+        "Soy"
+      ],
+      "preparationMethod": "Brown beef, sauté aromatics, add tomato sauce and liver spread, simmer until beef is tender, add vegetables and cheese.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 494
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 795
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1163
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1462
+        }
+      ],
+      "regularPricePerPax": 85,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2015/01/caldereta-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 245,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "420 kcal",
+        "protein": "28g",
+        "fat": "25g",
+        "carbs": "22g",
+        "sodium": "780mg",
+        "fiber": "3g",
+        "sugar": "6g",
+        "cholesterol": "85mg"
+      }
+    },
+    {
+      "id": 12,
+      "name": "Beef Mechado",
+      "category": "Beef",
+      "available": true,
+      "shortDescription": "Filipino-style beef pot roast in tomato sauce",
+      "fullDescription": "Beef Mechado is a Filipino-style pot roast where beef is slow-cooked in a tomato-based sauce with potatoes and carrots. The dish gets its name from the Spanish word 'mecha' (wick), as traditional preparation involved inserting pork fat into the beef like a wick. Modern versions focus on the rich, tangy tomato sauce and tender beef.",
+      "ingredients": [
+        "Beef chuck or brisket",
+        "Potatoes",
+        "Carrots",
+        "Tomato sauce",
+        "Soy sauce",
+        "Calamansi juice or lemon juice",
+        "Bay leaves",
+        "Garlic",
+        "Onions",
+        "Bell peppers",
+        "Cooking oil",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Brown beef, sauté aromatics, add tomato sauce and seasonings, simmer until beef is tender, add vegetables.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 465
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 748
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1092
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1376
+        }
+      ],
+      "regularPricePerPax": 80,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/02/beef-mechado-5.jpg",
+      "rating": 4.6,
+      "ratingCount": 178,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "26g",
+        "fat": "22g",
+        "carbs": "20g",
+        "sodium": "720mg",
+        "fiber": "3g",
+        "sugar": "5g",
+        "cholesterol": "75mg"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Bistek Tagalog",
+      "category": "Beef",
+      "available": true,
+      "shortDescription": "Filipino-style beef steak with onions and citrus",
+      "fullDescription": "Bistek Tagalog is the Filipino version of beef steak, featuring thinly sliced beef marinated in soy sauce and calamansi juice. The beef is pan-fried and topped with caramelized onion rings. The dish offers a perfect balance of salty, tangy, and savory flavors that pair wonderfully with steamed rice.",
+      "ingredients": [
+        "Beef sirloin or tenderloin",
+        "Soy sauce",
+        "Calamansi juice or lemon juice",
+        "Onions",
+        "Garlic",
+        "Cooking oil",
+        "Ground black pepper",
+        "Sugar (optional)",
+        "Water"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Marinate beef in soy sauce and calamansi juice, pan-fry until browned, cook onions in the same pan, return beef and sauce.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 523
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 841
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1229
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1548
+        }
+      ],
+      "regularPricePerPax": 90,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/bistek-4.jpg",
+      "rating": 4.7,
+      "ratingCount": 210,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "350 kcal",
+        "protein": "30g",
+        "fat": "20g",
+        "carbs": "12g",
+        "sodium": "850mg",
+        "fiber": "1g",
+        "sugar": "3g",
+        "cholesterol": "80mg"
+      }
+    },
+    {
+      "id": 14,
+      "name": "Beef Kare-Kare",
+      "category": "Beef",
+      "available": true,
+      "shortDescription": "Oxtail and tripe stew in peanut sauce",
+      "fullDescription": "Beef Kare-Kare is a luxurious Filipino stew made with oxtail, tripe, and sometimes beef chunks, cooked in a rich peanut sauce with vegetables. The thick, savory sauce is made from ground peanuts, toasted rice, and annatto seeds. It's traditionally served with bagoong (fermented shrimp paste) on the side to balance the richness.",
+      "ingredients": [
+        "Oxtail",
+        "Beef tripe (optional)",
+        "Beef chunks",
+        "Peanut butter",
+        "Ground toasted rice",
+        "Annatto seeds or powder",
+        "Eggplant",
+        "String beans",
+        "Banana blossom",
+        "Bok choy",
+        "Garlic",
+        "Onions",
+        "Bagoong (fermented shrimp paste)"
+      ],
+      "allergens": [
+        "Nuts",
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Simmer meat until tender, prepare peanut sauce with ground rice and annatto, combine with meat, add vegetables, serve with bagoong.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 582
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 935
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1365
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1720
+        }
+      ],
+      "regularPricePerPax": 100,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/kare-kare-5.jpg",
+      "rating": 4.9,
+      "ratingCount": 256,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "480 kcal",
+        "protein": "32g",
+        "fat": "30g",
+        "carbs": "22g",
+        "sodium": "680mg",
+        "fiber": "5g",
+        "sugar": "4g",
+        "cholesterol": "95mg"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Beef Morcon",
+      "category": "Beef",
+      "available": true,
+      "shortDescription": "Stuffed beef roll with sausage and vegetables",
+      "fullDescription": "Beef Morcon is a festive Filipino dish consisting of beef flank steak pounded thin, marinated, and rolled around fillings like sausage, carrots, pickles, and egg. The beef roll is then braised in a flavorful tomato sauce until tender. This labor-intensive dish is typically reserved for special occasions and holidays.",
+      "ingredients": [
+        "Beef flank or round",
+        "Hotdogs or chorizo",
+        "Carrots",
+        "Pickles",
+        "Hard-boiled eggs",
+        "Bacon (optional)",
+        "Tomato sauce",
+        "Soy sauce",
+        "Bay leaves",
+        "Garlic",
+        "Onions",
+        "Cooking oil",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Eggs",
+        "Soy"
+      ],
+      "preparationMethod": "Pound beef thin, marinate, arrange fillings, roll and tie, brown in pan, braise in tomato sauce until tender, slice before serving.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 640
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 1028
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1502
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1892
+        }
+      ],
+      "regularPricePerPax": 110,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2014/12/beef-morcon-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 168,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "450 kcal",
+        "protein": "30g",
+        "fat": "28g",
+        "carbs": "18g",
+        "sodium": "820mg",
+        "fiber": "2g",
+        "sugar": "5g",
+        "cholesterol": "120mg"
+      }
+    },
+    {
+      "id": 16,
+      "name": "Lechon Kawali",
+      "category": "Pork",
+      "available": true,
+      "shortDescription": "Crispy deep-fried pork belly",
+      "fullDescription": "Lechon Kawali is a popular Filipino dish featuring pork belly that's boiled until tender, air-dried, and then deep-fried until golden and crispy. The result is juicy meat with crunchy skin that's irresistible. It's typically served with a dipping sauce like liver sauce, vinegar dip, or soy-vinegar mixture.",
+      "ingredients": [
+        "Pork belly",
+        "Salt",
+        "Whole peppercorns",
+        "Bay leaves",
+        "Garlic",
+        "Cooking oil",
+        "Vinegar dip or liver sauce (for serving)"
+      ],
+      "allergens": [],
+      "preparationMethod": "Boil pork belly with aromatics until tender, air-dry, deep-fry until skin is crispy and golden brown.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 494
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 795
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1163
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1462
+        }
+      ],
+      "regularPricePerPax": 85,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/lechon-kawali-6.jpg",
+      "rating": 4.9,
+      "ratingCount": 285,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "520 kcal",
+        "protein": "22g",
+        "fat": "45g",
+        "carbs": "2g",
+        "sodium": "580mg",
+        "fiber": "0g",
+        "sugar": "0g",
+        "cholesterol": "85mg"
+      }
+    },
+    {
+      "id": 17,
+      "name": "Pork Adobo",
+      "category": "Pork",
+      "available": true,
+      "shortDescription": "Pork braised in vinegar, soy sauce, and garlic",
+      "fullDescription": "Pork Adobo is perhaps the most iconic Filipino dish, featuring pork braised in a mixture of vinegar, soy sauce, garlic, and black peppercorns. The meat becomes tender and infused with the tangy, savory sauce. The dish's popularity comes from both its delicious flavor and its practical origins as a preservation method.",
+      "ingredients": [
+        "Pork belly or shoulder",
+        "Vinegar",
+        "Soy sauce",
+        "Garlic",
+        "Bay leaves",
+        "Whole peppercorns",
+        "Cooking oil",
+        "Sugar (optional)",
+        "Water"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Marinate pork, brown in pan, add marinade and simmer until meat is tender and sauce is reduced.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 407
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 654
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 956
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1204
+        }
+      ],
+      "regularPricePerPax": 70,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/pork-adobo-6.jpg",
+      "rating": 4.8,
+      "ratingCount": 320,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "25g",
+        "fat": "28g",
+        "carbs": "5g",
+        "sodium": "780mg",
+        "fiber": "0g",
+        "sugar": "1g",
+        "cholesterol": "75mg"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Crispy Pata",
+      "category": "Pork",
+      "available": true,
+      "shortDescription": "Deep-fried pork leg with crispy skin",
+      "fullDescription": "Crispy Pata is a famous Filipino dish consisting of a whole pork leg that's boiled until tender, then deep-fried until the skin becomes crispy. The contrast between the crunchy skin and the juicy, flavorful meat makes this a favorite at Filipino celebrations. It's typically served with a soy-vinegar dipping sauce.",
+      "ingredients": [
+        "Whole pork leg (pata)",
+        "Salt",
+        "Whole peppercorns",
+        "Bay leaves",
+        "Garlic",
+        "Onions",
+        "Cooking oil",
+        "Soy-vinegar dip (for serving)"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Boil pork leg with aromatics until tender, air-dry, deep-fry until skin is crispy and golden brown.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 640
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 1028
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1502
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1892
+        }
+      ],
+      "regularPricePerPax": 110,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/crispy-pata-5.jpg",
+      "rating": 4.9,
+      "ratingCount": 275,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "580 kcal",
+        "protein": "35g",
+        "fat": "48g",
+        "carbs": "2g",
+        "sodium": "620mg",
+        "fiber": "0g",
+        "sugar": "0g",
+        "cholesterol": "95mg"
+      }
+    },
+    {
+      "id": 19,
+      "name": "Sisig",
+      "category": "Pork",
+      "available": true,
+      "shortDescription": "Sizzling chopped pig's face with liver and onions",
+      "fullDescription": "Sisig is a popular Filipino pulutan (bar food) made from parts of a pig's head and liver, seasoned with calamansi, onions, and chili peppers. The mixture is served on a sizzling plate, creating a crispy texture on the bottom. Modern versions often include mayonnaise and raw egg mixed in at the table. It's both a street food favorite and a staple in Filipino restaurants.",
+      "ingredients": [
+        "Pig's face (ears, jowl, snout)",
+        "Pig's liver",
+        "Onions",
+        "Chili peppers",
+        "Calamansi juice",
+        "Soy sauce",
+        "Mayonnaise (optional)",
+        "Egg (optional)",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Eggs",
+        "Soy"
+      ],
+      "preparationMethod": "Boil pig parts until tender, grill or broil until crispy, chop finely, mix with seasonings, serve on sizzling plate.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2014/01/sisig-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 310,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "420 kcal",
+        "protein": "28g",
+        "fat": "32g",
+        "carbs": "6g",
+        "sodium": "750mg",
+        "fiber": "1g",
+        "sugar": "2g",
+        "cholesterol": "180mg"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Lechon Paksiw",
+      "category": "Pork",
+      "available": true,
+      "shortDescription": "Leftover roast pork in sweet-sour liver sauce",
+      "fullDescription": "Lechon Paksiw is a clever Filipino dish that transforms leftover lechon (roast pig) into a new meal by cooking it in a sweet-sour sauce made with vinegar, sugar, and liver sauce. The sauce infuses the meat with rich flavors, making it tender and delicious. It's a practical dish that showcases Filipino resourcefulness in repurposing food.",
+      "ingredients": [
+        "Leftover lechon or roast pork",
+        "Liver sauce",
+        "Vinegar",
+        "Brown sugar",
+        "Garlic",
+        "Onions",
+        "Bay leaves",
+        "Whole peppercorns",
+        "Soy sauce",
+        "Water"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Simmer all ingredients together until sauce thickens and meat absorbs the flavors.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 349
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 561
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 819
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1032
+        }
+      ],
+      "regularPricePerPax": 60,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/lechon-paksiw-5.jpg",
+      "rating": 4.5,
+      "ratingCount": 185,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "350 kcal",
+        "protein": "24g",
+        "fat": "22g",
+        "carbs": "18g",
+        "sodium": "680mg",
+        "fiber": "0g",
+        "sugar": "15g",
+        "cholesterol": "70mg"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Pancit Canton",
+      "category": "Noodle",
+      "available": true,
+      "shortDescription": "Stir-fried egg noodles with meat and vegetables",
+      "fullDescription": "Pancit Canton is a Filipino adaptation of Chinese stir-fried noodles, featuring egg noodles, various meats, and vegetables seasoned with soy sauce and other condiments. The dish is a staple at Filipino celebrations as noodles symbolize long life. Each region and family has their own variation, making it a versatile and beloved dish throughout the Philippines.",
+      "ingredients": [
+        "Egg noodles",
+        "Chicken",
+        "Pork",
+        "Shrimp",
+        "Cabbage",
+        "Carrots",
+        "Snow peas",
+        "Bell peppers",
+        "Soy sauce",
+        "Oyster sauce",
+        "Garlic",
+        "Onions",
+        "Calamansi (for serving)"
+      ],
+      "allergens": [
+        "Eggs",
+        "Shellfish",
+        "Soy",
+        "Gluten"
+      ],
+      "preparationMethod": "Stir-fry meat and vegetables, add partially cooked noodles, season with sauces, toss until well combined.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 349
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 561
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 819
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1032
+        }
+      ],
+      "regularPricePerPax": 60,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/pancit-canton-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 245,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "320 kcal",
+        "protein": "18g",
+        "fat": "12g",
+        "carbs": "38g",
+        "sodium": "780mg",
+        "fiber": "4g",
+        "sugar": "3g",
+        "cholesterol": "65mg"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Pancit Bihon",
+      "category": "Noodle",
+      "available": true,
+      "shortDescription": "Stir-fried rice noodles with meat and vegetables",
+      "fullDescription": "Pancit Bihon is a popular Filipino noodle dish made with thin rice noodles, various meats, and vegetables. The noodles are stir-fried with a savory sauce, creating a light yet flavorful dish. Like other pancit varieties, it's commonly served at celebrations and gatherings, symbolizing long life and good health.",
+      "ingredients": [
+        "Rice noodles (bihon)",
+        "Chicken",
+        "Pork",
+        "Shrimp (optional)",
+        "Cabbage",
+        "Carrots",
+        "Snow peas",
+        "Garlic",
+        "Onions",
+        "Soy sauce",
+        "Fish sauce",
+        "Chicken broth",
+        "Calamansi (for serving)"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Soak noodles, stir-fry meat and vegetables, add noodles and broth, season with sauces, toss until liquid is absorbed.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 319
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 513
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 752
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 946
+        }
+      ],
+      "regularPricePerPax": 55,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/pancit-bihon-6.jpg",
+      "rating": 4.6,
+      "ratingCount": 230,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "290 kcal",
+        "protein": "16g",
+        "fat": "8g",
+        "carbs": "42g",
+        "sodium": "720mg",
+        "fiber": "3g",
+        "sugar": "2g",
+        "cholesterol": "55mg"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Pancit Palabok",
+      "category": "Noodle",
+      "available": true,
+      "shortDescription": "Rice noodles with shrimp sauce and toppings",
+      "fullDescription": "Pancit Palabok is a distinctive Filipino noodle dish featuring rice noodles topped with a flavorful orange-colored shrimp sauce and various garnishes like shrimp, pork, hard-boiled eggs, and chicharrón (pork cracklings). The combination of textures and flavors—from the soft noodles to the savory sauce to the crunchy toppings—makes this a truly special dish.",
+      "ingredients": [
+        "Rice noodles",
+        "Shrimp",
+        "Pork",
+        "Annatto powder or achuete",
+        "Shrimp bouillon",
+        "Fish sauce",
+        "Garlic",
+        "Onions",
+        "Hard-boiled eggs",
+        "Chicharrón (pork cracklings)",
+        "Green onions",
+        "Calamansi",
+        "Tofu (optional)"
+      ],
+      "allergens": [
+        "Eggs",
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Cook noodles, prepare shrimp sauce with annatto, arrange noodles on plate, pour sauce over, add toppings.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 407
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 654
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 956
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1204
+        }
+      ],
+      "regularPricePerPax": 70,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/pancit-palabok-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 210,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "22g",
+        "fat": "14g",
+        "carbs": "40g",
+        "sodium": "850mg",
+        "fiber": "2g",
+        "sugar": "3g",
+        "cholesterol": "120mg"
+      }
+    },
+    {
+      "id": 24,
+      "name": "Pancit Malabon",
+      "category": "Noodle",
+      "available": true,
+      "shortDescription": "Thick rice noodles with seafood sauce and toppings",
+      "fullDescription": "Pancit Malabon is similar to Palabok but uses thicker rice noodles and features more seafood in both the sauce and toppings. Named after Malabon City, known for its seafood, this dish has a rich orange sauce colored with achuete (annatto) and topped with shrimp, squid, oysters, and various garnishes. It's a festive dish often served at special occasions.",
+      "ingredients": [
+        "Thick rice noodles",
+        "Shrimp",
+        "Squid",
+        "Oysters (optional)",
+        "Annatto powder or achuete",
+        "Shrimp bouillon",
+        "Fish sauce",
+        "Garlic",
+        "Onions",
+        "Hard-boiled eggs",
+        "Chicharrón (pork cracklings)",
+        "Green onions",
+        "Calamansi"
+      ],
+      "allergens": [
+        "Eggs",
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Cook noodles, prepare seafood sauce with annatto, mix noodles with sauce, add seafood and toppings.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 494
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 795
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1163
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1462
+        }
+      ],
+      "regularPricePerPax": 85,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/04/pancit-malabon-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 185,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "410 kcal",
+        "protein": "25g",
+        "fat": "15g",
+        "carbs": "42g",
+        "sodium": "880mg",
+        "fiber": "2g",
+        "sugar": "3g",
+        "cholesterol": "140mg"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Sotanghon Guisado",
+      "category": "Noodle",
+      "available": true,
+      "shortDescription": "Stir-fried glass noodles with chicken and vegetables",
+      "fullDescription": "Sotanghon Guisado features glass noodles (cellophane noodles) stir-fried with chicken, vegetables, and a savory sauce. The transparent noodles absorb the flavors of the broth and seasonings, creating a light yet satisfying dish. It's a popular alternative to other pancit varieties and is often served at gatherings or as a comforting meal.",
+      "ingredients": [
+        "Glass noodles (sotanghon)",
+        "Chicken",
+        "Carrots",
+        "Cabbage",
+        "Snow peas",
+        "Garlic",
+        "Onions",
+        "Soy sauce",
+        "Fish sauce",
+        "Chicken broth",
+        "Green onions",
+        "Calamansi (for serving)"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Soak noodles, stir-fry chicken and vegetables, add noodles and broth, season with sauces, toss until liquid is absorbed.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 291
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 467
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 683
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 860
+        }
+      ],
+      "regularPricePerPax": 50,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2018/11/sotanghon-guisado-4.jpg",
+      "rating": 4.5,
+      "ratingCount": 175,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "280 kcal",
+        "protein": "15g",
+        "fat": "7g",
+        "carbs": "40g",
+        "sodium": "680mg",
+        "fiber": "2g",
+        "sugar": "2g",
+        "cholesterol": "45mg"
+      }
+    },
+    {
+      "id": 26,
+      "name": "Chicken Adobo",
+      "category": "Chicken",
+      "available": true,
+      "shortDescription": "Chicken braised in vinegar, soy sauce, and garlic",
+      "fullDescription": "Chicken Adobo is one of the most beloved Filipino dishes, featuring chicken pieces braised in a mixture of vinegar, soy sauce, garlic, and black peppercorns. The meat becomes tender and infused with the tangy, savory sauce. Like its pork counterpart, chicken adobo originated as a preservation method but has become a national favorite for its delicious flavor.",
+      "ingredients": [
+        "Chicken pieces",
+        "Vinegar",
+        "Soy sauce",
+        "Garlic",
+        "Bay leaves",
+        "Whole peppercorns",
+        "Cooking oil",
+        "Sugar (optional)",
+        "Water"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Marinate chicken, brown in pan, add marinade and simmer until meat is tender and sauce is  "Marinate chicken, brown in pan, add marinade and simmer until meat is tender and sauce is reduced.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/chicken-adobo-7.jpg",
+      "rating": 4.8,
+      "ratingCount": 310,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "320 kcal",
+        "protein": "28g",
+        "fat": "20g",
+        "carbs": "5g",
+        "sodium": "750mg",
+        "fiber": "0g",
+        "sugar": "1g",
+        "cholesterol": "85mg"
+      }
+    },
+    {
+      "id": 27,
+      "name": "Chicken Inasal",
+      "category": "Chicken",
+      "available": true,
+      "shortDescription": "Grilled marinated chicken with annatto oil",
+      "fullDescription": "Chicken Inasal is a popular Filipino grilled chicken dish that originated from the Western Visayas region. The chicken is marinated in a mixture of vinegar, calamansi, lemongrass, and other spices, then basted with annatto oil while grilling, giving it a distinctive orange-reddish color. It's typically served with rice, calamansi, and soy sauce with chili.",
+      "ingredients": [
+        "Chicken pieces",
+        "Vinegar",
+        "Calamansi juice",
+        "Lemongrass",
+        "Garlic",
+        "Ginger",
+        "Annatto oil",
+        "Salt",
+        "Ground black pepper",
+        "Brown sugar"
+      ],
+      "allergens": [],
+      "preparationMethod": "Marinate chicken, grill while basting with annatto oil until fully cooked and slightly charred.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 407
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 654
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 956
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1204
+        }
+      ],
+      "regularPricePerPax": 70,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/07/chicken-inasal-6.jpg",
+      "rating": 4.9,
+      "ratingCount": 285,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "290 kcal",
+        "protein": "32g",
+        "fat": "16g",
+        "carbs": "4g",
+        "sodium": "580mg",
+        "fiber": "0g",
+        "sugar": "2g",
+        "cholesterol": "95mg"
+      }
+    },
+    {
+      "id": 28,
+      "name": "Chicken Afritada",
+      "category": "Chicken",
+      "available": true,
+      "shortDescription": "Chicken stew with tomato sauce and vegetables",
+      "fullDescription": "Chicken Afritada is a hearty Filipino stew made with chicken pieces simmered in tomato sauce with potatoes, carrots, bell peppers, and green peas. The dish shows Spanish influence in Filipino cuisine, with its tomato-based sauce and cooking technique. It's a comforting, family-style dish often served with steamed rice.",
+      "ingredients": [
+        "Chicken pieces",
+        "Tomato sauce",
+        "Potatoes",
+        "Carrots",
+        "Bell peppers",
+        "Green peas",
+        "Garlic",
+        "Onions",
+        "Bay leaves",
+        "Fish sauce",
+        "Cooking oil",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Brown chicken, sauté aromatics, add tomato sauce and seasonings, simmer until chicken is tender, add vegetables.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 349
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 561
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 819
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1032
+        }
+      ],
+      "regularPricePerPax": 60,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/chicken-afritada-6.jpg",
+      "rating": 4.5,
+      "ratingCount": 195,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "310 kcal",
+        "protein": "26g",
+        "fat": "18g",
+        "carbs": "16g",
+        "sodium": "680mg",
+        "fiber": "3g",
+        "sugar": "5g",
+        "cholesterol": "80mg"
+      }
+    },
+    {
+      "id": 29,
+      "name": "Fried Chicken with Gravy",
+      "category": "Chicken",
+      "available": true,
+      "shortDescription": "Filipino-style crispy fried chicken with gravy",
+      "fullDescription": "Filipino-style Fried Chicken is marinated in a mixture of calamansi juice, soy sauce, and garlic before being dredged in flour and deep-fried until golden and crispy. What makes it distinctly Filipino is the accompanying brown gravy made with chicken drippings, flour, and seasonings. This combination creates a perfect balance of crispy, juicy, and savory flavors.",
+      "ingredients": [
+        "Chicken pieces",
+        "Calamansi juice",
+        "Soy sauce",
+        "Garlic",
+        "Flour",
+        "Cornstarch",
+        "Eggs",
+        "Salt",
+        "Ground black pepper",
+        "Cooking oil",
+        "Chicken broth (for gravy)",
+        "Butter (for gravy)"
+      ],
+      "allergens": [
+        "Eggs",
+        "Gluten",
+        "Soy"
+      ],
+      "preparationMethod": "Marinate chicken, dredge in flour mixture, deep-fry until golden and crispy, prepare gravy with drippings.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2018/05/filipino-fried-chicken-4.jpg",
+      "rating": 4.7,
+      "ratingCount": 240,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "28g",
+        "fat": "26g",
+        "carbs": "12g",
+        "sodium": "720mg",
+        "fiber": "0g",
+        "sugar": "0g",
+        "cholesterol": "110mg"
+      }
+    },
+    {
+      "id": 30,
+      "name": "Chicken Binakol",
+      "category": "Chicken",
+      "available": true,
+      "shortDescription": "Chicken soup with coconut water and lemongrass",
+      "fullDescription": "Chicken Binakol is a unique Filipino soup that uses coconut water as the base instead of plain water. The chicken is simmered with lemongrass, ginger, and other aromatics in the coconut water, creating a light, slightly sweet broth. Traditional versions are served in a coconut shell. This refreshing soup is both comforting and nutritious.",
+      "ingredients": [
+        "Chicken pieces",
+        "Coconut water",
+        "Young coconut meat",
+        "Lemongrass",
+        "Ginger",
+        "Garlic",
+        "Onions",
+        "Fish sauce",
+        "Chili leaves or Moringa leaves",
+        "Green papaya (optional)",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Soy"
+      ],
+      "preparationMethod": "Sauté aromatics, add chicken and coconut water, simmer until chicken is tender, add coconut meat and leaves.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/01/chicken-binakol-4.jpg",
+      "rating": 4.6,
+      "ratingCount": 165,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "270 kcal",
+        "protein": "24g",
+        "fat": "16g",
+        "carbs": "10g",
+        "sodium": "580mg",
+        "fiber": "1g",
+        "sugar": "6g",
+        "cholesterol": "75mg"
+      }
+    },
+    {
+      "id": 31,
+      "name": "Sinigang na Hipon",
+      "category": "Seafood",
+      "available": true,
+      "shortDescription": "Sour tamarind soup with shrimp and vegetables",
+      "fullDescription": "Sinigang na Hipon is a sour Filipino soup featuring fresh shrimp in a tamarind-based broth with various vegetables. The tangy soup perfectly complements the natural sweetness of the shrimp. Like other sinigang varieties, it's a comforting dish that's popular during rainy days but enjoyed year-round for its refreshing flavors.",
+      "ingredients": [
+        "Shrimp",
+        "Tamarind",
+        "Tomatoes",
+        "Onions",
+        "Radish",
+        "String beans",
+        "Eggplant",
+        "Kangkong (water spinach)",
+        "Fish sauce",
+        "Chili peppers (optional)"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Simmer vegetables with tamarind extract, add shrimp just before serving to avoid overcooking, season with fish sauce.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 465
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 748
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1092
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1376
+        }
+      ],
+      "regularPricePerPax": 80,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/sinigang-na-hipon-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 210,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "220 kcal",
+        "protein": "18g",
+        "fat": "8g",
+        "carbs": "18g",
+        "sodium": "720mg",
+        "fiber": "4g",
+        "sugar": "5g",
+        "cholesterol": "120mg"
+      }
+    },
+    {
+      "id": 32,
+      "name": "Inihaw na Pusit",
+      "category": "Seafood",
+      "available": true,
+      "shortDescription": "Grilled stuffed squid with tomato and onion",
+      "fullDescription": "Inihaw na Pusit is a Filipino grilled squid dish where whole squid is stuffed with a mixture of tomatoes and onions, then grilled until charred and tender. The squid is typically marinated in a mixture of calamansi juice, soy sauce, and spices before grilling. It's served with a dipping sauce made from vinegar, soy sauce, and chili peppers.",
+      "ingredients": [
+        "Whole squid",
+        "Tomatoes",
+        "Onions",
+        "Calamansi juice",
+        "Soy sauce",
+        "Garlic",
+        "Ground black pepper",
+        "Cooking oil",
+        "Vinegar dipping sauce"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Clean squid, stuff with tomato-onion mixture, marinate, grill until charred and tender.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 523
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 841
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1229
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1548
+        }
+      ],
+      "regularPricePerPax": 90,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2014/01/inihaw-na-pusit-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 185,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "210 kcal",
+        "protein": "24g",
+        "fat": "10g",
+        "carbs": "6g",
+        "sodium": "650mg",
+        "fiber": "1g",
+        "sugar": "2g",
+        "cholesterol": "260mg"
+      }
+    },
+    {
+      "id": 33,
+      "name": "Escabeche (Sweet and Sour Fish)",
+      "category": "Seafood",
+      "available": true,
+      "shortDescription": "Fried fish with sweet and sour sauce",
+      "fullDescription": "Escabeche is a Filipino sweet and sour fish dish where a whole fish (usually tilapia, lapu-lapu, or red snapper) is fried until crispy, then topped with a colorful sweet and sour sauce made with bell peppers, carrots, and pineapple. The contrast between the crispy fish and the tangy-sweet sauce makes this a popular dish for special occasions.",
+      "ingredients": [
+        "Whole fish (tilapia, lapu-lapu, or red snapper)",
+        "Bell peppers",
+        "Carrots",
+        "Onions",
+        "Garlic",
+        "Pineapple chunks",
+        "Vinegar",
+        "Sugar",
+        "Tomato sauce or ketchup",
+        "Cornstarch",
+        "Cooking oil",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [],
+      "preparationMethod": "Fry fish until crispy, prepare sweet and sour sauce with vegetables and pineapple, pour sauce over fish before serving.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 465
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 748
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1092
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1376
+        }
+      ],
+      "regularPricePerPax": 80,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/escabeche-5.jpg",
+      "rating": 4.6,
+      "ratingCount": 175,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "320 kcal",
+        "protein": "26g",
+        "fat": "16g",
+        "carbs": "22g",
+        "sodium": "580mg",
+        "fiber": "2g",
+        "sugar": "18g",
+        "cholesterol": "65mg"
+      }
+    },
+    {
+      "id": 34,
+      "name": "Ginataang Alimasag",
+      "category": "Seafood",
+      "available": true,
+      "shortDescription": "Crab in coconut milk with vegetables",
+      "fullDescription": "Ginataang Alimasag features crabs cooked in creamy coconut milk with vegetables like string beans, eggplant, and chili peppers. The natural sweetness of the crab meat complements the rich coconut sauce, which is flavored with ginger, garlic, and fish sauce. This hearty dish is best enjoyed with steamed rice to soak up the flavorful sauce.",
+      "ingredients": [
+        "Crabs",
+        "Coconut milk",
+        "String beans",
+        "Eggplant",
+        "Chili peppers",
+        "Garlic",
+        "Onions",
+        "Ginger",
+        "Fish sauce",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Sauté aromatics, add crabs and cook briefly, pour in coconut milk, simmer until crabs are cooked, add vegetables.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 640
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 1028
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1502
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1892
+        }
+      ],
+      "regularPricePerPax": 110,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/06/ginataang-alimasag-4.jpg",
+      "rating": 4.9,
+      "ratingCount": 165,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "28g",
+        "fat": "26g",
+        "carbs": "12g",
+        "sodium": "720mg",
+        "fiber": "3g",
+        "sugar": "4g",
+        "cholesterol": "140mg"
+      }
+    },
+    {
+      "id": 35,
+      "name": "Kilawing Tanigue",
+      "category": "Seafood",
+      "available": true,
+      "shortDescription": "Mackerel ceviche with vinegar and spices",
+      "fullDescription": "Kilawing Tanigue is a Filipino ceviche made with fresh mackerel 'cooked' in vinegar and calamansi juice. The fish is mixed with onions, ginger, chili peppers, and sometimes coconut cream for added richness. This refreshing appetizer showcases the fresh flavors of the sea with a tangy, spicy kick that stimulates the appetite.",
+      "ingredients": [
+        "Fresh mackerel (tanigue)",
+        "Vinegar",
+        "Calamansi juice",
+        "Red onions",
+        "Ginger",
+        "Chili peppers",
+        "Coconut cream (optional)",
+        "Salt",
+        "Ground black pepper",
+        "Cucumber (optional)"
+      ],
+      "allergens": [],
+      "preparationMethod": "Cube fresh mackerel, marinate in vinegar and calamansi juice, mix with sliced onions, ginger, and chili peppers, add coconut cream if using.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 552
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 888
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 1297
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1634
+        }
+      ],
+      "regularPricePerPax": 95,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2014/01/kinilaw-na-tanigue-3.jpg",
+      "rating": 4.5,
+      "ratingCount": 145,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "220 kcal",
+        "protein": "26g",
+        "fat": "12g",
+        "carbs": "6g",
+        "sodium": "580mg",
+        "fiber": "1g",
+        "sugar": "2g",
+        "cholesterol": "55mg"
+      }
+    },
+    {
+      "id": 36,
+      "name": "Pinakbet",
+      "category": "Vegetable",
+      "available": true,
+      "shortDescription": "Mixed vegetables with shrimp paste",
+      "fullDescription": "Pinakbet is a popular Filipino vegetable dish that originated from the Ilocos region. It features a colorful mix of vegetables like bitter melon, eggplant, okra, and squash, flavored with bagoong (fermented shrimp paste). The vegetables are sautéed and then simmered until tender but still retaining some texture. This hearty dish showcases the agricultural bounty of the Philippines.",
+      "ingredients": [
+        "Bitter melon (ampalaya)",
+        "Eggplant",
+        "Okra",
+        "Squash",
+        "String beans",
+        "Tomatoes",
+        "Garlic",
+        "Onions",
+        "Bagoong (fermented shrimp paste)",
+        "Pork belly (optional)",
+        "Chili peppers (optional)"
+      ],
+      "allergens": [
+        "Shellfish"
+      ],
+      "preparationMethod": "Sauté aromatics and pork if using, add vegetables according to cooking time, season with bagoong, simmer until tender-crisp.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 291
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 467
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 683
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 860
+        }
+      ],
+      "regularPricePerPax": 50,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/pinakbet-5.jpg",
+      "rating": 4.5,
+      "ratingCount": 185,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "180 kcal",
+        "protein": "8g",
+        "fat": "6g",
+        "carbs": "28g",
+        "sodium": "620mg",
+        "fiber": "8g",
+        "sugar": "12g",
+        "cholesterol": "15mg"
+      }
+    },
+    {
+      "id": 37,
+      "name": "Ginisang Ampalaya",
+      "category": "Vegetable",
+      "available": true,
+      "shortDescription": "Sautéed bitter melon with eggs",
+      "fullDescription": "Ginisang Ampalaya is a simple yet nutritious Filipino vegetable dish featuring bitter melon (ampalaya) sautéed with garlic, onions, and tomatoes, then scrambled with eggs. The bitterness of the ampalaya is balanced by the other ingredients, creating a dish that's not only healthy but also flavorful. It's a common home-cooked meal that showcases Filipinos' appreciation for bitter flavors.",
+      "ingredients": [
+        "Bitter melon (ampalaya)",
+        "Eggs",
+        "Garlic",
+        "Onions",
+        "Tomatoes",
+        "Fish sauce",
+        "Ground black pepper",
+        "Cooking oil",
+        "Salt"
+      ],
+      "allergens": [
+        "Eggs",
+        "Soy"
+      ],
+      "preparationMethod": "Slice and salt ampalaya to reduce bitterness, rinse, sauté with aromatics, add beaten eggs and scramble lightly.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 262
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 420
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 614
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 774
+        }
+      ],
+      "regularPricePerPax": 45,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/ginisang-ampalaya-5.jpg",
+      "rating": 4.2,
+      "ratingCount": 165,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "150 kcal",
+        "protein": "10g",
+        "fat": "8g",
+        "carbs": "12g",
+        "sodium": "580mg",
+        "fiber": "6g",
+        "sugar": "4g",
+        "cholesterol": "185mg"
+      }
+    },
+    {
+      "id": 38,
+      "name": "Laing",
+      "category": "Vegetable",
+      "available": true,
+      "shortDescription": "Dried taro leaves in coconut milk",
+      "fullDescription": "Laing is a Bicolano dish made from dried taro leaves (dahon ng gabi) cooked in coconut milk with chili peppers, shrimp paste, and sometimes meat or seafood. The dish is known for its creamy texture and spicy flavor, characteristic of Bicol cuisine. The taro leaves absorb the rich coconut milk, creating a flavorful dish that pairs perfectly with steamed rice.",
+      "ingredients": [
+        "Dried taro leaves",
+        "Coconut milk",
+        "Coconut cream",
+        "Chili peppers",
+        "Garlic",
+        "Onions",
+        "Ginger",
+        "Shrimp paste (bagoong alamang)",
+        "Pork belly or shrimp (optional)"
+      ],
+      "allergens": [
+        "Shellfish"
+      ],
+      "preparationMethod": "Sauté aromatics, add meat if using, pour in coconut milk, add dried taro leaves, simmer until leaves are tender and sauce is thick.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 378
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 608
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 887
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1118
+        }
+      ],
+      "regularPricePerPax": 65,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/laing-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 195,
+      "spicy": true,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "280 kcal",
+        "protein": "12g",
+        "fat": "22g",
+        "carbs": "14g",
+        "sodium": "650mg",
+        "fiber": "5g",
+        "sugar": "3g",
+        "cholesterol": "25mg"
+      }
+    },
+    {
+      "id": 39,
+      "name": "Ginataang Kalabasa at Sitaw",
+      "category": "Vegetable",
+      "available": true,
+      "shortDescription": "Squash and string beans in coconut milk",
+      "fullDescription": "Ginataang Kalabasa at Sitaw is a comforting Filipino vegetable dish featuring squash and string beans cooked in coconut milk. The natural sweetness of the squash complements the creamy coconut sauce, while the string beans add texture and color. This dish is often enhanced with shrimp or pork and seasoned with fish sauce and chili peppers for added flavor.",
+      "ingredients": [
+        "Squash (kalabasa)",
+        "String beans (sitaw)",
+        "Coconut milk",
+        "Garlic",
+        "Onions",
+        "Ginger",
+        "Shrimp or pork (optional)",
+        "Fish sauce",
+        "Chili peppers (optional)",
+        "Salt",
+        "Ground black pepper"
+      ],
+      "allergens": [
+        "Shellfish",
+        "Soy"
+      ],
+      "preparationMethod": "Sauté aromatics, add meat if using, pour in coconut milk, add vegetables, simmer until tender and sauce thickens.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 262
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 420
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 614
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 774
+        }
+      ],
+      "regularPricePerPax": 45,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/ginataang-kalabasa-5.jpg",
+      "rating": 4.4,
+      "ratingCount": 155,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "220 kcal",
+        "protein": "10g",
+        "fat": "16g",
+        "carbs": "18g",
+        "sodium": "580mg",
+        "fiber": "5g",
+        "sugar": "8g",
+        "cholesterol": "15mg"
+      }
+    },
+    {
+      "id": 40,
+      "name": "Chopsuey",
+      "category": "Vegetable",
+      "available": true,
+      "shortDescription": "Stir-fried mixed vegetables with meat",
+      "fullDescription": "Chopsuey is a Filipino-Chinese stir-fried vegetable dish featuring a colorful mix of vegetables like cabbage, carrots, snow peas, and bell peppers, often with meat or seafood added. The vegetables are cooked quickly to maintain their crispness and tossed in a light sauce made with soy sauce and oyster sauce. This nutritious and visually appealing dish is a popular choice for family meals.",
+      "ingredients": [
+        "Cabbage",
+        "Carrots",
+        "Snow peas",
+        "Bell peppers",
+        "Broccoli",
+        "Cauliflower",
+        "Quail eggs (optional)",
+        "Chicken, pork, or shrimp",
+        "Garlic",
+        "Onions",
+        "Soy sauce",
+        "Oyster sauce",
+        "Cornstarch",
+        "Cooking oil"
+      ],
+      "allergens": [
+        "Eggs",
+        "Shellfish",
+        "Soy",
+        "Gluten"
+      ],
+      "preparationMethod": "Stir-fry meat until cooked, add vegetables according to cooking time, season with sauces, thicken with cornstarch slurry.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 319
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 513
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 752
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 946
+        }
+      ],
+      "regularPricePerPax": 55,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/chopsuey-5.jpg",
+      "rating": 4.5,
+      "ratingCount": 175,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "210 kcal",
+        "protein": "14g",
+        "fat": "10g",
+        "carbs": "22g",
+        "sodium": "680mg",
+        "fiber": "6g",
+        "sugar": "8g",
+        "cholesterol": "45mg"
+      }
+    },
+    {
+      "id": 41,
+      "name": "Halo-Halo",
+      "category": "Dessert",
+      "available": true,
+      "shortDescription": "Mixed shaved ice dessert with various toppings",
+      "fullDescription": "Halo-Halo, which means 'mix-mix' in Filipino, is a popular dessert that combines shaved ice, evaporated milk, and various sweet ingredients like sweetened beans, fruits, jellies, and purple yam (ube). It's topped with a scoop of ube ice cream and sometimes leche flan. This colorful, refreshing dessert is especially popular during hot summer months but is enjoyed year-round.",
+      "ingredients": [
+        "Shaved ice",
+        "Evaporated milk",
+        "Sweetened beans (red and white)",
+        "Nata de coco",
+        "Kaong (sugar palm fruit)",
+        "Sweetened banana",
+        "Jackfruit",
+        "Ube halaya (purple yam jam)",
+        "Leche flan",
+        "Ube ice cream",
+        "Rice krispies or pinipig"
+      ],
+      "allergens": [
+        "Milk"
+      ],
+      "preparationMethod": "Layer sweet ingredients in glass, add shaved ice, pour evaporated milk, top with ice cream, flan, and other toppings.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 349
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 561
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 819
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 1032
+        }
+      ],
+      "regularPricePerPax": 60,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/04/halo-halo-5.jpg",
+      "rating": 4.9,
+      "ratingCount": 320,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "380 kcal",
+        "protein": "8g",
+        "fat": "12g",
+        "carbs": "65g",
+        "sodium": "120mg",
+        "fiber": "3g",
+        "sugar": "55g",
+        "cholesterol": "45mg"
+      }
+    },
+    {
+      "id": 42,
+      "name": "Leche Flan",
+      "category": "Dessert",
+      "available": true,
+      "shortDescription": "Filipino caramel custard",
+      "fullDescription": "Leche Flan is the Filipino version of crème caramel, featuring a smooth custard topped with a layer of caramel. Made with egg yolks, condensed milk, and evaporated milk, it has a rich, creamy texture that's denser than its Spanish counterpart. This beloved dessert is a staple at Filipino celebrations and is often served during Christmas and other special occasions.",
+      "ingredients": [
+        "Egg yolks",
+        "Condensed milk",
+        "Evaporated milk",
+        "Granulated sugar (for caramel)",
+        "Vanilla extract",
+        "Calamansi or lemon zest (optional)"
+      ],
+      "allergens": [
+        "Eggs",
+        "Milk"
+      ],
+      "preparationMethod": "Caramelize sugar in llanera (oval-shaped tin mold), mix custard ingredients, pour into mold, steam until set.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 291
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 467
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 683
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 860
+        }
+      ],
+      "regularPricePerPax": 50,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/12/leche-flan-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 285,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "320 kcal",
+        "protein": "10g",
+        "fat": "18g",
+        "carbs": "32g",
+        "sodium": "150mg",
+        "fiber": "0g",
+        "sugar": "30g",
+        "cholesterol": "210mg"
+      }
+    },
+    {
+      "id": 43,
+      "name": "Biko",
+      "category": "Dessert",
+      "available": true,
+      "shortDescription": "Sticky rice cake with coconut milk and brown sugar",
+      "fullDescription": "Biko is a traditional Filipino rice cake made from glutinous rice cooked in coconut milk and brown sugar. The mixture is topped with a caramelized coconut cream called latik, giving it a rich, sweet flavor and sticky texture. This beloved kakanin (rice cake) is commonly served during special occasions and gatherings, often cut into diamond or square shapes.",
+      "ingredients": [
+        "Glutinous rice",
+        "Coconut milk",
+        "Brown sugar",
+        "Salt",
+        "Coconut cream (for latik)",
+        "Pandan leaves (optional)"
+      ],
+      "allergens": [],
+      "preparationMethod": "Partially cook glutinous rice, combine with coconut milk and brown sugar, bake until set, top with latik (caramelized coconut cream).",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 232
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 374
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 546
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 688
+        }
+      ],
+      "regularPricePerPax": 40,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/biko-5.jpg",
+      "rating": 4.6,
+      "ratingCount": 210,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "280 kcal",
+        "protein": "4g",
+        "fat": "10g",
+        "carbs": "48g",
+        "sodium": "80mg",
+        "fiber": "1g",
+        "sugar": "25g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 44,
+      "name": "Bibingka",
+      "category": "Dessert",
+      "available": true,
+      "shortDescription": "Rice cake traditionally cooked in clay pots",
+      "fullDescription": "Bibingka is a traditional Filipino rice cake made from rice flour and coconut milk, traditionally cooked in clay pots lined with banana leaves. The cake is baked with hot coals placed below and above the pot, giving it a unique aroma and flavor. Modern versions are topped with butter, sugar, grated coconut, and sometimes salted egg or cheese. It's especially popular during the Christmas season.",
+      "ingredients": [
+        "Rice flour",
+        "Coconut milk",
+        "Sugar",
+        "Eggs",
+        "Baking powder",
+        "Butter",
+        "Grated coconut",
+        "Salted egg (optional)",
+        "Cheese (optional)",
+        "Banana leaves"
+      ],
+      "allergens": [
+        "Eggs",
+        "Milk"
+      ],
+      "preparationMethod": "Line pan with banana leaves, mix batter ingredients, pour into pan, bake until set, top with butter, sugar, and grated coconut.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 262
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 420
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 614
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 774
+        }
+      ],
+      "regularPricePerPax": 45,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/12/bibingka-5.jpg",
+      "rating": 4.7,
+      "ratingCount": 230,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "260 kcal",
+        "protein": "6g",
+        "fat": "12g",
+        "carbs": "36g",
+        "sodium": "180mg",
+        "fiber": "1g",
+        "sugar": "20g",
+        "cholesterol": "65mg"
+      }
+    },
+    {
+      "id": 45,
+      "name": "Ube Halaya",
+      "category": "Dessert",
+      "available": true,
+      "shortDescription": "Purple yam jam",
+      "fullDescription": "Ube Halaya is a Filipino dessert made from purple yam (ube) cooked with coconut milk, condensed milk, and butter until it forms a smooth, thick jam. The vibrant purple color and unique flavor have made it a favorite not only in the Philippines but internationally as well. It can be eaten on its own or used as a filling or flavoring for other desserts like halo-halo, ice cream, and cakes.",
+      "ingredients": [
+        "Purple yam (ube)",
+        "Coconut milk",
+        "Condensed milk",
+        "Butter",
+        "Sugar",
+        "Vanilla extract"
+      ],
+      "allergens": [
+        "Milk"
+      ],
+      "preparationMethod": "Cook grated purple yam with coconut milk, add condensed milk and butter, stir until thick and smooth.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 319
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 513
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 752
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 946
+        }
+      ],
+      "regularPricePerPax": 55,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/04/ube-halaya-5.jpg",
+      "rating": 4.8,
+      "ratingCount": 245,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "240 kcal",
+        "protein": "3g",
+        "fat": "10g",
+        "carbs": "38g",
+        "sodium": "85mg",
+        "fiber": "2g",
+        "sugar": "28g",
+        "cholesterol": "25mg"
+      }
+    },
+    {
+      "id": 46,
+      "name": "Sago't Gulaman",
+      "category": "Beverage",
+      "available": true,
+      "shortDescription": "Sweet drink with tapioca pearls and gelatin",
+      "fullDescription": "Sago't Gulaman is a popular Filipino refreshment featuring tapioca pearls (sago) and gelatin cubes (gulaman) in a sweet syrup flavored with vanilla and sometimes pandan. Served over ice, this drink is a staple at Filipino gatherings and street food stalls, especially during hot weather. The chewy sago and gulaman add interesting textures to this refreshing beverage.",
+      "ingredients": [
+        "Tapioca pearls (sago)",
+        "Gelatin or agar-agar (gulaman)",
+        "Brown sugar",
+        "Water",
+        "Vanilla extract",
+        "Pandan leaves (optional)",
+        "Ice"
+      ],
+      "allergens": [],
+      "preparationMethod": "Cook sago until translucent, prepare gulaman according to package, make brown sugar syrup, combine all ingredients with ice.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 203
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 327
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 478
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 602
+        }
+      ],
+      "regularPricePerPax": 35,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2013/01/sagot-gulaman-5.jpg",
+      "rating": 4.6,
+      "ratingCount": 210,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "180 kcal",
+        "protein": "0g",
+        "fat": "0g",
+        "carbs": "45g",
+        "sodium": "15mg",
+        "fiber": "0g",
+        "sugar": "42g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 47,
+      "name": "Calamansi Juice",
+      "category": "Beverage",
+      "available": true,
+      "shortDescription": "Refreshing citrus juice",
+      "fullDescription": "Calamansi Juice is a refreshing Filipino beverage made from the juice of calamansi, a small citrus fruit native to the Philippines. The juice is mixed with water and sweetened with sugar, creating a drink similar to lemonade but with a distinct flavor that's both sweet and tangy. This simple yet refreshing drink is popular both as a household beverage and in restaurants.",
+      "ingredients": [
+        "Calamansi",
+        "Sugar",
+        "Water",
+        "Ice"
+      ],
+      "allergens": [],
+      "preparationMethod": "Squeeze calamansi juice, mix with water and sugar, serve over ice.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 174
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 280
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 410
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 516
+        }
+      ],
+      "regularPricePerPax": 30,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/01/calamansi-juice-2.jpg",
+      "rating": 4.5,
+      "ratingCount": 185,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "120 kcal",
+        "protein": "0g",
+        "fat": "0g",
+        "carbs": "30g",
+        "sodium": "5mg",
+        "fiber": "0g",
+        "sugar": "28g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 48,
+      "name": "Buko Juice",
+      "category": "Beverage",
+      "available": true,
+      "shortDescription": "Young coconut water with coconut meat",
+      "fullDescription": "Buko Juice is a natural, refreshing drink made from the water of young coconuts (buko), often served with strips of the soft coconut meat. This simple beverage is prized for its natural sweetness and hydrating properties. In the Philippines, it's commonly sold by street vendors who prepare it fresh by cutting open the coconut in front of customers.",
+      "ingredients": [
+        "Young coconut water",
+        "Young coconut meat",
+        "Ice",
+        "Sugar (optional)"
+      ],
+      "allergens": [],
+      "preparationMethod": "Open young coconut, pour water into glass, scrape coconut meat and add to drink, add ice and sugar if desired.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 262
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 420
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 614
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 774
+        }
+      ],
+      "regularPricePerPax": 45,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2019/05/buko-juice-2.jpg",
+      "rating": 4.7,
+      "ratingCount": 195,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "90 kcal",
+        "protein": "2g",
+        "fat": "1g",
+        "carbs": "18g",
+        "sodium": "25mg",
+        "fiber": "2g",
+        "sugar": "16g",
+        "cholesterol": "0mg"
+      }
+    },
+    {
+      "id": 49,
+      "name": "Tsokolate",
+      "category": "Beverage",
+      "available": true,
+      "shortDescription": "Traditional Filipino hot chocolate",
+      "fullDescription": "Tsokolate is traditional Filipino hot chocolate made from tablea, pure cacao tablets that are dissolved in water and milk. The mixture is whisked vigorously using a batidor (wooden whisk) until frothy. This rich, thick hot chocolate has a deep, slightly bitter flavor that distinguishes it from Western hot chocolate. It's often served during Christmas season or paired with Filipino rice cakes like bibingka and puto bumbong.",
+      "ingredients": [
+        "Tablea (pure cacao tablets)",
+        "Milk",
+        "Water",
+        "Sugar",
+        "Vanilla extract (optional)",
+        "Cinnamon stick (optional)"
+      ],
+      "allergens": [
+        "Milk"
+      ],
+      "preparationMethod": "Dissolve tablea in water, add milk and sugar, whisk vigorously until frothy, flavor with vanilla or cinnamon if desired.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 262
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 420
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 614
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 774
+        }
+      ],
+      "regularPricePerPax": 45,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2018/12/tablea-tsokolate-3.jpg",
+      "rating": 4.8,
+      "ratingCount": 175,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "180 kcal",
+        "protein": "6g",
+        "fat": "8g",
+        "carbs": "22g",
+        "sodium": "85mg",
+        "fiber": "2g",
+        "sugar": "18g",
+        "cholesterol": "15mg"
+      }
+    },
+    {
+      "id": 50,
+      "name": "Salabat",
+      "category": "Beverage",
+      "available": true,
+      "shortDescription": "Filipino ginger tea",
+      "fullDescription": "Salabat is a traditional Filipino ginger tea made by boiling fresh ginger in water and sweetened with honey or sugar. This soothing beverage is valued for its warming properties and is often consumed during cold weather or when someone is feeling under the weather. The strong, spicy flavor of ginger is balanced by the sweetness, creating a comforting drink that's both flavorful and beneficial.",
+      "ingredients": [
+        "Fresh ginger",
+        "Water",
+        "Honey or sugar",
+        "Calamansi or lemon (optional)",
+        "Cinnamon stick (optional)",
+        "Lemongrass (optional)"
+      ],
+      "allergens": [],
+      "preparationMethod": "Boil sliced ginger in water until flavor is extracted, add sweetener and other flavorings if desired, strain before serving.",
+      "prices": [
+        {
+          "minimumPax": 4,
+          "maximumPax": 6,
+          "price": 203
+        },
+        {
+          "minimumPax": 8,
+          "maximumPax": 10,
+          "price": 327
+        },
+        {
+          "minimumPax": 13,
+          "maximumPax": 15,
+          "price": 478
+        },
+        {
+          "minimumPax": 18,
+          "maximumPax": 20,
+          "price": 602
+        }
+      ],
+      "regularPricePerPax": 35,
+      "imageUrl": "https://www.kawalingpinoy.com/wp-content/uploads/2018/11/salabat-2.jpg",
+      "rating": 4.4,
+      "ratingCount": 165,
+      "spicy": false,
+      "perServing": "350g per serving",
+      "nutritionInfo": {
+        "calories": "70 kcal",
+        "protein": "0g",
+        "fat": "0g",
+        "carbs": "18g",
+        "sodium": "10mg",
+        "fiber": "0g",
+        "sugar": "16g",
+        "cholesterol": "0mg"
+      }
+    }
+  ]
+}
+```
