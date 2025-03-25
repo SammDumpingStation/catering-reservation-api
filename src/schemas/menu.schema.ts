@@ -103,10 +103,7 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       type: String,
       required: [true, "Please provide serving size information"],
     },
-    nutritionInfo: {
-      type: NutritionInfoSchema,
-      required: false,
-    },
+    nutritionInfo: NutritionInfoSchema,
   },
   {
     timestamps: true,
