@@ -1,4 +1,5 @@
 import Reservation from "@schemas/reservation.schema.js";
+import { ReservationProps } from "@TStypes/reservation.type.js";
 import { createError } from "@utils/authUtils.js";
 import { checkIfExists } from "@utils/checkExistence.js";
 
@@ -37,4 +38,12 @@ export const updateReservationById = async (
   if (!existingReservation) throw createError("Reservation not found", 404);
 
   return existingReservation;
+};
+
+export const deleteReservationById = async (id: string) => {
+  const reservation = await Reservation.findByIdAndDelete(id);
+
+  if (!reservation) throw createError("Reservation not found", 404);
+
+  return reservation;
 };
