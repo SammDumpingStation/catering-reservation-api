@@ -33,6 +33,7 @@ reservationRouter.get(
   isReservationOwnerOrCaterer,
   getReservation
 );
+
 reservationRouter.put(
   "/:id",
   isAuthenticated,
