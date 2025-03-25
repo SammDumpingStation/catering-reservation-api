@@ -33,3 +33,20 @@ export const getCustomerReservations = async (
     next(error);
   }
 };
+
+// Get a single reservation by ID
+export const getReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    const reservation = await reservationModel.getReservationById(id);
+
+    res.status(200).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
