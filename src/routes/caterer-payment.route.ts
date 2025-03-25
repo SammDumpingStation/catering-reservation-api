@@ -11,11 +11,11 @@ import {
   updatePaymentStatus,
   updateTransactionStatus,
 } from "@controllers/caterer-payment.controller.js";
-import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
+import { isCaterer, checkUserType } from "@middlewares/auth.middleware.js";
 
 const catererPaymentRouter = Router();
 
-catererPaymentRouter.use(checkUserType, catererOnly);
+catererPaymentRouter.use(checkUserType, isCaterer);
 
 // Get all payments across all reservations
 catererPaymentRouter.get("/", getAllPayments);

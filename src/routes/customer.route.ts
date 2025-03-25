@@ -6,7 +6,6 @@ import {
   getCustomers,
   updateCustomer,
 } from "@controllers/customer.controller.js";
-import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
 
 const customerRouter = Router();
 
@@ -20,6 +19,8 @@ customerRouter.get("/:id", getCustomer);
 customerRouter.put("/:id", updateCustomer);
 
 //Delete a Customer
+customerRouter.delete("/:id", deleteCustomer);
+
 customerRouter.delete("/:id", deleteCustomer);
 
 export default customerRouter;

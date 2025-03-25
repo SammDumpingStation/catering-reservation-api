@@ -1,4 +1,3 @@
-import "module-alias/register.js";
 import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import { PORT } from "@config/env.js";

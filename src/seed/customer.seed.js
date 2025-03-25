@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { connectToDatabase, closeConnection } from "../database/mongodb.js";
+import {connectToDatabase} from "../database/mongodb.js";
 import Customer from "../schemas/customer.schema.js";
 import bcrypt from "bcryptjs";
 

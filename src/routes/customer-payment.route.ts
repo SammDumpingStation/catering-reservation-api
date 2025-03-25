@@ -4,11 +4,11 @@ import {
   getCustomerPaymentById,
   addCustomerTransaction,
 } from "@controllers/customer-payment.controller.js";
-import { checkUserType, customerOnly } from "@middlewares/auth.middleware.js";
+import { checkUserType, isCustomer } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 
 const customerPaymentRouter = Router();
-customerPaymentRouter.use(checkUserType, customerOnly);
+customerPaymentRouter.use(checkUserType, isCustomer);
 
 // Get all of the customer's own payments
 customerPaymentRouter.get("/", getCustomerOwnPayments);

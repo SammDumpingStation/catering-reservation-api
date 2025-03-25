@@ -75,33 +75,6 @@ export const checkUserType = (
     return;
   }
 };
-
-// Middleware to restrict to registered customers only only
-export const customerOnly = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  if (req.user!.role !== "customer") {
-    res.status(403).json({ message: "Customer access required" });
-    return;
-  }
-  next();
-};
-
-// Middleware to restrict to caterer only
-export const catererOnly = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  if (req.user!.role !== "caterer") {
-    res.status(403).json({ message: "Caterer access required" });
-    return;
-  }
-  next();
-};
-
 // Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
 
 // Middleware to check if user is authenticated
