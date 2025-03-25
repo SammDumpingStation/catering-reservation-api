@@ -62,3 +62,19 @@ export const getPaymentsByCustomerId = async (customerId: string) => {
 
   return payments;
 };
+
+// Update payment status
+export const updatePaymentStatus = async (
+  paymentId: string,
+  status: string
+) => {
+  const payment = await Payment.findByIdAndUpdate(
+    paymentId,
+    { status },
+    { new: true, runValidators: true }
+  );
+
+  if (!payment) throw createError("Payment not found", 404);
+
+  return payment;
+};
