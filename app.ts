@@ -27,12 +27,12 @@ app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/menus", menuRouter);
 app.use("/api/packages", packageRouter);
-app.use("/api/caterer/reservations", catererReservationRouter);
-app.use("/api/customer/reservations", customerReservationRouter);
 app.use("/api/reservations", reservationRouter);
 app.use("/api/payments", paymentRouter);
 // app.use("/api/customer/payments", catererPaymentRouter);
 // app.use("/api/caterer/payments", customerPaymentRouter);
+// app.use("/api/caterer/reservations", catererReservationRouter);
+// app.use("/api/customer/reservations", customerReservationRouter);
 
 //Intercepts any errors mainly in mongoose
 app.use(errorMiddleware);

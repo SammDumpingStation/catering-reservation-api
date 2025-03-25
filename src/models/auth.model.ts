@@ -39,10 +39,8 @@ export const signInAccount = async ({ email, password }: signInProps) => {
   const isPasswordValid = await validatePassword(password, customer.password);
   if (!isPasswordValid) throw createError("Invalid password", 401);
 
-  const role = "customer";
-
   return {
-    token: createToken(customer._id as string, role as string),
+    token: createToken(customer._id as string, customer.role as string),
     customer,
   };
 };

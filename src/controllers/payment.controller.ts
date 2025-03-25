@@ -161,7 +161,7 @@ export const addTransaction = async (
       data: payment,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
@@ -226,6 +226,6 @@ export const updateTransactionStatus = async (
       data: payment,
     });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
