@@ -6,15 +6,15 @@ import {
   getCustomers,
   updateCustomer,
 } from "@controllers/customer.controller.js";
-import { catererOnly, checkUserType } from "@middlewares/auth.middleware.js";
+import { checkUserType, isCaterer } from "@middlewares/auth.middleware.js";
 
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", getCustomers);
+customerRouter.get("/", checkUserType, isCaterer, getCustomers);
 
 //Get Customer Details
-customerRouter.get("/:id", getCustomer);
+customerRouter.get("/:id", checkUserType, getCustomer);
 
 //Update a Customer
 customerRouter.put("/:id", updateCustomer);
