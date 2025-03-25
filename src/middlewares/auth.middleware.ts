@@ -145,3 +145,47 @@ export const isCustomer = (
   }
   return next();
 };
+
+// Middleware to check if user is authorized to access a specific reservation
+export const isReservationOwnerOrCaterer = async (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication required",
+      });
+    }
+
+    // Caterers can access all reservations
+    if (req.user.role === "caterer") {
+      return next();
+    }
+
+    // For customers, check if they own the reservation
+    const { id } = req.params;
+    const Reservation = require("../schemas/reservation.schema.js").default;
+    const reservation = await Reservation.findById(id);
+
+    if (!reservation) {
+      return res.status(404).json({
+        success: false,
+        message: "Reservation not found",
+      });
+    }
+
+    if (reservation.customerId.toString() !== req.user.id) {
+      return res.status(403).json({
+        success: false,
+        message: "Access denied. You don't own this reservation",
+      });
+    }
+
+    return next();
+  } catch (error) {
+    return next(error);
+  }
+};
