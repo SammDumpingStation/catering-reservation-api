@@ -16,3 +16,15 @@ export const getPaymentById = async (id: string) => {
 
   return payment;
 };
+
+// Get payments by reservation ID
+export const getPaymentsByReservationId = async (reservationId: string) => {
+  const payments = await Payment.find({ reservationId }).populate(
+    "reservationId"
+  );
+
+  if (!payments || payments.length === 0)
+    throw createError("No payments found for this reservation", 404);
+
+  return payments;
+};
