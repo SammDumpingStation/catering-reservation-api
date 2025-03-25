@@ -1,6 +1,7 @@
 import Payment from "@schemas/payment.schema.js";
 import { PaymentProps } from "@TStypes/payment.type.js";
 import { createError } from "@utils/authUtils.js";
+import mongoose from "mongoose";
 
 // Create a new payment
 export const createPayment = async (paymentData: Partial<PaymentProps>) => {
@@ -32,5 +33,32 @@ export const getPaymentsByReservationId = async (reservationId: string) => {
 // Get all payments (for caterer)
 export const getAllPayments = async () => {
   const payments = await Payment.find().populate("reservationId");
+  return payments;
+};
+
+// Get payments by customer ID
+export const getPaymentsByCustomerId = async (customerId: string) => {
+  // We need to join with reservations to filter by customerId
+  const payments = await Payment.aggregate([
+    {
+      $lookup: {
+        from: "reservations",
+        localField: "reservationId",
+        foreignField: "_id",
+        as: "reservation",
+      },
+    },
+    {
+      $match: {
+        "reservation.customerId": new mongoose.Types.ObjectId(customerId),
+      },
+    },
+    {
+      $project: {
+        reservation: 0, // Remove the joined reservation data from results
+      },
+    },
+  ]);
+
   return payments;
 };
