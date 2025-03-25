@@ -99,3 +99,26 @@ export const getPaymentsByReservation = async (
     next(error);
   }
 };
+
+// Get my payments (for customer)
+export const getMyPayments = async (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const customerId = req.user?.id;
+
+    if (!customerId) throw createError("User not authenticated", 401);
+
+    const payments = await paymentModel.getPaymentsByCustomerId(customerId);
+
+    res.status(200).json({
+      success: true,
+      count: payments.length,
+      data: payments,
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
