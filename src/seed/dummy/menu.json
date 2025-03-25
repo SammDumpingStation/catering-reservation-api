@@ -1595,7 +1595,11 @@
       "allergens": [
         "Soy"
       ],
+<<<<<<< HEAD
       "preparationMethod": "Marinate chicken, brown in pan, add marinade and simmer until meat is tender and sauce is Marinate chicken, brown in pan, add marinade and simmer until meat is tender and sauce is reduced.",
+=======
+      "preparationMethod": "Marinate chicken, brown in pan, add marinade and simmer until meat is tender and sauce is  'Marinate chicken', brown in pan, add marinade and simmer until meat is tender and sauce is reduced.",
+>>>>>>> 56bda263416a7225cd45e7538ef46b5c34f25207
       "prices": [
         {
           "minimumPax": 4,
@@ -3101,4 +3105,4 @@
     }
   ]
 }
-```
+ 
