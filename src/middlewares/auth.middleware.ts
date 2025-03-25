@@ -98,3 +98,20 @@ export const catererOnly = (
   }
   next();
 };
+
+// Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
+
+// Middleware to check if user is authenticated
+export const isAuthenticated = (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  if (!req.user) {
+    return res.status(401).json({
+      success: false,
+      message: "Authentication required",
+    });
+  }
+  return next();
+};
