@@ -23,17 +23,18 @@ export const generateCustomers = async (count) => {
   return customers;
 };
 
-export const seedCustomers = async () => {
-  await connectToDatabase();
-  try {
-    const dummyCustomers = await generateCustomers(9);
-    await Customer.insertMany(dummyCustomers);
-    console.log("Seeded database with dummy customers:", dummyCustomers);
-  } catch (error) {
-    console.error("Error seeding database:", error);
-  } finally {
-    await closeConnection();
-  }
+const seedCustomers = async () => {
+  await connectToDatabase(async (client) => {
+    if (!client) return;
+
+    try {
+      const dummyCustomers = await generateCustomers(50); // 50 dummy data
+      await Customer.insertMany(dummyCustomers); // Efficient batch insertion
+      console.log("✅ Seeded database with 50 dummy customers.");
+    } catch (error) {
+      console.error("❌ Error seeding database:", error);
+    }
+  });
 };
 
 export const deleteAllDummyCustomers = async () => {

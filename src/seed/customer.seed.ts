@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import bcrypt from "bcryptjs";
 import { promises as fs } from "fs";
-import connectToDatabase from "@database/mongodb.js";
+import connectToDatabase from "../database/mongodb.js";
 import Customer from "@schemas/customer.schema.js";
 
 const generateCustomers = async (count: number) => {
@@ -34,14 +34,7 @@ const seedCustomers = async () => {
 
       const dbUsers = await Customer.insertMany(dummyCustomers);
 
-      const fileContent = `module.exports = ${JSON.stringify(
-        dbUsers,
-        null,
-        2
-      )};`;
-      await fs.writeFile("./fakeUsers.js", fileContent, "utf8");
-
-      console.log("Seeded database with dummy customers:", dummyCustomers);
+      console.log("Seeded database with dummy customers:", dbUsers);
     } catch (error) {
       console.error("Error seeding database:", error);
     }

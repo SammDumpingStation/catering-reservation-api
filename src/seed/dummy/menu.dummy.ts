@@ -1,5 +1,4 @@
 export const dummyMenus = [
-  // SOUPS
   {
     id: 1,
     name: "Sinigang na Baboy",
@@ -311,7 +310,6 @@ export const dummyMenus = [
     },
   },
 
-  // SALADS
   {
     id: 6,
     name: "Ensaladang Talong",
@@ -623,7 +621,6 @@ export const dummyMenus = [
     },
   },
 
-  // BEEF
   {
     id: 11,
     name: "Beef Caldereta",
@@ -952,7 +949,6 @@ export const dummyMenus = [
     },
   },
 
-  // PORK
   {
     id: 16,
     name: "Lechon Kawali",
@@ -1263,7 +1259,6 @@ export const dummyMenus = [
     },
   },
 
-  // NOODLES
   {
     id: 21,
     name: "Pancit Canton",
@@ -1594,7 +1589,6 @@ export const dummyMenus = [
     },
   },
 
-  // CHICKEN
   {
     id: 26,
     name: "Chicken Adobo",
@@ -1917,7 +1911,6 @@ export const dummyMenus = [
     },
   },
 
-  // SEAFOOD
   {
     id: 31,
     name: "Sinigang na Hipon",
@@ -2237,7 +2230,6 @@ export const dummyMenus = [
     },
   },
 
-  // VEGETABLES
   {
     id: 36,
     name: "Pinakbet",
@@ -2558,7 +2550,6 @@ export const dummyMenus = [
     },
   },
 
-  // DESSERTS
   {
     id: 41,
     name: "Halo-Halo",
@@ -2864,7 +2855,6 @@ export const dummyMenus = [
     },
   },
 
-  // BEVERAGES
   {
     id: 46,
     name: "Sago't Gulaman",
