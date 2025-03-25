@@ -37,3 +37,22 @@ export const createPayment = async (
     return next(error);
   }
 };
+
+// Get all payments (for caterer)
+export const getAllPayments = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const payments = await paymentModel.getAllPayments();
+
+    res.status(200).json({
+      success: true,
+      count: payments.length,
+      data: payments,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
