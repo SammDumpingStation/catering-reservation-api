@@ -72,3 +72,22 @@ export const getMyReservations = async (
     return next(error);
   }
 };
+
+// Create a Reservation
+export const createReservation = async (
+  req: Request & { user?: { id: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    // For customer-created reservations, ensure customerId is set to the logged-in user
+    if (req.user && !req.body.customerId) {
+      req.body.customerId = req.user.id;
+    }
+
+    const reservation = await Reservation.create(req.body);
+    res.status(201).json({ success: true, data: reservation });
+  } catch (error) {
+    next(error);
+  }
+};
