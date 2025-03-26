@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import Reservation from "../schemas/reservation.schema.js";
-import * as ReservationModel from "@models/caterer-reservation.model.js";
+import Reservation from "../../schemas/reservation.schema.js";
+import * as ReservationModel from "@models/considerations/caterer-reservation.model.js";
 
 //Get all reservation from all customers (For Caterer)
 const getAllReservations = async (

@@ -7,7 +7,7 @@ import {
   getAllReservations,
   getCustomerReservations,
   updateReservation,
-} from "@controllers/caterer-reservation.controller.js";
+} from "@controllers/considerations/caterer-reservation.controller.js";
 import { isCaterer } from "@middlewares/auth.middleware.js";
 
 const catererReservationRouter = Router();

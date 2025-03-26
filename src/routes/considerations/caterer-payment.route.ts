@@ -10,7 +10,7 @@ import {
   addTransaction,
   updatePaymentStatus,
   updateTransactionStatus,
-} from "@controllers/caterer-payment.controller.js";
+} from "@controllers/considerations/caterer-payment.controller.js";
 import { isCaterer } from "@middlewares/auth.middleware.js";
 
 const catererPaymentRouter = Router();

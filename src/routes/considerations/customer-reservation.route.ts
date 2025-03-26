@@ -2,7 +2,7 @@ import {
   createCustomerReservation,
   getCustomerReservation,
   getAllCustomerOwnReservations,
-} from "@controllers/customer-reservation.controller.js";
+} from "@controllers/considerations/customer-reservation.controller.js";
 import { isCustomer } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 

@@ -7,7 +7,7 @@ import {
   getPackages,
   updatePackage,
 } from "@controllers/package.controller.js";
-import { isCaterer } from "@middlewares/auth.middleware.js";
+import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
 
 const packageRouter = Router();
 
@@ -18,12 +18,12 @@ packageRouter.get("/", getPackages);
 packageRouter.get("/:id", getPackage);
 
 //Create a new Catering Package
-packageRouter.post("/", isCaterer, createPackage);
+packageRouter.post("/", isAuthenticated, isCaterer, createPackage);
 
 //Update a Catering Package
-packageRouter.put("/:id", isCaterer, updatePackage);
+packageRouter.put("/:id", isAuthenticated, isCaterer, updatePackage);
 
 //Delete a Catering Package
-packageRouter.delete("/:id", isCaterer, deletePackage);
+packageRouter.delete("/:id", isAuthenticated, isCaterer, deletePackage);
 
 export default packageRouter;

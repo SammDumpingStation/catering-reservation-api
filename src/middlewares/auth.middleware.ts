@@ -7,7 +7,6 @@ import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 
 // Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
-
 interface DecodedToken extends JwtPayload {
   customerId: string;
   role: string;
@@ -29,6 +28,7 @@ export const isAuthenticated = (
     const { customerId, role } = decoded as DecodedToken;
 
     req.user = { id: customerId, role };
+    // req.query.user isulod
 
     next();
   });
@@ -136,6 +136,29 @@ export const isPaymentOwnerOrCaterer = async (
 
     if (reservation.customerId.toString() !== req.user.id)
       throw createError("Access denied. You don't own this payment", 403);
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Middleware to check if the user is authorized to access/edit their own profile
+export const isSelf = (
+  req: Request & { user?: { id: string; role: string } },
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    if (!req.user) throw createError("Authentication required", 401);
+
+    const requestedUserId = req.params.userId || req.params.id;
+
+    if (!requestedUserId) throw createError("User ID is required in request", 400);
+
+    if (req.user.id !== requestedUserId) {
+      throw createError("Access denied. You can only access your own profile", 403);
+    }
 
     next();
   } catch (error) {

@@ -3,7 +3,7 @@ import {
   getCustomerReservationPayments,
   getCustomerPaymentById,
   addCustomerTransaction,
-} from "@controllers/customer-payment.controller.js";
+} from "@controllers/considerations/customer-payment.controller.js";
 import { isCustomer } from "@middlewares/auth.middleware.js";
 import { Router } from "express";
 
@@ -23,9 +23,6 @@ customerPaymentRouter.get(
 customerPaymentRouter.get("/:paymentId", getCustomerPaymentById);
 
 // Make a new payment (add transaction)
-customerPaymentRouter.post(
-  "/:paymentId/transaction",
-  addCustomerTransaction
-);
+customerPaymentRouter.post("/:paymentId/transaction", addCustomerTransaction);
 
 export default customerPaymentRouter;
