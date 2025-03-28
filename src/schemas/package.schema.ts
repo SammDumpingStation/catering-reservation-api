@@ -1,24 +1,42 @@
-import { OptionProps, PackageProps } from "@TStypes/package.type.js";
+import {
+  CateringPackagesProps,
+  PACKAGE_CATEGORIES,
+} from "@TStypes/package.type.js";
 import mongoose from "mongoose";
 
-const OptionsSchema = new mongoose.Schema<OptionProps>({
+const PackageOptionSchema = new mongoose.Schema({
   category: {
     type: String,
+    enum: PACKAGE_CATEGORIES,
     required: true,
   },
   count: {
     type: Number,
     required: true,
+    min: 1,
   },
 });
 
-const packageSchema = new mongoose.Schema<PackageProps>(
+const InclusionSchema = new mongoose.Schema({
+  typeOfCustomer: {
+    type: String,
+    enum: ["Both", "Plated", "Buffet"],
+    required: true,
+  },
+  includes: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+});
+
+const packageSchema = new mongoose.Schema<CateringPackagesProps>(
   {
     name: {
       type: String,
       required: true,
-      minLength: 2,
       trim: true,
+      minLength: 2,
     },
     description: {
       type: String,
@@ -41,31 +59,51 @@ const packageSchema = new mongoose.Schema<PackageProps>(
       type: Number,
       required: true,
     },
-    serviceHours: {
-      type: Number,
-      required: true,
-    },
-    serviceCharge: {
-      type: Number,
-      required: true,
-    },
     options: {
-      type: [OptionsSchema],
+      type: [PackageOptionSchema],
       required: true,
     },
     inclusions: {
-      type: String,
+      type: [InclusionSchema],
       required: true,
     },
     imageUrl: {
       type: String,
-      required: true,
+      trim: true,
+      default: "",
     },
     rating: {
       type: Number,
+      default: 0,
+      min: 0,
+      max: 5,
     },
     ratingCount: {
       type: Number,
+      default: 0,
+      min: 0,
+    },
+    serviceHours: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    serviceCharge: {
+      type: Number,
+      default: 0,
+      min: 0,
+    },
+    eventType: {
+      type: String,
+      enum: ["Birthday", "Wedding", "Corporate", "Graduation"],
+      required: function () {
+        return this.packageType === "Event"; // `eventType` is required only if `packageType` is "Event"
+      },
+    },
+    packageType: {
+      type: String,
+      enum: ["BuffetPlated", "Event"],
+      required: true, // Ensure this field is always defined
     },
   },
   { timestamps: true }
