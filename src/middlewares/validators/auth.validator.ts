@@ -16,6 +16,11 @@ export const authValidationRules = {
       .isString()
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters long"),
+    body("contactNumber").optional().isString().trim(),
+    body("role")
+      .optional()
+      .isIn(["customer", "caterer"])
+      .withMessage("Role must be either 'customer' or 'caterer'"),
     validateRequest,
   ],
   signIn: [

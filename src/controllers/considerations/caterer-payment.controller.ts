@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import Payment from "../schemas/payment.schema.js";
+import Payment from "../../schemas/payment.schema.js";
 
-import { checkIfExists } from "../utils/checkExistence.js";
+import { checkIfExists } from "../../utils/checkExistence.js";
 import Reservation from "@schemas/reservation.schema.js";
 
 // Get all payments across all reservations

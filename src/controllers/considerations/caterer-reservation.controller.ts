@@ -1,6 +1,12 @@
+<<<<<<< HEAD:src/controllers/caterer-reservation.controller.ts
   import { NextFunction, Request, Response } from "express";
   import Reservation from "../schemas/reservation.schema.js";
   import * as ReservationModel from "@models/caterer-reservation.model.js";
+=======
+import { NextFunction, Request, Response } from "express";
+import Reservation from "../../schemas/reservation.schema.js";
+import * as ReservationModel from "@models/considerations/caterer-reservation.model.js";
+>>>>>>> edab2c250a50b915356a424e224d873b22cfc54d:src/controllers/considerations/caterer-reservation.controller.ts
 
   //Get all reservation from all customers (For Caterer)
   const getAllReservations = async (

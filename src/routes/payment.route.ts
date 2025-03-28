@@ -16,7 +16,7 @@ import {
 import {
   addTransaction,
   updateTransactionStatus,
-} from "@controllers/caterer-payment.controller.js";
+} from "@controllers/considerations/caterer-payment.controller.js";
 
 const paymentRouter = express.Router();
 

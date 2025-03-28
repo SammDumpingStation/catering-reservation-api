@@ -7,7 +7,7 @@ import {
   getMenus,
   updateMenu,
 } from "@controllers/menu.controller.js";
-import { isCaterer } from "@middlewares/auth.middleware.js";
+import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
 
 const menuRouter = Router();
 
@@ -18,12 +18,12 @@ menuRouter.get("/", getMenus);
 menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post("/", isCaterer, createMenu);
+menuRouter.post("/",isAuthenticated, isCaterer, createMenu);
 
 //Update a Menu
-menuRouter.put("/:id", updateMenu);
+menuRouter.put("/:id",isAuthenticated, isCaterer, updateMenu);
 
 //Delete a Menu
-menuRouter.delete("/:id", deleteMenu);
+menuRouter.delete("/:id", isAuthenticated, isCaterer, deleteMenu);
 
 export default menuRouter;
