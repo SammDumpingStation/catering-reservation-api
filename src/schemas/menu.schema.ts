@@ -9,14 +9,14 @@ import {
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
-  calories: String,
-  protein: String,
-  fat: String,
-  carbs: String,
-  sodium: String,
-  fiber: String,
-  sugar: String,
-  cholesterol: String,
+  calories: { type: String, default: "0 kcal" },
+  protein: { type: String, default: "0 g" },
+  fat: { type: String, default: "0 g" },
+  carbs: { type: String, default: "0 g" },
+  sodium: { type: String, default: "0 mg" },
+  fiber: { type: String, default: "0 g" },
+  sugar: { type: String, default: "0 g" },
+  cholesterol: { type: String, default: "0 mg" },
 });
 
 const PriceInfoSchema = new mongoose.Schema<PriceInfoProps>({
@@ -45,11 +45,6 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       type: String,
       required: [true, "Please select a category"],
       enum: CATEGORIES, // Use enum as an array directly
-      validate: {
-        validator: (value: string) => CATEGORIES.includes(value),
-        message: (props) =>
-          `${props.value} is not a valid category. Please select from the list of valid categories.`,
-      },
     },
     available: {
       type: Boolean,
@@ -63,17 +58,15 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       type: String,
       required: [true, "Please provide a full description"],
     },
-    ingredients: [String],
-    allergens: [
-      {
-        type: String,
-        enum: {
-          values: ALLERGENS,
-          message: (props: { value: string }) =>
-            `${props.value} is not a valid allergen. Please select from the list of valid allergens.`,
-        },
-      },
-    ],
+    ingredients: {
+      type: [String],
+      required: [true, "Please provide the ingredients."],
+    },
+    allergens: {
+      type: [String],
+      enum: [...ALLERGENS, "None"],
+      default: ["None"],
+    },
     preparationMethod: {
       type: String,
       required: [true, "Please provide preparation method"],

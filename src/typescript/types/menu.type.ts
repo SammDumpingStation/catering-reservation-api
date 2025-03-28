@@ -22,14 +22,14 @@ type AllergenProps = (typeof ALLERGENS)[number];
 
 // Define interfaces for nested schemas
 export interface NutritionInfoProps {
-  calories?: string;
-  protein?: string;
-  fat?: string;
-  carbs?: string;
-  sodium?: string;
-  fiber?: string;
-  sugar?: string;
-  cholesterol?: string;
+  calories: string;
+  protein: string;
+  fat: string;
+  carbs: string;
+  sodium: string;
+  fiber: string;
+  sugar: string;
+  cholesterol: string;
 }
 
 export interface PriceInfoProps {
@@ -41,10 +41,10 @@ export interface PriceInfoProps {
 export interface MenuProps extends Document {
   name: string;
   category: CategoryProps;
-  available?: boolean;
+  available: boolean;
   shortDescription: string;
   fullDescription: string;
-  ingredients?: string[];
+  ingredients: string[];
   allergens?: AllergenProps[];
   preparationMethod: string;
   prices: PriceInfoProps[];
