@@ -30,23 +30,16 @@ paymentRouter.put(
 );
 
 // Routes accessible to both caterers and customers (with ownership check)
-paymentRouter.get("/:id", isAuthenticated, isPaymentOwnerOrCaterer, getPayment);
+paymentRouter.get("/:id", isAuthenticated, getPayment);
 paymentRouter.get(
   "/reservation/:reservationId",
   isAuthenticated,
-  isPaymentOwnerOrCaterer,
   getPaymentsByReservation
 );
-paymentRouter.post(
-  "/:id/transactions",
-  isAuthenticated,
-  isPaymentOwnerOrCaterer,
-  addTransaction
-);
+paymentRouter.post("/:id/transactions", isAuthenticated, addTransaction);
 paymentRouter.put(
   "/:paymentId/transactions/:transactionId",
   isAuthenticated,
-  isPaymentOwnerOrCaterer,
   updateTransactionStatus
 );
 // Routes specifically for customers

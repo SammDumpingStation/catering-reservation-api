@@ -65,6 +65,7 @@ export const getPayment = async (
   next: NextFunction
 ) => {
   try {
+    console.log(req.params);
     const { id } = req.params;
 
     const payment = await paymentModel.getPaymentById(id);

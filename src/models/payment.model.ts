@@ -12,7 +12,7 @@ export const createPayment = async (paymentData: Partial<PaymentProps>) => {
 
 // Get payment by ID
 export const getPaymentById = async (id: string) => {
-  const payment = await Payment.findById(id).populate("reservationId");
+  const payment = await Payment.findById(id);
 
   if (!payment) throw createError("Payment not found", 404);
 
