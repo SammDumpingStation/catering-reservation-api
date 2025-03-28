@@ -49,7 +49,7 @@ export interface MenuProps extends Document {
   preparationMethod: string;
   prices: PriceInfoProps[];
   regularPricePerPax: number;
-  imageUrl: string;
+  imageUrl?: string;
   rating?: number;
   ratingCount?: number;
   spicy?: boolean;

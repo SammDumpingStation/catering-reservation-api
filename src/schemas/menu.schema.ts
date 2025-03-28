@@ -9,28 +9,28 @@ import {
 
 // Define the schemas for nested objects
 const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
-  calories: { type: String, default: "0 kcal" },
-  protein: { type: String, default: "0 g" },
-  fat: { type: String, default: "0 g" },
-  carbs: { type: String, default: "0 g" },
-  sodium: { type: String, default: "0 mg" },
-  fiber: { type: String, default: "0 g" },
-  sugar: { type: String, default: "0 g" },
-  cholesterol: { type: String, default: "0 mg" },
+  calories: { type: String, default: "0 kcal", trim: true },
+  protein: { type: String, default: "0 g", trim: true },
+  fat: { type: String, default: "0 g", trim: true },
+  carbs: { type: String, default: "0 g", trim: true },
+  sodium: { type: String, default: "0 mg", trim: true },
+  fiber: { type: String, default: "0 g", trim: true },
+  sugar: { type: String, default: "0 g", trim: true },
+  cholesterol: { type: String, default: "0 mg", trim: true },
 });
 
 const PriceInfoSchema = new mongoose.Schema<PriceInfoProps>({
   minimumPax: {
     type: Number,
-    required: [true, "Please provide minimum number of people"],
+    required: true,
   },
   maximumPax: {
     type: Number,
-    required: [true, "Please provide maximum number of people"],
+    required: true,
   },
   price: {
     type: Number,
-    required: [true, "Please provide price information"],
+    required: true,
   },
 });
 
@@ -39,12 +39,14 @@ const menuSchema = new mongoose.Schema<MenuProps>(
   {
     name: {
       type: String,
-      required: [true, "Please provide menu name"],
+      required: true,
+      trim: true,
     },
     category: {
       type: String,
-      required: [true, "Please select a category"],
-      enum: CATEGORIES, // Use enum as an array directly
+      enum: CATEGORIES,
+      required: true,
+      trim: true,
     },
     available: {
       type: Boolean,
@@ -53,10 +55,16 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     shortDescription: {
       type: String,
       required: [true, "Please provide a short description"],
+      trim: true,
+      minLength: [10, "Short description must be at least 10 characters long"],
+      maxLength: [200, "Short description must not exceed 200 characters"],
     },
     fullDescription: {
       type: String,
       required: [true, "Please provide a full description"],
+      trim: true,
+      minLength: [30, "Full description must be at least 30 characters long"],
+      maxLength: [500, "Full description must not exceed 500 characters"],
     },
     ingredients: {
       type: [String],
@@ -70,6 +78,7 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     preparationMethod: {
       type: String,
       required: [true, "Please provide preparation method"],
+      trim: true,
     },
     prices: [PriceInfoSchema],
     regularPricePerPax: {
@@ -78,7 +87,8 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     },
     imageUrl: {
       type: String,
-      required: [true, "Please provide an image URL"],
+      trim: true,
+      default: "",
     },
     rating: {
       type: Number,
@@ -95,6 +105,7 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     perServing: {
       type: String,
       required: [true, "Please provide serving size information"],
+      trim: true,
     },
     nutritionInfo: NutritionInfoSchema,
   },
