@@ -17,13 +17,9 @@ export const customerValidationRules = {
     body("password")
       .optional()
       .isString()
-      .isLength({ min: 6 })
-      .withMessage("Password must be at least 6 characters long"),
+      .isLength({ min: 6, max: 50 })
+      .withMessage("Password must be between 6 and 50 characters long"),
     body("contactNumber").optional().isString().trim(),
-    body("role")
-      .optional()
-      .isIn(["customer", "caterer"])
-      .withMessage("Role must be either 'customer' or 'caterer'"),
     body("profileImage").optional().isString().trim(),
     validateRequest,
   ],
