@@ -1,32 +1,8 @@
 import { Document } from "mongoose";
-
-export type PackageCategory =
-  | "Soup"
-  | "Salad"
-  | "Beef"
-  | "Pork"
-  | "Noodle"
-  | "Chicken"
-  | "Seafood"
-  | "Vegetable"
-  | "Dessert"
-  | "Beverage";
-
-export const PACKAGE_CATEGORIES: PackageCategory[] = [
-  "Soup",
-  "Salad",
-  "Beef",
-  "Pork",
-  "Noodle",
-  "Chicken",
-  "Seafood",
-  "Vegetable",
-  "Dessert",
-  "Beverage",
-];
+import { FoodCategoryProps } from "./global.type.js";
 
 export interface PackageOption {
-  category: PackageCategory;
+  category: FoodCategoryProps;
   count: number;
 }
 

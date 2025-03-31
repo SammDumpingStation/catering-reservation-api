@@ -1,24 +1,5 @@
 import { Document } from "mongoose";
-
-// Define enum constants
-export const CATEGORIES = [
-  "Soup",
-  "Salad",
-  "Beef",
-  "Pork",
-  "Noodle",
-  "Chicken",
-  "Seafood",
-  "Vegetable",
-  "Dessert",
-  "Beverage",
-];
-
-export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
-
-// TypeScript types for enums
-type CategoryProps = (typeof CATEGORIES)[number];
-type AllergenProps = (typeof ALLERGENS)[number];
+import { FoodAllergenProps, FoodCategoryProps } from "./global.type.js";
 
 // Define interfaces for nested schemas
 export interface NutritionInfoProps {
@@ -40,12 +21,12 @@ export interface PriceInfoProps {
 
 export interface MenuProps extends Document {
   name: string;
-  category: CategoryProps;
+  category: FoodCategoryProps;
   available: boolean;
   shortDescription: string;
   fullDescription: string;
   ingredients: string[];
-  allergens?: AllergenProps[];
+  allergens: FoodAllergenProps[];
   preparationMethod: string;
   prices: PriceInfoProps[];
   regularPricePerPax: number;
