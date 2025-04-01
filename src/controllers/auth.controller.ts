@@ -4,7 +4,7 @@ import * as authModel from "@models/auth.model.js";
 //Implement Sign-up Logic
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { fullName, email, password, role } = req.body;
+    const { role, fullName, email, password } = req.body;
 
     const { token, customer } = await authModel.createAccount({
       fullName,

@@ -2,7 +2,7 @@ export type signUpProps = {
   fullName: string;
   email: string;
   password: string;
-  role: "customer" | "caterer"
+  role: "customer" | "caterer";
 };
 
 export type signInProps = {

@@ -15,17 +15,3 @@ export const validatePassword = async (
   inputPassword: string,
   hashedPassword: string
 ): Promise<boolean> => await bcrypt.compare(inputPassword, hashedPassword);
-
-export interface CustomError extends Error {
-  statusCode?: number;
-}
-
-//Creates an error based on if statement
-export const createError = (
-  message: string,
-  statusCode: number
-): CustomError => {
-  const error: CustomError = new Error(message);
-  error.statusCode = statusCode;
-  return error;
-};

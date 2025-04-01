@@ -54,3 +54,7 @@ export type ReviewsProps = {
   comment: string;
   userId: Types.ObjectId;
 };
+
+export interface CreateErrorProps extends Error {
+  statusCode?: number;
+}

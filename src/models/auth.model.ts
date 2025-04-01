@@ -13,7 +13,6 @@ export const createAccount = async ({
   password,
   role,
 }: signUpProps) => {
-
   const existingCustomer = await Customer.findOne({ email });
   if (existingCustomer) throw createError("Customer already exists", 400);
 
@@ -24,10 +23,8 @@ export const createAccount = async ({
     role,
   });
 
-  const role1 = "caterer";
-
   return {
-    token: createToken(newCustomer._id as string, role1 as string),
+    token: createToken(newCustomer._id, role),
     customer: newCustomer,
   };
 };
