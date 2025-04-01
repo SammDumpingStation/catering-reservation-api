@@ -2,10 +2,10 @@ import Customer from "@schemas/customer.schema.js";
 import {
   encryptPassword,
   createToken,
-  createError,
   validatePassword,
 } from "@utils/authUtils.js";
 import { signInProps, signUpProps } from "@TStypes/auth.type.js";
+import { createError } from "@utils/globalUtils.js";
 
 export const createAccount = async ({
   fullName,
@@ -31,7 +31,7 @@ export const createAccount = async ({
 
 export const signInAccount = async ({ email, password }: signInProps) => {
   const customer = await Customer.findOne({ email });
-  if (!customer) throw createError("Customer not found", 404);
+  if (!customer) throw createError("Customer doesn't exist", 404);
 
   const isPasswordValid = await validatePassword(password, customer.password);
   if (!isPasswordValid) throw createError("Invalid password", 401);
