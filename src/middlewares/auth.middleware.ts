@@ -1,10 +1,10 @@
 // middleware/auth.ts
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
-import { createError } from "@utils/authUtils.js";
 import { JWT_SECRET } from "../config/env.js";
 import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
+import { createError } from "@utils/globalUtils.js";
 
 // Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
 interface DecodedToken extends JwtPayload {
@@ -154,10 +154,14 @@ export const isSelf = (
 
     const requestedUserId = req.params.userId || req.params.id;
 
-    if (!requestedUserId) throw createError("User ID is required in request", 400);
+    if (!requestedUserId)
+      throw createError("User ID is required in request", 400);
 
     if (req.user.id !== requestedUserId) {
-      throw createError("Access denied. You can only access your own profile", 403);
+      throw createError(
+        "Access denied. You can only access your own profile",
+        403
+      );
     }
 
     next();

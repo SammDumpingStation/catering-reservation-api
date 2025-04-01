@@ -6,6 +6,8 @@ import {
   getPaymentsByReservation,
   getMyPayments,
   updatePaymentStatus,
+  addTransaction,
+  updateTransactionStatus,
 } from "@controllers/payment.controller.js";
 import {
   isAuthenticated,
@@ -13,10 +15,6 @@ import {
   isCustomer,
   isPaymentOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
-import {
-  addTransaction,
-  updateTransactionStatus,
-} from "@controllers/considerations/caterer-payment.controller.js";
 
 const paymentRouter = express.Router();
 

@@ -20,7 +20,7 @@
 //   next();
 // }; //THIS FUNCTION RETURN ONLY THE FIRST ERROR MESSAGE
 
-import { createError } from "@utils/authUtils.js";
+import { createError } from "@utils/globalUtils.js";
 import type { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 

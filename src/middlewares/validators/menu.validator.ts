@@ -1,14 +1,14 @@
 import { body } from "express-validator";
 import { validateRequest } from "../validate-request.middleware.js";
-import { ALLERGENS, CATEGORIES } from "@TStypes/menu.type.js";
+import { FOOD_ALLERGENS, FOOD_CATEGORIES } from "@TStypes/global.type.js";
 
 export const menuValidationRules = {
   create: [
     body("name").isString().notEmpty().withMessage("Please provide menu name"),
     body("category")
       .isString()
-      .isIn(CATEGORIES)
-      .withMessage(`Category must be one of: ${CATEGORIES.join(", ")}`),
+      .isIn(FOOD_CATEGORIES)
+      .withMessage(`Category must be one of: ${FOOD_CATEGORIES.join(", ")}`),
     body("available").optional().isBoolean(),
     body("shortDescription")
       .isString()
@@ -28,8 +28,10 @@ export const menuValidationRules = {
       .withMessage("Allergens must be an array"),
     body("allergens.*")
       .optional()
-      .isIn(ALLERGENS)
-      .withMessage(`Each allergen must be one of: ${ALLERGENS.join(", ")}`),
+      .isIn(FOOD_ALLERGENS)
+      .withMessage(
+        `Each allergen must be one of: ${FOOD_ALLERGENS.join(", ")}`
+      ),
     body("preparationMethod")
       .isString()
       .notEmpty()
@@ -132,8 +134,8 @@ export const menuValidationRules = {
     body("category")
       .optional()
       .isString()
-      .isIn(CATEGORIES)
-      .withMessage(`Category must be one of: ${CATEGORIES.join(", ")}`),
+      .isIn(FOOD_CATEGORIES)
+      .withMessage(`Category must be one of: ${FOOD_CATEGORIES.join(", ")}`),
     body("available").optional().isBoolean(),
     body("shortDescription")
       .optional()
@@ -159,8 +161,10 @@ export const menuValidationRules = {
       .withMessage("Allergens must be an array"),
     body("allergens.*")
       .optional()
-      .isIn(ALLERGENS)
-      .withMessage(`Each allergen must be one of: ${ALLERGENS.join(", ")}`),
+      .isIn(FOOD_ALLERGENS)
+      .withMessage(
+        `Each allergen must be one of: ${FOOD_ALLERGENS.join(", ")}`
+      ),
     body("preparationMethod")
       .optional()
       .isString()

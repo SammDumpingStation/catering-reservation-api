@@ -1,7 +1,6 @@
 import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as paymentModel from "@models/payment.model.js";
-import { create } from "domain";
 import { createError } from "@utils/globalUtils.js";
 
 // Create a new payment
@@ -141,10 +140,11 @@ export const addTransaction = async (
       !transactionData.method ||
       !transactionData.type
     ) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: "Please provide amount, method, and type for the transaction",
       });
+      return;
     }
 
     const payment = await paymentModel.addTransactionToPayment(
@@ -205,10 +205,11 @@ export const updateTransactionStatus = async (
     const { status } = req.body;
 
     if (!status) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         message: "Please provide status",
       });
+      return;
     }
 
     const payment = await paymentModel.updateTransactionStatus(
