@@ -1,13 +1,16 @@
+import { FOOD_CATEGORIES } from "@TStypes/global.type.js";
 import {
   CateringPackagesProps,
-  PACKAGE_CATEGORIES,
+  InclusionsProps,
+  PackageOption,
+  ReviewsProps,
 } from "@TStypes/package.type.js";
 import mongoose from "mongoose";
 
-const PackageOptionSchema = new mongoose.Schema({
+const packageOptionSchema = new mongoose.Schema<PackageOption>({
   category: {
     type: String,
-    enum: PACKAGE_CATEGORIES,
+    enum: FOOD_CATEGORIES,
     required: true,
   },
   count: {
@@ -17,7 +20,7 @@ const PackageOptionSchema = new mongoose.Schema({
   },
 });
 
-const InclusionSchema = new mongoose.Schema({
+const inclusionSchema = new mongoose.Schema<InclusionsProps>({
   typeOfCustomer: {
     type: String,
     enum: ["Both", "Plated", "Buffet"],
@@ -27,6 +30,25 @@ const InclusionSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
+  },
+});
+
+const reviewsSchema = new mongoose.Schema<ReviewsProps>({
+  rating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
+  },
+  comment: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customer",
+    required: true,
   },
 });
 
@@ -43,7 +65,15 @@ const packageSchema = new mongoose.Schema<CateringPackagesProps>(
       required: true,
       trim: true,
     },
+    available: {
+      type: Boolean,
+      required: true,
+    },
     pricePerPax: {
+      type: Number,
+      required: true,
+    },
+    pricePerPaxWithServiceCharge: {
       type: Number,
       required: true,
     },
@@ -60,12 +90,34 @@ const packageSchema = new mongoose.Schema<CateringPackagesProps>(
       required: true,
     },
     options: {
-      type: [PackageOptionSchema],
+      type: [packageOptionSchema],
       required: true,
     },
     inclusions: {
-      type: [InclusionSchema],
+      type: [inclusionSchema],
       required: true,
+    },
+    serviceHours: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    serviceCharge: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    eventType: {
+      type: String,
+      enum: ["Birthday", "Wedding", "Corporate", "Graduation"],
+      required: function () {
+        return this.packageType === "Event"; // `eventType` is required only if `packageType` is "Event"
+      },
+    },
+    packageType: {
+      type: String,
+      enum: ["BuffetPlated", "Event"],
+      required: true, // Ensure this field is always defined
     },
     imageUrl: {
       type: String,
@@ -83,27 +135,8 @@ const packageSchema = new mongoose.Schema<CateringPackagesProps>(
       default: 0,
       min: 0,
     },
-    serviceHours: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    serviceCharge: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    eventType: {
-      type: String,
-      enum: ["Birthday", "Wedding", "Corporate", "Graduation"],
-      required: function () {
-        return this.packageType === "Event"; // `eventType` is required only if `packageType` is "Event"
-      },
-    },
-    packageType: {
-      type: String,
-      enum: ["BuffetPlated", "Event"],
-      required: true, // Ensure this field is always defined
+    reviews: {
+      type: reviewsSchema,
     },
   },
   { timestamps: true }

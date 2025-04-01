@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 import {
-  ALLERGENS,
-  CATEGORIES,
   MenuProps,
   NutritionInfoProps,
   PriceInfoProps,
