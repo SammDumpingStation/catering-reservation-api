@@ -1,7 +1,7 @@
 import Reservation from "@schemas/reservation.schema.js";
 import { ReservationProps } from "@TStypes/reservation.type.js";
-import { createError } from "@utils/authUtils.js";
 import { checkIfExists } from "@utils/checkExistence.js";
+import { createError } from "@utils/globalUtils.js";
 
 export const getReservationsByCustomerId = async (customerId: string) => {
   const reservations = await Reservation.find({ customerId }).populate(
@@ -10,7 +10,6 @@ export const getReservationsByCustomerId = async (customerId: string) => {
   );
 
   if (!reservations) throw createError("Reservations not found", 404);
-
   return reservations;
 };
 
@@ -18,7 +17,6 @@ export const getReservationById = async (id: string) => {
   const reservation = await Reservation.findById(id);
 
   if (!reservation) throw createError("Reservation not found", 404);
-
   return reservation;
 };
 
@@ -36,7 +34,6 @@ export const updateReservationById = async (
   );
 
   if (!existingReservation) throw createError("Reservation not found", 404);
-
   return existingReservation;
 };
 
@@ -44,6 +41,5 @@ export const deleteReservationById = async (id: string) => {
   const reservation = await Reservation.findByIdAndDelete(id);
 
   if (!reservation) throw createError("Reservation not found", 404);
-
   return reservation;
 };

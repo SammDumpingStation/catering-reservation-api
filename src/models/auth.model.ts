@@ -24,7 +24,7 @@ export const createAccount = async ({
   });
 
   return {
-    token: createToken(newCustomer._id, role),
+    token: createToken(newCustomer._id as string, role as string),
     customer: newCustomer,
   };
 };

@@ -1,7 +1,7 @@
 import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as reservationModel from "@models/reservation.model.js";
-import { createError } from "@utils/authUtils.js";
+import { createError } from "@utils/globalUtils.js";
 
 // Get all reservations (For Caterer)
 export const getAllReservations = async (

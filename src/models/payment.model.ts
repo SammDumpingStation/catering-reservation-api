@@ -1,7 +1,7 @@
 import Payment from "@schemas/payment.schema.js";
 import Reservation from "@schemas/reservation.schema.js";
 import { PaymentProps, TransactionsProps } from "@TStypes/payment.type.js";
-import { createError } from "@utils/authUtils.js";
+import { createError } from "@utils/globalUtils.js";
 import mongoose from "mongoose";
 
 // Create a new payment

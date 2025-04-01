@@ -1,8 +1,8 @@
 import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as paymentModel from "@models/payment.model.js";
-import { createError } from "@utils/authUtils.js";
 import { create } from "domain";
+import { createError } from "@utils/globalUtils.js";
 
 // Create a new payment
 export const createPayment = async (

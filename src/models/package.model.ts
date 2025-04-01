@@ -1,4 +1,5 @@
 import Package from "@schemas/package.schema.js";
+import { CateringPackagesProps } from "@TStypes/package.type.js";
 import { createError } from "@utils/globalUtils.js";
 
 export const getPackageById = async (id: string) => {
@@ -10,7 +11,7 @@ export const getPackageById = async (id: string) => {
 
 export const updatePackageById = async (
   id: string,
-  updatePackage: Partial<PackageProps>
+  updatePackage: Partial<CateringPackagesProps>
 ) => {
   const pkg = await Package.findByIdAndUpdate(id, updatePackage, {
     new: true,
