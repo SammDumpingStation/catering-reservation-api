@@ -48,3 +48,9 @@ export const FOOD_ALLERGENS = [
 // TypeScript types for enums
 export type FoodCategoryProps = (typeof FOOD_CATEGORIES)[number];
 export type FoodAllergenProps = (typeof FOOD_ALLERGENS)[number];
+
+export type ReviewsProps = {
+  rating: number;
+  comment: string;
+  userId: Types.ObjectId;
+};

@@ -1,5 +1,5 @@
 import { Document, Types } from "mongoose";
-import { FoodCategoryProps } from "./global.type.js";
+import { FoodCategoryProps, ReviewsProps } from "./global.type.js";
 
 export interface PackageOption {
   category: FoodCategoryProps;
@@ -14,12 +14,6 @@ export type InclusionsProps = {
 export type EventType = "Birthday" | "Wedding" | "Corporate" | "Graduation";
 
 export type PackageType = "BuffetPlated" | "Event";
-
-export type ReviewsProps = {
-  rating: number;
-  comment: string;
-  userId: Types.ObjectId;
-};
 
 export interface CateringPackagesProps extends Document {
   name: string;

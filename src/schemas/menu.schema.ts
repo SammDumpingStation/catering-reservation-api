@@ -4,9 +4,14 @@ import {
   NutritionInfoProps,
   PriceInfoProps,
 } from "@TStypes/menu.type.js";
+import {
+  FOOD_ALLERGENS,
+  FOOD_CATEGORIES,
+  ReviewsProps,
+} from "@TStypes/global.type.js";
 
 // Define the schemas for nested objects
-const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
+const nutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
   calories: { type: String, default: "0 kcal", trim: true },
   protein: { type: String, default: "0 g", trim: true },
   fat: { type: String, default: "0 g", trim: true },
@@ -17,7 +22,7 @@ const NutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
   cholesterol: { type: String, default: "0 mg", trim: true },
 });
 
-const PriceInfoSchema = new mongoose.Schema<PriceInfoProps>({
+const priceInfoSchema = new mongoose.Schema<PriceInfoProps>({
   minimumPax: {
     type: Number,
     required: true,
@@ -32,6 +37,25 @@ const PriceInfoSchema = new mongoose.Schema<PriceInfoProps>({
   },
 });
 
+const reviewsSchema = new mongoose.Schema<ReviewsProps>({
+  rating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 5,
+  },
+  comment: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Customer",
+    required: true,
+  },
+});
+
 // Define the main Menu schema
 const menuSchema = new mongoose.Schema<MenuProps>(
   {
@@ -42,13 +66,17 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     },
     category: {
       type: String,
-      enum: CATEGORIES,
+      enum: FOOD_CATEGORIES,
       required: true,
       trim: true,
     },
     available: {
       type: Boolean,
       default: true,
+    },
+    spicy: {
+      type: Boolean,
+      default: false,
     },
     shortDescription: {
       type: String,
@@ -70,7 +98,7 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     },
     allergens: {
       type: [String],
-      enum: [...ALLERGENS, "None"],
+      enum: [...FOOD_ALLERGENS],
       default: ["None"],
     },
     preparationMethod: {
@@ -78,10 +106,13 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       required: [true, "Please provide preparation method"],
       trim: true,
     },
-    prices: [PriceInfoSchema],
     regularPricePerPax: {
       type: Number,
       required: [true, "Please provide regular price per person"],
+    },
+    prices: {
+      type: [priceInfoSchema],
+      required: true,
     },
     imageUrl: {
       type: String,
@@ -96,16 +127,13 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       type: Number,
       default: 0,
     },
-    spicy: {
-      type: Boolean,
-      default: false,
-    },
     perServing: {
       type: String,
       required: [true, "Please provide serving size information"],
       trim: true,
     },
-    nutritionInfo: NutritionInfoSchema,
+    nutritionInfo: nutritionInfoSchema,
+    reviews: reviewsSchema,
   },
   {
     timestamps: true,

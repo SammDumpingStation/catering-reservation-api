@@ -1,9 +1,8 @@
-import { FOOD_CATEGORIES } from "@TStypes/global.type.js";
+import { FOOD_CATEGORIES, ReviewsProps } from "@TStypes/global.type.js";
 import {
   CateringPackagesProps,
   InclusionsProps,
   PackageOption,
-  ReviewsProps,
 } from "@TStypes/package.type.js";
 import mongoose from "mongoose";
 
@@ -135,9 +134,7 @@ const packageSchema = new mongoose.Schema<CateringPackagesProps>(
       default: 0,
       min: 0,
     },
-    reviews: {
-      type: reviewsSchema,
-    },
+    reviews: reviewsSchema,
   },
   { timestamps: true }
 );

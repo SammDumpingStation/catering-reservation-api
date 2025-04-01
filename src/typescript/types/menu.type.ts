@@ -1,5 +1,9 @@
 import { Document } from "mongoose";
-import { FoodAllergenProps, FoodCategoryProps } from "./global.type.js";
+import {
+  FoodAllergenProps,
+  FoodCategoryProps,
+  ReviewsProps,
+} from "./global.type.js";
 
 // Define interfaces for nested schemas
 export interface NutritionInfoProps {
@@ -23,17 +27,18 @@ export interface MenuProps extends Document {
   name: string;
   category: FoodCategoryProps;
   available: boolean;
+  spicy?: boolean;
   shortDescription: string;
   fullDescription: string;
   ingredients: string[];
   allergens: FoodAllergenProps[];
   preparationMethod: string;
-  prices: PriceInfoProps[];
   regularPricePerPax: number;
+  prices: PriceInfoProps[];
   imageUrl?: string;
   rating?: number;
   ratingCount?: number;
-  spicy?: boolean;
   perServing: string;
   nutritionInfo?: NutritionInfoProps;
+  reviews?: ReviewsProps[];
 }
