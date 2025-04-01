@@ -1,4 +1,3 @@
-
 import express, { Application } from "express";
 import cookieParser from "cookie-parser";
 import { PORT } from "@config/env.js";
@@ -19,7 +18,7 @@ app
   .use(express.urlencoded({ extended: false }))
   .use(cookieParser());
 
-//The app main routes
+// API MAIN ROUTES
 app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/menus", menuRouter);
@@ -37,8 +36,6 @@ await connectToDatabase((client) => {
     console.log(`Server Running on http://localhost:${PORT}`);
   });
 });
-
-
 
 // import catererPaymentRouter from "@routes/considerations/caterer-payment.route.js";
 // import customerPaymentRouter from "@routes/considerations/customer-payment.route.js";
