@@ -11,6 +11,7 @@ import {
   isCaterer,
   isSelf,
 } from "@middlewares/auth.middleware.js";
+import { customerValidationRules } from "@middlewares/validators/customer.validator.js";
 
 const customerRouter = Router();
 
@@ -21,7 +22,13 @@ customerRouter.get("/", isAuthenticated, isCaterer, getCustomers);
 customerRouter.get("/:id", isAuthenticated, isSelf, getCustomer);
 
 //Update a Customer
-customerRouter.put("/:id", isAuthenticated, isSelf, updateCustomer);
+customerRouter.put(
+  "/:id",
+  customerValidationRules.update,
+  isAuthenticated,
+  isSelf,
+  updateCustomer
+);
 
 //Delete a Customer
 customerRouter.delete("/:id", isAuthenticated, isCaterer, deleteCustomer);

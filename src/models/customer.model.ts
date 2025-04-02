@@ -15,7 +15,7 @@ export const updateCustomerById: updateCustomerProps = async (id, data) => {
       contactNumber,
       profileImage,
     },
-    { new: true, runValidators: true }
+    { new: true }
   );
 
   return existingCustomer;
