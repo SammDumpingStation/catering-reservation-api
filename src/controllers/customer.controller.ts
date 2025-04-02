@@ -10,15 +10,15 @@ const getCustomers = async (
   next: NextFunction
 ) => {
   try {
-    const customers = await Customer.find();
-    if (customers.length === 0) {
+    const existingCustomer = await Customer.find();
+    if (existingCustomer.length === 0) {
       res.sendStatus(204);
       return;
     }
 
     res.status(200).json({
       success: true,
-      data: customers.map((customer) => sanitizeCustomer(customer)),
+      data: existingCustomer.map((customer) => sanitizeCustomer(customer)),
     });
   } catch (error) {
     next(error);
@@ -27,10 +27,12 @@ const getCustomers = async (
 
 const getCustomer = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const customer = await Customer.findById(req.params.id);
-    if (!customer) throw createError("Customer doesn't exist", 404);
+    const existingCustomer = await Customer.findById(req.params.id);
+    if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
-    res.status(200).json({ success: true, data: sanitizeCustomer(customer) });
+    res
+      .status(200)
+      .json({ success: true, data: sanitizeCustomer(existingCustomer) });
   } catch (error) {
     next(error);
   }
@@ -43,16 +45,12 @@ const updateCustomer = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const { fullName, contactNumber, profileImage } = req.body;
+  const data = req.body;
   try {
-    const customer = await customerModel.updateCustomerById({
-      id,
-      fullName,
-      contactNumber,
-      profileImage,
-    });
+    const existingCustomer = await customerModel.updateCustomerById(id, data);
+    if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
-    res.status(200).json({ success: true, data: customer });
+    res.status(200).json({ success: true, data: existingCustomer });
   } catch (error) {
     next(error);
   }

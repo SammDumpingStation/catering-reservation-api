@@ -5,7 +5,7 @@ import {
   validatePassword,
   sanitizeCustomer,
 } from "@utils/authUtils.js";
-import { signInProps, signUpProps } from "@TStypes/auth.type.js";
+import { signUpProps } from "@TStypes/auth.type.js";
 import { createError } from "@utils/globalUtils.js";
 
 export const createAccount: signUpProps = async (data) => {

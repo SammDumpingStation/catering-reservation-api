@@ -21,9 +21,13 @@ export interface CustomerPropsDummy {
   profileImage?: string;
 }
 
-export interface updateCustomerProps {
-  id: string;
-  fullName: string;
-  contactNumber: string;
-  profileImage: string;
-}
+export type updateCustomerProps = (
+  id: string,
+  data: {
+    fullName: string;
+    email: string;
+    password: string;
+    contactNumber: string;
+    profileImage: string;
+  }
+) => Promise<CustomerProps | null>;

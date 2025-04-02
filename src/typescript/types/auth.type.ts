@@ -5,10 +5,3 @@ export type signUpProps = (data: {
   email: string;
   password: string;
 }) => Promise<{ customer: CustomerProps }>;
-
-export type signInProps = (data: {
-  email: string;
-  password: string;
-}) => Promise<{
-  customer: CustomerProps;
-}>;
