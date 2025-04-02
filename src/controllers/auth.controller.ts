@@ -3,7 +3,11 @@ import * as authModel from "@models/auth.model.js";
 import { signUpProps } from "@TStypes/auth.type.js";
 import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
-import { createToken } from "@utils/authUtils.js";
+import {
+  createToken,
+  sanitizeCustomer,
+  validatePassword,
+} from "@utils/authUtils.js";
 
 //Implement Sign-up Logic
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
@@ -20,7 +24,7 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
       message: "Customer created successfully",
       data: {
         token: createToken(customer._id, customer.role),
-        customer,
+        customer: sanitizeCustomer(customer),
       },
     });
   } catch (error) {
@@ -32,16 +36,23 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
 const signIn = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //Deconstruct the json form from body
-    const { email, password } = req.body;
+    const data = req.body;
 
-    const { token, customer } = await authModel.signInAccount(email, password);
+    const customer = await Customer.findOne({ email: data.email });
+    if (!customer) throw createError("Customer doesn't exist", 404);
+
+    const isPasswordValid = await validatePassword(
+      data.password,
+      customer.password
+    );
+    if (!isPasswordValid) throw createError("Invalid password", 401);
 
     res.status(201).json({
       success: true,
       message: "Customer signed in successfully",
       data: {
-        token,
-        customer,
+        token: createToken(customer._id, customer.role),
+        customer: sanitizeCustomer(customer),
       },
     });
   } catch (error) {

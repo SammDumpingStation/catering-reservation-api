@@ -6,10 +6,9 @@ export type signUpProps = (data: {
   password: string;
 }) => Promise<{ customer: CustomerProps }>;
 
-export type signInProps = (
-  email: string,
-  password: string
-) => Promise<{
-  token: string;
+export type signInProps = (data: {
+  email: string;
+  password: string;
+}) => Promise<{
   customer: CustomerProps;
 }>;
