@@ -35,10 +35,23 @@ export const authValidationRules = {
   ],
   signIn: [
     body("email")
+      .notEmpty()
+      .withMessage("Email is required")
+      .bail()
       .isEmail()
       .withMessage("Please provide a valid email address")
       .normalizeEmail(),
-    body("password").isString().notEmpty().withMessage("Password is required"),
+
+    body("password")
+      .notEmpty()
+      .withMessage("Password is required")
+      .bail()
+      .isString()
+      .withMessage("Password must be a valid string")
+      .bail()
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long"),
+
     validateRequest,
   ],
 };
