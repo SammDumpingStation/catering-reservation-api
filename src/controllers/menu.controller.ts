@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Menu from "../schemas/menu.schema.js";
-import * as MenuModel from "../models/menu.model.js";
+import * as menuModel from "../models/menu.model.js";
 import { createError } from "@utils/globalUtils.js";
 
 //Get All Menu
@@ -28,9 +28,16 @@ const getMenu = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Create a Menu
-const createMenu = async (req: Request, res: Response, next: NextFunction) => {
+const postMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const menu = await Menu.create(req.body);
+    const data = req.body;
+    const existingMenu = await Menu.findOne({
+      name: data.name,
+      category: data.category,
+    });
+    if (existingMenu) throw createError("Menu already exists", 400);
+
+    const menu = await menuModel.createMenu(data);
 
     res.status(201).json({ success: true, data: menu });
   } catch (error) {
@@ -61,7 +68,7 @@ const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
       nutritionInfo,
     } = req.body;
 
-    const menu = await MenuModel.updateMenuById(id, {
+    const menu = await menuModel.updateMenuById(id, {
       name,
       category,
       available,
@@ -90,7 +97,7 @@ const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
 
-    const menu = await MenuModel.deleteMenuById(id);
+    const menu = await menuModel.deleteMenuById(id);
 
     res
       .status(200)
@@ -100,4 +107,4 @@ const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { getMenus, getMenu, createMenu, updateMenu, deleteMenu };
+export { getMenus, getMenu, postMenu, updateMenu, deleteMenu };

@@ -1,7 +1,7 @@
 //Menu Related Route
 import { Router } from "express";
 import {
-  createMenu,
+  postMenu,
   deleteMenu,
   getMenu,
   getMenus,
@@ -18,10 +18,10 @@ menuRouter.get("/", getMenus);
 menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post("/",isAuthenticated, isCaterer, createMenu);
+menuRouter.post("/", isAuthenticated, isCaterer, postMenu);
 
 //Update a Menu
-menuRouter.put("/:id",isAuthenticated, isCaterer, updateMenu);
+menuRouter.put("/:id", isAuthenticated, isCaterer, updateMenu);
 
 //Delete a Menu
 menuRouter.delete("/:id", isAuthenticated, isCaterer, deleteMenu);

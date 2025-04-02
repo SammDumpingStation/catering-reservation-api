@@ -11,50 +11,65 @@ import {
 } from "@TStypes/global.type.js";
 
 // Define the schemas for nested objects
-const nutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>({
-  calories: { type: String, default: "0 kcal", trim: true },
-  protein: { type: String, default: "0 g", trim: true },
-  fat: { type: String, default: "0 g", trim: true },
-  carbs: { type: String, default: "0 g", trim: true },
-  sodium: { type: String, default: "0 mg", trim: true },
-  fiber: { type: String, default: "0 g", trim: true },
-  sugar: { type: String, default: "0 g", trim: true },
-  cholesterol: { type: String, default: "0 mg", trim: true },
-});
+const nutritionInfoSchema = new mongoose.Schema<NutritionInfoProps>(
+  {
+    calories: { type: String, default: "0 kcal", trim: true },
+    protein: { type: String, default: "0 g", trim: true },
+    fat: { type: String, default: "0 g", trim: true },
+    carbs: { type: String, default: "0 g", trim: true },
+    sodium: { type: String, default: "0 mg", trim: true },
+    fiber: { type: String, default: "0 g", trim: true },
+    sugar: { type: String, default: "0 g", trim: true },
+    cholesterol: { type: String, default: "0 mg", trim: true },
+  },
+  { _id: false }
+);
 
-const priceInfoSchema = new mongoose.Schema<PriceInfoProps>({
-  minimumPax: {
-    type: Number,
-    required: true,
+const priceInfoSchema = new mongoose.Schema<PriceInfoProps>(
+  {
+    minimumPax: {
+      type: Number,
+      required: true,
+    },
+    maximumPax: {
+      type: Number,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    discount: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 1,
+    },
   },
-  maximumPax: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
-const reviewsSchema = new mongoose.Schema<ReviewsProps>({
-  rating: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+const reviewsSchema = new mongoose.Schema<ReviewsProps>(
+  {
+    rating: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 5,
+    },
+    comment: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      required: true,
+    },
   },
-  comment: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer",
-    required: true,
-  },
-});
+  { _id: false }
+);
 
 // Define the main Menu schema
 const menuSchema = new mongoose.Schema<MenuProps>(
@@ -133,7 +148,7 @@ const menuSchema = new mongoose.Schema<MenuProps>(
       trim: true,
     },
     nutritionInfo: nutritionInfoSchema,
-    reviews: reviewsSchema,
+    reviews: [reviewsSchema],
   },
   {
     timestamps: true,

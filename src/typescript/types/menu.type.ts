@@ -21,13 +21,14 @@ export interface PriceInfoProps {
   minimumPax: number;
   maximumPax: number;
   price: number;
+  discount: number;
 }
 
 export interface MenuProps extends Document {
   name: string;
   category: FoodCategoryProps;
   available: boolean;
-  spicy?: boolean;
+  spicy: boolean;
   shortDescription: string;
   fullDescription: string;
   ingredients: string[];
@@ -42,3 +43,5 @@ export interface MenuProps extends Document {
   nutritionInfo?: NutritionInfoProps;
   reviews?: ReviewsProps[];
 }
+
+export type createMenuProps = (data: MenuProps) => Promise<MenuProps>;
