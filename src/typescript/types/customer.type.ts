@@ -11,7 +11,6 @@ export interface CustomerProps extends Document {
   profileImage?: string;
 }
 
-
 export interface CustomerPropsDummy {
   _id: string;
   fullName: string;
@@ -21,7 +20,6 @@ export interface CustomerPropsDummy {
   role: "customer" | "admin";
   profileImage?: string;
 }
-
 
 export interface updateCustomerProps {
   id: string;

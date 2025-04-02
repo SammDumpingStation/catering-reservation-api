@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import Customer from "../schemas/customer.schema.js";
 import * as customerModel from "@models/customer.model.js";
+import { sanitizeCustomer } from "@utils/authUtils.js";
+import { createError } from "@utils/globalUtils.js";
 
 const getCustomers = async (
   req: Request,
@@ -9,10 +11,14 @@ const getCustomers = async (
 ) => {
   try {
     const customers = await Customer.find();
+    if (customers.length === 0) {
+      res.sendStatus(204);
+      return;
+    }
 
     res.status(200).json({
       success: true,
-      data: customers,
+      data: customers.map((customer) => sanitizeCustomer(customer)),
     });
   } catch (error) {
     next(error);
