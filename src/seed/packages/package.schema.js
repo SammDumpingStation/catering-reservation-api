@@ -52,6 +52,10 @@ const packageSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    available: {
+      type: Boolean,
+      required: true,
+    },
     pricePerPax: {
       type: Number,
       required: true,
@@ -113,6 +117,14 @@ const packageSchema = new mongoose.Schema(
       type: String,
       enum: ["BuffetPlated", "Event"],
       required: true, // Ensure this field is always defined
+    },
+    reviews: {
+      type: [String],
+      default: [],
+    },
+    pricePerPaxWithServiceCharge: {
+      type: Number,
+      required: true,
     },
   },
   { timestamps: true }
