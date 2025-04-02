@@ -6,7 +6,7 @@ import { createError } from "@utils/globalUtils.js";
 export const updateCustomerById: updateCustomerProps = async (id, data) => {
   const { fullName, email, password, contactNumber, profileImage } = data;
 
-  const existingCustomer = await Customer.findByIdAndUpdate(
+  return await Customer.findByIdAndUpdate(
     id,
     {
       fullName,
@@ -17,6 +17,4 @@ export const updateCustomerById: updateCustomerProps = async (id, data) => {
     },
     { new: true }
   );
-
-  return existingCustomer;
 };

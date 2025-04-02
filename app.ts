@@ -28,7 +28,7 @@ app.use("/api/packages", packageRouter);
 app.use("/api/reservations", reservationRouter);
 app.use("/api/payments", paymentRouter);
 
-// If there are errors occure it will go here.
+// If there are errors it will go here.
 app.use(errorMiddleware);
 
 await connectToDatabase((client) => {

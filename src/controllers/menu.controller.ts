@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Menu from "../schemas/menu.schema.js";
 import * as MenuModel from "../models/menu.model.js";
+import { createError } from "@utils/globalUtils.js";
 
 //Get All Menu
 const getMenus = async (req: Request, res: Response, next: NextFunction) => {
@@ -16,9 +17,9 @@ const getMenus = async (req: Request, res: Response, next: NextFunction) => {
 //Get a Menu
 const getMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
+    const menu = await Menu.findById(req.params.id);
 
-    const menu = await MenuModel.getMenuById(id);
+    if (!menu) throw createError("Menu doesn't exist", 404);
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {
