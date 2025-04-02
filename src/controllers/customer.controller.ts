@@ -27,9 +27,10 @@ const getCustomers = async (
 
 const getCustomer = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const customer = await customerModel.getCustomerById(req.params.id);
+    const customer = await Customer.findById(req.params.id);
+    if (!customer) throw createError("Customer doesn't exist", 404);
 
-    res.status(200).json({ success: true, data: customer });
+    res.status(200).json({ success: true, data: sanitizeCustomer(customer) });
   } catch (error) {
     next(error);
   }
