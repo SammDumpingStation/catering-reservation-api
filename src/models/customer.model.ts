@@ -1,5 +1,6 @@
 import Customer from "@schemas/customer.schema.js";
 import { updateCustomerProps } from "@TStypes/customer.type.js";
+import { encryptPassword } from "@utils/authUtils.js";
 import { createError } from "@utils/globalUtils.js";
 
 export const updateCustomerById: updateCustomerProps = async (id, data) => {
@@ -10,19 +11,12 @@ export const updateCustomerById: updateCustomerProps = async (id, data) => {
     {
       fullName,
       email,
-      password,
+      password: await encryptPassword(password),
       contactNumber,
       profileImage,
     },
     { new: true, runValidators: true }
   );
 
-  return existingCustomer;
-};
-
-export const deleteCustomerById = async (id: string) => {
-  const existingCustomer = await Customer.findByIdAndDelete(id);
-
-  if (!existingCustomer) throw createError("Customer doesn't exist", 404);
   return existingCustomer;
 };

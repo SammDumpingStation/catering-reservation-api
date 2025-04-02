@@ -50,7 +50,9 @@ const updateCustomer = async (
     const existingCustomer = await customerModel.updateCustomerById(id, data);
     if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
-    res.status(200).json({ success: true, data: existingCustomer });
+    res
+      .status(200)
+      .json({ success: true, data: sanitizeCustomer(existingCustomer) });
   } catch (error) {
     next(error);
   }
@@ -63,12 +65,14 @@ const deleteCustomer = async (
   next: NextFunction
 ) => {
   try {
-    const customer = await customerModel.deleteCustomerById(req.params.id);
+    const existingCustomer = await Customer.findByIdAndDelete(req.params.id);
+
+    if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
     res.status(200).json({
       success: true,
       message: "Customer deleted Successfully!",
-      customer, //this is optional for now
+      existingCustomer,
     });
   } catch (error) {
     next(error);
