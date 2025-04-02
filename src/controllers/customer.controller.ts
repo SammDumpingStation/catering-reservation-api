@@ -72,7 +72,7 @@ const deleteCustomer = async (
     res.status(200).json({
       success: true,
       message: "Customer deleted Successfully!",
-      existingCustomer,
+      data: sanitizeCustomer(existingCustomer),
     });
   } catch (error) {
     next(error);

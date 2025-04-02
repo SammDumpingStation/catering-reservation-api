@@ -38,12 +38,12 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
     //Deconstruct the json form from body
     const data = req.body;
 
-    const customer = await Customer.findOne({ email: data.email });
-    if (!customer) throw createError("Customer doesn't exist", 404);
+    const existingCustomer = await Customer.findOne({ email: data.email });
+    if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
     const isPasswordValid = await validatePassword(
       data.password,
-      customer.password
+      existingCustomer.password
     );
     if (!isPasswordValid) throw createError("Invalid password", 401);
 
@@ -51,8 +51,8 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
       success: true,
       message: "Customer signed in successfully",
       data: {
-        token: createToken(customer._id, customer.role),
-        customer: sanitizeCustomer(customer),
+        token: createToken(existingCustomer._id, existingCustomer.role),
+        customer: sanitizeCustomer(existingCustomer),
       },
     });
   } catch (error) {
