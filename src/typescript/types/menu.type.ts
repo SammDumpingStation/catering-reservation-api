@@ -45,3 +45,19 @@ export interface MenuProps extends Document {
 }
 
 export type createMenuProps = (data: MenuProps) => Promise<MenuProps>;
+
+export type updateMenuByIdProps = (
+  id: string,
+  data: Partial<
+    Omit<
+      MenuProps,
+      | "_id"
+      | "rating"
+      | "ratingCount"
+      | "reviews"
+      | "createdAt"
+      | "updatedAt"
+      | "__v"
+    >
+  >
+) => Promise<MenuProps | null>;

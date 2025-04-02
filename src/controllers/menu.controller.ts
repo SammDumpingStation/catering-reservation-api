@@ -7,6 +7,10 @@ import { createError } from "@utils/globalUtils.js";
 const getMenus = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const menus = await Menu.find();
+    if (menus.length === 0) {
+      res.sendStatus(204);
+      return;
+    }
 
     res.status(200).json({ success: true, data: menus });
   } catch (error) {
@@ -49,49 +53,22 @@ const postMenu = async (req: Request, res: Response, next: NextFunction) => {
 const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      category,
-      available,
-      shortDescription,
-      fullDescription,
-      ingredients,
-      allergens,
-      preparationMethod,
-      prices,
-      regularPricePerPax,
-      imageUrl,
-      rating,
-      ratingCount,
-      spicy,
-      perServing,
-      nutritionInfo,
-    } = req.body;
+    const data = req.body;
 
-    const menu = await menuModel.updateMenuById(id, {
-      name,
-      category,
-      available,
-      shortDescription,
-      fullDescription,
-      ingredients,
-      allergens,
-      preparationMethod,
-      prices,
-      regularPricePerPax,
-      imageUrl,
-      rating,
-      ratingCount,
-      spicy,
-      perServing,
-      nutritionInfo,
-    });
+    if (Object.keys(data).length === 0) {
+      res.sendStatus(204);
+      return;
+    }
+
+    const menu = await menuModel.updateMenuById(id, data);
+    if (!menu) throw createError("Menu doesn't exist", 404);
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {
     next(error);
   }
 };
+
 //Delete a Menu
 const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
   try {
