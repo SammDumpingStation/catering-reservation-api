@@ -14,6 +14,17 @@ const getPackages = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+//Get All Featured Package
+const featuredPackages = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const packages = await Package.find({packageType: "BuffetPlated"});
+
+    res.status(200).json({ success: true, data: packages });
+  } catch (error) {
+    next(error);
+  }
+};
+
 //Get a Package
 const getPackage = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -102,4 +113,4 @@ const deletePackage = async (
   }
 };
 
-export { getPackages, getPackage, createPackage, updatePackage, deletePackage };
+export { getPackages, featuredPackages, getPackage, createPackage, updatePackage, deletePackage };

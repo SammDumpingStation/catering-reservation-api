@@ -3,6 +3,7 @@ import { Router } from "express";
 import {
   createPackage,
   deletePackage,
+  featuredPackages,
   getPackage,
   getPackages,
   updatePackage,
@@ -13,6 +14,9 @@ const packageRouter = Router();
 
 //Get all Catering Package
 packageRouter.get("/", getPackages);
+
+//Get all  Featured Catering Package
+packageRouter.get("/featured", featuredPackages);
 
 //Get Catering Package Detail
 packageRouter.get("/:id", getPackage);
