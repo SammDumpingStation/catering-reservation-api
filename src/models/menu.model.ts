@@ -1,10 +1,5 @@
 import Menu from "@schemas/menu.schema.js";
-import {
-  createMenuProps,
-  MenuProps,
-  updateMenuByIdProps,
-} from "@TStypes/menu.type.js";
-import { createError } from "@utils/globalUtils.js";
+import { createMenuProps, updateMenuByIdProps } from "@TStypes/menu.type.js";
 
 export const createMenu: createMenuProps = async (data) => {
   const payload = {
@@ -49,11 +44,4 @@ export const updateMenuById: updateMenuByIdProps = async (id, data) => {
     new: true,
     runValidators: true,
   });
-};
-
-export const deleteMenuById = async (id: string) => {
-  const existingMenu = await Menu.findByIdAndDelete(id);
-
-  if (!existingMenu) throw createError("Menu doesn't exist", 404);
-  return existingMenu;
 };
