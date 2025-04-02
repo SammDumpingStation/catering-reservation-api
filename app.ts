@@ -31,16 +31,16 @@ app.use("/api/payments", paymentRouter);
 // If there are errors occure it will go here.
 app.use(errorMiddleware);
 
-// await connectToDatabase((client) => {
-//   if (!client) return;
+await connectToDatabase((client) => {
+  if (!client) return;
 
-//   app.listen(PORT, () => {
-//     console.log(`Server Running on http://localhost:${PORT}`);
-//   });
-// });
-
-const client = await connectToDatabase();
-if (client)
   app.listen(PORT, () => {
     console.log(`Server Running on http://localhost:${PORT}`);
   });
+});
+
+// const client = await connectToDatabase();
+// if (client)
+//   app.listen(PORT, () => {
+//     console.log(`Server Running on http://localhost:${PORT}`);
+//   });

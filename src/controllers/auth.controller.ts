@@ -1,23 +1,25 @@
 import { Request, Response, NextFunction } from "express";
 import * as authModel from "@models/auth.model.js";
+import { signUpProps } from "@TStypes/auth.type.js";
+import Customer from "@schemas/customer.schema.js";
+import { createError } from "@utils/globalUtils.js";
+import { createToken } from "@utils/authUtils.js";
 
 //Implement Sign-up Logic
 const signUp = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { role, fullName, email, password } = req.body;
+    const data = req.body;
 
-    const { token, customer } = await authModel.createAccount({
-      fullName,
-      email,
-      password,
-      role,
-    });
+    const existingCustomer = await Customer.findOne({ email: data.email });
+    if (existingCustomer) throw createError("Customer already exists", 400);
+
+    const { customer } = await authModel.createAccount(data);
 
     res.status(201).json({
       success: true,
       message: "Customer created successfully",
       data: {
-        token,
+        token: createToken(customer._id, customer.role),
         customer,
       },
     });
@@ -32,10 +34,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
     //Deconstruct the json form from body
     const { email, password } = req.body;
 
-    const { token, customer } = await authModel.signInAccount({
-      email,
-      password,
-    });
+    const { token, customer } = await authModel.signInAccount(email, password);
 
     res.status(201).json({
       success: true,

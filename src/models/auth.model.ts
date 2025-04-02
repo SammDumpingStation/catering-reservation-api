@@ -3,33 +3,24 @@ import {
   encryptPassword,
   createToken,
   validatePassword,
+  sanitizeCustomer,
 } from "@utils/authUtils.js";
 import { signInProps, signUpProps } from "@TStypes/auth.type.js";
 import { createError } from "@utils/globalUtils.js";
 
-export const createAccount = async ({
-  fullName,
-  email,
-  password,
-  role,
-}: signUpProps) => {
-  const existingCustomer = await Customer.findOne({ email });
-  if (existingCustomer) throw createError("Customer already exists", 400);
-
-  const newCustomer = await Customer.create({
-    fullName,
-    email,
-    password: await encryptPassword(password),
-    role,
-  });
-
+export const createAccount: signUpProps = async (data) => {
   return {
-    token: createToken(newCustomer._id as string, role as string),
-    customer: newCustomer,
+    customer: sanitizeCustomer(
+      await Customer.create({
+        fullName: data.fullName,
+        email: data.email,
+        password: await encryptPassword(data.password),
+      })
+    ),
   };
 };
 
-export const signInAccount = async ({ email, password }: signInProps) => {
+export const signInAccount: signInProps = async (email, password) => {
   const customer = await Customer.findOne({ email });
   if (!customer) throw createError("Customer doesn't exist", 404);
 
@@ -46,3 +37,43 @@ export const signOutAccount = async (token: string) => {
   if (!token) throw createError("Not authenticated", 401);
   return { message: "Logged out successfully" };
 };
+
+// export const createAccount = async ({
+//   fullName,
+//   email,
+//   password,
+//   role,
+// }: signUpProps) => {
+//   const existingCustomer = await Customer.findOne({ email });
+//   if (existingCustomer) throw createError("Customer already exists", 400);
+
+//   const newCustomer = await Customer.create({
+//     fullName,
+//     email,
+//     password: await encryptPassword(password),
+//     role,
+//   });
+
+//   return {
+//     token: createToken(newCustomer._id as string, role as string),
+//     customer: newCustomer,
+//   };
+// };
+
+// export const signInAccount = async ({ email, password }: signInProps) => {
+//   const customer = await Customer.findOne({ email });
+//   if (!customer) throw createError("Customer doesn't exist", 404);
+
+//   const isPasswordValid = await validatePassword(password, customer.password);
+//   if (!isPasswordValid) throw createError("Invalid password", 401);
+
+//   return {
+//     token: createToken(customer._id as string, customer.role as string),
+//     customer,
+//   };
+// };
+
+// export const signOutAccount = async (token: string) => {
+//   if (!token) throw createError("Not authenticated", 401);
+//   return { message: "Logged out successfully" };
+// };

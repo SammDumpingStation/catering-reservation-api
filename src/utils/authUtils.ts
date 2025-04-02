@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/env.js";
 import bcrypt from "bcryptjs";
+import { CustomerProps } from "@TStypes/customer.type.js";
 
 //Create access token
 export const createToken = (customerId: string, role: string): string =>
@@ -15,3 +16,9 @@ export const validatePassword = async (
   inputPassword: string,
   hashedPassword: string
 ): Promise<boolean> => await bcrypt.compare(inputPassword, hashedPassword);
+
+// Prevent to return the password
+export const sanitizeCustomer = (customer: CustomerProps) => {
+  const { password, ...sanitizedCustomer } = customer.toObject();
+  return sanitizedCustomer;
+};

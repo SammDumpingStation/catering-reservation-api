@@ -30,7 +30,14 @@ export const validateRequest = (
   next: NextFunction
 ) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) throw createError(errors.array()[0].msg, 400);
+  if (!errors.isEmpty()) {
+    res.status(400).json({
+      success: false,
+      error: "Validation failed",
+      details: errors.array().map((err) => err.msg), // Return all error messages
+    });
+    return;
+  }
 
   next();
 }; //THIS FUNCTION RETURN ALL ERROR MESSAGES

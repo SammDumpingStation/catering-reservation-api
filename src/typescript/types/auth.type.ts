@@ -1,11 +1,15 @@
-export type signUpProps = {
+import { CustomerProps } from "./customer.type.js";
+
+export type signUpProps = (data: {
   fullName: string;
   email: string;
   password: string;
-  role: "customer" | "caterer";
-};
+}) => Promise<{ customer: CustomerProps }>;
 
-export type signInProps = {
-  email: string;
-  password: string;
-};
+export type signInProps = (
+  email: string,
+  password: string
+) => Promise<{
+  token: string;
+  customer: CustomerProps;
+}>;
