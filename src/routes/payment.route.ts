@@ -13,7 +13,6 @@ import {
   isAuthenticated,
   isCaterer,
   isCustomer,
-  isPaymentOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
 
 const paymentRouter = express.Router();
