@@ -87,11 +87,11 @@ const menuSchema = new mongoose.Schema<MenuProps>(
     },
     available: {
       type: Boolean,
-      default: true,
+      required: true,
     },
     spicy: {
       type: Boolean,
-      default: false,
+      required: true,
     },
     shortDescription: {
       type: String,

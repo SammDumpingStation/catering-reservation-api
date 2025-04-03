@@ -10,6 +10,7 @@ export const customerValidationRules = {
       .isString()
       .withMessage("Full Name must be a valid string")
       .bail()
+      .trim()
       .isLength({ min: 2, max: 50 })
       .withMessage("Full Name must be between 2 and 50 characters"),
 
@@ -28,6 +29,7 @@ export const customerValidationRules = {
       .isString()
       .withMessage("Password must be a valid string")
       .bail()
+      .trim()
       .isLength({ min: 6 })
       .withMessage("Password must be at least 6 characters long"),
 

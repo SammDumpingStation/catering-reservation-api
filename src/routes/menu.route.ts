@@ -8,6 +8,7 @@ import {
   updateMenu,
 } from "@controllers/menu.controller.js";
 import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
+import { menuValidationRules } from "@middlewares/validators/menu.validator.js";
 
 const menuRouter = Router();
 
@@ -18,7 +19,13 @@ menuRouter.get("/", getMenus);
 menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post("/", isAuthenticated, isCaterer, postMenu);
+menuRouter.post(
+  "/",
+  menuValidationRules.create,
+  isAuthenticated,
+  isCaterer,
+  postMenu
+);
 
 //Update a Menu
 menuRouter.put("/:id", isAuthenticated, isCaterer, updateMenu);
