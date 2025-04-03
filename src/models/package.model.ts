@@ -1,12 +1,12 @@
 import Package from "@schemas/package.schema.js";
 import {
   CateringPackagesProps,
-  createPackageProps,
-  updatePackageByIdProps,
+  CreatePackageProps,
+  UpdatePackageByIdProps,
 } from "@TStypes/package.type.js";
 import { createError } from "@utils/globalUtils.js";
 
-export const createPackage: createPackageProps = async (data) => {
+export const createPackage: CreatePackageProps = async (data) => {
   const payload = {
     name: data.name,
     description: data.description,
@@ -28,7 +28,7 @@ export const createPackage: createPackageProps = async (data) => {
   return await Package.create(payload);
 };
 
-export const updatePackageById: updatePackageByIdProps = async (id, data) => {
+export const updatePackageById: UpdatePackageByIdProps = async (id, data) => {
   const updatedData = {
     name: data.name,
     description: data.description,
@@ -51,11 +51,4 @@ export const updatePackageById: updatePackageByIdProps = async (id, data) => {
     new: true,
     runValidators: true,
   });
-};
-
-export const deletePackageById = async (id: string) => {
-  const pkg = await Package.findByIdAndDelete(id);
-
-  if (!pkg) throw createError("Package doesn't exist", 404);
-  return pkg;
 };

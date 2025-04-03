@@ -1,5 +1,6 @@
 import { Document, Types } from "mongoose";
 import { FoodCategoryProps, ReviewsProps } from "./global.type.js";
+import { NextFunction } from "express";
 
 export interface PackageOption {
   category: FoodCategoryProps;
@@ -36,11 +37,11 @@ export interface CateringPackagesProps extends Document {
   reviews?: ReviewsProps[];
 }
 
-export type createPackageProps = (
+export type CreatePackageProps = (
   data: CateringPackagesProps
 ) => Promise<CateringPackagesProps>;
 
-export type updatePackageByIdProps = (
+export type UpdatePackageByIdProps = (
   id: string,
   data: Partial<
     Omit<

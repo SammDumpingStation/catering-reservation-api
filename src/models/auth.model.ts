@@ -5,10 +5,10 @@ import {
   validatePassword,
   sanitizeCustomer,
 } from "@utils/authUtils.js";
-import { signUpProps } from "@TStypes/auth.type.js";
+import { SignUpProps } from "@TStypes/auth.type.js";
 import { createError } from "@utils/globalUtils.js";
 
-export const createAccount: signUpProps = async (data) => {
+export const createAccount: SignUpProps = async (data) => {
   return {
     customer: await Customer.create({
       fullName: data.fullName,

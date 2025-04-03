@@ -21,7 +21,7 @@ export interface CustomerPropsDummy {
   profileImage?: string;
 }
 
-export type updateCustomerProps = (
+export type UpdateCustomerProps = (
   id: string,
   data: {
     fullName: string;

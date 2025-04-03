@@ -1,6 +1,6 @@
 import { CustomerProps } from "./customer.type.js";
 
-export type signUpProps = (data: {
+export type SignUpProps = (data: {
   fullName: string;
   email: string;
   password: string;

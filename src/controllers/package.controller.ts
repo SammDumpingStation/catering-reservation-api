@@ -95,11 +95,15 @@ const deletePackage = async (
   next: NextFunction
 ) => {
   try {
-    const { id } = req.params;
-    const pkg = await packageModel.deletePackageById(id);
-    res
-      .status(200)
-      .json({ success: true, message: "Package deleted Successfully!" });
+    const pkg = await Package.findByIdAndDelete(req.params.id);
+
+    if (!pkg) throw createError("Package doesn't exist", 404);
+
+    res.status(200).json({
+      success: true,
+      message: `${pkg?.name} deleted Successfully!`,
+      data: pkg,
+    });
   } catch (error) {
     next(error);
   }

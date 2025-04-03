@@ -1,7 +1,7 @@
 import Menu from "@schemas/menu.schema.js";
-import { createMenuProps, updateMenuByIdProps } from "@TStypes/menu.type.js";
+import { CreateMenuProps, UpdateMenuByIdProps } from "@TStypes/menu.type.js";
 
-export const createMenu: createMenuProps = async (data) => {
+export const createMenu: CreateMenuProps = async (data) => {
   const payload = {
     name: data.name,
     category: data.category,
@@ -22,7 +22,7 @@ export const createMenu: createMenuProps = async (data) => {
   return await Menu.create(payload);
 };
 
-export const updateMenuById: updateMenuByIdProps = async (id, data) => {
+export const updateMenuById: UpdateMenuByIdProps = async (id, data) => {
   const updatedData = {
     name: data.name,
     category: data.category,

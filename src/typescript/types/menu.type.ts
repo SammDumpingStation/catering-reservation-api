@@ -44,9 +44,9 @@ export interface MenuProps extends Document {
   reviews?: ReviewsProps[];
 }
 
-export type createMenuProps = (data: MenuProps) => Promise<MenuProps>;
+export type CreateMenuProps = (data: MenuProps) => Promise<MenuProps>;
 
-export type updateMenuByIdProps = (
+export type UpdateMenuByIdProps = (
   id: string,
   data: Partial<
     Omit<
