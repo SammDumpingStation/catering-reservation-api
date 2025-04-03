@@ -23,10 +23,22 @@ packageRouter.get("/featured", featuredPackages);
 packageRouter.get("/:id", getPackage);
 
 //Create a new Catering Package
-packageRouter.post("/", packageValidationRules.create, postPackage);
+packageRouter.post(
+  "/",
+  packageValidationRules.create,
+  isAuthenticated,
+  isCaterer,
+  postPackage
+);
 
 //Update a Catering Package
-packageRouter.put("/:id", isAuthenticated, isCaterer, updatePackage);
+packageRouter.put(
+  "/:id",
+  packageValidationRules.update,
+  isAuthenticated,
+  isCaterer,
+  updatePackage
+);
 
 //Delete a Catering Package
 packageRouter.delete("/:id", isAuthenticated, isCaterer, deletePackage);
