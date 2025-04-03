@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import Package from "../schemas/package.schema.js";
 import * as PackageModel from "@models/package.model.js";
 import { checkIfExists } from "../utils/checkExistence.js";
+import { createError } from "@utils/globalUtils.js";
 
 //Get All Package
 const getPackages = async (req: Request, res: Response, next: NextFunction) => {
@@ -38,9 +39,9 @@ const featuredPackages = async (
 //Get a Package
 const getPackage = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.params;
+    const pkg = await Package.findById(req.params.id);
+    if (!pkg) throw createError("Package doesn't exist", 404);
 
-    const pkg = await PackageModel.getPackageById(id);
     res.status(200).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
