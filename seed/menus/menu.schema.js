@@ -16,7 +16,7 @@ export const CATEGORIES = [
 export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
 // Define the schemas for nested objects
-const NutritionInfoSchema = new mongoose.Schema(
+const nutritionInfoSchema = new mongoose.Schema(
   {
     calories: { type: String, default: "0 kcal", trim: true },
     protein: { type: String, default: "0 g", trim: true },
@@ -30,7 +30,7 @@ const NutritionInfoSchema = new mongoose.Schema(
   { _id: false }
 );
 
-const PriceInfoSchema = new mongoose.Schema(
+const priceInfoSchema = new mongoose.Schema(
   {
     minimumPax: {
       type: Number,
@@ -43,6 +43,12 @@ const PriceInfoSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: true,
+    },
+    discount: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 1,
     },
   },
   { _id: false }
@@ -64,7 +70,11 @@ const menuSchema = new mongoose.Schema(
     },
     available: {
       type: Boolean,
-      default: true,
+      required: true,
+    },
+    spicy: {
+      type: Boolean,
+      required: true,
     },
     shortDescription: {
       type: String,
@@ -86,7 +96,7 @@ const menuSchema = new mongoose.Schema(
     },
     allergens: {
       type: [String],
-      enum: [...ALLERGENS, "None"],
+      enum: [...ALLERGENS],
       default: ["None"],
     },
     preparationMethod: {
@@ -94,10 +104,13 @@ const menuSchema = new mongoose.Schema(
       required: [true, "Please provide preparation method"],
       trim: true,
     },
-    prices: [PriceInfoSchema],
     regularPricePerPax: {
       type: Number,
       required: [true, "Please provide regular price per person"],
+    },
+    prices: {
+      type: [priceInfoSchema],
+      required: true,
     },
     imageUrl: {
       type: String,
@@ -112,16 +125,12 @@ const menuSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    spicy: {
-      type: Boolean,
-      default: false,
-    },
     perServing: {
       type: String,
       required: [true, "Please provide serving size information"],
       trim: true,
     },
-    nutritionInfo: NutritionInfoSchema,
+    nutritionInfo: nutritionInfoSchema,
   },
   {
     timestamps: true,

@@ -13,7 +13,7 @@ export const PACKAGE_CATEGORIES = [
   "Beverage",
 ];
 
-const PackageOptionSchema = new mongoose.Schema(
+const packageOptionSchema = new mongoose.Schema(
   {
     category: {
       type: String,
@@ -29,7 +29,7 @@ const PackageOptionSchema = new mongoose.Schema(
   { _id: false }
 );
 
-const InclusionSchema = new mongoose.Schema(
+const inclusionSchema = new mongoose.Schema(
   {
     typeOfCustomer: {
       type: String,
@@ -66,6 +66,10 @@ const packageSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    pricePerPaxWithServiceCharge: {
+      type: Number,
+      required: true,
+    },
     minimumPax: {
       type: Number,
       required: true,
@@ -79,12 +83,34 @@ const packageSchema = new mongoose.Schema(
       required: true,
     },
     options: {
-      type: [PackageOptionSchema],
+      type: [packageOptionSchema],
       required: true,
     },
     inclusions: {
-      type: [InclusionSchema],
+      type: [inclusionSchema],
       required: true,
+    },
+    serviceHours: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    serviceCharge: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    eventType: {
+      type: String,
+      enum: ["Birthday", "Wedding", "Corporate", "Graduation"],
+      required: function () {
+        return this.packageType === "Event"; // `eventType` is required only if `packageType` is "Event"
+      },
+    },
+    packageType: {
+      type: String,
+      enum: ["BuffetPlated", "Event"],
+      required: true, // Ensure this field is always defined
     },
     imageUrl: {
       type: String,
@@ -101,36 +127,6 @@ const packageSchema = new mongoose.Schema(
       type: Number,
       default: 0,
       min: 0,
-    },
-    serviceHours: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    serviceCharge: {
-      type: Number,
-      default: 0,
-      min: 0,
-    },
-    eventType: {
-      type: String,
-      enum: ["Birthday", "Wedding", "Corporate", "Graduation"],
-      required: function () {
-        return this.packageType === "Event"; // `eventType` is required only if `packageType` is "Event"
-      },
-    },
-    packageType: {
-      type: String,
-      enum: ["BuffetPlated", "Event"],
-      required: true, // Ensure this field is always defined
-    },
-    reviews: {
-      type: [String],
-      default: [],
-    },
-    pricePerPaxWithServiceCharge: {
-      type: Number,
-      required: true,
     },
   },
   { timestamps: true }
