@@ -25,7 +25,7 @@ packageRouter.get("/:id", getPackage);
 packageRouter.post("/", isAuthenticated, isCaterer, postPackage);
 
 //Update a Catering Package
-packageRouter.put("/:id", isAuthenticated, isCaterer, updatePackage);
+packageRouter.put("/:id", updatePackage);
 
 //Delete a Catering Package
 packageRouter.delete("/:id", isAuthenticated, isCaterer, deletePackage);

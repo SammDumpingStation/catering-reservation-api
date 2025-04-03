@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Package from "../schemas/package.schema.js";
 import * as packageModel from "@models/package.model.js";
-import { checkIfExists } from "../utils/checkExistence.js";
 import { createError } from "@utils/globalUtils.js";
 
 //Get All Package
@@ -52,11 +51,11 @@ const getPackage = async (req: Request, res: Response, next: NextFunction) => {
 const postPackage = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const data = req.body;
-    const existingPacakge = await Package.findOne({
+    const existingPackage = await Package.findOne({
       name: data.name,
       packageType: data.packageType,
     });
-    if (existingPacakge) throw createError("Package already exists", 400);
+    if (existingPackage) throw createError("Package already exists", 400);
 
     const pkg = await Package.create(data);
 
@@ -74,37 +73,16 @@ const updatePackage = async (
 ) => {
   try {
     const { id } = req.params;
-    const {
-      name,
-      description,
-      pricePerPax,
-      minimumPax,
-      recommendedPax,
-      maximumPax,
-      serviceHours,
-      serviceCharge,
-      options,
-      inclusions,
-      imageUrl,
-      rating,
-      ratingCount,
-    } = req.body;
+    const data = req.body;
 
-    const pkg = await packageModel.updatePackageById(id, {
-      name,
-      description,
-      pricePerPax,
-      minimumPax,
-      recommendedPax,
-      maximumPax,
-      serviceHours,
-      serviceCharge,
-      options,
-      inclusions,
-      imageUrl,
-      rating,
-      ratingCount,
-    });
+    if (Object.keys(data).length === 0) {
+      res.sendStatus(204);
+      return;
+    }
+
+    const pkg = await packageModel.updatePackageById(id, data);
+    if (!pkg) throw createError("Package doesn't exist", 404);
+
     res.status(200).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
