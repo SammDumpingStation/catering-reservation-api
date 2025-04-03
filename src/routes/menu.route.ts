@@ -28,7 +28,13 @@ menuRouter.post(
 );
 
 //Update a Menu
-menuRouter.put("/:id", isAuthenticated, isCaterer, updateMenu);
+menuRouter.put(
+  "/:id",
+  menuValidationRules.update,
+  isAuthenticated,
+  isCaterer,
+  updateMenu
+);
 
 //Delete a Menu
 menuRouter.delete("/:id", isAuthenticated, isCaterer, deleteMenu);
