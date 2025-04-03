@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 
 export const CATEGORIES = [
@@ -17,31 +16,37 @@ export const CATEGORIES = [
 export const ALLERGENS = ["Gluten", "Milk", "Eggs", "Nuts", "Shellfish", "Soy"];
 
 // Define the schemas for nested objects
-const NutritionInfoSchema = new mongoose.Schema({
-  calories: { type: String, default: "0 kcal", trim: true },
-  protein: { type: String, default: "0 g", trim: true },
-  fat: { type: String, default: "0 g", trim: true },
-  carbs: { type: String, default: "0 g", trim: true },
-  sodium: { type: String, default: "0 mg", trim: true },
-  fiber: { type: String, default: "0 g", trim: true },
-  sugar: { type: String, default: "0 g", trim: true },
-  cholesterol: { type: String, default: "0 mg", trim: true },
-});
+const NutritionInfoSchema = new mongoose.Schema(
+  {
+    calories: { type: String, default: "0 kcal", trim: true },
+    protein: { type: String, default: "0 g", trim: true },
+    fat: { type: String, default: "0 g", trim: true },
+    carbs: { type: String, default: "0 g", trim: true },
+    sodium: { type: String, default: "0 mg", trim: true },
+    fiber: { type: String, default: "0 g", trim: true },
+    sugar: { type: String, default: "0 g", trim: true },
+    cholesterol: { type: String, default: "0 mg", trim: true },
+  },
+  { _id: false }
+);
 
-const PriceInfoSchema = new mongoose.Schema({
-  minimumPax: {
-    type: Number,
-    required: true,
+const PriceInfoSchema = new mongoose.Schema(
+  {
+    minimumPax: {
+      type: Number,
+      required: true,
+    },
+    maximumPax: {
+      type: Number,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
   },
-  maximumPax: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-});
+  { _id: false }
+);
 
 // Define the main Menu schema
 const menuSchema = new mongoose.Schema(

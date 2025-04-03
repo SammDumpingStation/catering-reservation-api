@@ -13,31 +13,37 @@ export const PACKAGE_CATEGORIES = [
   "Beverage",
 ];
 
-const PackageOptionSchema = new mongoose.Schema({
-  category: {
-    type: String,
-    enum: PACKAGE_CATEGORIES,
-    required: true,
+const PackageOptionSchema = new mongoose.Schema(
+  {
+    category: {
+      type: String,
+      enum: PACKAGE_CATEGORIES,
+      required: true,
+    },
+    count: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
   },
-  count: {
-    type: Number,
-    required: true,
-    min: 1,
-  },
-});
+  { _id: false }
+);
 
-const InclusionSchema = new mongoose.Schema({
-  typeOfCustomer: {
-    type: String,
-    enum: ["Both", "Plated", "Buffet"],
-    required: true,
+const InclusionSchema = new mongoose.Schema(
+  {
+    typeOfCustomer: {
+      type: String,
+      enum: ["Both", "Plated", "Buffet"],
+      required: true,
+    },
+    includes: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
-  includes: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
+  { _id: false }
+);
 
 const packageSchema = new mongoose.Schema(
   {
