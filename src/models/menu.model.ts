@@ -14,9 +14,9 @@ export const createMenu: createMenuProps = async (data) => {
     preparationMethod: data.preparationMethod,
     regularPricePerPax: data.regularPricePerPax,
     prices: data.prices,
-    imageUrl: data.imageUrl,
+    imageUrl: data?.imageUrl,
     perServing: data.perServing,
-    nutritionInfo: data.nutritionInfo,
+    nutritionInfo: data?.nutritionInfo,
   };
 
   return await Menu.create(payload);

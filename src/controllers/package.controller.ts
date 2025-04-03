@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import Package from "../schemas/package.schema.js";
-import * as PackageModel from "@models/package.model.js";
+import * as packageModel from "@models/package.model.js";
 import { checkIfExists } from "../utils/checkExistence.js";
 import { createError } from "@utils/globalUtils.js";
 
@@ -49,13 +49,16 @@ const getPackage = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Create a Package
-const createPackage = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const postPackage = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const pkg = await Package.create(req.body);
+    const data = req.body;
+    const existingPacakge = await Package.findOne({
+      name: data.name,
+      packageType: data.packageType,
+    });
+    if (existingPacakge) throw createError("Package already exists", 400);
+
+    const pkg = await Package.create(data);
 
     res.status(201).json({ success: true, data: pkg });
   } catch (error) {
@@ -87,7 +90,7 @@ const updatePackage = async (
       ratingCount,
     } = req.body;
 
-    const pkg = await PackageModel.updatePackageById(id, {
+    const pkg = await packageModel.updatePackageById(id, {
       name,
       description,
       pricePerPax,
@@ -115,7 +118,7 @@ const deletePackage = async (
 ) => {
   try {
     const { id } = req.params;
-    const pkg = await PackageModel.deletePackageById(id);
+    const pkg = await packageModel.deletePackageById(id);
     res
       .status(200)
       .json({ success: true, message: "Package deleted Successfully!" });
@@ -128,7 +131,7 @@ export {
   getPackages,
   featuredPackages,
   getPackage,
-  createPackage,
+  postPackage,
   updatePackage,
   deletePackage,
 };

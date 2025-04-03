@@ -35,3 +35,23 @@ export interface CateringPackagesProps extends Document {
   ratingCount?: number;
   reviews?: ReviewsProps[];
 }
+
+export type createPackageProps = (
+  data: CateringPackagesProps
+) => Promise<CateringPackagesProps>;
+
+export type updatePackageByIdProps = (
+  id: string,
+  data: Partial<
+    Omit<
+      CateringPackagesProps,
+      | "_id"
+      | "rating"
+      | "ratingCount"
+      | "reviews"
+      | "createdAt"
+      | "updatedAt"
+      | "__v"
+    >
+  >
+) => Promise<CateringPackagesProps | null>;

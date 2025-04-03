@@ -1,7 +1,7 @@
 //Package Related Routes
 import { Router } from "express";
 import {
-  createPackage,
+  postPackage,
   deletePackage,
   featuredPackages,
   getPackage,
@@ -22,7 +22,7 @@ packageRouter.get("/featured", featuredPackages);
 packageRouter.get("/:id", getPackage);
 
 //Create a new Catering Package
-packageRouter.post("/", isAuthenticated, isCaterer, createPackage);
+packageRouter.post("/", isAuthenticated, isCaterer, postPackage);
 
 //Update a Catering Package
 packageRouter.put("/:id", isAuthenticated, isCaterer, updatePackage);
