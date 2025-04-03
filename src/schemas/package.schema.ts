@@ -2,54 +2,63 @@ import { FOOD_CATEGORIES, ReviewsProps } from "@TStypes/global.type.js";
 import {
   CateringPackagesProps,
   InclusionsProps,
-  PackageOption,
+  PackageOptionProps,
 } from "@TStypes/package.type.js";
 import mongoose from "mongoose";
 
-const packageOptionSchema = new mongoose.Schema<PackageOption>({
-  category: {
-    type: String,
-    enum: FOOD_CATEGORIES,
-    required: true,
+const packageOptionSchema = new mongoose.Schema<PackageOptionProps>(
+  {
+    category: {
+      type: String,
+      enum: FOOD_CATEGORIES,
+      required: true,
+    },
+    count: {
+      type: Number,
+      required: true,
+      min: 1,
+    },
   },
-  count: {
-    type: Number,
-    required: true,
-    min: 1,
-  },
-});
+  { _id: false }
+);
 
-const inclusionSchema = new mongoose.Schema<InclusionsProps>({
-  typeOfCustomer: {
-    type: String,
-    enum: ["Both", "Plated", "Buffet"],
-    required: true,
+const inclusionSchema = new mongoose.Schema<InclusionsProps>(
+  {
+    typeOfCustomer: {
+      type: String,
+      enum: ["Both", "Plated", "Buffet"],
+      required: true,
+    },
+    includes: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
-  includes: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
+  { _id: false }
+);
 
-const reviewsSchema = new mongoose.Schema<ReviewsProps>({
-  rating: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 5,
+const reviewsSchema = new mongoose.Schema<ReviewsProps>(
+  {
+    rating: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 5,
+    },
+    comment: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      required: true,
+    },
   },
-  comment: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Customer",
-    required: true,
-  },
-});
+  { _id: false }
+);
 
 const packageSchema = new mongoose.Schema<CateringPackagesProps>(
   {

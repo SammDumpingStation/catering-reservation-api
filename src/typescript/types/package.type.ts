@@ -1,20 +1,19 @@
 import { Document, Types } from "mongoose";
 import { FoodCategoryProps, ReviewsProps } from "./global.type.js";
-import { NextFunction } from "express";
 
-export interface PackageOption {
+export interface PackageOptionProps {
   category: FoodCategoryProps;
   count: number;
 }
 
 export type InclusionsProps = {
-  typeOfCustomer: "Both" | "Plated" | "Buffet";
+  typeOfCustomer: "Both" | "Buffet" | "Plated";
   includes: string;
 };
 
-export type EventType = "Birthday" | "Wedding" | "Corporate" | "Graduation";
+export type EventProps = "Birthday" | "Wedding" | "Corporate" | "Graduation";
 
-export type PackageType = "BuffetPlated" | "Event";
+export type PackageProps = "BuffetPlated" | "Event";
 
 export interface CateringPackagesProps extends Document {
   name: string;
@@ -25,12 +24,12 @@ export interface CateringPackagesProps extends Document {
   minimumPax: number;
   recommendedPax: number;
   maximumPax: number;
-  options: PackageOption[];
+  options: PackageOptionProps[];
   inclusions: InclusionsProps[];
   serviceHours: number;
   serviceCharge: number;
-  eventType?: EventType;
-  packageType: PackageType;
+  eventType?: EventProps;
+  packageType: PackageProps;
   imageUrl?: string;
   rating?: number;
   ratingCount?: number;

@@ -9,6 +9,7 @@ import {
   updatePackage,
 } from "@controllers/package.controller.js";
 import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
+import { packageValidationRules } from "@middlewares/validators/package.validator.js";
 
 const packageRouter = Router();
 
@@ -22,7 +23,7 @@ packageRouter.get("/featured", featuredPackages);
 packageRouter.get("/:id", getPackage);
 
 //Create a new Catering Package
-packageRouter.post("/", isAuthenticated, isCaterer, postPackage);
+packageRouter.post("/", packageValidationRules.create, postPackage);
 
 //Update a Catering Package
 packageRouter.put("/:id", isAuthenticated, isCaterer, updatePackage);
