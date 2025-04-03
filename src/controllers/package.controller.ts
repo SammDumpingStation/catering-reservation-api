@@ -7,6 +7,10 @@ import { checkIfExists } from "../utils/checkExistence.js";
 const getPackages = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const packages = await Package.find();
+    if (packages.length === 0) {
+      res.sendStatus(204);
+      return;
+    }
 
     res.status(200).json({ success: true, data: packages });
   } catch (error) {
@@ -23,7 +27,7 @@ const featuredPackages = async (
   try {
     const packages = await Package.find({ packageType: "BuffetPlated" })
       .sort({ rating: -1 }) // Sort by highest rating
-      .limit(5); // Limit to top 5 highest-rated packages
+      .limit(6); // Limit to top 5 highest-rated packages
 
     res.status(200).json({ success: true, data: packages });
   } catch (error) {
