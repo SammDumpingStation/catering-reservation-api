@@ -1,7 +1,7 @@
-import connectToDatabase from "./src/seed/mongodb.js";
-import { seedCustomers } from "./src/seed/customer/seed.js";
-import { seedMenus } from "./src/seed/menus/seed.js";
-import { seedPackages } from "./src/seed/packages/seed.js";
+import connectToDatabase from "./seed/mongodb.js";
+import { seedCustomers } from "./seed/customer/seed.js";
+import { seedMenus } from "./seed/menus/seed.js";
+import { seedPackages } from "./seed/packages/seed.js";
 
 const runAllSeeds = async () => {
   try {

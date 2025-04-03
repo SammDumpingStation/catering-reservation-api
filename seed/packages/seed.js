@@ -1,4 +1,3 @@
-import connectToDatabase from "../mongodb.js";
 // import Menu from "./menu.schema.js";
 import { cateringPackages } from "./data.js";
 import Package from "./package.schema.js";
