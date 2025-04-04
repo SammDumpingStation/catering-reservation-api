@@ -1,11 +1,13 @@
 import jwt from "jsonwebtoken";
-import { JWT_SECRET } from "../config/env.js";
+import { JWT_EXPIRES_IN, JWT_SECRET } from "../config/env.js";
 import bcrypt from "bcryptjs";
 import { CustomerProps } from "@TStypes/customer.type.js";
 
 //Create access token
 export const createToken = (customerId: string, role: string): string =>
-  jwt.sign({ customerId, role }, JWT_SECRET, { expiresIn: "1d" });
+  jwt.sign({ customerId, role }, JWT_SECRET, {
+    expiresIn: Number(JWT_EXPIRES_IN),
+  });
 
 //Hash password
 export const encryptPassword = async (password: string): Promise<string> =>

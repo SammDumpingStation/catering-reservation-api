@@ -23,20 +23,13 @@ export const isAuthenticated = (
   if (!token) throw createError("Authentication required", 401);
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      console.error("JWT Verification Error:", err);
-      throw createError("Invalid or expired token", 403);
-    }
+    if (err || !decoded) throw createError("Invalid or expired token", 403);
 
-    if (!decoded) {
-      console.error("Decoded Token is null or undefined");
-      throw createError("Invalid or expired token", 403);
-    }
-
-    console.log("Decoded Token:", decoded);
     const { customerId, role } = decoded as DecodedToken;
 
     req.user = { id: customerId, role };
+    // req.query.user isulod
+
     next();
   });
 };
@@ -89,7 +82,7 @@ export const isReservationOwnerOrCaterer = async (
 
 // Middleware to check if user is authorized to access a specific payment
 export const isPaymentOwnerOrCaterer = async (
-  req: Request & { user?: { id: string; role: string } },
+  req: Request,
   res: Response,
   next: NextFunction
 ): Promise<void> => {
@@ -143,11 +136,7 @@ export const isPaymentOwnerOrCaterer = async (
 };
 
 // Middleware to check if the user is authorized to access/edit their own profile
-export const isSelf = (
-  req: Request & { user?: { id: string; role: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const isSelf = (req: Request, res: Response, next: NextFunction) => {
   try {
     if (!req.user) throw createError("Authentication required", 401);
 
