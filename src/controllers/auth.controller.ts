@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import * as authModel from "@models/auth.model.js";
-import { signUpProps } from "@TStypes/auth.type.js";
 import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import {

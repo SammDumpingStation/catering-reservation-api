@@ -9,6 +9,7 @@ import {
 import {
   isAuthenticated,
   isCaterer,
+  isCustomer,
   isSelf,
 } from "@middlewares/auth.middleware.js";
 import { customerValidationRules } from "@middlewares/validators/customer.validator.js";
@@ -16,7 +17,7 @@ import { customerValidationRules } from "@middlewares/validators/customer.valida
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", isAuthenticated, isCaterer, getCustomers);
+customerRouter.get("/", isAuthenticated, isCustomer, getCustomers);
 
 //Get Customer Details
 customerRouter.get("/:id", isAuthenticated, isSelf, getCustomer);

@@ -13,7 +13,7 @@ interface DecodedToken extends JwtPayload {
 }
 
 export const isAuthenticated = (
-  req: Request & { user?: { id: string; role: string } },
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
@@ -23,23 +23,26 @@ export const isAuthenticated = (
   if (!token) throw createError("Authentication required", 401);
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err || !decoded) throw createError("Invalid or expired token", 403);
+    if (err) {
+      console.error("JWT Verification Error:", err);
+      throw createError("Invalid or expired token", 403);
+    }
 
+    if (!decoded) {
+      console.error("Decoded Token is null or undefined");
+      throw createError("Invalid or expired token", 403);
+    }
+
+    console.log("Decoded Token:", decoded);
     const { customerId, role } = decoded as DecodedToken;
 
     req.user = { id: customerId, role };
-    // req.query.user isulod
-
     next();
   });
 };
 
 // Middleware to check if user is a caterer
-export const isCaterer = (
-  req: Request & { user?: { id: string; role: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const isCaterer = (req: Request, res: Response, next: NextFunction) => {
   if (!req.user || req.user.role !== "caterer")
     throw createError("Caterer access required", 403);
 
@@ -47,11 +50,7 @@ export const isCaterer = (
 };
 
 // Middleware to check if user is a customer
-export const isCustomer = (
-  req: Request & { user?: { id: string; role: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const isCustomer = (req: Request, res: Response, next: NextFunction) => {
   if (!req.user || req.user.role !== "customer")
     throw createError("Customer access required", 403);
 
@@ -60,7 +59,7 @@ export const isCustomer = (
 
 // Middleware to check if user is authorized to access a specific reservation
 export const isReservationOwnerOrCaterer = async (
-  req: Request & { user?: { id: string; role: string } },
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {

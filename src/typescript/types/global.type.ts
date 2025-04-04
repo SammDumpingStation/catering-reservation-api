@@ -58,3 +58,9 @@ export type ReviewsProps = {
 export interface CreateErrorProps extends Error {
   statusCode?: number;
 }
+
+declare module "express" {
+  interface Request {
+    user?: { id: string; role: string };
+  }
+}
