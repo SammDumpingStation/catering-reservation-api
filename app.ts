@@ -4,6 +4,7 @@ import { PORT } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
+import session from "express-session";
 
 import authRouter from "@routes/auth.route.js";
 import customerRouter from "@routes/customer.route.js";
@@ -15,10 +16,19 @@ import reservationRouter from "@routes/reservation.route.js";
 const app: Application = express();
 
 app
+  .use(cors())
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cors())
-  .use(cookieParser());
+  .use(
+    session({
+      secret: "sessionSecret",
+      saveUninitialized: false,
+      resave: false,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24, // 1 day
+      },
+    })
+  );
 
 // API MAIN ROUTES
 app.use("/api/auth", authRouter);

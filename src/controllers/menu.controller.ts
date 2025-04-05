@@ -12,7 +12,10 @@ const getMenus = async (req: Request, res: Response, next: NextFunction) => {
       return;
     }
 
-    res.status(200).json({ success: true, data: menus });
+    res.status(200).json({
+      success: true,
+      data: menus,
+    });
   } catch (error) {
     next(error);
   }
