@@ -18,7 +18,7 @@ const getCustomers = async (
 
     res.status(200).json({
       success: true,
-      session: req.session.id || "no sesion",
+      session: req.sessionStore || "no sesion",
       data: existingCustomer.map((customer) => sanitizeCustomer(customer)),
     });
   } catch (error) {

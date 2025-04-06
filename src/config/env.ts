@@ -10,4 +10,6 @@ export const {
   JWT_EXPIRES_IN = "1h",
   JWT_SECRET = "secret",
   USE_CLOUD_DB,
+  CLIENT_URL,
+  SESSION_SECRET,
 } = process.env as Record<string, string>;

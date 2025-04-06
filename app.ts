@@ -1,6 +1,6 @@
 import express, { Application } from "express";
 import cookieParser from "cookie-parser";
-import { PORT } from "@config/env.js";
+import { CLIENT_URL, PORT, SESSION_SECRET } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
@@ -16,12 +16,22 @@ import reservationRouter from "@routes/reservation.route.js";
 const app: Application = express();
 
 app
-  .use(cors())
+  .use(
+    cors({
+      origin: CLIENT_URL || "http://localhost:3000",
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
+      optionsSuccessStatus: 200, // for legacy browser support
+      preflightContinue: false,
+    })
+  )
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
   .use(
     session({
-      secret: "sessionSecret",
+      name: "user",
+      secret: SESSION_SECRET || "sessionSecret",
       saveUninitialized: false,
       resave: false,
       cookie: {
