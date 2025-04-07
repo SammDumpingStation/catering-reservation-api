@@ -33,7 +33,11 @@ export const sanitizeCustomer = (customer: CustomerProps) => {
   return sanitizedCustomer;
 };
 
-const generateToken = (payload: object, type: "access" | "refresh"): string => {
+// Not Yet Implemented
+export const generateToken = (
+  payload: object,
+  type: "access" | "refresh"
+): string => {
   const secret = type === "access" ? ACCESS_TOKEN_SECRET : REFRESH_TOKEN_SECRET;
   const expiresIn =
     type === "access" ? ACCESS_TOKEN_EXPIRES_IN : REFRESH_TOKEN_EXPIRES_IN;
@@ -43,7 +47,7 @@ const generateToken = (payload: object, type: "access" | "refresh"): string => {
   });
 };
 
-const verifyToken = (token: string, type: "access" | "refresh") => {
+export const verifyToken = (token: string, type: "access" | "refresh") => {
   const secret = type === "access" ? ACCESS_TOKEN_SECRET : REFRESH_TOKEN_SECRET;
   return jwt.verify(token, secret);
 };

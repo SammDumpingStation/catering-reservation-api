@@ -28,11 +28,59 @@ export const isAuthenticated = (
     const { customerId, role } = decoded as DecodedToken;
 
     req.user = { id: customerId, role };
-    // req.query.user isulod
 
     next();
   });
 };
+
+// will continue this tomorrow
+// // List of routes that require authentication
+// export const protectedRoutes = [
+//   "/api/customers",
+//   "/api/reservations",
+//   "/api/payments",
+//   // Add other protected paths as needed
+//   "/api/packages/create",
+//   "/api/packages/update",
+//   "/api/packages/delete",
+// ];
+
+// // Middleware to check if the current route requires authentication
+// export const authenticatedRoutes = (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   // Check if the current path is protected
+//   const isProtectedRoute = protectedRoutes.some((route) =>
+//     req.path.startsWith(route)
+//   );
+
+//   // If not a protected route, proceed
+//   if (!isProtectedRoute) {
+//     next();
+//     return;
+//   }
+
+//   // For protected routes, verify authentication
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+
+//   if (!token) {
+//     next(createError("Authentication required", 401));
+//     return;
+//   }
+
+//   jwt.verify(token, JWT_SECRET, (err, decoded) => {
+//     if (err || !decoded) throw createError("Invalid or expired token", 403);
+
+//     const { customerId, role } = decoded as DecodedToken;
+
+//     req.user = { id: customerId, role };
+
+//     next();
+//   });
+// };
 
 // Middleware to check if user is a caterer
 export const isCaterer = (req: Request, res: Response, next: NextFunction) => {
