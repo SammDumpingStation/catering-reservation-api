@@ -12,4 +12,8 @@ export const {
   USE_CLOUD_DB,
   CLIENT_URL,
   SESSION_SECRET,
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET,
+  ACCESS_TOKEN_EXPIRES_IN,
+  REFRESH_TOKEN_EXPIRES_IN,
 } = process.env as Record<string, string>;
