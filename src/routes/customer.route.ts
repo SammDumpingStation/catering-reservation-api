@@ -27,7 +27,7 @@ customerRouter.put(
   "/:id",
   customerValidationRules.update,
   isAuthenticated,
-  isSelf,
+  isSelf || isCaterer,
   updateCustomer
 );
 

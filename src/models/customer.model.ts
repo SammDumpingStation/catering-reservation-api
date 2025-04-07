@@ -11,7 +11,7 @@ export const updateCustomerById: UpdateCustomerProps = async (id, data) => {
     {
       fullName,
       email,
-      password: await encryptPassword(password),
+      password: password && (await encryptPassword(password)),
       contactNumber,
       profileImage,
     },

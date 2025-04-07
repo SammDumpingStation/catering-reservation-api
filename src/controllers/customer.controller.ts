@@ -49,6 +49,11 @@ const updateCustomer = async (
     const { id } = req.params;
     const data = req.body;
 
+    if (Object.keys(data).length === 0) {
+      res.sendStatus(204);
+      return;
+    }
+
     const existingCustomer = await customerModel.updateCustomerById(id, data);
     if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 

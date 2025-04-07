@@ -4,9 +4,7 @@ import { validateRequest } from "@middlewares/validate-request.middleware.js";
 export const customerValidationRules = {
   update: [
     body("fullName")
-      .notEmpty()
-      .withMessage("Full Name is required")
-      .bail()
+      .optional()
       .isString()
       .withMessage("Full Name must be a valid string")
       .bail()
@@ -15,17 +13,13 @@ export const customerValidationRules = {
       .withMessage("Full Name must be between 2 and 50 characters"),
 
     body("email")
-      .notEmpty()
-      .withMessage("Email is required")
-      .bail()
+      .optional()
       .isEmail()
       .withMessage("Please provide a valid email address")
       .normalizeEmail(),
 
     body("password")
-      .notEmpty()
-      .withMessage("Password is required")
-      .bail()
+      .optional()
       .isString()
       .withMessage("Password must be a valid string")
       .bail()
@@ -34,9 +28,7 @@ export const customerValidationRules = {
       .withMessage("Password must be at least 6 characters long"),
 
     body("contactNumber")
-      .notEmpty()
-      .withMessage("Contact Number is required")
-      .bail()
+      .optional()
       .isString()
       .withMessage("Contact Number must be a String")
       .bail()
@@ -47,9 +39,7 @@ export const customerValidationRules = {
       ),
 
     body("profileImage")
-      .notEmpty()
-      .withMessage("Profile Image is required")
-      .bail()
+      .optional()
       .isString()
       .withMessage("Profile Image must be a String")
       .bail()

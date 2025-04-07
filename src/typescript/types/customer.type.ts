@@ -23,11 +23,5 @@ export interface CustomerPropsDummy {
 
 export type UpdateCustomerProps = (
   id: string,
-  data: {
-    fullName: string;
-    email: string;
-    password: string;
-    contactNumber: string;
-    profileImage: string;
-  }
+  data: Partial<Omit<CustomerProps, "_id" | "createdAt" | "updatedAt" | "__v">>
 ) => Promise<CustomerProps | null>;
