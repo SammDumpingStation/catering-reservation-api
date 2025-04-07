@@ -62,7 +62,8 @@ export interface CreateErrorProps extends Error {
 declare global {
   namespace Express {
     interface Request {
-      user?: { id: string; role: string };
+      // for token decoded
+      user: { id: string; role: string };
     }
   }
 }

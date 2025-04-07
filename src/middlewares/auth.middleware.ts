@@ -138,19 +138,13 @@ export const isPaymentOwnerOrCaterer = async (
 // Middleware to check if the user is authorized to access/edit their own profile
 export const isSelf = (req: Request, res: Response, next: NextFunction) => {
   try {
-    if (!req.user) throw createError("Authentication required", 401);
+    const headerId = req.params.id;
 
-    const requestedUserId = req.params.userId || req.params.id;
-
-    if (!requestedUserId)
-      throw createError("User ID is required in request", 400);
-
-    if (req.user.id !== requestedUserId) {
+    if (req.user.id !== headerId)
       throw createError(
-        "Access denied. You can only access your own profile",
+        "Access denied. You can only access your own data",
         403
       );
-    }
 
     next();
   } catch (error) {
