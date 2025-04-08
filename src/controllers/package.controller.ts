@@ -2,9 +2,10 @@ import { NextFunction, Request, Response } from "express";
 import Package from "../schemas/package.schema.js";
 import * as packageModel from "@models/package.model.js";
 import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 //Get All Package
-const getPackages = async (req: Request, res: Response, next: NextFunction) => {
+const getPackages: FunctionProps = async (req, res, next) => {
   try {
     const packages = await Package.find();
     if (packages.length === 0) {
@@ -19,11 +20,7 @@ const getPackages = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Get All Featured Package
-const featuredPackages = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const featuredPackages: FunctionProps = async (req, res, next) => {
   try {
     const packages = await Package.find({ packageType: "BuffetPlated" })
       .sort({ rating: -1 }) // Sort by highest rating
@@ -36,7 +33,7 @@ const featuredPackages = async (
 };
 
 //Get a Package
-const getPackage = async (req: Request, res: Response, next: NextFunction) => {
+const getPackage: FunctionProps = async (req, res, next) => {
   try {
     const pkg = await Package.findById(req.params.id);
     if (!pkg) throw createError("Package doesn't exist", 404);
@@ -48,7 +45,7 @@ const getPackage = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Create a Package
-const postPackage = async (req: Request, res: Response, next: NextFunction) => {
+const postPackage: FunctionProps = async (req, res, next) => {
   try {
     const data = req.body;
     const existingPackage = await Package.findOne({
@@ -66,11 +63,7 @@ const postPackage = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Update a Package
-const updatePackage = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const updatePackage: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -89,11 +82,7 @@ const updatePackage = async (
   }
 };
 //Delete a Package
-const deletePackage = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const deletePackage: FunctionProps = async (req, res, next) => {
   try {
     const pkg = await Package.findByIdAndDelete(req.params.id);
 
