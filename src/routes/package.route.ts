@@ -8,7 +8,7 @@ import {
   getPackages,
   updatePackage,
 } from "@controllers/package.controller.js";
-import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
+import { isCaterer } from "@middlewares/auth.middleware.js";
 import { packageValidationRules } from "@middlewares/validators/package.validator.js";
 
 const packageRouter = Router();

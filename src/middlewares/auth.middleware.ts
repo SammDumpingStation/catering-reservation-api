@@ -8,23 +8,6 @@ import { createError } from "@utils/globalUtils.js";
 import { DecodedToken } from "@TStypes/auth.type.js";
 import { FunctionProps } from "@TStypes/global.type.js";
 
-export const isAuthenticated: FunctionProps = (req, res, next) => {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-
-  if (!token) throw createError("Authentication required", 401);
-
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err || !decoded) throw createError("Invalid or expired token", 403);
-
-    const { customerId, role } = decoded as DecodedToken;
-
-    req.user = { id: customerId, role };
-
-    next();
-  });
-};
-
 // Define protected routes with HTTP methods
 // Format: { path: string, methods: string[] }
 export const protectedRoutes = [

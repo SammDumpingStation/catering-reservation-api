@@ -7,7 +7,6 @@ import {
   updateCustomer,
 } from "@controllers/customer.controller.js";
 import {
-  isAuthenticated,
   isCaterer,
   isCustomer,
   isSelf,

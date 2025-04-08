@@ -7,7 +7,7 @@ import {
   getMenus,
   updateMenu,
 } from "@controllers/menu.controller.js";
-import { isAuthenticated, isCaterer } from "@middlewares/auth.middleware.js";
+import { isCaterer } from "@middlewares/auth.middleware.js";
 import { menuValidationRules } from "@middlewares/validators/menu.validator.js";
 
 const menuRouter = Router();

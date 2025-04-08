@@ -9,51 +9,35 @@ import {
   deleteReservation,
 } from "../controllers/reservation.controller.js";
 import {
-  isAuthenticated,
   isCaterer,
   isCustomer,
   isReservationOwnerOrCaterer,
 } from "@middlewares/auth.middleware.js";
 
+// TEMPORARY. DOESN'T WORK
+
 const reservationRouter = express.Router();
 
 // Routes accessible only to caterers
-reservationRouter.get("/", isAuthenticated, isCaterer, getAllReservations);
+reservationRouter.get("/", isCaterer, getAllReservations);
 reservationRouter.get(
   "/customer/:customerId",
-  isAuthenticated,
   isCaterer,
   getCustomerReservations
 );
 
 // Routes accessible to both caterers and customers (with ownership check)
-reservationRouter.get(
-  "/:id",
-  isAuthenticated,
-  isReservationOwnerOrCaterer,
-  getReservation
-);
+reservationRouter.get("/:id", isReservationOwnerOrCaterer, getReservation);
 
-reservationRouter.put(
-  "/:id",
-  isAuthenticated,
-  isReservationOwnerOrCaterer,
-  updateReservation
-);
+reservationRouter.put("/:id", isReservationOwnerOrCaterer, updateReservation);
 reservationRouter.delete(
   "/:id",
-  isAuthenticated,
   isReservationOwnerOrCaterer,
   deleteReservation
 );
 
 // Routes specifically for customers
-reservationRouter.get(
-  "/my/reservations",
-  isAuthenticated,
-  isCustomer,
-  getMyReservations
-);
-reservationRouter.post("/", isAuthenticated, createReservation);
+reservationRouter.get("/my/reservations", isCustomer, getMyReservations);
+reservationRouter.post("/", createReservation);
 
 export default reservationRouter;
