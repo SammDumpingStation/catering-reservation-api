@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from "express";
 import Customer from "../schemas/customer.schema.js";
 import * as customerModel from "@models/customer.model.js";
 import { sanitizeCustomer } from "@utils/authUtils.js";

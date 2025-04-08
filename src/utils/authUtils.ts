@@ -34,16 +34,19 @@ export const sanitizeCustomer = (customer: CustomerProps) => {
 };
 
 // Not Yet Implemented
-export const generateToken = (
-  payload: object,
-  type: "access" | "refresh"
+export const generateAccessToken = (
+  customerId: string,
+  role: string,
+  email: string
 ): string => {
-  const secret = type === "access" ? ACCESS_TOKEN_SECRET : REFRESH_TOKEN_SECRET;
-  const expiresIn =
-    type === "access" ? ACCESS_TOKEN_EXPIRES_IN : REFRESH_TOKEN_EXPIRES_IN;
+  return jwt.sign({ customerId, role, email }, ACCESS_TOKEN_SECRET, {
+    expiresIn: Number(ACCESS_TOKEN_EXPIRES_IN),
+  });
+};
 
-  return jwt.sign(payload, secret, {
-    expiresIn: Number(expiresIn),
+export const generateRefreshToken = (customerId: string): string => {
+  return jwt.sign({ customerId }, REFRESH_TOKEN_SECRET, {
+    expiresIn: Number(REFRESH_TOKEN_EXPIRES_IN),
   });
 };
 

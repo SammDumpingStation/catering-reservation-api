@@ -1,4 +1,3 @@
-import { Request, Response, NextFunction } from "express";
 import * as authModel from "@models/auth.model.js";
 import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
