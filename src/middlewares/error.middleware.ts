@@ -7,13 +7,13 @@ import type {
 } from "express";
 
 const errorMiddleware: ErrorRequestHandler = (
-  err: any,
+  err: CustomError,
   req: Request,
   res: Response,
   next: NextFunction
-): void => {
+) => {
   try {
-    let error = { ...err } as CustomError;
+    let error = { ...err };
     error.message = err.message;
 
     console.error(err);
@@ -21,14 +21,14 @@ const errorMiddleware: ErrorRequestHandler = (
     // Mongoose bad ObjectId
     if (err.name === "CastError") {
       const message = "Resource not Found";
-      error = new Error(message) as CustomError;
+      error = new Error(message);
       error.statusCode = 404;
     }
 
     // Mongoose Duplicate key
     if (err.code === 11000) {
       const message = "Duplicate field value entered";
-      error = new Error(message) as CustomError;
+      error = new Error(message);
       error.statusCode = 400;
     }
 
@@ -37,7 +37,7 @@ const errorMiddleware: ErrorRequestHandler = (
       const messages = Object.values(err.errors || {}).map(
         (val) => (val as { message: string }).message
       );
-      error = new Error(messages.join(", ")) as CustomError;
+      error = new Error(messages.join(", "));
       error.statusCode = 400;
     }
 
