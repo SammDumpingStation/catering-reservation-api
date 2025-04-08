@@ -3,12 +3,9 @@ import Customer from "../schemas/customer.schema.js";
 import * as customerModel from "@models/customer.model.js";
 import { sanitizeCustomer } from "@utils/authUtils.js";
 import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
-const getCustomers = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getCustomers: FunctionProps = async (req, res, next) => {
   try {
     const existingCustomer = await Customer.find();
     if (existingCustomer.length === 0) {
@@ -26,7 +23,7 @@ const getCustomers = async (
   }
 };
 
-const getCustomer = async (req: Request, res: Response, next: NextFunction) => {
+const getCustomer: FunctionProps = async (req, res, next) => {
   try {
     const existingCustomer = await Customer.findById(req.params.id);
     if (!existingCustomer) throw createError("Customer doesn't exist", 404);
@@ -40,11 +37,7 @@ const getCustomer = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Update a Customer
-const updateCustomer = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const updateCustomer: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -66,11 +59,7 @@ const updateCustomer = async (
 };
 
 //Delete a Customer
-const deleteCustomer = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const deleteCustomer: FunctionProps = async (req, res, next) => {
   try {
     const existingCustomer = await Customer.findByIdAndDelete(req.params.id);
 
