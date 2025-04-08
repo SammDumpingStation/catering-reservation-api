@@ -7,9 +7,10 @@ import {
   sanitizeCustomer,
   validatePassword,
 } from "@utils/authUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 //Implement Sign-up Logic
-const signUp = async (req: Request, res: Response, next: NextFunction) => {
+const signUp: FunctionProps = async (req, res, next) => {
   try {
     const data = req.body;
 
@@ -32,7 +33,7 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Implement Sign-In Logic
-const signIn = async (req: Request, res: Response, next: NextFunction) => {
+const signIn: FunctionProps = async (req, res, next) => {
   try {
     //Deconstruct the json form from body
     const data = req.body;
@@ -60,7 +61,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Implement Sign-Out Logic
-const signOut = async (req: Request, res: Response, next: NextFunction) => {
+const signOut: FunctionProps = async (req, res, next) => {
   try {
     // Get the authentication token from the request headers
     const token = req.headers.authorization?.split(" ")[1];
