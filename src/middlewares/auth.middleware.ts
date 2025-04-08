@@ -5,6 +5,7 @@ import { JWT_SECRET } from "../config/env.js";
 import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
+import { create } from "domain";
 
 // Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
 interface DecodedToken extends JwtPayload {
@@ -33,54 +34,53 @@ export const isAuthenticated = (
   });
 };
 
-// will continue this tomorrow
-// // List of routes that require authentication
-// export const protectedRoutes = [
-//   "/api/customers",
-//   "/api/reservations",
-//   "/api/payments",
-//   // Add other protected paths as needed
-//   "/api/packages/create",
-//   "/api/packages/update",
-//   "/api/packages/delete",
-// ];
+// Define protected routes with HTTP methods
+// Format: { path: string, methods: string[] }
+export const protectedRoutes = [
+  { path: "/api/customers", methods: ["GET", "PUT", "DELETE"] },
+  // Add other protected paths as needed
+];
 
-// // Middleware to check if the current route requires authentication
-// export const authenticatedRoutes = (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   // Check if the current path is protected
-//   const isProtectedRoute = protectedRoutes.some((route) =>
-//     req.path.startsWith(route)
-//   );
+// Middleware to check if the current route requires authentication
+export const authenticatedRoutes = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const currentPath = req.path;
+  const currentMethod = req.method;
 
-//   // If not a protected route, proceed
-//   if (!isProtectedRoute) {
-//     next();
-//     return;
-//   }
+  // Check if the current path and method combination requires authentication
+  const requiresAuth = protectedRoutes.some(
+    (route) =>
+      currentPath.startsWith(route.path) &&
+      route.methods.includes(currentMethod)
+  );
 
-//   // For protected routes, verify authentication
-//   const authHeader = req.headers["authorization"];
-//   const token = authHeader && authHeader.split(" ")[1];
+  // If authentication is not required for this path+method, proceed
+  if (!requiresAuth) {
+    next();
+    return;
+  }
 
-//   if (!token) {
-//     next(createError("Authentication required", 401));
-//     return;
-//   }
+  // For protected routes, verify authentication
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1];
 
-//   jwt.verify(token, JWT_SECRET, (err, decoded) => {
-//     if (err || !decoded) throw createError("Invalid or expired token", 403);
+  if (!token) {
+    throw createError("Authentication required", 401);
+  }
 
-//     const { customerId, role } = decoded as DecodedToken;
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err || !decoded) throw createError("Invalid or expired token", 403);
 
-//     req.user = { id: customerId, role };
+    const { id, role } = decoded as DecodedToken;
 
-//     next();
-//   });
-// };
+    req.user = { id, role };
+
+    next();
+  });
+};
 
 // Middleware to check if user is a caterer
 export const isCaterer = (req: Request, res: Response, next: NextFunction) => {

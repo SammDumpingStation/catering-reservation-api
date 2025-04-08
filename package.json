@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node dist/app.js",
+    "start": "node -r tsconfig-paths/register dist/app.js",
     "build": "tsc",
     "check": "tsc --noEmit",
     "dev": "tsx watch app.ts",
@@ -36,7 +36,8 @@
     "module-alias": "^2.2.3",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

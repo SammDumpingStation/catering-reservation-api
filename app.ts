@@ -1,5 +1,5 @@
+import "module-alias/register.js"; // Register module-alias at the very top
 import express, { Application } from "express";
-import cookieParser from "cookie-parser";
 import { CLIENT_URL, PORT, SESSION_SECRET } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
@@ -12,6 +12,10 @@ import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
+import {
+  authenticatedRoutes,
+  protectedRoutes,
+} from "@middlewares/auth.middleware.js";
 
 const app: Application = express();
 
@@ -38,7 +42,8 @@ app
         maxAge: 1000 * 60 * 60 * 24, // 1 day
       },
     })
-  );
+  )
+  .use(authenticatedRoutes);
 
 // API MAIN ROUTES
 app.use("/api/auth", authRouter);

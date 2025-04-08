@@ -17,21 +17,20 @@ import { customerValidationRules } from "@middlewares/validators/customer.valida
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", isAuthenticated, isCustomer, getCustomers);
+customerRouter.get("/", isCaterer, getCustomers);
 
 //Get Customer Details
-customerRouter.get("/:id", isAuthenticated, isSelf, getCustomer);
+customerRouter.get("/:id", isSelf || isCaterer, getCustomer);
 
 //Update a Customer
 customerRouter.put(
   "/:id",
   customerValidationRules.update,
-  isAuthenticated,
   isSelf || isCaterer,
   updateCustomer
 );
 
 //Delete a Customer
-customerRouter.delete("/:id", isAuthenticated, isCaterer, deleteCustomer);
+customerRouter.delete("/:id", isCaterer, deleteCustomer);
 
 export default customerRouter;
