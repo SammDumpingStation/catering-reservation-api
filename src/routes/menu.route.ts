@@ -19,24 +19,12 @@ menuRouter.get("/", getMenus);
 menuRouter.get("/:id", getMenu);
 
 //Create a new Menu
-menuRouter.post(
-  "/",
-  menuValidationRules.create,
-  isAuthenticated,
-  isCaterer,
-  postMenu
-);
+menuRouter.post("/", isCaterer, menuValidationRules.create, postMenu);
 
 //Update a Menu
-menuRouter.put(
-  "/:id",
-  menuValidationRules.update,
-  isAuthenticated,
-  isCaterer,
-  updateMenu
-);
+menuRouter.put("/:id", isCaterer, menuValidationRules.update, updateMenu);
 
 //Delete a Menu
-menuRouter.delete("/:id", isAuthenticated, isCaterer, deleteMenu);
+menuRouter.delete("/:id", isCaterer, deleteMenu);
 
 export default menuRouter;

@@ -26,8 +26,8 @@ customerRouter.get("/:id", isSelfOrCaterer, getCustomer);
 //Update a Customer
 customerRouter.put(
   "/:id",
-  customerValidationRules.update,
   isSelfOrCaterer,
+  customerValidationRules.update,
   updateCustomer
 );
 
