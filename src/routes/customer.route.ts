@@ -11,6 +11,7 @@ import {
   isCaterer,
   isCustomer,
   isSelf,
+  isSelfOrCaterer,
 } from "@middlewares/auth.middleware.js";
 import { customerValidationRules } from "@middlewares/validators/customer.validator.js";
 
@@ -20,13 +21,13 @@ const customerRouter = Router();
 customerRouter.get("/", isCaterer, getCustomers);
 
 //Get Customer Details
-customerRouter.get("/:id", isSelf || isCaterer, getCustomer);
+customerRouter.get("/:id", isSelfOrCaterer, getCustomer);
 
 //Update a Customer
 customerRouter.put(
   "/:id",
   customerValidationRules.update,
-  isSelf || isCaterer,
+  isSelfOrCaterer,
   updateCustomer
 );
 

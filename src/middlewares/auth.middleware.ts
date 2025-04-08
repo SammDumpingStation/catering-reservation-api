@@ -8,11 +8,7 @@ import { createError } from "@utils/globalUtils.js";
 import { DecodedToken } from "@TStypes/auth.type.js";
 import { FunctionProps } from "@TStypes/global.type.js";
 
-export const isAuthenticated = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const isAuthenticated: FunctionProps = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -48,7 +44,7 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   );
 
   // If authentication is not required for this path+method, proceed
-  if (!requiresAuth) next();
+  if (!requiresAuth) return next();
 
   // For protected routes, verify authentication
   const token = req.headers["authorization"]?.split(" ")[1];
@@ -64,7 +60,7 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
 };
 
 // Middleware to check if user is a caterer
-export const isCaterer = (req: Request, res: Response, next: NextFunction) => {
+export const isCaterer: FunctionProps = (req, res, next) => {
   if (!req.user || req.user.role !== "caterer")
     throw createError("Caterer access required", 403);
 
@@ -72,7 +68,7 @@ export const isCaterer = (req: Request, res: Response, next: NextFunction) => {
 };
 
 // Middleware to check if user is a customer
-export const isCustomer = (req: Request, res: Response, next: NextFunction) => {
+export const isCustomer: FunctionProps = (req, res, next) => {
   if (!req.user || req.user.role !== "customer")
     throw createError("Customer access required", 403);
 
@@ -80,10 +76,10 @@ export const isCustomer = (req: Request, res: Response, next: NextFunction) => {
 };
 
 // Middleware to check if user is authorized to access a specific reservation
-export const isReservationOwnerOrCaterer = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const isReservationOwnerOrCaterer: FunctionProps = async (
+  req,
+  res,
+  next
 ) => {
   try {
     if (!req.user) throw createError("Authentication required", 401);
@@ -110,11 +106,11 @@ export const isReservationOwnerOrCaterer = async (
 };
 
 // Middleware to check if user is authorized to access a specific payment
-export const isPaymentOwnerOrCaterer = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
+export const isPaymentOwnerOrCaterer: FunctionProps = async (
+  req,
+  res,
+  next
+) => {
   try {
     if (!req.user) throw createError("Authentication required", 401);
 
@@ -165,11 +161,28 @@ export const isPaymentOwnerOrCaterer = async (
 };
 
 // Middleware to check if the user is authorized to access/edit their own profile
-export const isSelf = (req: Request, res: Response, next: NextFunction) => {
+export const isSelf: FunctionProps = (req, res, next) => {
   try {
-    const headerId = req.params.id;
+    if (req.user.id !== req.params.id)
+      throw createError(
+        "Access denied. You can only access your own data",
+        403
+      );
 
-    if (req.user.id !== headerId)
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const isSelfOrCaterer: FunctionProps = (req, res, next) => {
+  try {
+    if (req.user.role === "caterer") {
+      next();
+      return;
+    }
+
+    if (req.user.id !== req.params.id)
       throw createError(
         "Access denied. You can only access your own data",
         403
