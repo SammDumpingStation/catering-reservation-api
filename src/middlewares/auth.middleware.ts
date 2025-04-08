@@ -30,6 +30,7 @@ export const isAuthenticated: FunctionProps = (req, res, next) => {
 export const protectedRoutes = [
   { path: "/api/customers", methods: ["GET", "PUT", "DELETE"] },
   { path: "/api/menus", methods: ["POST", "PUT", "DELETE"] },
+  { path: "/api/packages", methods: ["POST", "PUT", "DELETE"] },
 ];
 
 // Middleware to check if the current route requires authentication
