@@ -2,9 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import Menu from "../schemas/menu.schema.js";
 import * as menuModel from "../models/menu.model.js";
 import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 //Get All Menu
-const getMenus = async (req: Request, res: Response, next: NextFunction) => {
+const getMenus: FunctionProps = async (req, res, next) => {
   try {
     const menus = await Menu.find();
     if (menus.length === 0) {
@@ -22,7 +23,7 @@ const getMenus = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Get a Menu
-const getMenu = async (req: Request, res: Response, next: NextFunction) => {
+const getMenu: FunctionProps = async (req, res, next) => {
   try {
     const menu = await Menu.findById(req.params.id);
 
@@ -35,7 +36,7 @@ const getMenu = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Create a Menu
-const postMenu = async (req: Request, res: Response, next: NextFunction) => {
+const postMenu: FunctionProps = async (req, res, next) => {
   try {
     const data = req.body;
     const existingMenu = await Menu.findOne({
@@ -53,7 +54,7 @@ const postMenu = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Update a Menu
-const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
+const updateMenu: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -73,7 +74,7 @@ const updateMenu = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 //Delete a Menu
-const deleteMenu = async (req: Request, res: Response, next: NextFunction) => {
+const deleteMenu: FunctionProps = async (req, res, next) => {
   try {
     const existingMenu = await Menu.findByIdAndDelete(req.params.id);
 
