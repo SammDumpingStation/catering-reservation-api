@@ -2,13 +2,10 @@ import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as reservationModel from "@models/reservation.model.js";
 import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 // Get all reservations (For Caterer)
-export const getAllReservations = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getAllReservations: FunctionProps = async (req, res, next) => {
   try {
     const reservations = await Reservation.find();
 
@@ -19,10 +16,10 @@ export const getAllReservations = async (
 };
 
 // Get all reservations for a specific customer
-export const getCustomerReservations = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const getCustomerReservations: FunctionProps = async (
+  req,
+  res,
+  next
 ) => {
   try {
     const { id } = req.params;
@@ -36,11 +33,7 @@ export const getCustomerReservations = async (
 };
 
 // Get a single reservation by ID
-export const getReservation = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getReservation: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
 
@@ -53,11 +46,7 @@ export const getReservation = async (
 };
 
 // Get all reservations for the logged-in customer
-export const getMyReservations = async (
-  req: Request & { user?: { id: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const getMyReservations: FunctionProps = async (req, res, next) => {
   try {
     // Assuming req.user is set by authentication middleware
     const customerId = req.user?.id;
@@ -74,11 +63,7 @@ export const getMyReservations = async (
 };
 
 // Create a Reservation
-export const createReservation = async (
-  req: Request & { user?: { id: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const createReservation: FunctionProps = async (req, res, next) => {
   try {
     // For customer-created reservations, ensure customerId is set to the logged-in user
     if (req.user && !req.body.customerId) {
@@ -93,11 +78,7 @@ export const createReservation = async (
 };
 
 // Update a Reservation
-export const updateReservation = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updateReservation: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const {
@@ -129,11 +110,7 @@ export const updateReservation = async (
 };
 
 // Delete a Reservation
-export const deleteReservation = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deleteReservation: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
 

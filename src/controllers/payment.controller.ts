@@ -2,13 +2,10 @@ import Reservation from "@schemas/reservation.schema.js";
 import { NextFunction, Request, Response } from "express";
 import * as paymentModel from "@models/payment.model.js";
 import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 // Create a new payment
-export const createPayment = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const createPayment: FunctionProps = async (req, res, next) => {
   try {
     const { reservationId, transactions } = req.body;
 
@@ -39,11 +36,7 @@ export const createPayment = async (
 };
 
 // Get all payments (for caterer)
-export const getAllPayments = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getAllPayments: FunctionProps = async (req, res, next) => {
   try {
     const payments = await paymentModel.getAllPayments();
 
@@ -58,11 +51,7 @@ export const getAllPayments = async (
 };
 
 // Get payment by ID
-export const getPayment = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getPayment: FunctionProps = async (req, res, next) => {
   try {
     console.log(req.params);
     const { id } = req.params;
@@ -79,10 +68,10 @@ export const getPayment = async (
 };
 
 // Get payments by reservation ID
-export const getPaymentsByReservation = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const getPaymentsByReservation: FunctionProps = async (
+  req,
+  res,
+  next
 ) => {
   try {
     const { reservationId } = req.params;
@@ -102,11 +91,7 @@ export const getPaymentsByReservation = async (
 };
 
 // Get my payments (for customer)
-export const getMyPayments = async (
-  req: Request & { user?: { id: string; role: string } },
-  res: Response,
-  next: NextFunction
-) => {
+export const getMyPayments: FunctionProps = async (req, res, next) => {
   try {
     const customerId = req.user?.id;
 
@@ -125,11 +110,7 @@ export const getMyPayments = async (
 };
 
 // Add transaction to payment
-export const addTransaction = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const addTransaction: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const transactionData = req.body;
@@ -167,11 +148,7 @@ export const addTransaction = async (
 };
 
 // Update payment status
-export const updatePaymentStatus = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updatePaymentStatus: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -195,10 +172,10 @@ export const updatePaymentStatus = async (
 };
 
 // Update transaction status
-export const updateTransactionStatus = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
+export const updateTransactionStatus: FunctionProps = async (
+  req,
+  res,
+  next
 ) => {
   try {
     const { paymentId, transactionId } = req.params;

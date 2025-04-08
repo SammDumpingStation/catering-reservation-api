@@ -20,15 +20,11 @@
 //   next();
 // }; //THIS FUNCTION RETURN ONLY THE FIRST ERROR MESSAGE
 
-import { createError } from "@utils/globalUtils.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 import type { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 
-export const validateRequest = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const validateRequest: FunctionProps = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(400).json({

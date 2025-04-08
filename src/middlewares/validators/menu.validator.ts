@@ -1,13 +1,6 @@
 import { body } from "express-validator";
 import { validateRequest } from "../validate-request.middleware.js";
 import { FOOD_ALLERGENS, FOOD_CATEGORIES } from "@TStypes/global.type.js";
-import { NextFunction } from "express";
-
-// Add a custom middleware to log the request body
-const logRequestBody = (req: Request, res: Response, next: NextFunction) => {
-  console.log("Request body:", JSON.stringify(req.body, null, 2));
-  next();
-};
 
 export const menuValidationRules = {
   create: [
