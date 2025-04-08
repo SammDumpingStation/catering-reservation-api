@@ -1,6 +1,5 @@
 import Reservation from "@schemas/reservation.schema.js";
 import { ReservationProps } from "@TStypes/reservation.type.js";
-import { checkIfExists } from "@utils/checkExistence.js";
 import { createError } from "@utils/globalUtils.js";
 
 export const getReservationsByCustomerId = async (customerId: string) => {
