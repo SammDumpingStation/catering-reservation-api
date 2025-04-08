@@ -1,17 +1,12 @@
 // middleware/auth.ts
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { JWT_SECRET } from "../config/env.js";
 import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
-import { create } from "domain";
-
-// Middleware Temporary as I dont Know if Caterer and Customer Reservations will be merged
-interface DecodedToken extends JwtPayload {
-  customerId: string;
-  role: string;
-}
+import { DecodedToken } from "@TStypes/auth.type.js";
+import { FunctionProps } from "@TStypes/global.type.js";
 
 export const isAuthenticated = (
   req: Request,
@@ -38,15 +33,10 @@ export const isAuthenticated = (
 // Format: { path: string, methods: string[] }
 export const protectedRoutes = [
   { path: "/api/customers", methods: ["GET", "PUT", "DELETE"] },
-  // Add other protected paths as needed
 ];
 
 // Middleware to check if the current route requires authentication
-export const authenticatedRoutes = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   const currentPath = req.path;
   const currentMethod = req.method;
 
@@ -58,26 +48,17 @@ export const authenticatedRoutes = (
   );
 
   // If authentication is not required for this path+method, proceed
-  if (!requiresAuth) {
-    next();
-    return;
-  }
+  if (!requiresAuth) next();
 
   // For protected routes, verify authentication
-  const authHeader = req.headers.authorization;
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = req.headers["authorization"]?.split(" ")[1];
 
-  if (!token) {
-    throw createError("Authentication required", 401);
-  }
+  if (!token) throw createError("Authentication required", 401);
 
   jwt.verify(token, JWT_SECRET, (err, decoded) => {
     if (err || !decoded) throw createError("Invalid or expired token", 403);
-
-    const { id, role } = decoded as DecodedToken;
-
-    req.user = { id, role };
-
+    const { customerId, role } = decoded as DecodedToken;
+    req.user = { id: customerId, role };
     next();
   });
 };

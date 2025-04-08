@@ -1,3 +1,4 @@
+import { JwtPayload } from "jsonwebtoken";
 import { CustomerProps } from "./customer.type.js";
 
 export type SignUpProps = (data: {
@@ -5,3 +6,8 @@ export type SignUpProps = (data: {
   email: string;
   password: string;
 }) => Promise<{ customer: CustomerProps }>;
+
+export interface DecodedToken extends JwtPayload {
+  customerId: string;
+  role: string;
+}

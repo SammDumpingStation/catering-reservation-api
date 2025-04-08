@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from "express";
 import { Types } from "mongoose";
 
 export type ObjectId = Types.ObjectId;
@@ -58,6 +59,12 @@ export type ReviewsProps = {
 export interface CreateErrorProps extends Error {
   statusCode?: number;
 }
+
+export type FunctionProps = (
+  res: Request,
+  req: Response,
+  next: NextFunction
+) => void | Promise<void>;
 
 declare global {
   namespace Express {
