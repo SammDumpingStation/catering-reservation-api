@@ -1,4 +1,4 @@
-import { statusEnums } from "@TStypes/global.type.js";
+import { FoodCategoryProps, statusEnums } from "@TStypes/global.type.js";
 import {
   beefOptions,
   beverageOptions,
@@ -7,7 +7,6 @@ import {
   CustomerDetailsProps,
   dessertOptions,
   EventDetailsProps,
-  MenuSelectionProps,
   noodleOptions,
   porkOptions,
   ReservationProps,
@@ -83,49 +82,69 @@ const EventDetailsSchema = new mongoose.Schema<EventDetailsProps>({
   },
 });
 
-const MenuSelectionSchema = new mongoose.Schema<MenuSelectionProps>({
-  soupOptions: {
-    type: [String],
-    enum: soupOptions,
-    default: [],
+interface MenuSelectionProps {
+  [category: FoodCategoryProps]: {
+    type: mongoose.Types.ObjectId[];
+    ref: "Menu";
+  }[];
+}
+
+const MenuSelectionSchema = new mongoose.Schema<MenuSelectionProps>(
+  {
+    // This is a map where keys are category names and values are arrays of ObjectIds
+    // We don't define specific fields, but we tell Mongoose about the expected structure
   },
-  saladOptions: {
-    type: [String],
-    enum: saladOptions,
-  },
-  chickenOptions: {
-    type: [String],
-    enum: chickenOptions,
-  },
-  porkOptions: {
-    type: [String],
-    enum: porkOptions,
-  },
-  beefOptions: {
-    type: [String],
-    enum: beefOptions,
-  },
-  seafoodOptions: {
-    type: [String],
-    enum: seafoodOptions,
-  },
-  vegetableOptions: {
-    type: [String],
-    enum: vegetableOptions,
-  },
-  noodleOptions: {
-    type: [String],
-    enum: noodleOptions,
-  },
-  dessertOptions: {
-    type: [String],
-    enum: dessertOptions,
-  },
-  beverageOptions: {
-    type: [String],
-    enum: beverageOptions,
-  },
-});
+  {
+    strict: false, // Allow fields not explicitly defined in the schema
+    _id: false,
+    typeKey: "$type", // Avoid conflicts with Mongoose's 'type' keyword
+  }
+);
+
+// Temporary comment
+// const MenuSelectionSchema = new mongoose.Schema<MenuSelectionProps>({
+//   soupOptions: {
+//     type: [String],
+//     enum: soupOptions,
+//     default: [],
+//   },
+//   saladOptions: {
+//     type: [String],
+//     enum: saladOptions,
+//   },
+//   chickenOptions: {
+//     type: [String],
+//     enum: chickenOptions,
+//   },
+//   porkOptions: {
+//     type: [String],
+//     enum: porkOptions,
+//   },
+//   beefOptions: {
+//     type: [String],
+//     enum: beefOptions,
+//   },
+//   seafoodOptions: {
+//     type: [String],
+//     enum: seafoodOptions,
+//   },
+//   vegetableOptions: {
+//     type: [String],
+//     enum: vegetableOptions,
+//   },
+//   noodleOptions: {
+//     type: [String],
+//     enum: noodleOptions,
+//   },
+//   dessertOptions: {
+//     type: [String],
+//     enum: dessertOptions,
+//   },
+//   beverageOptions: {
+//     type: [String],
+//     enum: beverageOptions,
+//   },
+// });
 
 const CostDetailsSchema = new mongoose.Schema<CostDetailsProps>({
   totalReservationCost: {
