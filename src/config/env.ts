@@ -7,7 +7,7 @@ export const {
   NODE_ENV,
   DB_URI_CLOUD,
   DB_URI_LOCAL,
-  JWT_EXPIRES_IN = "1h",
+  JWT_EXPIRES_IN,
   JWT_SECRET = "secret",
   USE_CLOUD_DB,
   CLIENT_URL,

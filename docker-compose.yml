@@ -1,0 +1,26 @@
+services:
+  mongo_db:
+    container_name: online-catering-reservation-system-db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+    ports:
+      - "27017:27017"
+
+  catering_api:
+    container_name: online-catering-reservation-system-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5500:5500"
+    depends_on:
+      - mongo_db
+    command: npm run dev # Ensure your dev script is set up to watch changes
+    env_file:
+      - .env.development.local # Load environment variables from this file
+
+volumes:
+  mongo_db: {}

@@ -9,12 +9,11 @@ import {
 } from "../config/env.js";
 import bcrypt from "bcryptjs";
 import { CustomerProps } from "@TStypes/customer.type.js";
-import ms from "ms";
 
 //Create access token
 export const createToken = (customerId: string, role: string): string =>
   jwt.sign({ customerId, role }, JWT_SECRET, {
-    expiresIn: Number(JWT_EXPIRES_IN),
+    expiresIn: Number(JWT_EXPIRES_IN) || 86400,
   });
 
 //Hash password
