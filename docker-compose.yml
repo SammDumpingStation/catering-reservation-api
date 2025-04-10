@@ -10,6 +10,7 @@ services:
 
   catering_api:
     container_name: online-catering-reservation-system-api
+    image: drey34/catering:1.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,6 +22,18 @@ services:
     command: npm run dev # Ensure your dev script is set up to watch changes
     env_file:
       - .env.development.local # Load environment variables from this file
+    develop:
+      watch:
+        - path: ./package-lock.json
+          action: rebuild
+        - path: ./package.json
+          action: rebuild
+        - path: .
+          target: /src
+          ignore:
+            - node_modules
+            - .git
+          action: rebuild
 
 volumes:
   mongo_db: {}
