@@ -7,6 +7,7 @@ import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import { DecodedToken } from "@TStypes/auth.type.js";
 import { FunctionProps } from "@TStypes/global.type.js";
+import { verifyToken } from "@utils/authUtils.js";
 
 // Define protected routes with HTTP methods
 // Format: { path: string, methods: string[] }
@@ -32,16 +33,16 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   if (!requiresAuth) return next();
 
   // For protected routes, verify authentication
-  const token = req.headers["authorization"]?.split(" ")[1];
-
+  const token = req.cookies["access_token"];
   if (!token) throw createError("Authentication required", 401);
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err || !decoded) throw createError("Invalid or expired token", 403);
-    const { customerId, role } = decoded as DecodedToken;
-    req.user = { id: customerId, role };
-    next();
-  });
+  const decoded = verifyToken(token, "access");
+  if (!decoded) return next(createError("Invalid or expired token", 403));
+
+  const { customerId, role } = decoded as DecodedToken;
+  req.user = { id: customerId, role };
+
+  next();
 };
 
 // Middleware to check if user is a caterer
