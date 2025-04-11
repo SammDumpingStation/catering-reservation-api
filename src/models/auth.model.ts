@@ -12,8 +12,3 @@ export const createAccount: SignUpProps = async (data) => {
     }),
   };
 };
-
-export const signOutAccount = async (token: string) => {
-  if (!token) throw createError("Not authenticated", 401);
-  return { message: "Logged out successfully" };
-};

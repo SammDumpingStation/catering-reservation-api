@@ -88,13 +88,19 @@ const signIn: FunctionProps = async (req, res, next) => {
 const signOut: FunctionProps = async (req, res, next) => {
   try {
     // Get the authentication token from the request headers
-    const token = req.headers.authorization?.split(" ")[1];
+    const token = req.cookies["access_token"];
+    if (!token) throw createError("Not authenticated", 401);
 
-    const { message } = await authModel.signOutAccount(token!); //Temporary solution since i still dont know what to do here
+    // Clear the cookie on the client
+    res.clearCookie("access_token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      // sameSite: "strict", // or match your login cookie's sameSite
+    });
 
     res.status(200).json({
       success: true,
-      message,
+      message: "Signed out successfully",
     });
   } catch (error) {
     next(error);
