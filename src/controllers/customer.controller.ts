@@ -14,7 +14,6 @@ const getCustomers: FunctionProps = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      session: req.sessionStore || "no sesion",
       data: existingCustomer.map((customer) => sanitizeCustomer(customer)),
     });
   } catch (error) {

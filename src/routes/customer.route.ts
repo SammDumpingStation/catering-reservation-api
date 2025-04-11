@@ -17,7 +17,7 @@ import { customerValidationRules } from "@middlewares/validators/customer.valida
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", getCustomers);
+customerRouter.get("/", isCaterer, getCustomers);
 
 //Get Customer Details
 customerRouter.get("/:id", isSelfOrCaterer, getCustomer);

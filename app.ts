@@ -1,10 +1,11 @@
 import "module-alias/register.js"; // Register module-alias at the very top
 import express, { Application } from "express";
-import { CLIENT_URL, PORT, SESSION_SECRET } from "@config/env.js";
+import { CLIENT_URL, PORT } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
-import session from "express-session";
+import cookieParser from "cookie-parser";
+import { authenticatedRoutes } from "@middlewares/auth.middleware.js";
 
 import authRouter from "@routes/auth.route.js";
 import customerRouter from "@routes/customer.route.js";
@@ -12,7 +13,6 @@ import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
-import { authenticatedRoutes } from "@middlewares/auth.middleware.js";
 
 const app: Application = express();
 
@@ -29,17 +29,7 @@ app
   )
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(
-    session({
-      name: "user",
-      secret: SESSION_SECRET || "sessionSecret",
-      saveUninitialized: false,
-      resave: false,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24, // 1 day
-      },
-    })
-  )
+  .use(cookieParser())
   .use(authenticatedRoutes);
 
 // API MAIN ROUTES
