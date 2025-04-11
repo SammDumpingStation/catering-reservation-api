@@ -1,10 +1,16 @@
 import { Router } from "express";
 import { signIn, signOut, signUp } from "@controllers/auth.controller.js";
 import { authValidationRules } from "@middlewares/validators/auth.validator.js";
+import rateLimiter from "@middlewares/rate-limit.js";
 
 const authRouter = Router();
 
-authRouter.post("/sign-up", authValidationRules.signUp, signUp);
+authRouter.post(
+  "/sign-up",
+  rateLimiter({ limit: 5 }),
+  authValidationRules.signUp,
+  signUp
+);
 
 authRouter.post("/sign-in", authValidationRules.signIn, signIn);
 

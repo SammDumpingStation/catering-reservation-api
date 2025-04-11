@@ -1,4 +1,4 @@
-import { CustomError } from "@TStypes/error-middleware.type.js";
+import { ICustomError } from "@TStypes/middleware.type.js";
 import type {
   Request,
   Response,
@@ -7,7 +7,7 @@ import type {
 } from "express";
 
 const errorMiddleware: ErrorRequestHandler = (
-  err: CustomError,
+  err: ICustomError,
   req: Request,
   res: Response,
   next: NextFunction

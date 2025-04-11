@@ -13,7 +13,6 @@ import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
 import { authenticatedRoutes } from "@middlewares/auth.middleware.js";
-import { authRateLimit } from "@middlewares/rate-limit.js";
 
 const app: Application = express();
 
@@ -41,8 +40,7 @@ app
       },
     })
   )
-  .use(authenticatedRoutes)
-  .use(authRateLimit(10));
+  .use(authenticatedRoutes);
 
 // API MAIN ROUTES
 app.use("/api/auth", authRouter);
