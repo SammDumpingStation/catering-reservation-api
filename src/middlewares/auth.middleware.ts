@@ -33,10 +33,14 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   if (!requiresAuth) return next();
 
   // For protected routes, verify authentication
-  const token = req.cookies["access_token"];
-  if (!token) throw createError("Authentication required", 401);
+  const bearerHeader = req.headers.authorization;
+  const access_token = bearerHeader?.startsWith("Bearer ")
+    ? bearerHeader.split(" ")[1]
+    : req.cookies["access_token"];
 
-  const decoded = verifyToken(token, "access");
+  if (!access_token) throw createError("Authentication required", 401);
+
+  const decoded = verifyToken(access_token, "access");
   if (!decoded) return next(createError("Invalid or expired token", 403));
 
   const { customerId, role } = decoded as DecodedToken;

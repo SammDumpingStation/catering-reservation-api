@@ -23,7 +23,6 @@ const signUp: FunctionProps = async (req, res, next) => {
     // Generate the access token
     const accessToken = generateAccessToken(customer._id, customer.role);
 
-    // Set the access token in a cookie with appropriate flags
     res.cookie("access_token", accessToken, {
       httpOnly: true, // Prevents JavaScript from accessing the cookie
       secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
@@ -64,7 +63,6 @@ const signIn: FunctionProps = async (req, res, next) => {
       existingCustomer.role
     );
 
-    // Set the access token in a cookie with appropriate flags
     res.cookie("access_token", accessToken, {
       httpOnly: true, // Prevents JavaScript from accessing the cookie
       secure: process.env.NODE_ENV === "production", // Only use secure cookies in production

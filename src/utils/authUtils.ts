@@ -9,6 +9,7 @@ import {
 } from "../config/env.js";
 import bcrypt from "bcryptjs";
 import { CustomerProps } from "@TStypes/customer.type.js";
+import { Response } from "express";
 
 //Create access token
 export const createToken = (customerId: string, role: string): string =>
@@ -56,4 +57,17 @@ export const generateRefreshToken = (
 export const verifyToken = (token: string, type: "access" | "refresh") => {
   const secret = type === "access" ? ACCESS_TOKEN_SECRET : REFRESH_TOKEN_SECRET;
   return jwt.verify(token, secret);
+};
+
+export const setTokenCookie = (
+  res: Response,
+  token: string,
+  tokenName: string
+) => {
+  res.cookie(tokenName, token, {
+    httpOnly: true, // Prevents JavaScript from accessing the cookie
+    secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
+    sameSite: "strict", // Prevent CSRF attacks
+    maxAge: 15 * 60 * 1000, // Set the cookie's expiration to 15 minutes (same as token expiration)
+  });
 };
