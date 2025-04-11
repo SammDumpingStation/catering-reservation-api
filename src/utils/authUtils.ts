@@ -61,13 +61,13 @@ export const verifyToken = (token: string, type: "access" | "refresh") => {
 
 export const setTokenCookie = (
   res: Response,
-  token: string,
-  tokenName: string
+  tokenName: string,
+  token: string
 ) => {
   res.cookie(tokenName, token, {
     httpOnly: true, // Prevents JavaScript from accessing the cookie
     secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
-    sameSite: "strict", // Prevent CSRF attacks
+    // sameSite: "strict", // Prevent CSRF attacks
     maxAge: 15 * 60 * 1000, // Set the cookie's expiration to 15 minutes (same as token expiration)
   });
 };

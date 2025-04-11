@@ -6,6 +6,7 @@ import {
   generateAccessToken,
   generateRefreshToken,
   sanitizeCustomer,
+  setTokenCookie,
   validatePassword,
 } from "@utils/authUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
@@ -22,13 +23,15 @@ const signUp: FunctionProps = async (req, res, next) => {
 
     // Generate the access token
     const accessToken = generateAccessToken(customer._id, customer.role);
+    const refreshToken = generateRefreshToken(
+      customer._id,
+      customer.email,
+      customer.fullName,
+      customer.role
+    );
 
-    res.cookie("access_token", accessToken, {
-      httpOnly: true, // Prevents JavaScript from accessing the cookie
-      secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
-      // sameSite: "strict", // Prevent CSRF attacks
-      maxAge: 15 * 60 * 1000, // Set the cookie's expiration to 15 minutes (same as token expiration)
-    });
+    setTokenCookie(res, "access_token", accessToken);
+    setTokenCookie(res, "refresh_token", refreshToken);
 
     res.status(201).json({
       success: true,
@@ -57,18 +60,19 @@ const signIn: FunctionProps = async (req, res, next) => {
     );
     if (!isPasswordValid) throw createError("Invalid password", 401);
 
-    // Generate the access token
     const accessToken = generateAccessToken(
       existingCustomer._id,
       existingCustomer.role
     );
+    const refreshToken = generateRefreshToken(
+      existingCustomer._id,
+      existingCustomer.email,
+      existingCustomer.fullName,
+      existingCustomer.role
+    );
 
-    res.cookie("access_token", accessToken, {
-      httpOnly: true, // Prevents JavaScript from accessing the cookie
-      secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
-      // sameSite: "strict", // Prevent CSRF attacks
-      maxAge: 15 * 60 * 1000, // Set the cookie's expiration to 15 minutes (same as token expiration)
-    });
+    setTokenCookie(res, "access_token", accessToken);
+    setTokenCookie(res, "refresh_token", refreshToken);
 
     res.status(201).json({
       success: true,
