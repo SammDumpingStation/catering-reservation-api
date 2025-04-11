@@ -3,6 +3,8 @@ import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import {
   createToken,
+  generateAccessToken,
+  generateRefreshToken,
   sanitizeCustomer,
   validatePassword,
 } from "@utils/authUtils.js";
@@ -22,7 +24,7 @@ const signUp: FunctionProps = async (req, res, next) => {
       success: true,
       message: "Customer created successfully",
       data: {
-        token: createToken(customer._id, customer.role),
+        token: generateAccessToken(customer._id, customer.role),
         customer: sanitizeCustomer(customer),
       },
     });
@@ -46,11 +48,24 @@ const signIn: FunctionProps = async (req, res, next) => {
     );
     if (!isPasswordValid) throw createError("Invalid password", 401);
 
+    // Generate the access token
+    const accessToken = generateAccessToken(
+      existingCustomer._id,
+      existingCustomer.role
+    );
+
+    // Set the access token in a cookie with appropriate flags
+    res.cookie("access_token", accessToken, {
+      httpOnly: true, // Prevents JavaScript from accessing the cookie
+      secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
+      sameSite: "strict", // Prevent CSRF attacks
+      maxAge: 15 * 60 * 1000, // Set the cookie's expiration to 15 minutes (same as token expiration)
+    });
+
     res.status(201).json({
       success: true,
       message: "Customer signed in successfully",
       data: {
-        token: createToken(existingCustomer._id, existingCustomer.role),
         customer: sanitizeCustomer(existingCustomer),
       },
     });
