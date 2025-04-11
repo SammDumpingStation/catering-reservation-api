@@ -31,7 +31,7 @@ const signUp: FunctionProps = async (req, res, next) => {
     );
 
     setTokenCookie(res, "access_token", accessToken);
-    setTokenCookie(res, "refresh_token", refreshToken);
+    setTokenCookie(res, "refresh_token", refreshToken, 1000 * 60 * 60 * 24); // 1 day
 
     res.status(201).json({
       success: true,
@@ -72,7 +72,7 @@ const signIn: FunctionProps = async (req, res, next) => {
     );
 
     setTokenCookie(res, "access_token", accessToken);
-    setTokenCookie(res, "refresh_token", refreshToken);
+    setTokenCookie(res, "refresh_token", refreshToken, 1000 * 60 * 60 * 24); // 1 day
 
     res.status(201).json({
       success: true,
