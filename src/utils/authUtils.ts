@@ -55,12 +55,14 @@ export const setTokenCookie = (
   res: Response,
   tokenName: string,
   token: string,
+  path: string,
   maxAge: number = 15 * 60 * 1000 // Default to 15 minutes
 ) => {
   res.cookie(tokenName, token, {
     httpOnly: true, // Prevents JavaScript from accessing the cookie
     secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
     // sameSite: "strict", // Prevent CSRF attacks
+    path,
     maxAge, // Set the cookie's expiration to 15 minutes (same as token expiration)
     signed: true, // Sign the cookie to prevent tampering
   });

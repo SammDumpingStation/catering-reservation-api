@@ -32,8 +32,14 @@ const signUp: FunctionProps = async (req, res, next) => {
       customer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken);
-    setTokenCookie(res, "refresh_token", refreshToken, 1000 * 60 * 60 * 24); // 1 day
+    setTokenCookie(res, "access_token", accessToken, "/");
+    setTokenCookie(
+      res,
+      "refresh_token",
+      refreshToken,
+      "/api/auth/refresh",
+      1000 * 60 * 60 * 24
+    ); // 1 day
 
     res.status(201).json({
       success: true,
@@ -75,14 +81,20 @@ const signIn: FunctionProps = async (req, res, next) => {
       existingCustomer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken, 1000 * 5);
-    setTokenCookie(res, "refresh_token", refreshToken, 1000 * 60 * 60 * 24); // 1 day
+    setTokenCookie(res, "access_token", accessToken, "/");
+    setTokenCookie(
+      res,
+      "refresh_token",
+      refreshToken,
+      "/api/auth/refresh",
+      1000 * 60 * 60 * 24
+    ); // 1 day
 
     res.status(201).json({
       success: true,
       message: "Customer signed in successfully",
       data: {
-        accessToken, // Temporary
+        // accessToken, // Temporary
         // refreshToken, // Temporary
         customer: sanitizeCustomer(existingCustomer),
       },
@@ -99,12 +111,14 @@ const signOut: FunctionProps = async (req, res, next) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       // sameSite: "strict",
+      path: "/", // Must match path used in sign-in
     });
 
     res.clearCookie("refresh_token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       // sameSite: "strict",
+      path: "/api/auth/refresh", // Must match path used in sign-in
     });
 
     res.status(200).json({
