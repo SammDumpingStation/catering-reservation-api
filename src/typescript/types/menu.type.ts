@@ -6,7 +6,7 @@ import {
 } from "./global.type.js";
 
 // Define interfaces for nested schemas
-export interface NutritionInfoProps {
+export type NutritionInfoProps = {
   calories: string;
   protein: string;
   fat: string;
@@ -15,16 +15,16 @@ export interface NutritionInfoProps {
   fiber: string;
   sugar: string;
   cholesterol: string;
-}
+};
 
-export interface PriceInfoProps {
+export type PriceInfoProps = {
   minimumPax: number;
   maximumPax: number;
   price: number;
   discount: number;
-}
+};
 
-export interface MenuProps extends Document {
+export interface IMenu extends Document {
   name: string;
   category: FoodCategoryProps;
   available: boolean;
@@ -44,13 +44,13 @@ export interface MenuProps extends Document {
   reviews?: ReviewsProps[];
 }
 
-export type CreateMenuProps = (data: MenuProps) => Promise<MenuProps>;
+export type CreateMenuProps = (data: IMenu) => Promise<IMenu>;
 
 export type UpdateMenuByIdProps = (
   id: string,
   data: Partial<
     Omit<
-      MenuProps,
+      IMenu,
       | "_id"
       | "rating"
       | "ratingCount"
@@ -60,4 +60,4 @@ export type UpdateMenuByIdProps = (
       | "__v"
     >
   >
-) => Promise<MenuProps | null>;
+) => Promise<IMenu | null>;

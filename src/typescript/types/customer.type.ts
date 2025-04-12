@@ -1,18 +1,6 @@
-import { ObjectId } from "mongodb";
-import mongoose, { Document, Types } from "mongoose";
+import { Document } from "mongoose";
 
-export interface CustomerProps extends Document {
-  _id: string;
-  fullName: string;
-  email: string;
-  password: string;
-  contactNumber?: string;
-  role: "customer" | "admin";
-  profileImage?: string;
-}
-
-export interface CustomerPropsDummy {
-  _id: string;
+export interface ICustomer extends Document {
   fullName: string;
   email: string;
   password: string;
@@ -23,5 +11,5 @@ export interface CustomerPropsDummy {
 
 export type UpdateCustomerProps = (
   id: string,
-  data: Partial<Omit<CustomerProps, "_id" | "createdAt" | "updatedAt" | "__v">>
-) => Promise<CustomerProps | null>;
+  data: Partial<Omit<ICustomer, "_id" | "createdAt" | "updatedAt" | "__v">>
+) => Promise<ICustomer | null>;

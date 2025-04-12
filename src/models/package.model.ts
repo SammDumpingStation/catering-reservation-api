@@ -1,10 +1,8 @@
 import Package from "@schemas/package.schema.js";
 import {
-  CateringPackagesProps,
   CreatePackageProps,
   UpdatePackageByIdProps,
 } from "@TStypes/package.type.js";
-import { createError } from "@utils/globalUtils.js";
 
 export const createPackage: CreatePackageProps = async (data) => {
   const payload = {

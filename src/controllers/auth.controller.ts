@@ -2,7 +2,6 @@ import * as authModel from "@models/auth.model.js";
 import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import {
-  createToken,
   generateAccessToken,
   generateRefreshToken,
   sanitizeCustomer,
@@ -22,9 +21,12 @@ const signUp: FunctionProps = async (req, res, next) => {
     const { customer } = await authModel.createAccount(data);
 
     // Generate the access token
-    const accessToken = generateAccessToken(customer._id, customer.role);
+    const accessToken = generateAccessToken(
+      customer._id as string,
+      customer.role
+    );
     const refreshToken = generateRefreshToken(
-      customer._id,
+      customer._id as string,
       customer.email,
       customer.fullName,
       customer.role
@@ -63,24 +65,24 @@ const signIn: FunctionProps = async (req, res, next) => {
     if (!isPasswordValid) throw createError("Invalid password", 401);
 
     const accessToken = generateAccessToken(
-      existingCustomer._id,
+      existingCustomer._id as string,
       existingCustomer.role
     );
     const refreshToken = generateRefreshToken(
-      existingCustomer._id,
+      existingCustomer._id as string,
       existingCustomer.email,
       existingCustomer.fullName,
       existingCustomer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken);
+    setTokenCookie(res, "access_token", accessToken, 1000 * 5);
     setTokenCookie(res, "refresh_token", refreshToken, 1000 * 60 * 60 * 24); // 1 day
 
     res.status(201).json({
       success: true,
       message: "Customer signed in successfully",
       data: {
-        // accessToken, // Temporary
+        accessToken, // Temporary
         // refreshToken, // Temporary
         customer: sanitizeCustomer(existingCustomer),
       },

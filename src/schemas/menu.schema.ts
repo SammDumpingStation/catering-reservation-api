@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import {
-  MenuProps,
+  IMenu,
   NutritionInfoProps,
   PriceInfoProps,
 } from "@TStypes/menu.type.js";
@@ -72,7 +72,7 @@ const reviewsSchema = new mongoose.Schema<ReviewsProps>(
 );
 
 // Define the main Menu schema
-const menuSchema = new mongoose.Schema<MenuProps>(
+const menuSchema = new mongoose.Schema<IMenu>(
   {
     name: {
       type: String,

@@ -3,7 +3,7 @@ import { ObjectId, statusEnums, StringEnums } from "./global.type.js";
 
 export const paymentStatus: StringEnums = ["pending", "partial", "full"];
 export interface TransactionsProps {
-  _id?: ObjectId;
+  _id?: ObjectId; //wala dapat ni
   amount: number;
   method: {
     type: string;

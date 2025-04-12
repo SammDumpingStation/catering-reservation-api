@@ -1,10 +1,10 @@
 import { Document, Types } from "mongoose";
 import { FoodCategoryProps, ReviewsProps } from "./global.type.js";
 
-export interface PackageOptionProps {
+export type PackageOptionProps = {
   category: FoodCategoryProps;
   count: number;
-}
+};
 
 export type InclusionsProps = {
   typeOfCustomer: "Both" | "Buffet" | "Plated";
@@ -15,7 +15,7 @@ export type EventProps = "Birthday" | "Wedding" | "Corporate" | "Graduation";
 
 export type PackageProps = "BuffetPlated" | "Event";
 
-export interface CateringPackagesProps extends Document {
+export interface ICateringPackages extends Document {
   name: string;
   description: string;
   available: boolean;
@@ -37,14 +37,14 @@ export interface CateringPackagesProps extends Document {
 }
 
 export type CreatePackageProps = (
-  data: CateringPackagesProps
-) => Promise<CateringPackagesProps>;
+  data: ICateringPackages
+) => Promise<ICateringPackages>;
 
 export type UpdatePackageByIdProps = (
   id: string,
   data: Partial<
     Omit<
-      CateringPackagesProps,
+      ICateringPackages,
       | "_id"
       | "rating"
       | "ratingCount"
@@ -54,4 +54,4 @@ export type UpdatePackageByIdProps = (
       | "__v"
     >
   >
-) => Promise<CateringPackagesProps | null>;
+) => Promise<ICateringPackages | null>;

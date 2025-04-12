@@ -1,11 +1,8 @@
 // middleware/auth.ts
-import jwt from "jsonwebtoken";
-import { Request, Response, NextFunction } from "express";
-import { JWT_SECRET } from "../config/env.js";
 import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
-import { DecodedToken } from "@TStypes/auth.type.js";
+import { IDecodedToken } from "@TStypes/auth.type.js";
 import { FunctionProps } from "@TStypes/global.type.js";
 import { verifyToken } from "@utils/authUtils.js";
 
@@ -43,7 +40,7 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   const decoded = verifyToken(access_token, "access");
   if (!decoded) return next(createError("Invalid or expired token", 403));
 
-  const { customerId, role } = decoded as DecodedToken;
+  const { customerId, role } = decoded as IDecodedToken;
   req.user = { id: customerId, role };
 
   next();

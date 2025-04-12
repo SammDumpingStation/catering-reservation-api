@@ -1,6 +1,3 @@
-// import type { Request, Response, NextFunction } from "express";
-// import { validationResult } from "express-validator";
-
 // export const validateRequest = (
 //   req: Request,
 //   res: Response,
@@ -21,7 +18,6 @@
 // }; //THIS FUNCTION RETURN ONLY THE FIRST ERROR MESSAGE
 
 import { FunctionProps } from "@TStypes/global.type.js";
-import type { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 
 export const validateRequest: FunctionProps = (req, res, next) => {

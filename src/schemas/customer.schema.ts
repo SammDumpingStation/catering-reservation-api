@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
-import { CustomerProps } from "@TStypes/customer.type.js";
+import { ICustomer } from "@TStypes/customer.type.js";
 
-const customerSchema = new mongoose.Schema<CustomerProps>(
+const customerSchema = new mongoose.Schema<ICustomer>(
   {
     fullName: {
       type: String,

@@ -6,12 +6,7 @@ import {
   getCustomers,
   updateCustomer,
 } from "@controllers/customer.controller.js";
-import {
-  isCaterer,
-  isCustomer,
-  isSelf,
-  isSelfOrCaterer,
-} from "@middlewares/auth.middleware.js";
+import { isCaterer, isSelfOrCaterer } from "@middlewares/auth.middleware.js";
 import { customerValidationRules } from "@middlewares/validators/customer.validator.js";
 
 const customerRouter = Router();

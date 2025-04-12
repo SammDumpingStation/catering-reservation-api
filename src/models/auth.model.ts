@@ -1,7 +1,6 @@
 import Customer from "@schemas/customer.schema.js";
 import { encryptPassword } from "@utils/authUtils.js";
 import { SignUpProps } from "@TStypes/auth.type.js";
-import { createError } from "@utils/globalUtils.js";
 
 export const createAccount: SignUpProps = async (data) => {
   return {
