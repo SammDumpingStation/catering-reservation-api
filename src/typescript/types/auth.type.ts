@@ -7,7 +7,12 @@ export type SignUpProps = (data: {
   password: string;
 }) => Promise<{ customer: ICustomer }>;
 
-export interface IDecodedToken extends JwtPayload {
+export interface IDecodedAccessToken extends JwtPayload {
   customerId: string;
   role: string;
+}
+
+export interface IDecodedRefreshToken extends IDecodedAccessToken {
+  email: string;
+  fullName: string;
 }

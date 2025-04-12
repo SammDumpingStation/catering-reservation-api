@@ -2,7 +2,7 @@
 import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
-import { IDecodedToken } from "@TStypes/auth.type.js";
+import { IDecodedAccessToken } from "@TStypes/auth.type.js";
 import { FunctionProps } from "@TStypes/global.type.js";
 import { verifyToken } from "@utils/authUtils.js";
 
@@ -30,17 +30,19 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   if (!requiresAuth) return next();
 
   // For protected routes, verify authentication
-  const bearerHeader = req.headers.authorization;
-  const access_token = bearerHeader?.startsWith("Bearer ")
-    ? bearerHeader.split(" ")[1]
-    : req.signedCookies["access_token"];
+  // const bearerHeader = req.headers.authorization; // temporary commented this lets focus first to web
+  // const access_token = bearerHeader?.startsWith("Bearer ")
+  //   ? bearerHeader.split(" ")[1]
+  //   : req.signedCookies["access_token"];
+
+  const { access_token } = req.signedCookies;
 
   if (!access_token) throw createError("Authentication required", 401);
 
   const decoded = verifyToken(access_token, "access");
-  if (!decoded) return next(createError("Invalid or expired token", 403));
+  if (!decoded) throw createError("Invalid or expired access token", 403);
 
-  const { customerId, role } = decoded as IDecodedToken;
+  const { customerId, role } = decoded as IDecodedAccessToken;
   req.user = { id: customerId, role };
 
   next();

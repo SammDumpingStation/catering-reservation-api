@@ -7,8 +7,10 @@ import {
   sanitizeCustomer,
   setTokenCookie,
   validatePassword,
+  verifyToken,
 } from "@utils/authUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
+import { IDecodedRefreshToken } from "@TStypes/auth.type.js";
 
 //Implement Sign-up Logic
 const signUp: FunctionProps = async (req, res, next) => {
@@ -130,4 +132,26 @@ const signOut: FunctionProps = async (req, res, next) => {
   }
 };
 
-export { signUp, signIn, signOut };
+const generateNewAccessToken: FunctionProps = (req, res, next) => {
+  try {
+    const { refresh_token } = req.signedCookies;
+    if (!refresh_token) throw createError("Authentication required", 401);
+
+    const decoded = verifyToken(refresh_token, "refresh");
+    if (!decoded) throw createError("Invalid or expired refresh token", 403);
+
+    const { customerId, role } = decoded as IDecodedRefreshToken;
+    const newAccessToken = generateAccessToken(customerId, role);
+
+    setTokenCookie(res, "access_token", newAccessToken, "/");
+
+    res.status(200).json({
+      success: true,
+      message: "Access token refreshed successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { signUp, signIn, signOut, generateNewAccessToken };
