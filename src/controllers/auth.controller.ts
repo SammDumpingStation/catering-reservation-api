@@ -95,15 +95,16 @@ const signIn: FunctionProps = async (req, res, next) => {
 //Implement Sign-Out Logic
 const signOut: FunctionProps = async (req, res, next) => {
   try {
-    // Get the authentication token from the request headers
-    const token = req.cookies["access_token"];
-    if (!token) throw createError("Not authenticated", 401);
-
-    // Clear the cookie on the client
     res.clearCookie("access_token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      // sameSite: "strict", // or match your login cookie's sameSite
+      // sameSite: "strict",
+    });
+
+    res.clearCookie("refresh_token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      // sameSite: "strict",
     });
 
     res.status(200).json({
