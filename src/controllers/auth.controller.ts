@@ -37,6 +37,8 @@ const signUp: FunctionProps = async (req, res, next) => {
       success: true,
       message: "Customer created successfully",
       data: {
+        // accessToken,  // Temporary
+        // refreshToken, // Temporary
         customer: sanitizeCustomer(customer),
       },
     });
@@ -78,6 +80,8 @@ const signIn: FunctionProps = async (req, res, next) => {
       success: true,
       message: "Customer signed in successfully",
       data: {
+        // accessToken, // Temporary
+        // refreshToken, // Temporary
         customer: sanitizeCustomer(existingCustomer),
       },
     });

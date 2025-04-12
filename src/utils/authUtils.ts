@@ -70,5 +70,6 @@ export const setTokenCookie = (
     secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
     // sameSite: "strict", // Prevent CSRF attacks
     maxAge, // Set the cookie's expiration to 15 minutes (same as token expiration)
+    signed: true, // Sign the cookie to prevent tampering
   });
 };

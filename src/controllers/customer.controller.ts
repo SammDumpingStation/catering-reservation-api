@@ -26,8 +26,6 @@ const getCustomer: FunctionProps = async (req, res, next) => {
     const existingCustomer = await Customer.findById(req.params.id);
     if (!existingCustomer) throw createError("Customer doesn't exist", 404);
 
-    console.log("HEADERSSSS", req.headers);
-
     res
       .status(200)
       .json({ success: true, data: sanitizeCustomer(existingCustomer) });

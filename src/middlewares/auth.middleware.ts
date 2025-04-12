@@ -36,7 +36,7 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   const bearerHeader = req.headers.authorization;
   const access_token = bearerHeader?.startsWith("Bearer ")
     ? bearerHeader.split(" ")[1]
-    : req.cookies["access_token"];
+    : req.signedCookies["access_token"];
 
   if (!access_token) throw createError("Authentication required", 401);
 

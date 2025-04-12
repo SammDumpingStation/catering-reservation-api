@@ -1,6 +1,6 @@
 import "module-alias/register.js"; // Register module-alias at the very top
 import express, { Application } from "express";
-import { CLIENT_URL, PORT } from "@config/env.js";
+import { CLIENT_URL, COOKIE_SECRET, PORT } from "@config/env.js";
 import connectToDatabase from "@database/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
@@ -29,7 +29,7 @@ app
   )
   .use(express.json())
   .use(express.urlencoded({ extended: false }))
-  .use(cookieParser())
+  .use(cookieParser(COOKIE_SECRET))
   .use(authenticatedRoutes);
 
 // API MAIN ROUTES
