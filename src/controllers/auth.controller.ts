@@ -10,7 +10,10 @@ import {
   verifyToken,
 } from "@utils/authUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
-import { IDecodedRefreshToken } from "@TStypes/auth.type.js";
+import {
+  IDecodedAccessToken,
+  IDecodedRefreshToken,
+} from "@TStypes/auth.type.js";
 
 //Implement Sign-up Logic
 const signUp: FunctionProps = async (req, res, next) => {
@@ -132,6 +135,28 @@ const signOut: FunctionProps = async (req, res, next) => {
   }
 };
 
+const getCurrentCustomer: FunctionProps = async (req, res, next) => {
+  try {
+    const { access_token } = req.signedCookies;
+    if (!access_token) throw createError("Authentication required", 401);
+
+    const { customerId } = verifyToken(
+      access_token,
+      "access"
+    ) as IDecodedAccessToken;
+
+    const currentCustomer = await Customer.findById(customerId);
+    if (!currentCustomer) throw createError("Customer doesn't exist", 404);
+
+    res.status(200).json({
+      success: true,
+      customer: sanitizeCustomer(currentCustomer),
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 const generateNewAccessToken: FunctionProps = (req, res, next) => {
   try {
     const { refresh_token } = req.signedCookies;
@@ -154,4 +179,4 @@ const generateNewAccessToken: FunctionProps = (req, res, next) => {
   }
 };
 
-export { signUp, signIn, signOut, generateNewAccessToken };
+export { signUp, signIn, signOut, getCurrentCustomer, generateNewAccessToken };
