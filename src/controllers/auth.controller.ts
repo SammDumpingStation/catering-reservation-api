@@ -21,7 +21,8 @@ const signUp: FunctionProps = async (req, res, next) => {
     const data = req.body;
 
     const existingCustomer = await Customer.findOne({ email: data.email });
-    if (existingCustomer) throw createError("Customer already exists", 400);
+    if (existingCustomer)
+      throw createError("Email address already exists", 400);
 
     const { customer } = await authModel.createAccount(data);
 
@@ -67,7 +68,8 @@ const signIn: FunctionProps = async (req, res, next) => {
     const data = req.body;
 
     const existingCustomer = await Customer.findOne({ email: data.email });
-    if (!existingCustomer) throw createError("Customer doesn't exist", 404);
+    if (!existingCustomer)
+      throw createError("Email address doesn't exist", 404);
 
     const isPasswordValid = await validatePassword(
       data.password,
