@@ -1,7 +1,7 @@
 services:
   mongo_db:
     container_name: online-catering-reservation-system-db
-    image: mongo:latest
+    image: mongo:6.0 # Changed from mongo:latest to mongo:6.0 ga error sakong end if mongo:latest
     restart: always
     volumes:
       - mongo_db:/data/db
