@@ -181,17 +181,17 @@ export const menuValidationRules = {
         return `Please provide discount for price option ${index + 1}`;
       })
       .bail()
-      .isFloat({ min: 0, max: 1 })
+      .isFloat({ min: 0, max: 100 })
       .withMessage((value, { req, path }) => {
         // Extract the index from the path to get the specific price range
         const match = path.match(/prices\[(\d+)\]/);
-        if (!match) return "Discount must be between 0 and 1";
+        if (!match) return "Discount must be between 0 and 100";
 
         const index = Number.parseInt(match[1]);
         if (!req.body.prices || !req.body.prices[index])
           return `Discount for price option ${
             index + 1
-          } must be between 0 and 1`;
+          } must be between 0 and 100`;
 
         const minPax = req.body.prices[index].minimumPax;
         const maxPax = req.body.prices[index].maximumPax;
@@ -199,18 +199,19 @@ export const menuValidationRules = {
         if (minPax && maxPax) {
           return `Discount for price option ${
             index + 1
-          } (${minPax} to ${maxPax} pax) must be between 0 and 1`;
+          } (${minPax} to ${maxPax} pax) must be between 0 and 100`;
         } else {
           return `Discount for price option ${
             index + 1
-          } must be between 0 and 1`;
+          } must be between 0 and 100`;
         }
       }),
 
     body("imageUrl")
-      .notEmpty()
-      .withMessage("Please provide an image URL")
-      .bail()
+      // .notEmpty()
+      // .withMessage("Please provide an image URL")
+      // .bail()
+      .optional()
       .isString()
       .withMessage("Image URL must be a String")
       .bail()
@@ -219,9 +220,10 @@ export const menuValidationRules = {
       .withMessage("Image URL must be a valid URL"),
 
     body("perServing")
-      .notEmpty()
-      .withMessage("Please provide serving size information")
-      .bail()
+      // .notEmpty()
+      // .withMessage("Please provide serving size information")
+      // .bail()
+      .optional()
       .isString()
       .withMessage("Per serving must be a valid String"),
 
@@ -230,80 +232,80 @@ export const menuValidationRules = {
     body("nutritionInfo.calories")
       .optional()
       .isString()
-      .withMessage("Calories should be a valid String")
-      .bail()
-      .matches(/\d+\s*kcal/)
-      .withMessage(
-        "Calories should include a number followed by 'kcal' (e.g., '25 kcal')"
-      ),
+      .withMessage("Calories should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*kcal/)
+    // .withMessage(
+    //   "Calories should include a number followed by 'kcal' (e.g., '25 kcal')"
+    // ),
 
     body("nutritionInfo.protein")
       .optional()
       .isString()
-      .withMessage("Protein should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Protein should include a number followed by 'g' (e.g., '5g')"
-      ),
+      .withMessage("Protein should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Protein should include a number followed by 'g' (e.g., '5g')"
+    // ),
 
     body("nutritionInfo.fat")
       .optional()
       .isString()
-      .withMessage("Fat should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage("Fat should include a number followed by 'g' (e.g., '6g')"),
+      .withMessage("Fat should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage("Fat should include a number followed by 'g' (e.g., '6g')"),
 
     body("nutritionInfo.carbs")
       .optional()
       .isString()
-      .withMessage("Carbohydrate should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Carbs should include a number followed by 'g' (e.g., '10g')"
-      ),
+      .withMessage("Carbohydrate should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Carbs should include a number followed by 'g' (e.g., '10g')"
+    // ),
 
     body("nutritionInfo.sodium")
       .optional()
       .isString()
-      .withMessage("Sodium should be a valid String")
-      .bail()
-      .matches(/\d+\s*(mg|g)/)
-      .withMessage(
-        "Sodium should include a number followed by 'mg' or 'g' (e.g., '200mg')"
-      ),
+      .withMessage("Sodium should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*(mg|g)/)
+    // .withMessage(
+    //   "Sodium should include a number followed by 'mg' or 'g' (e.g., '200mg')"
+    // ),
 
     body("nutritionInfo.fiber")
       .optional()
       .isString()
-      .withMessage("Fiber should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Fiber should include a number followed by 'g' (e.g., '2g')"
-      ),
+      .withMessage("Fiber should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Fiber should include a number followed by 'g' (e.g., '2g')"
+    // ),
 
     body("nutritionInfo.sugar")
       .optional()
       .isString()
-      .withMessage("Sugar should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Sugar should include a number followed by 'g' (e.g., '3g')"
-      ),
+      .withMessage("Sugar should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Sugar should include a number followed by 'g' (e.g., '3g')"
+    // ),
 
     body("nutritionInfo.cholesterol")
       .optional()
       .isString()
-      .withMessage("Cholesterol ories should be a valid String")
-      .bail()
-      .matches(/\d+\s*(mg|g)/)
-      .withMessage(
-        "Cholesterol should include a number followed by 'mg' or 'g' (e.g., '5mg')"
-      ),
+      .withMessage("Cholesterol ories should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*(mg|g)/)
+    // .withMessage(
+    //   "Cholesterol should include a number followed by 'mg' or 'g' (e.g., '5mg')"
+    // ),
 
     validateRequest,
   ],
@@ -496,80 +498,80 @@ export const menuValidationRules = {
     body("nutritionInfo.calories")
       .optional()
       .isString()
-      .withMessage("Calories should be a valid String")
-      .bail()
-      .matches(/\d+\s*kcal/)
-      .withMessage(
-        "Calories should include a number followed by 'kcal' (e.g., '25 kcal')"
-      ),
+      .withMessage("Calories should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*kcal/)
+    // .withMessage(
+    //   "Calories should include a number followed by 'kcal' (e.g., '25 kcal')"
+    // ),
 
     body("nutritionInfo.protein")
       .optional()
       .isString()
-      .withMessage("Protein should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Protein should include a number followed by 'g' (e.g., '5g')"
-      ),
+      .withMessage("Protein should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Protein should include a number followed by 'g' (e.g., '5g')"
+    // ),
 
     body("nutritionInfo.fat")
       .optional()
       .isString()
-      .withMessage("Fat should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage("Fat should include a number followed by 'g' (e.g., '6g')"),
+      .withMessage("Fat should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage("Fat should include a number followed by 'g' (e.g., '6g')"),
 
     body("nutritionInfo.carbs")
       .optional()
       .isString()
-      .withMessage("Carbohydrate should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Carbs should include a number followed by 'g' (e.g., '10g')"
-      ),
+      .withMessage("Carbohydrate should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Carbs should include a number followed by 'g' (e.g., '10g')"
+    // ),
 
     body("nutritionInfo.sodium")
       .optional()
       .isString()
-      .withMessage("Sodium should be a valid String")
-      .bail()
-      .matches(/\d+\s*(mg|g)/)
-      .withMessage(
-        "Sodium should include a number followed by 'mg' or 'g' (e.g., '200mg')"
-      ),
+      .withMessage("Sodium should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*(mg|g)/)
+    // .withMessage(
+    //   "Sodium should include a number followed by 'mg' or 'g' (e.g., '200mg')"
+    // ),
 
     body("nutritionInfo.fiber")
       .optional()
       .isString()
-      .withMessage("Fiber should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Fiber should include a number followed by 'g' (e.g., '2g')"
-      ),
+      .withMessage("Fiber should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Fiber should include a number followed by 'g' (e.g., '2g')"
+    // ),
 
     body("nutritionInfo.sugar")
       .optional()
       .isString()
-      .withMessage("Sugar should be a valid String")
-      .bail()
-      .matches(/\d+\s*g/)
-      .withMessage(
-        "Sugar should include a number followed by 'g' (e.g., '3g')"
-      ),
+      .withMessage("Sugar should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*g/)
+    // .withMessage(
+    //   "Sugar should include a number followed by 'g' (e.g., '3g')"
+    // ),
 
     body("nutritionInfo.cholesterol")
       .optional()
       .isString()
-      .withMessage("Cholesterol ories should be a valid String")
-      .bail()
-      .matches(/\d+\s*(mg|g)/)
-      .withMessage(
-        "Cholesterol should include a number followed by 'mg' or 'g' (e.g., '5mg')"
-      ),
+      .withMessage("Cholesterol ories should be a valid String"),
+    // .bail()
+    // .matches(/\d+\s*(mg|g)/)
+    // .withMessage(
+    //   "Cholesterol should include a number followed by 'mg' or 'g' (e.g., '5mg')"
+    // ),
 
     validateRequest,
   ],

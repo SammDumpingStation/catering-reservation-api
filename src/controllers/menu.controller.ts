@@ -46,7 +46,13 @@ const postMenu: FunctionProps = async (req, res, next) => {
 
     const menu = await menuModel.createMenu(data);
 
-    res.status(201).json({ success: true, data: menu });
+    res
+      .status(201)
+      .json({
+        success: true,
+        message: `${data.name} is added to menus`,
+        data: menu,
+      });
   } catch (error) {
     next(error);
   }
