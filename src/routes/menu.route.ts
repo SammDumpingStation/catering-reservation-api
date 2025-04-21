@@ -18,11 +18,11 @@ menuRouter.get("/", getMenus);
 //Get Menu Detail
 menuRouter.get("/:id", getMenu);
 
-//Create a new Menu
-menuRouter.post("/", isCaterer, menuValidationRules.create, postMenu);
+//Create a new Menu (isCaterer)
+menuRouter.post("/", menuValidationRules.create, postMenu);
 
-//Update a Menu
-menuRouter.put("/:id", isCaterer, menuValidationRules.update, updateMenu);
+//Update a Menu (isCaterer)
+menuRouter.put("/:id", menuValidationRules.update, updateMenu);
 
 //Delete a Menu
 menuRouter.delete("/:id", isCaterer, deleteMenu);

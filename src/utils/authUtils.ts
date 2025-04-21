@@ -61,7 +61,7 @@ export const setTokenCookie = (
   res.cookie(tokenName, token, {
     httpOnly: true, // Prevents JavaScript from accessing the cookie
     secure: process.env.NODE_ENV === "production", // Only use secure cookies in production
-    // sameSite: "strict", // Prevent CSRF attacks
+    // sameSite: "none",
     path,
     maxAge, // Set the cookie's expiration to 15 minutes (same as token expiration)
     signed: true, // Sign the cookie to prevent tampering
