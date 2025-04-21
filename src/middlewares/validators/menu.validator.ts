@@ -453,17 +453,17 @@ export const menuValidationRules = {
 
     body("prices.*.discount")
       .optional()
-      .isFloat({ min: 0, max: 1 })
+      .isFloat({ min: 0, max: 100 })
       .withMessage((value, { req, path }) => {
         // Extract the index from the path to get the specific price range
         const match = path.match(/prices\[(\d+)\]/);
-        if (!match) return "Discount must be between 0 and 1";
+        if (!match) return "Discount must be between 0 and 100";
 
         const index = Number.parseInt(match[1]);
         if (!req.body.prices || !req.body.prices[index])
           return `Discount for price option ${
             index + 1
-          } must be between 0 and 1`;
+          } must be between 0 and 100`;
 
         const minPax = req.body.prices[index].minimumPax;
         const maxPax = req.body.prices[index].maximumPax;
@@ -471,11 +471,11 @@ export const menuValidationRules = {
         if (minPax && maxPax) {
           return `Discount for price option ${
             index + 1
-          } (${minPax} to ${maxPax} pax) must be between 0 and 1`;
+          } (${minPax} to ${maxPax} pax) must be between 0 and 100`;
         } else {
           return `Discount for price option ${
             index + 1
-          } must be between 0 and 1`;
+          } must be between 0 and 100`;
         }
       }),
 

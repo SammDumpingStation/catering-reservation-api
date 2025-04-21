@@ -48,7 +48,7 @@ const priceInfoSchema = new mongoose.Schema(
       type: Number,
       required: true,
       min: 0,
-      max: 1,
+      max: 100,
     },
   },
   { _id: false }
@@ -87,7 +87,7 @@ const menuSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a full description"],
       trim: true,
-      minLength: [30, "Full description must be at least 30 characters long"],
+      minLength: [20, "Full description must be at least 30 characters long"],
       maxLength: [500, "Full description must not exceed 500 characters"],
     },
     ingredients: {
@@ -127,8 +127,9 @@ const menuSchema = new mongoose.Schema(
     },
     perServing: {
       type: String,
-      required: [true, "Please provide serving size information"],
-      trim: true,
+      // required: [true, "Please provide serving size information"],
+      // trim: true,
+      default: "",
     },
     nutritionInfo: nutritionInfoSchema,
   },
