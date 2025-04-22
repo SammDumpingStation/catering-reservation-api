@@ -18,7 +18,7 @@ import { socketConnection } from "@database/socket.js";
 
 export const allowedOrigins = [
   "http://localhost:3000", // Web
-  "http://192.168.48.231:8081", // React Native via Expo
+  "http://172.0.0.1:8081", // React Native via Expo
 ];
 
 const app: Application = express();
@@ -33,6 +33,7 @@ app
   .use(
     cors({
       origin: (origin, callback) => {
+        console.log("ORIGIN", origin);
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true);
         } else {

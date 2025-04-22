@@ -67,3 +67,17 @@ export const setTokenCookie = (
     signed: true, // Sign the cookie to prevent tampering
   });
 };
+
+// In clearing cookie it must match all the parameters the same as you set the cookie
+export const clearTokenCookie = (
+  res: Response,
+  cookieName: string,
+  path: string
+) => {
+  res.clearCookie(cookieName, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    // sameSite: "none",
+    path,
+  });
+};

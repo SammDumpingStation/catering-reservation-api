@@ -2,6 +2,7 @@ import * as authModel from "@models/auth.model.js";
 import Customer from "@schemas/customer.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import {
+  clearTokenCookie,
   generateAccessToken,
   generateRefreshToken,
   sanitizeCustomer,
@@ -38,13 +39,13 @@ const signUp: FunctionProps = async (req, res, next) => {
       customer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken, "/", 1000 * 60 * 60 * 24); //time is temporary
+    setTokenCookie(res, "access_token", accessToken, "/", 30 * 1000); //time is temporary
     setTokenCookie(
       res,
       "refresh_token",
       refreshToken,
       "/api/auth/refresh",
-      1000 * 60 * 60 * 24 * 2
+      5 * 60 * 1000
     ); // 1 day
 
     res.status(201).json({
@@ -88,13 +89,13 @@ const signIn: FunctionProps = async (req, res, next) => {
       existingCustomer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken, "/", 1000 * 60 * 60 * 24); //time is temporary
+    setTokenCookie(res, "access_token", accessToken, "/", 30 * 1000); //time is temporary
     setTokenCookie(
       res,
       "refresh_token",
       refreshToken,
       "/api/auth/refresh",
-      1000 * 60 * 60 * 24
+      5 * 60 * 1000
     ); // 1 day
 
     res.status(201).json({
@@ -114,19 +115,9 @@ const signIn: FunctionProps = async (req, res, next) => {
 //Implement Sign-Out Logic
 const signOut: FunctionProps = async (req, res, next) => {
   try {
-    res.clearCookie("access_token", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      // sameSite: "strict",
-      path: "/", // Must match path used in sign-in
-    });
+    clearTokenCookie(res, "access_token", "/");
 
-    res.clearCookie("refresh_token", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      // sameSite: "strict",
-      path: "/api/auth/refresh", // Must match path used in sign-in
-    });
+    clearTokenCookie(res, "refresh_token", "/api/auth/refresh");
 
     res.status(200).json({
       success: true,
@@ -162,10 +153,26 @@ const getCurrentCustomer: FunctionProps = async (req, res, next) => {
 const generateNewAccessToken: FunctionProps = (req, res, next) => {
   try {
     const { refresh_token } = req.signedCookies;
-    if (!refresh_token) throw createError("Authentication required", 401);
+    if (!refresh_token) {
+      clearTokenCookie(res, "access_token", "/");
+
+      clearTokenCookie(res, "refresh_token", "/api/auth/refresh");
+
+      createError("No Refresh Token", 401);
+
+      return;
+    }
 
     const decoded = verifyToken(refresh_token, "refresh");
-    if (!decoded) throw createError("Invalid or expired refresh token", 403);
+    if (!decoded) {
+      clearTokenCookie(res, "access_token", "/");
+
+      clearTokenCookie(res, "refresh_token", "/api/auth/refresh");
+
+      createError("Invalid or expired refresh token", 403);
+
+      return;
+    }
 
     const { customerId, role } = decoded as IDecodedRefreshToken;
     const newAccessToken = generateAccessToken(customerId, role);
