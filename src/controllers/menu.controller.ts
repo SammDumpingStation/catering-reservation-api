@@ -2,6 +2,7 @@ import Menu from "../schemas/menu.schema.js";
 import * as menuModel from "../models/menu.model.js";
 import { createError } from "@utils/globalUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
+import { io } from "@database/socket.js";
 
 //Get All Menu
 const getMenus: FunctionProps = async (req, res, next) => {
@@ -46,13 +47,14 @@ const postMenu: FunctionProps = async (req, res, next) => {
 
     const menu = await menuModel.createMenu(data);
 
-    res
-      .status(201)
-      .json({
-        success: true,
-        message: `${data.name} is added to menus`,
-        data: menu,
-      });
+    // Emit event to all clients when menu is created
+    io.emit("menuCreated", menu);
+
+    res.status(201).json({
+      success: true,
+      message: `${data.name} is added to menus`,
+      data: menu,
+    });
   } catch (error) {
     next(error);
   }
@@ -71,6 +73,9 @@ const updateMenu: FunctionProps = async (req, res, next) => {
 
     const menu = await menuModel.updateMenuById(id, data);
     if (!menu) throw createError("Menu doesn't exist", 404);
+
+    // Emit event to all clients when menu is updated
+    io.emit("menuUpdated", menu);
 
     res.status(200).json({ success: true, data: menu });
   } catch (error) {

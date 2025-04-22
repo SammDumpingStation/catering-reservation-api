@@ -54,13 +54,7 @@ app.use(errorMiddleware);
 await connectToDatabase((client) => {
   if (!client) return;
 
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server Running on http://localhost:${PORT}`);
   });
 });
-
-// const client = await connectToDatabase();
-// if (client)
-//   app.listen(PORT, () => {
-//     console.log(`Server Running on http://localhost:${PORT}`);
-//   });

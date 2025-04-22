@@ -7,7 +7,7 @@ let io: Server;
 const socketConnection = (server: HttpServer) => {
   io = new Server(server, {
     cors: {
-      origin: CLIENT_URL || "http://localhost:3000",
+      origin: "http://localhost:3000",
       credentials: true,
     },
   });
@@ -15,8 +15,22 @@ const socketConnection = (server: HttpServer) => {
   io.on("connection", (socket) => {
     console.log("User Connected!");
 
+    // You can emit a message to the client
+    socket.emit("connected", {
+      message: "Successfully connected to the server!",
+    });
+
     socket.on("disconnect", () => {
       console.log("User Disconnected!");
+    });
+
+    // Handle other events from the client
+    socket.on("menuUpdated", (updatedMenu) => {
+      console.log("Menu updated:", updatedMenu);
+    });
+
+    socket.on("menuCreated", (createdMenu) => {
+      console.log("Menu created:", createdMenu);
     });
   });
 };
