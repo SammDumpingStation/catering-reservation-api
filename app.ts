@@ -1,7 +1,7 @@
 import "module-alias/register.js"; // Register module-alias at the very top
 import express, { Application } from "express";
 import { CLIENT_URL, COOKIE_SECRET, PORT } from "@config/env.js";
-import connectToDatabase from "@database/mongodb.js";
+import connectToDatabase from "src/libs/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -14,11 +14,15 @@ import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
 import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
+import { socketConnection } from "@database/socket.js";
 
 const app: Application = express();
 
-// for websocket
+// for websocket Create HTTP server from express app
 const server = createServer(app);
+
+// Establish socket connection
+socketConnection(server);
 
 app
   .use(
