@@ -6,6 +6,7 @@ import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { authenticatedRoutes } from "@middlewares/auth.middleware.js";
+import { createServer } from "http";
 
 import authRouter from "@routes/auth.route.js";
 import customerRouter from "@routes/customer.route.js";
@@ -15,6 +16,9 @@ import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
 
 const app: Application = express();
+
+// for websocket
+const server = createServer(app);
 
 app
   .use(

@@ -18,13 +18,13 @@ menuRouter.get("/", getMenus);
 //Get Menu Detail
 menuRouter.get("/:id", getMenu);
 
-//Create a new Menu (isCaterer)
+//Create a new Menu (isCaterer) TEMPORARY
 menuRouter.post("/", menuValidationRules.create, postMenu);
 
-//Update a Menu (isCaterer)
+//Update a Menu (isCaterer) TEMPORARY
 menuRouter.put("/:id", menuValidationRules.update, updateMenu);
 
-//Delete a Menu
-menuRouter.delete("/:id", isCaterer, deleteMenu);
+//Delete a Menu (isCaterer) TEMPORARY
+menuRouter.delete("/:id", deleteMenu);
 
 export default menuRouter;
