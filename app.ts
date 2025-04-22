@@ -16,6 +16,11 @@ import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
 import { socketConnection } from "@database/socket.js";
 
+export const allowedOrigins = [
+  "http://localhost:3000", // Web
+  "http://192.168.48.231:8081", // React Native via Expo
+];
+
 const app: Application = express();
 
 // for websocket Create HTTP server from express app
@@ -27,7 +32,13 @@ socketConnection(server);
 app
   .use(
     cors({
-      origin: CLIENT_URL || "http://localhost:3000",
+      origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("Not allowed by CORS"));
+        }
+      },
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,

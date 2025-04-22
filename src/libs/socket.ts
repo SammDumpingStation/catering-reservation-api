@@ -1,13 +1,14 @@
 import { CLIENT_URL } from "@config/env.js";
 import { Server } from "socket.io";
 import { Server as HttpServer } from "http";
+import { allowedOrigins } from "app.js";
 
 let io: Server;
 
 const socketConnection = (server: HttpServer) => {
   io = new Server(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: allowedOrigins,
       credentials: true,
     },
   });

@@ -86,14 +86,16 @@ const updateMenu: FunctionProps = async (req, res, next) => {
 //Delete a Menu
 const deleteMenu: FunctionProps = async (req, res, next) => {
   try {
-    const existingMenu = await Menu.findByIdAndDelete(req.params.id);
+    const deletedMenu = await Menu.findByIdAndDelete(req.params.id);
 
-    if (!existingMenu) throw createError("Menu doesn't exist", 404);
+    if (!deletedMenu) throw createError("Menu doesn't exist", 404);
+
+    io.emit("menuDeleted", deletedMenu); // 👈 Emit the deleted menu
 
     res.status(200).json({
       success: true,
-      message: `${existingMenu?.name} deleted Successfully!`,
-      data: existingMenu,
+      message: `${deletedMenu?.name} deleted Successfully!`,
+      data: deletedMenu,
     });
   } catch (error) {
     next(error);
