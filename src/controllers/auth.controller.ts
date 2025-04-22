@@ -39,13 +39,13 @@ const signUp: FunctionProps = async (req, res, next) => {
       customer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken, "/", 30 * 1000); //time is temporary
+    setTokenCookie(res, "access_token", accessToken, "/", 3600 * 1000); // 1 hour
     setTokenCookie(
       res,
       "refresh_token",
       refreshToken,
       "/api/auth/refresh",
-      5 * 60 * 1000
+      86400 * 1000
     ); // 1 day
 
     res.status(201).json({
@@ -89,13 +89,13 @@ const signIn: FunctionProps = async (req, res, next) => {
       existingCustomer.role
     );
 
-    setTokenCookie(res, "access_token", accessToken, "/", 30 * 1000); //time is temporary
+    setTokenCookie(res, "access_token", accessToken, "/", 3600 * 1000); // 1 hour
     setTokenCookie(
       res,
       "refresh_token",
       refreshToken,
       "/api/auth/refresh",
-      5 * 60 * 1000
+      86400 * 1000
     ); // 1 day
 
     res.status(201).json({
