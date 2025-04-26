@@ -1,6 +1,6 @@
 import "module-alias/register.js"; // Register module-alias at the very top
 import express, { Application } from "express";
-import { CLIENT_URL, COOKIE_SECRET, PORT } from "@config/env.js";
+import { CLIENT_URL, COOKIE_SECRET, MOBILE_URL, PORT } from "@config/env.js";
 import connectToDatabase from "src/libs/mongodb.js";
 import errorMiddleware from "@middlewares/error.middleware.js";
 import cors from "cors";
@@ -17,8 +17,8 @@ import reservationRouter from "@routes/reservation.route.js";
 import { socketConnection } from "@database/socket.js";
 
 export const allowedOrigins = [
-  "http://localhost:3000", // Web
-  "http://172.0.0.1:8081", // React Native via Expo
+  CLIENT_URL, // Web
+  MOBILE_URL, // React Native via Expo
 ];
 
 const app: Application = express();
@@ -32,6 +32,7 @@ socketConnection(server);
 app
   .use(
     cors({
+      // origin: allowedOrigins,
       origin: (origin, callback) => {
         console.log("ORIGIN", origin);
         if (!origin || allowedOrigins.includes(origin)) {
