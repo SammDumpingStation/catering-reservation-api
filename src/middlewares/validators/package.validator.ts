@@ -62,15 +62,15 @@ export const packageValidationRules = {
       .notEmpty()
       .withMessage("Please provide a minimum pax")
       .bail()
-      .isInt({ min: 1 })
-      .withMessage("Minimum pax must be at least 1"),
+      .isInt({ min: 10 })
+      .withMessage("Minimum pax must be at least 10"),
 
     body("recommendedPax")
       .notEmpty()
       .withMessage("Please provide a recommended pax")
       .bail()
-      .isInt({ min: 1 })
-      .withMessage("Recommended pax must be a positive integer")
+      .isInt({ min: 10 })
+      .withMessage("Recommended pax must be atleast 10")
       .custom((value, { req }) => {
         if (parseInt(value) <= parseInt(req.body.minimumPax))
           throw new Error("Recommended pax must be greater than minimum pax");
@@ -85,8 +85,8 @@ export const packageValidationRules = {
       .notEmpty()
       .withMessage("Please provide a maximum pax")
       .bail()
-      .isInt({ min: 1 })
-      .withMessage("Maximum pax must be a positive integer")
+      .isInt({ min: 10 })
+      .withMessage("Maximum pax must be atleast 10")
       .bail()
       .custom((value, { req }) => {
         if (parseInt(value) <= parseInt(req.body.minimumPax)) {
@@ -212,8 +212,8 @@ export const packageValidationRules = {
       .notEmpty()
       .withMessage("Please provide service hours")
       .bail()
-      .isFloat({ min: 0 })
-      .withMessage("Service hours must be a positive number"),
+      .isFloat({ min: 1 })
+      .withMessage("Service hours must be atleast 1"),
 
     body("serviceCharge")
       .notEmpty()
@@ -341,13 +341,13 @@ export const packageValidationRules = {
 
     body("minimumPax")
       .optional()
-      .isInt({ min: 1 })
-      .withMessage("Minimum pax must be at least 1"),
+      .isInt({ min: 10 })
+      .withMessage("Minimum pax must be at least 10"),
 
     body("recommendedPax")
       .optional()
-      .isInt({ min: 1 })
-      .withMessage("Recommended pax must be a positive integer")
+      .isInt({ min: 10 })
+      .withMessage("Recommended pax must be atleast 10")
       .custom((value, { req }) => {
         if (parseInt(value) <= parseInt(req.body?.minimumPax))
           throw new Error("Recommended pax must be greater than minimum pax");
@@ -360,8 +360,8 @@ export const packageValidationRules = {
 
     body("maximumPax")
       .optional()
-      .isInt({ min: 1 })
-      .withMessage("Maximum pax must be a positive integer")
+      .isInt({ min: 10 })
+      .withMessage("Maximum pax must be atleast 10")
       .bail()
       .custom((value, { req }) => {
         if (parseInt(value) <= parseInt(req.body.minimumPax)) {
@@ -487,8 +487,8 @@ export const packageValidationRules = {
 
     body("serviceHours")
       .optional()
-      .isFloat({ min: 0 })
-      .withMessage("Service hours must be a positive number"),
+      .isFloat({ min: 1 })
+      .withMessage("Service hours must be atleast 1"),
 
     body("serviceCharge")
       .optional()
