@@ -2,6 +2,7 @@ import Package from "../schemas/package.schema.js";
 import * as packageModel from "@models/package.model.js";
 import { createError } from "@utils/globalUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
+import { io } from "@database/socket.js";
 
 //Get All Package
 const getPackages: FunctionProps = async (req, res, next) => {
@@ -55,7 +56,14 @@ const postPackage: FunctionProps = async (req, res, next) => {
 
     const pkg = await Package.create(data);
 
-    res.status(201).json({ success: true, data: pkg });
+    // Emit event to all clients when menu is created
+    io.emit("packageCreated", pkg);
+
+    res.status(201).json({
+      success: true,
+      message: `${data.name} is added to packages`,
+      data: pkg,
+    });
   } catch (error) {
     next(error);
   }
@@ -75,6 +83,9 @@ const updatePackage: FunctionProps = async (req, res, next) => {
     const pkg = await packageModel.updatePackageById(id, data);
     if (!pkg) throw createError("Package doesn't exist", 404);
 
+    // Emit event to all clients when menu is updated
+    io.emit("packageUpdated", pkg);
+
     res.status(200).json({ success: true, data: pkg });
   } catch (error) {
     next(error);
@@ -86,6 +97,8 @@ const deletePackage: FunctionProps = async (req, res, next) => {
     const pkg = await Package.findByIdAndDelete(req.params.id);
 
     if (!pkg) throw createError("Package doesn't exist", 404);
+
+    io.emit("packageDeleted", pkg); // 👈 Emit the deleted packages
 
     res.status(200).json({
       success: true,
