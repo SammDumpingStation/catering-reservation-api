@@ -98,8 +98,13 @@ export const menuValidationRules = {
       .notEmpty()
       .withMessage("Please provide regular price per pax")
       .bail()
-      .isFloat({ min: 0 })
-      .withMessage("Regular price per pax must be a positive number"),
+      .isFloat({ min: 0, max: 1000 })
+      .withMessage("Regular price per pax must be between 0 and 1000")
+      .bail()
+      .matches(/^(\d+(\.\d{1,2})?)?$/)
+      .withMessage(
+        "Regular price per pax must have at most two decimal places"
+      ),
 
     body("prices")
       .isArray({ min: 1 })
@@ -393,8 +398,13 @@ export const menuValidationRules = {
 
     body("regularPricePerPax")
       .optional()
-      .isFloat({ min: 0 })
-      .withMessage("Regular price per pax must be a positive number"),
+      .isFloat({ min: 0, max: 1000 })
+      .withMessage("Regular price per pax must be between 0 and 1000")
+      .bail()
+      .matches(/^(\d+(\.\d{1,2})?)?$/)
+      .withMessage(
+        "Regular price per pax must have at most two decimal places"
+      ),
 
     body("prices")
       .optional()
