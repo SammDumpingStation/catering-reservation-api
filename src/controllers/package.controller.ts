@@ -8,10 +8,6 @@ import { io } from "@database/socket.js";
 const getPackages: FunctionProps = async (req, res, next) => {
   try {
     const packages = await Package.find();
-    if (packages.length === 0) {
-      res.sendStatus(204);
-      return;
-    }
 
     res.status(200).json({ success: true, data: packages });
   } catch (error) {
@@ -76,8 +72,7 @@ const updatePackage: FunctionProps = async (req, res, next) => {
     const data = req.body;
 
     if (Object.keys(data).length === 0) {
-      res.sendStatus(204);
-      return;
+      throw createError("Update data cannot be empty", 400);
     }
 
     const pkg = await packageModel.updatePackageById(id, data);

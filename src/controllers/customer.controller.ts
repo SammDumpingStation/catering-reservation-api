@@ -7,10 +7,6 @@ import { FunctionProps } from "@TStypes/global.type.js";
 const getCustomers: FunctionProps = async (req, res, next) => {
   try {
     const existingCustomer = await Customer.find();
-    if (existingCustomer.length === 0) {
-      res.sendStatus(204);
-      return;
-    }
 
     res.status(200).json({
       success: true,
@@ -41,8 +37,7 @@ const updateCustomer: FunctionProps = async (req, res, next) => {
     const data = req.body;
 
     if (Object.keys(data).length === 0) {
-      res.sendStatus(204);
-      return;
+      throw createError("Update data cannot be empty", 400);
     }
 
     const existingCustomer = await customerModel.updateCustomerById(id, data);

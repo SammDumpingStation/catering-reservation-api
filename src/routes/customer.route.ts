@@ -12,7 +12,7 @@ import { customerValidationRules } from "@middlewares/validators/customer.valida
 const customerRouter = Router();
 
 //Get all Registered Customers
-customerRouter.get("/", isCaterer, getCustomers);
+customerRouter.get("/", getCustomers);
 
 //Get Customer Details
 customerRouter.get("/:id", isSelfOrCaterer, getCustomer);

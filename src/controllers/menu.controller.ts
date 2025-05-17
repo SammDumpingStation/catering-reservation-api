@@ -8,10 +8,6 @@ import { io } from "@database/socket.js";
 const getMenus: FunctionProps = async (req, res, next) => {
   try {
     const menus = await Menu.find();
-    if (menus.length === 0) {
-      res.sendStatus(204);
-      return;
-    }
 
     res.status(200).json({
       success: true,
@@ -67,8 +63,7 @@ const updateMenu: FunctionProps = async (req, res, next) => {
     const data = req.body;
 
     if (Object.keys(data).length === 0) {
-      res.sendStatus(204);
-      return;
+      throw createError("Update data cannot be empty", 400);
     }
 
     const menu = await menuModel.updateMenuById(id, data);
