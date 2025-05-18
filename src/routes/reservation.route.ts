@@ -8,11 +8,7 @@ import {
   updateReservation,
   deleteReservation,
 } from "../controllers/reservation.controller.js";
-import {
-  isCaterer,
-  isCustomer,
-  isReservationOwnerOrCaterer,
-} from "@middlewares/auth.middleware.js";
+import { isCaterer, isCustomer } from "@middlewares/auth.middleware.js";
 
 // TEMPORARY. DOESN'T WORK
 
@@ -20,19 +16,14 @@ const reservationRouter = express.Router();
 
 // Routes accessible only to caterers
 reservationRouter.get("/", isCaterer, getAllReservations);
-reservationRouter.get(
-  "/customer/:customerId",
-  isCaterer,
-  getCustomerReservations
-);
 
 // Routes accessible to both caterers and customers (with ownership check)
-reservationRouter.get("/:id", isReservationOwnerOrCaterer, getReservation);
+reservationRouter.get("/:id", getReservation);
 
-reservationRouter.put("/:id", isReservationOwnerOrCaterer, updateReservation);
+reservationRouter.put("/:id", updateReservation);
 reservationRouter.delete(
   "/:id",
-  isReservationOwnerOrCaterer,
+
   deleteReservation
 );
 

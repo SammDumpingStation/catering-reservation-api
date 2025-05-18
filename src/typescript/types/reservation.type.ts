@@ -1,122 +1,45 @@
-import { Document } from "mongoose";
-import { ObjectId, statusEnums, StringEnums } from "./global.type.js";
+export type ServiceType = "Buffet" | "Plated";
 
-//Define Enum Constants
+export type HoursArrayTypes =
+  | "4 hours"
+  | "4.5 hours"
+  | "5 hours"
+  | "5.5 hours"
+  | "6 hours"
+  | "6.5 hours"
+  | "8 hours"
+  | "8.5 hours"
+  | "10 hours";
 
-export const soupOptions: StringEnums = [
-  "Sinigang na Baboy",
-  "Bulalo",
-  "Tinolang Manok",
-  "Nilagang Baka",
-];
+export type PaxArrayType = "4-6 pax" | "8-10 pax" | "13-15 pax" | "18-20 pax";
 
-export const saladOptions: StringEnums = [
-  "Ensaladang Talong",
-  "Kinilaw na Tuna",
-  "Enseladang Mangga",
-  "Lato Salad",
-];
+export interface MenuReservationDetails {
+  quantity: number;
+  paxSelected: PaxArrayType;
+  pricePerPax: number;
+}
 
-export const chickenOptions: StringEnums = [
-  "Chicken Adobo",
-  "Chicken Inasal",
-  "Chicken Afritada",
-  "Fried Chicken with Gravy",
-];
+export type SelectedMenu = Record<string, MenuReservationDetails>;
+export type SelectedMenus = Record<string, SelectedMenu>;
 
-export const porkOptions: StringEnums = [
-  "Lechon Kawali",
-  "Pork Adobo",
-  "Crispy Pata",
-  "Sisig",
-];
-
-export const beefOptions: StringEnums = [
-  "Beef Caldereta",
-  "Beef Mechado",
-  "Bistek Tagalog",
-  "Beef Kare-Kare",
-];
-
-export const seafoodOptions: StringEnums = [
-  "Beef Caldereta",
-  "Beef Mechado",
-  "Bistek Tagalog",
-  "Beef Kare-Kare",
-];
-
-export const vegetableOptions: StringEnums = [
-  "Pinakbet",
-  "Ginisang Ampalaya",
-  "Laing",
-  "Ginataang Kalabasa at Sitaw",
-];
-
-export const noodleOptions: StringEnums = [
-  "Pancit Canton",
-  "Pancit Bihon",
-  "Pancit Palabok",
-  "Pancit Malabon",
-];
-
-export const dessertOptions: StringEnums = [
-  "Halo-Halo",
-  "Leche Flan",
-  "Biko",
-  "Bibingka",
-];
-
-export const beverageOptions: StringEnums = [
-  "Sago't Gulaman",
-  "Calamansi Juice",
-  "Buko Juice",
-  "Tsokolate",
-];
-
-
-export interface CustomerDetailsProps {
-  firstName: string;
-  lastName: string;
+export interface IReservation extends Document {
+  fullName: string;
   email: string;
-  contactNumber: number;
-}
-
-export interface EventDetailsProps {
-  type: string;
-  date: Date;
-  time: Date;
-  numberOfGuests: number;
+  contactNumber: string;
+  selectedPackage: string;
+  selectedMenus: SelectedMenus;
+  eventType: string;
+  guestCount: number;
+  serviceType: ServiceType;
+  orderType: "Pickup" | "Delivery" | "";
+  reservationDate: Date;
+  reservationTime: string;
+  deliveryFee?: number;
+  deliveryAddress?: string;
+  deliveryInstructions?: string;
+  totalPrice: number;
+  specialRequests?: string;
   venue: string;
-  serviceType: string;
-  serviceHours: number;
-}
-
-export interface MenuSelectionProps {
-  soupOptions: (typeof soupOptions)[number][];
-  saladOptions: (typeof saladOptions)[number][];
-  chickenOptions: (typeof chickenOptions)[number][];
-  porkOptions: (typeof porkOptions)[number][];
-  beefOptions: (typeof beefOptions)[number][];
-  seafoodOptions: (typeof seafoodOptions)[number][];
-  vegetableOptions: (typeof noodleOptions)[number][];
-  noodleOptions: (typeof noodleOptions)[number][];
-  dessertOptions: (typeof dessertOptions)[number][];
-  beverageOptions: (typeof beverageOptions)[number][];
-}
-
-export interface CostDetailsProps {
-  totalReservationCost: number;
-  minimumDownPayment: number;
-  downPaymentPaid: number;
-}
-
-export interface ReservationProps extends Document {
-  customerId: ObjectId;
-  customerDetails: CustomerDetailsProps;
-  eventDetails: EventDetailsProps;
-  menuSelection: MenuSelectionProps;
-  specialRequests: string;
-  costDetails: CostDetailsProps;
-  status: (typeof statusEnums)[number];
-  paymentStatus: (typeof statusEnums)[number];
+  serviceFee: number;
+  serviceHours?: HoursArrayTypes;
 }

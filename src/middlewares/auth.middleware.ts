@@ -1,5 +1,5 @@
 // middleware/auth.ts
-import Reservation from "@schemas/reservation.schema.js";
+// import Reservation from "@schemas/reservation.schema.js";
 import Payment from "@schemas/payment.schema.js";
 import { createError } from "@utils/globalUtils.js";
 import { IDecodedAccessToken } from "@TStypes/auth.type.js";
@@ -62,91 +62,6 @@ export const isCustomer: FunctionProps = (req, res, next) => {
     throw createError("Customer access required", 403);
 
   next();
-};
-
-// Middleware to check if user is authorized to access a specific reservation
-export const isReservationOwnerOrCaterer: FunctionProps = async (
-  req,
-  res,
-  next
-) => {
-  try {
-    if (!req.user) throw createError("Authentication required", 401);
-
-    // Caterers can access all reservations
-    if (req.user.role === "caterer") {
-      next();
-      return;
-    }
-
-    // For customers, check if they own the reservation
-    const { id } = req.params;
-    const reservation = await Reservation.findById(id);
-
-    if (!reservation) throw createError("Reservation not found", 404);
-
-    if (reservation.customerId.toString() !== req.user.id)
-      throw createError("Access denied. You don't own this reservation", 403);
-
-    next();
-  } catch (error) {
-    next(error);
-  }
-};
-
-// Middleware to check if user is authorized to access a specific payment
-export const isPaymentOwnerOrCaterer: FunctionProps = async (
-  req,
-  res,
-  next
-) => {
-  try {
-    if (!req.user) throw createError("Authentication required", 401);
-
-    // Caterers can access all payments
-    if (req.user.role === "caterer") {
-      next();
-      return;
-    }
-
-    // For customers, check if they own the payment through the reservation
-    let paymentId;
-    if (req.params.id) {
-      paymentId = req.params.id;
-    } else if (req.params.paymentId) {
-      paymentId = req.params.paymentId;
-    } else if (req.params.reservationId) {
-      // For reservation-based payment routes, we'll check the reservation ownership
-      const reservation = await Reservation.findById(req.params.reservationId);
-
-      if (!reservation) throw createError("Reservation not found", 404);
-
-      if (reservation.customerId.toString() !== req.user.id)
-        throw createError("Access denied. You don't own this reservation", 403);
-
-      next();
-      return;
-    }
-
-    if (!paymentId) throw createError("Payment ID is required", 400);
-
-    const payment = await Payment.findById(paymentId);
-
-    if (!payment) throw createError("Payment not found", 404);
-
-    // Get the reservation to check ownership
-    const reservation = await Reservation.findById(payment.reservationId);
-
-    if (!reservation)
-      throw createError("Associated reservation not found", 404);
-
-    if (reservation.customerId.toString() !== req.user.id)
-      throw createError("Access denied. You don't own this payment", 403);
-
-    next();
-  } catch (error) {
-    next(error);
-  }
 };
 
 // Middleware to check if the user is authorized to access/edit their own profile

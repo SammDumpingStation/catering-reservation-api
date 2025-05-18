@@ -58,8 +58,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/customers", customerRouter);
 app.use("/api/menus", menuRouter);
 app.use("/api/packages", packageRouter);
-app.use("/api/reservations", reservationRouter);
-app.use("/api/payments", paymentRouter);
+// app.use("/api/reservations", reservationRouter);
+// app.use("/api/payments", paymentRouter);
 
 // If there are errors it will go here.
 app.use(errorMiddleware);
