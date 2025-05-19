@@ -16,6 +16,13 @@ export type HoursArrayTypes =
 
 export type PaxArrayType = "4-6 pax" | "8-10 pax" | "13-15 pax" | "18-20 pax";
 
+export const paxEnum: PaxArrayType[] = [
+  "4-6 pax",
+  "8-10 pax",
+  "13-15 pax",
+  "18-20 pax",
+];
+
 export interface MenuReservationDetails {
   quantity: number;
   paxSelected: PaxArrayType;
@@ -33,13 +40,34 @@ export const reservationEventTypes = [
   "Others",
 ] as const;
 
-export type ReservationEventTypes = typeof reservationEventTypes;
+export type ReservationEventTypes = (typeof reservationEventTypes)[number];
+
+export const eventTypes = [
+  "Birthday",
+  "Wedding",
+  "Corporate",
+  "Graduation",
+  "Others",
+];
+export const serviceTypes = ["Buffet", "Plated"];
+export const orderTypes = ["Pickup", "Delivery", ""];
+export const serviceHoursOptions = [
+  "4 hours",
+  "4.5 hours",
+  "5 hours",
+  "5.5 hours",
+  "6 hours",
+  "6.5 hours",
+  "8 hours",
+  "8.5 hours",
+  "10 hours",
+];
 
 export interface IReservation extends Document {
   fullName: string;
   email: string;
   contactNumber: string;
-  selectedPackage: mongoose.Types.ObjectId;
+  selectedPackage?: mongoose.Types.ObjectId;
   selectedMenus: SelectedMenus;
   eventType: ReservationEventTypes;
   guestCount: number;

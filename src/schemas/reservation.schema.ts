@@ -35,7 +35,6 @@ const reservationSchema = new mongoose.Schema<IReservation>(
     selectedPackage: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Package",
-      required: true,
     },
     selectedMenus: {
       type: Map,
@@ -64,7 +63,7 @@ const reservationSchema = new mongoose.Schema<IReservation>(
       },
     },
     reservationDate: { type: Date, required: true },
-    reservationTime: { type: String, required: true },
+    reservationTime: { type: String, trim: true, required: true },
     deliveryFee: {
       type: Number,
       required: function () {
@@ -73,15 +72,17 @@ const reservationSchema = new mongoose.Schema<IReservation>(
     },
     deliveryAddress: {
       type: String,
+      trim: true,
       required: function () {
         return this.orderType === "Delivery";
       },
     },
-    deliveryInstructions: { type: String },
+    deliveryInstructions: { type: String, trim: true },
     totalPrice: { type: Number, required: true },
-    specialRequests: { type: String },
+    specialRequests: { type: String, trim: true },
     venue: {
       type: String,
+      trim: true,
       required: function () {
         return this.serviceType === "Plated";
       },

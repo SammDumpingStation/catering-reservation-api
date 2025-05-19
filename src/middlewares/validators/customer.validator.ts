@@ -33,7 +33,7 @@ export const customerValidationRules = {
       .withMessage("Contact Number must be a String")
       .bail()
       .trim()
-      .matches(/^09\d{9}$/) // Matches Philippine phone numbers starting with '09' and followed by 9 digits
+      .matches(/^\+639\d{9}$/) // Matches Philippine phone numbers starting with '09' and followed by 9 digits
       .withMessage(
         "Contact number must start with 09 and must have 11 characters long"
       ),
