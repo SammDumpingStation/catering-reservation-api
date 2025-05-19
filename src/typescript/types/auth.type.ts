@@ -10,9 +10,13 @@ export type SignUpProps = (data: {
 export interface IDecodedAccessToken extends JwtPayload {
   customerId: string;
   role: string;
+  email: string;
 }
 
 export interface IDecodedRefreshToken extends IDecodedAccessToken {
+  customerId: string;
   email: string;
+  role: string;
   fullName: string;
+  contactNumber: string;
 }

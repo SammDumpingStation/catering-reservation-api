@@ -28,9 +28,10 @@ export const sanitizeCustomer = (customer: ICustomer) => {
 // Not Yet Implemented
 export const generateAccessToken = (
   customerId: string,
-  role: string
+  role: string,
+  email: string
 ): string => {
-  return jwt.sign({ customerId, role }, ACCESS_TOKEN_SECRET, {
+  return jwt.sign({ customerId, role, email }, ACCESS_TOKEN_SECRET, {
     expiresIn: Number(ACCESS_TOKEN_EXPIRES_IN),
   });
 };
@@ -39,11 +40,16 @@ export const generateRefreshToken = (
   customerId: string,
   email: string,
   fullName: string,
-  role: string
+  role: string,
+  contactNumber?: string
 ): string => {
-  return jwt.sign({ customerId, email, fullName, role }, REFRESH_TOKEN_SECRET, {
-    expiresIn: Number(REFRESH_TOKEN_EXPIRES_IN),
-  });
+  return jwt.sign(
+    { customerId, email, contactNumber, fullName, role },
+    REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: Number(REFRESH_TOKEN_EXPIRES_IN),
+    }
+  );
 };
 
 export const verifyToken = (token: string, type: "access" | "refresh") => {

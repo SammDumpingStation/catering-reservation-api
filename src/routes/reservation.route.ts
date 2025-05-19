@@ -23,7 +23,11 @@ reservationRouter.get("/:id", getReservation);
 reservationRouter.post("/", reservationValidationRules.create, postReservation);
 
 // Update a Reservation
-reservationRouter.put("/:id", updateReservation);
+reservationRouter.put(
+  "/:id",
+  reservationValidationRules.update,
+  updateReservation
+);
 
 // Delete a Reservation
 reservationRouter.delete("/:id", deleteReservation);

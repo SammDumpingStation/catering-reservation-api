@@ -12,6 +12,7 @@ export const protectedRoutes = [
   { path: "/api/customers", methods: ["GET", "PUT", "DELETE"] },
   { path: "/api/menus", methods: ["POST", "PUT", "DELETE"] },
   { path: "/api/packages", methods: ["POST", "PUT", "DELETE"] },
+  { path: "/api/reservations", methods: ["GET", "PUT", "DELETE"] },
 ];
 
 // Middleware to check if the current route requires authentication
@@ -42,8 +43,8 @@ export const authenticatedRoutes: FunctionProps = (req, res, next) => {
   const decoded = verifyToken(access_token, "access");
   if (!decoded) throw createError("Invalid or expired access token", 403);
 
-  const { customerId, role } = decoded as IDecodedAccessToken;
-  req.user = { id: customerId, role };
+  const { customerId, role, email } = decoded as IDecodedAccessToken;
+  req.user = { id: customerId, role, email };
 
   next();
 };
@@ -89,6 +90,25 @@ export const isSelfOrCaterer: FunctionProps = (req, res, next) => {
     if (req.user.id !== req.params.id)
       throw createError(
         "Access denied. You can only access your own data",
+        403
+      );
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const isOwnReservationOrCaterer: FunctionProps = (req, res, next) => {
+  try {
+    if (req.user.role === "caterer") {
+      next();
+      return;
+    }
+
+    if (req.user.email !== req.params.email)
+      throw createError(
+        "Access denied. You cant only access your own data",
         403
       );
 

@@ -30,13 +30,15 @@ const signUp: FunctionProps = async (req, res, next) => {
     // Generate the access token
     const accessToken = generateAccessToken(
       customer._id as string,
-      customer.role
+      customer.role,
+      customer.email
     );
     const refreshToken = generateRefreshToken(
       customer._id as string,
       customer.email,
       customer.fullName,
-      customer.role
+      customer.role,
+      customer.contactNumber
     );
 
     setTokenCookie(res, "access_token", accessToken, "/", 3600 * 1000); // 1 hour
@@ -80,13 +82,15 @@ const signIn: FunctionProps = async (req, res, next) => {
 
     const accessToken = generateAccessToken(
       existingCustomer._id as string,
-      existingCustomer.role
+      existingCustomer.role,
+      existingCustomer.email
     );
     const refreshToken = generateRefreshToken(
       existingCustomer._id as string,
       existingCustomer.email,
       existingCustomer.fullName,
-      existingCustomer.role
+      existingCustomer.role,
+      existingCustomer.contactNumber
     );
 
     setTokenCookie(res, "access_token", accessToken, "/", 3600 * 1000); // 1 hour
@@ -174,8 +178,8 @@ const generateNewAccessToken: FunctionProps = (req, res, next) => {
       return;
     }
 
-    const { customerId, role } = decoded as IDecodedRefreshToken;
-    const newAccessToken = generateAccessToken(customerId, role);
+    const { customerId, role, email } = decoded as IDecodedRefreshToken;
+    const newAccessToken = generateAccessToken(customerId, role, email);
 
     setTokenCookie(res, "access_token", newAccessToken, "/");
 
