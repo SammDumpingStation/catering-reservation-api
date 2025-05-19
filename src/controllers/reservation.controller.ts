@@ -64,13 +64,14 @@ export const updateReservation: FunctionProps = async (req, res, next) => {
 // Delete a Reservation
 export const deleteReservation: FunctionProps = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const reservation = await Reservation.findByIdAndDelete(req.params.id);
 
-    await reservationModel.deleteReservationById(id);
+    if (!reservation) throw createError("Reservation doesn't exist", 404);
 
     res.status(200).json({
       success: true,
-      message: "Reservation deleted Successfully!",
+      message: `Reservation id ${req.params.id} is deleted Successfully!`,
+      data: reservation,
     });
   } catch (error) {
     next(error);
