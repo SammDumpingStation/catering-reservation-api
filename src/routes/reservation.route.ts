@@ -1,34 +1,36 @@
-import express from "express";
+import { Router } from "express";
 import {
-  getAllReservations,
+  getReservations,
   getCustomerReservations,
   getReservation,
-  getMyReservations,
   createReservation,
   updateReservation,
   deleteReservation,
 } from "../controllers/reservation.controller.js";
-import { isCaterer, isCustomer } from "@middlewares/auth.middleware.js";
+import { isCaterer } from "@middlewares/auth.middleware.js";
+import { reservationValidationRules } from "@middlewares/validators/reservation.validator.js";
 
 // TEMPORARY. DOESN'T WORK
 
-const reservationRouter = express.Router();
+const reservationRouter = Router();
 
-// Routes accessible only to caterers
-reservationRouter.get("/", isCaterer, getAllReservations);
+// Get all Reservations
+reservationRouter.get("/", isCaterer, getReservations);
 
-// Routes accessible to both caterers and customers (with ownership check)
+// Get Reservation Details
 reservationRouter.get("/:id", getReservation);
 
-reservationRouter.put("/:id", updateReservation);
-reservationRouter.delete(
-  "/:id",
-
-  deleteReservation
+// Create a Reservation
+reservationRouter.post(
+  "/",
+  reservationValidationRules.create,
+  createReservation
 );
 
-// Routes specifically for customers
-reservationRouter.get("/my/reservations", isCustomer, getMyReservations);
-reservationRouter.post("/", createReservation);
+// Update a Reservation
+reservationRouter.put("/:id", updateReservation);
+
+// Delete a Reservation
+reservationRouter.delete("/:id", deleteReservation);
 
 export default reservationRouter;

@@ -50,7 +50,7 @@ const postPackage: FunctionProps = async (req, res, next) => {
     });
     if (existingPackage) throw createError("Package already exists", 400);
 
-    const pkg = await Package.create(data);
+    const pkg = await packageModel.createPackage(data);
 
     // Emit event to all clients when menu is created
     io.emit("packageCreated", pkg);

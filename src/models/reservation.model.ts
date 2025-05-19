@@ -1,16 +1,6 @@
 import Reservation from "@schemas/reservation.schema.js";
-import { ReservationProps } from "@TStypes/reservation.type.js";
+import { IReservation } from "@TStypes/reservation.type.js";
 import { createError } from "@utils/globalUtils.js";
-
-export const getReservationsByCustomerId = async (customerId: string) => {
-  const reservations = await Reservation.find({ customerId }).populate(
-    "customerId",
-    "fullName"
-  );
-
-  if (!reservations) throw createError("Reservations not found", 404);
-  return reservations;
-};
 
 export const getReservationById = async (id: string) => {
   const reservation = await Reservation.findById(id);
@@ -21,7 +11,7 @@ export const getReservationById = async (id: string) => {
 
 export const updateReservationById = async (
   id: string,
-  updateData: Partial<ReservationProps>
+  updateData: Partial<IReservation>
 ) => {
   const existingReservation = await Reservation.findByIdAndUpdate(
     id,
