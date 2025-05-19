@@ -5,34 +5,51 @@ import {
 import mongoose from "mongoose";
 
 // Define the schema for MenuReservationDetails
-const MenuReservationDetailsSchema =
-  new mongoose.Schema<MenuReservationDetails>({
-    quantity: { type: Number, required: true },
-    paxSelected: {
+const menuReservationDetailsSchema =
+  new mongoose.Schema<MenuReservationDetails>(
+    {
+      quantity: { type: Number, required: true },
+      paxSelected: {
+        type: String,
+        enum: ["4-6 pax", "8-10 pax", "13-15 pax", "18-20 pax"],
+        required: true,
+      },
+      pricePerPax: { type: Number, required: true },
+    },
+    {
+      _id: false,
+    }
+  );
+
+const reservationSchema = new mongoose.Schema<IReservation>(
+  {
+    fullName: { type: String, required: true, minLength: 2, maxLength: 50 },
+    email: {
       type: String,
-      enum: ["4-6 pax", "8-10 pax", "13-15 pax", "18-20 pax"],
+      required: [true, "Email is Required"],
+      trim: true,
+      lowercase: true,
+      match: [/\S+@\S+\.\S+/, "Please provide a valid email address"],
+    },
+    contactNumber: { type: String, required: true, trim: true },
+    selectedPackage: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Package",
       required: true,
     },
-    pricePerPax: { type: Number, required: true },
-  });
-
-// Since SelectedMenus is Record<string, Record<string, MenuReservationDetails>>
-// We’ll store it as an object with nested objects.
-const ReservationSchema = new mongoose.Schema<IReservation>(
-  {
-    fullName: { type: String, required: true },
-    email: { type: String, required: true },
-    contactNumber: { type: String, required: true },
-    selectedPackage: { type: String, required: true },
     selectedMenus: {
       type: Map,
       of: {
         type: Map,
-        of: MenuReservationDetailsSchema,
+        of: menuReservationDetailsSchema,
       },
       required: true,
     },
-    eventType: { type: String, required: true },
+    eventType: {
+      type: String,
+      enum: ["Birthday", "Wedding", "Corporate", "Graduation", "Others"],
+      required: true,
+    },
     guestCount: { type: Number, required: true },
     serviceType: {
       type: String,
@@ -42,16 +59,33 @@ const ReservationSchema = new mongoose.Schema<IReservation>(
     orderType: {
       type: String,
       enum: ["Pickup", "Delivery", ""],
-      required: true,
+      required: function () {
+        return this.serviceType === "Buffet"; // `orderType` is required only if `serviceType` is "Buffet"
+      },
     },
     reservationDate: { type: Date, required: true },
     reservationTime: { type: String, required: true },
-    deliveryFee: { type: Number },
-    deliveryAddress: { type: String },
+    deliveryFee: {
+      type: Number,
+      required: function () {
+        return this.orderType === "Delivery";
+      },
+    },
+    deliveryAddress: {
+      type: String,
+      required: function () {
+        return this.orderType === "Delivery";
+      },
+    },
     deliveryInstructions: { type: String },
     totalPrice: { type: Number, required: true },
     specialRequests: { type: String },
-    venue: { type: String, required: true },
+    venue: {
+      type: String,
+      required: function () {
+        return this.serviceType === "Plated";
+      },
+    },
     serviceFee: { type: Number, required: true },
     serviceHours: {
       type: String,
@@ -66,11 +100,14 @@ const ReservationSchema = new mongoose.Schema<IReservation>(
         "8.5 hours",
         "10 hours",
       ],
+      required: function () {
+        return this.serviceType === "Plated";
+      },
     },
   },
   { timestamps: true }
 );
 
-const Reservation = mongoose.model("Reservation", ReservationSchema);
+const Reservation = mongoose.model("Reservation", reservationSchema);
 
 export default Reservation;

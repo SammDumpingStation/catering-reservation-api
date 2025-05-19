@@ -1,3 +1,6 @@
+import mongoose from "mongoose";
+import { EventProps } from "./package.type.js";
+
 export type ServiceType = "Buffet" | "Plated";
 
 export type HoursArrayTypes =
@@ -22,13 +25,23 @@ export interface MenuReservationDetails {
 export type SelectedMenu = Record<string, MenuReservationDetails>;
 export type SelectedMenus = Record<string, SelectedMenu>;
 
+export const reservationEventTypes = [
+  "Birthday",
+  "Wedding",
+  "Corporate",
+  "Graduation",
+  "Others",
+] as const;
+
+export type ReservationEventTypes = typeof reservationEventTypes;
+
 export interface IReservation extends Document {
   fullName: string;
   email: string;
   contactNumber: string;
-  selectedPackage: string;
+  selectedPackage: mongoose.Types.ObjectId;
   selectedMenus: SelectedMenus;
-  eventType: string;
+  eventType: ReservationEventTypes;
   guestCount: number;
   serviceType: ServiceType;
   orderType: "Pickup" | "Delivery" | "";
@@ -39,7 +52,7 @@ export interface IReservation extends Document {
   deliveryInstructions?: string;
   totalPrice: number;
   specialRequests?: string;
-  venue: string;
+  venue?: string;
   serviceFee: number;
   serviceHours?: HoursArrayTypes;
 }
