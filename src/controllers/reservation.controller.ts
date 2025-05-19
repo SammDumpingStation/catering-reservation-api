@@ -17,9 +17,7 @@ export const getReservations: FunctionProps = async (req, res, next) => {
 // Get a single reservation by ID
 export const getReservation: FunctionProps = async (req, res, next) => {
   try {
-    const reservation = await reservationModel.getReservationById(
-      req.params.id
-    );
+    const reservation = await Reservation.findById(req.params.id);
     if (!reservation) throw createError("Reservation doesn't exist", 404);
 
     res.status(200).json({ success: true, data: reservation });
@@ -29,32 +27,16 @@ export const getReservation: FunctionProps = async (req, res, next) => {
 };
 
 // Create a Reservation
-export const createReservation: FunctionProps = async (req, res, next) => {
+export const postReservation: FunctionProps = async (req, res, next) => {
   try {
-    // For customer-created reservations, ensure customerId is set to the logged-in user
-    if (req.user && !req.body.customerId) {
-      req.body.customerId = req.user.id;
-    }
+    const data = req.body;
 
-    const reservation = await Reservation.create(req.body);
-    res.status(201).json({ success: true, data: reservation });
-  } catch (error) {
-    next(error);
-  }
-};
+    const reservation = await reservationModel.createReservation(data);
 
-// Get all reservations for a specific customer
-export const getCustomerReservations: FunctionProps = async (
-  req,
-  res,
-  next
-) => {
-  try {
-    const { id } = req.params;
-
-    const reservations = await reservationModel.getReservationsByCustomerId(id);
-
-    res.status(200).json({ success: true, data: reservations });
+    res.status(201).json({
+      success: true,
+      data: reservation,
+    });
   } catch (error) {
     next(error);
   }

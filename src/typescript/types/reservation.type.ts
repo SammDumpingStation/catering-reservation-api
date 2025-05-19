@@ -84,3 +84,7 @@ export interface IReservation extends Document {
   serviceFee: number;
   serviceHours?: HoursArrayTypes;
 }
+
+export type CreateReservationProps = (
+  data: IReservation
+) => Promise<IReservation>;

@@ -1,34 +1,28 @@
 import Reservation from "@schemas/reservation.schema.js";
-import { IReservation } from "@TStypes/reservation.type.js";
-import { createError } from "@utils/globalUtils.js";
+import { CreateReservationProps } from "@TStypes/reservation.type.js";
 
-export const getReservationById = async (id: string) => {
-  const reservation = await Reservation.findById(id);
+export const createReservation: CreateReservationProps = async (data) => {
+  const payload = {
+    fullName: data.fullName,
+    email: data.email,
+    contactNumber: data.contactNumber,
+    selectedPackage: data?.selectedPackage,
+    selectedMenus: data.selectedMenus,
+    eventType: data.eventType,
+    guestCount: data.guestCount,
+    serviceType: data.serviceType,
+    orderType: data.orderType,
+    reservationDate: data.reservationDate,
+    reservationTime: data.reservationTime,
+    deliveryFee: data?.deliveryFee,
+    deliveryAddress: data?.deliveryAddress,
+    deliveryInstructions: data?.deliveryInstructions,
+    totalPrice: data.totalPrice,
+    specialRequests: data?.specialRequests,
+    venue: data?.venue,
+    serviceFee: data.serviceFee,
+    serviceHours: data?.serviceHours,
+  };
 
-  if (!reservation) throw createError("Reservation not found", 404);
-  return reservation;
-};
-
-export const updateReservationById = async (
-  id: string,
-  updateData: Partial<IReservation>
-) => {
-  const existingReservation = await Reservation.findByIdAndUpdate(
-    id,
-    updateData,
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
-
-  if (!existingReservation) throw createError("Reservation not found", 404);
-  return existingReservation;
-};
-
-export const deleteReservationById = async (id: string) => {
-  const reservation = await Reservation.findByIdAndDelete(id);
-
-  if (!reservation) throw createError("Reservation not found", 404);
-  return reservation;
+  return await Reservation.create(payload);
 };

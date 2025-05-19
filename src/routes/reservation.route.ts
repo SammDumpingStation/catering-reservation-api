@@ -1,9 +1,8 @@
 import { Router } from "express";
 import {
   getReservations,
-  getCustomerReservations,
   getReservation,
-  createReservation,
+  postReservation,
   updateReservation,
   deleteReservation,
 } from "../controllers/reservation.controller.js";
@@ -21,11 +20,7 @@ reservationRouter.get("/", isCaterer, getReservations);
 reservationRouter.get("/:id", getReservation);
 
 // Create a Reservation
-reservationRouter.post(
-  "/",
-  reservationValidationRules.create,
-  createReservation
-);
+reservationRouter.post("/", reservationValidationRules.create, postReservation);
 
 // Update a Reservation
 reservationRouter.put("/:id", updateReservation);
