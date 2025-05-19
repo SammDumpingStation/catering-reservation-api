@@ -46,27 +46,14 @@ export const postReservation: FunctionProps = async (req, res, next) => {
 export const updateReservation: FunctionProps = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const {
-      customerId,
-      customerDetails,
-      eventDetails,
-      menuSelection,
-      specialRequests,
-      costDetails,
-      status,
-      paymentStatus,
-    } = req.body;
+    const data = req.body;
 
-    const reservation = await reservationModel.updateReservationById(id, {
-      customerId,
-      customerDetails,
-      eventDetails,
-      menuSelection,
-      specialRequests,
-      costDetails,
-      status,
-      paymentStatus,
-    });
+    if (Object.keys(data).length === 0) {
+      throw createError("Update data cannot be empty", 400);
+    }
+
+    const reservation = await reservationModel.updateReservationById(id, data);
+    if (!reservation) throw createError("Reservation doesn't exist", 404);
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {

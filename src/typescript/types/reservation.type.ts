@@ -88,3 +88,8 @@ export interface IReservation extends Document {
 export type CreateReservationProps = (
   data: IReservation
 ) => Promise<IReservation>;
+
+export type UpdateReservationByIdProps = (
+  id: string,
+  data: Partial<Omit<IReservation, "_id" | "createdAt" | "updatedAt" | "__v">>
+) => Promise<IReservation | null>;
