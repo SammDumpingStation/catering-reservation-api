@@ -14,10 +14,10 @@ import { reservationValidationRules } from "@middlewares/validators/reservation.
 const reservationRouter = Router();
 
 // Get all Reservations
-reservationRouter.get("/", isCaterer, getReservations);
+reservationRouter.get("/", getReservations);
 
 // Get Reservation Details
-reservationRouter.get("/:id", getReservation);
+reservationRouter.get("/:email", getReservation);
 
 // Create a Reservation
 reservationRouter.post("/", reservationValidationRules.create, postReservation);

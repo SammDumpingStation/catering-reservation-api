@@ -14,11 +14,12 @@ export const getReservations: FunctionProps = async (req, res, next) => {
   }
 };
 
-// Get a single reservation by ID
+// Get a single reservation by Email
 export const getReservation: FunctionProps = async (req, res, next) => {
   try {
-    const reservation = await Reservation.findById(req.params.id);
-    if (!reservation) throw createError("Reservation doesn't exist", 404);
+    const reservation = await Reservation.find({ email: req.params.email });
+    if (!reservation)
+      throw createError("Reservation with this email doesn't exist", 404);
 
     res.status(200).json({ success: true, data: reservation });
   } catch (error) {
