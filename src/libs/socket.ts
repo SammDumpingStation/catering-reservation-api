@@ -24,15 +24,6 @@ const socketConnection = (server: HttpServer) => {
     socket.on("disconnect", () => {
       console.log("User Disconnected!");
     });
-
-    // // Handle other events from the client
-    // socket.on("menuUpdated", (updatedMenu) => {
-    //   console.log("Menu updated:", updatedMenu);
-    // });
-
-    // socket.on("menuCreated", (createdMenu) => {
-    //   console.log("Menu created:", createdMenu);
-    // });
   });
 };
 
