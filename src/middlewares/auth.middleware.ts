@@ -13,6 +13,7 @@ export const protectedRoutes = [
   { path: "/api/menus", methods: ["POST", "PUT", "DELETE"] },
   { path: "/api/packages", methods: ["POST", "PUT", "DELETE"] },
   { path: "/api/reservations", methods: ["GET", "PUT", "DELETE"] },
+  { path: "/api/business-settings", methods: ["GET", "PUT"] },
 ];
 
 // Middleware to check if the current route requires authentication

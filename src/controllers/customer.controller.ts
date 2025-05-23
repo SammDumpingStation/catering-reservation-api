@@ -45,7 +45,7 @@ const updateCustomer: FunctionProps = async (req, res, next) => {
     // ⬇️ Upload profileImage if present
     if (req.file) {
       const result = await cloudinary.uploader.upload(req.file.path, {
-        folder: "customer_profiles",
+        folder: "catering",
       });
       data.profileImage = result.secure_url;
       fs.unlinkSync(req.file.path); // Remove temp file

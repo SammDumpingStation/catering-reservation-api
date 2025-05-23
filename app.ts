@@ -14,6 +14,7 @@ import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
 import reservationRouter from "@routes/reservation.route.js";
 import { socketConnection } from "@libs/socket.js";
+import businessSettingsRouter from "@routes/businessSettings.route.js";
 
 export const allowedOrigins = [
   CLIENT_URL, // Web
@@ -58,6 +59,7 @@ app.use("/api/customers", customerRouter);
 app.use("/api/menus", menuRouter);
 app.use("/api/packages", packageRouter);
 app.use("/api/reservations", reservationRouter);
+app.use("/api/business-settings", businessSettingsRouter);
 // app.use("/api/payments", paymentRouter);
 
 // If there are errors it will go here.
