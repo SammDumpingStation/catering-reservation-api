@@ -38,14 +38,14 @@ export const customerValidationRules = {
         "Contact number must start with 09 and must have 11 characters long"
       ),
 
-    body("profileImage")
-      .optional()
-      .isString()
-      .withMessage("Profile Image must be a String")
-      .bail()
-      .trim()
-      .isURL() // Validates if the value is a valid URL
-      .withMessage("Profile Image must be a valid URL"),
+    // body("profileImage")
+    //   .optional()
+    //   .isString()
+    //   .withMessage("Profile Image must be a String")
+    //   .bail()
+    //   .trim()
+    //   .isURL() // Validates if the value is a valid URL
+    //   .withMessage("Profile Image must be a valid URL"),
 
     validateRequest,
   ],

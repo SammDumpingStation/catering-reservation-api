@@ -8,6 +8,7 @@ import {
 } from "@controllers/customer.controller.js";
 import { isCaterer, isSelfOrCaterer } from "@middlewares/auth.middleware.js";
 import { customerValidationRules } from "@middlewares/validators/customer.validator.js";
+import upload from "@libs/multer.js";
 
 const customerRouter = Router();
 
@@ -21,6 +22,7 @@ customerRouter.get("/:id", isSelfOrCaterer, getCustomer);
 customerRouter.put(
   "/:id",
   isSelfOrCaterer,
+  upload.single("profileImage"), // 👈 must be before the controller
   customerValidationRules.update,
   updateCustomer
 );

@@ -12,7 +12,7 @@
   },
   "_moduleAliases": {
     "@controllers": "/dist/src/controllers",
-    "@database": "/dist/src/database",
+    "@libs": "/dist/src/libs",
     "@middlewares": "/dist/src/middlewares",
     "@models": "/dist/src/models",
     "@routes": "/dist/src/routes",

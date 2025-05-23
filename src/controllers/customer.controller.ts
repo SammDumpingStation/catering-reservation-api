@@ -3,6 +3,8 @@ import * as customerModel from "@models/customer.model.js";
 import { sanitizeCustomer } from "@utils/authUtils.js";
 import { createError } from "@utils/globalUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
+import cloudinary from "@libs/cloudinary.js";
+import fs from "fs";
 
 const getCustomers: FunctionProps = async (req, res, next) => {
   try {
@@ -38,6 +40,15 @@ const updateCustomer: FunctionProps = async (req, res, next) => {
 
     if (Object.keys(data).length === 0) {
       throw createError("Update data cannot be empty", 400);
+    }
+
+    // ⬇️ Upload profileImage if present
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "customer_profiles",
+      });
+      data.profileImage = result.secure_url;
+      fs.unlinkSync(req.file.path); // Remove temp file
     }
 
     const existingCustomer = await customerModel.updateCustomerById(id, data);

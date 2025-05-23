@@ -1,4 +1,3 @@
-import { CLIENT_URL } from "@config/env.js";
 import { Server } from "socket.io";
 import { Server as HttpServer } from "http";
 import { allowedOrigins } from "app.js";

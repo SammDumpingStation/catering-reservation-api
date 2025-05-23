@@ -2,7 +2,7 @@ import Menu from "../schemas/menu.schema.js";
 import * as menuModel from "../models/menu.model.js";
 import { createError } from "@utils/globalUtils.js";
 import { FunctionProps } from "@TStypes/global.type.js";
-import { io } from "@database/socket.js";
+import { io } from "@libs/socket.js";
 
 //Get All Menu
 const getMenus: FunctionProps = async (req, res, next) => {

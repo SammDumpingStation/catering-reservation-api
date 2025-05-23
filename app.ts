@@ -12,9 +12,8 @@ import authRouter from "@routes/auth.route.js";
 import customerRouter from "@routes/customer.route.js";
 import menuRouter from "@routes/menu.route.js";
 import packageRouter from "@routes/package.route.js";
-import paymentRouter from "@routes/payment.route.js";
 import reservationRouter from "@routes/reservation.route.js";
-import { socketConnection } from "@database/socket.js";
+import { socketConnection } from "@libs/socket.js";
 
 export const allowedOrigins = [
   CLIENT_URL, // Web
